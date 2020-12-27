@@ -1,10 +1,20 @@
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
-import { ImageBackground, SafeAreaView, StyleSheet, Text } from "react-native";
+import {
+  ImageBackground,
+  SafeAreaView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+import { Button } from "../components";
+import { default as s } from "../style";
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation: { navigate } }) => {
   return (
     <SafeAreaView style={styles.container} forceInset={{ top: "always" }}>
+      <StatusBar barStyle="light-content" />
       <ImageBackground
         style={styles.image}
         source={require("../assets/images/home-background.png")}
@@ -12,45 +22,50 @@ const HomeScreen = () => {
         <LinearGradient
           style={styles.gradient}
           colors={["rgba(0, 0, 0, 0.70)", "transparent"]}
-        >
-          <Text style={[styles.title, styles.title_2]}>WELCOME TO</Text>
-          <Text style={[styles.title, styles.title_1]}>NutriJournal</Text>
-        </LinearGradient>
+        />
+        <View>
+          <Text style={[styles.title, styles.title_1]}>WELCOME TO</Text>
+          <Text style={[styles.title, styles.title_2]}>NutriJournal</Text>
+        </View>
+        <View style={styles.buttonContainer}>
+          <Button text="SIGN UP" onPress={() => navigate("GetStarted")} />
+          <Button
+            text="LOGIN"
+            buttonStyles={s.bgColor.white}
+            textStyles={s.textColor.grey_8}
+            onPress={() => navigate("Login")}
+          />
+        </View>
       </ImageBackground>
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: "column",
-  },
+  container: { flex: 1 },
   gradient: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    height: "50%",
+    height: "65%",
+    ...StyleSheet.absoluteFill,
   },
   image: {
     flex: 1,
+    paddingVertical: 30,
+    flexDirection: "column",
+    justifyContent: "space-between",
+    alignItems: "center",
     resizeMode: "cover",
-    justifyContent: "center",
   },
   title: {
-    fontFamily: "Manrope_Reg",
-    color: "white",
     textAlign: "center",
+    color: s.color.white,
+    fontFamily: "Manrope_Reg",
   },
   title_1: {
-    fontSize: 48,
+    fontSize: 28,
+    letterSpacing: 3,
   },
   title_2: {
-    fontSize: 24,
-    marginTop: 30,
-    letterSpacing: 3,
+    fontSize: 52,
   },
 });
 

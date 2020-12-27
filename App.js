@@ -7,10 +7,14 @@ import NavigationService from "./src/NavigationService";
 import { Provider as AuthProvider } from "./src/contexts/AuthContext";
 import HomeScreen from "./src/screens/HomeScreen";
 import JournalScreen from "./src/screens/JournalScreen";
+import GetStartedScreen from "./src/screens/onboarding/GetStartedScreen";
 
 const AuthNavigator = createSwitchNavigator(
   {
-    Home: { screen: HomeScreen },
+    Home: HomeScreen,
+    onboarding: createSwitchNavigator({
+      GetStarted: GetStartedScreen,
+    }),
   },
   { initialRouteName: "Home" }
 );
@@ -34,6 +38,7 @@ export default () => {
     NunitoSans_Regular: require("./src/assets/fonts/Nunito_Sans/NunitoSans-Bold.ttf"),
     Roboto_Regular: require("./src/assets/fonts/Roboto/Roboto-Regular.ttf"),
     Roboto_Bold: require("./src/assets/fonts/Roboto/Roboto-Bold.ttf"),
+    Lato_Regular: require("./src/assets/fonts/Lato/Lato-Regular.ttf"),
   });
 
   if (!loaded) return <AppLoading />;
