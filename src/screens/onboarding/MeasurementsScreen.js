@@ -1,13 +1,13 @@
 import React, { useContext, useState } from "react";
-import { StyleSheet } from "react-native";
-import { Input, View } from "react-native-elements";
+import { StyleSheet, View } from "react-native";
+import { Input } from "react-native-elements";
 import VMasker from "vanilla-masker";
 import { Context as AuthContext } from "../../contexts/AuthContext";
 import g from "../../style";
 import NextButton from "./components/NextButton";
 import OnboardingView from "./components/OnboardingView";
 
-const UserInfoScreen = () => {
+const MeasurementsScreen = () => {
   const { updateMeasurements } = useContext(AuthContext);
 
   const [feet, setFeet] = useState("");
@@ -96,7 +96,7 @@ const s = StyleSheet.create({
   },
 });
 
-UserInfoScreen.navigationOptions = {
+MeasurementsScreen.navigationOptions = {
   headerTitle: "About You",
   headerTintColor: g.color.white,
   headerStyle: {
@@ -104,4 +104,4 @@ UserInfoScreen.navigationOptions = {
   },
 };
 
-export default UserInfoScreen;
+export default MeasurementsScreen;

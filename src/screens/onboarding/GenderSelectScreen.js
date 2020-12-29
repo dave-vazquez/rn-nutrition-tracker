@@ -50,12 +50,15 @@ const MeasurementsScreen = () => {
 
 const s = StyleSheet.create({
   container: {
-    flex: 2,
+    flex: 1,
     paddingTop: 30,
     paddingHorizontal: 10,
   },
   buttonGroup: {
-    flex: 1.3,
+    flex: 0.3,
+    justifyContent: "flex-end",
+    // borderWidth: 1,
+    // borderColor: "red",
   },
   button: {
     backgroundColor: g.color.light_green_4,
