@@ -8,6 +8,7 @@ import NavigationService from "./src/NavigationService";
 import { Provider as AuthProvider } from "./src/contexts/AuthContext";
 import HomeScreen from "./src/screens/HomeScreen";
 import JournalScreen from "./src/screens/JournalScreen";
+import ActivityLevelScreen from "./src/screens/onboarding/ActivityLevelScreen";
 import GenderSelectScreen from "./src/screens/onboarding/GenderSelectScreen";
 import MeasurementsScreen from "./src/screens/onboarding/MeasurementsScreen";
 import WeightGoalScreen from "./src/screens/onboarding/WeightGoalScreen";
@@ -18,8 +19,9 @@ const AuthNavigator = createStackNavigator(
     Gender: GenderSelectScreen,
     Measurements: MeasurementsScreen,
     WeightGoal: WeightGoalScreen,
+    ActivityLevel: ActivityLevelScreen,
   },
-  { initialRouteName: "Home" }
+  { initialRouteName: "ActivityLevel" }
 );
 
 const switchNavigator = createSwitchNavigator(
