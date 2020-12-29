@@ -1,22 +1,19 @@
 import React, { useContext, useState } from "react";
-import { StyleSheet, View } from "react-native";
-import { Button, Icon, Input } from "react-native-elements";
+import { StyleSheet } from "react-native";
+import { Input, View } from "react-native-elements";
 import VMasker from "vanilla-masker";
-import { Gutter } from "../../components";
 import { Context as AuthContext } from "../../contexts/AuthContext";
 import g from "../../style";
+import NextButton from "./components/NextButton";
 import OnboardingView from "./components/OnboardingView";
 
 const UserInfoScreen = () => {
   const { updateMeasurements } = useContext(AuthContext);
+
   const [feet, setFeet] = useState("");
   const [weight, setWeight] = useState("");
   const [inches, setInches] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
-
-  const maskDateOfBirth = (date) => {
-    setDateOfBirth(VMasker.toPattern(date, "99/99/9999"));
-  };
 
   const handlePress = () => {
     updateMeasurements({
@@ -27,19 +24,22 @@ const UserInfoScreen = () => {
     });
   };
 
+  const maskDateOfBirth = (date) => {
+    setDateOfBirth(VMasker.toPattern(date, "99/99/9999"));
+  };
+
   return (
     <OnboardingView
-      headingText="Tell us about yourself!"
       containerStyles={s.container}
+      headingText="Tell us a little bit about you!"
     >
       <View>
-        <Gutter height={20} />
         <Input
-          value={feet}
-          onChangeText={setFeet}
-          placeholder="ft."
           label="Height"
+          value={feet}
+          placeholder="ft."
           keyboardType="numeric"
+          onChangeText={setFeet}
           leftIcon={{
             type: "font-awesome-5",
             name: "ruler-vertical",
@@ -48,9 +48,9 @@ const UserInfoScreen = () => {
         />
         <Input
           value={inches}
-          onChangeText={setInches}
           placeholder="in."
           keyboardType="numeric"
+          onChangeText={setInches}
           leftIcon={{
             type: "font-awesome-5",
             name: "ruler-vertical",
@@ -61,8 +61,8 @@ const UserInfoScreen = () => {
           label="Weight"
           value={weight}
           placeholder="lbs."
-          onChangeText={setWeight}
           keyboardType="numeric"
+          onChangeText={setWeight}
           leftIcon={{
             type: "font-awesome-5",
             name: "weight",
@@ -71,9 +71,9 @@ const UserInfoScreen = () => {
         />
         <Input
           label="Date of Birth"
-          keyboardType="numeric"
-          placeholder="mm/dd/yyyy"
           value={dateOfBirth}
+          placeholder="mm/dd/yyyy"
+          keyboardType="numeric"
           onChangeText={maskDateOfBirth}
           leftIcon={{
             type: "font-awesome-5",
@@ -82,29 +82,17 @@ const UserInfoScreen = () => {
           }}
         />
       </View>
-      <Button
-        raised
-        onPress={handlePress}
-        buttonStyle={s.button}
-        titleStyle={s.buttonTitle}
-        icon={<Icon name="arrow-right" size={30} color="white" />}
-        iconRight
-        title="Next"
-      />
+      <NextButton gutterTop={20} handlePress={handlePress} />
     </OnboardingView>
   );
 };
 
 const s = StyleSheet.create({
   container: {
-    justifyContent: "space-between",
-  },
-  button: {
-    backgroundColor: g.color.light_green_4,
-  },
-  buttonTitle: {
-    fontSize: 22,
-    fontFamily: "Lato_Regular",
+    flex: 1,
+    justifyContent: "flex-end",
+    paddingTop: 30,
+    paddingHorizontal: 10,
   },
 });
 

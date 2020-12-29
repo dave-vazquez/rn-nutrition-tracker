@@ -2,38 +2,37 @@ import React from "react";
 import {
   KeyboardAvoidingView,
   Platform,
-  SafeAreaView,
+  ScrollView,
   StyleSheet,
   View,
 } from "react-native";
 import { Text } from "react-native-elements";
 
-const OnboardingView = ({ children, headingText, containerStyles }) => {
+const OnboardingView = ({ children, containerStyles, headingText }) => {
   return (
-    <SafeAreaView style={{ flex: 1 }} forceInset={{ top: "always" }}>
-      <KeyboardAvoidingView
-        behavior="position"
-        style={[s.container, containerStyles]}
-      >
-        <Text h2 style={s.h1}>
-          {headingText}
-        </Text>
-        {children}
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+    <KeyboardAvoidingView
+      {...(Platform.OS === "ios" && { behavior: "padding" })}
+      keyboardVerticalOffset={50}
+      style={{ flex: 1 }}
+    >
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <View style={containerStyles}>
+          <Text h2 h2Style={s.h2}>
+            {headingText}
+          </Text>
+          {children}
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
 const s = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: "100%",
-    paddingTop: 30,
-    paddingHorizontal: 10,
-  },
-  h1: {
-    fontFamily: "NunitoSans_Bold",
+  h2: {
+    fontFamily: "NunitoSans_Regular",
     textAlign: "center",
+    marginBottom: 20,
+    fontWeight: "normal",
   },
 });
 

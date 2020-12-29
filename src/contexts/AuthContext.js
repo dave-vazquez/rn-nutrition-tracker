@@ -104,7 +104,7 @@ const updateGender = (dispatch) => (gender) => {
 
 const updateMeasurements = (dispatch) => (measurements) => {
   dispatch({ type: UPDATE_MEASUREMENTS, payload: measurements });
-  NavigationService.navigate("Home");
+  NavigationService.navigate("WeightGoal");
 };
 
 const initialState = {

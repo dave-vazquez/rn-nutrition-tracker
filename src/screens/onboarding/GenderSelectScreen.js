@@ -5,38 +5,43 @@ import { Context as AuthContext } from "../../contexts/AuthContext";
 import g from "../../style";
 import OnboardingView from "./components/OnboardingView";
 
-const MeasurementsScreen = ({ navigation: { navigate } }) => {
+const MeasurementsScreen = () => {
   const { updateGender } = useContext(AuthContext);
 
   return (
-    <OnboardingView headingText="Are you male or female?">
-      <View style={s.container}>
+    <OnboardingView
+      headingText="Are you male or female?"
+      containerStyles={s.container}
+    >
+      <View style={s.buttonGroup}>
         <Button
+          raised
+          iconRight
+          title="Male"
           buttonStyle={s.button}
-          onPress={() => updateGender("male")}
           titleStyle={s.buttonTitle}
+          onPress={() => updateGender("male")}
           icon={{
             type: "foundation",
             name: "male-symbol",
             size: 30,
             color: "white",
           }}
-          iconRight
-          title="Male"
         />
         <Button
-          containerStyle={s.buttonContainer}
+          raised
+          iconRight
+          title="Female"
           buttonStyle={s.button}
-          onPress={() => updateGender("female")}
           titleStyle={s.buttonTitle}
+          containerStyle={s.buttonContainer}
+          onPress={() => updateGender("female")}
           icon={{
             type: "foundation",
             name: "female-symbol",
             size: 30,
             color: "white",
           }}
-          iconRight
-          title="Female"
         />
       </View>
     </OnboardingView>
@@ -45,8 +50,12 @@ const MeasurementsScreen = ({ navigation: { navigate } }) => {
 
 const s = StyleSheet.create({
   container: {
-    justifyContent: "center",
-    height: "80%",
+    flex: 2,
+    paddingTop: 30,
+    paddingHorizontal: 10,
+  },
+  buttonGroup: {
+    flex: 1.3,
   },
   button: {
     backgroundColor: g.color.light_green_4,

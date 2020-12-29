@@ -9,19 +9,17 @@ import { Provider as AuthProvider } from "./src/contexts/AuthContext";
 import HomeScreen from "./src/screens/HomeScreen";
 import JournalScreen from "./src/screens/JournalScreen";
 import GenderSelectScreen from "./src/screens/onboarding/GenderSelectScreen";
-import GetStartedScreen from "./src/screens/onboarding/GetStartedScreen";
 import MeasurementsScreen from "./src/screens/onboarding/MeasurementsScreen";
 import WeightGoalScreen from "./src/screens/onboarding/WeightGoalScreen";
 
 const AuthNavigator = createStackNavigator(
   {
     Home: HomeScreen,
-    GetStarted: GetStartedScreen,
     Gender: GenderSelectScreen,
     Measurements: MeasurementsScreen,
     WeightGoal: WeightGoalScreen,
   },
-  { initialRouteName: "WeightGoal" }
+  { initialRouteName: "Home" }
 );
 
 const switchNavigator = createSwitchNavigator(

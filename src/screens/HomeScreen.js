@@ -28,7 +28,7 @@ const HomeScreen = ({ navigation: { navigate } }) => {
           <Text style={[s.title, s.title_2]}>NutriJournal</Text>
         </View>
         <View style={s.buttonContainer}>
-          <Button text="SIGN UP" onPress={() => navigate("GetStarted")} />
+          <Button text="SIGN UP" onPress={() => navigate("Gender")} />
           <Button
             text="LOGIN"
             buttonStyles={g.bgColor.white}
