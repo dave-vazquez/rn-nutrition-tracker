@@ -21,6 +21,7 @@ const color = {
   purple_3: "#C479A3",
   purple_4: "#A34B7D",
   purple_5: "#7F2458",
+  blue: "#859AD1",
   white: "#FFFFFF",
   grey_1: "#FAFAFA",
   grey_2: "#F5F5F5",
@@ -94,6 +95,9 @@ const textColor = StyleSheet.create({
   },
   purple_5: {
     color: color.purple_5,
+  },
+  blue: {
+    color: color.blue,
   },
   white: {
     color: color.white,
@@ -191,6 +195,9 @@ const bgColor = StyleSheet.create({
   purple_5: {
     backgroundColor: color.purple_5,
   },
+  blue: {
+    backgroundColor: color.blue,
+  },
   white: {
     backgroundColor: color.white,
   },
@@ -226,8 +233,10 @@ const bgColor = StyleSheet.create({
   },
 });
 
-export default {
+const g = {
   color,
   textColor,
   bgColor,
 };
+
+export default g;

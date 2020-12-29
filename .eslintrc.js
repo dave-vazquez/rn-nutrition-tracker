@@ -26,7 +26,7 @@ module.exports = {
     "react-hooks/exhaustive-deps": 1,
     "react-native/no-unused-styles": 1,
     "react-native/split-platform-components": 2,
-    "react-native/no-raw-text": 2,
+    "react-native/no-raw-text": 0,
     "react-native/no-single-element-style-arrays": 2,
     "prettier/prettier": 1,
   },

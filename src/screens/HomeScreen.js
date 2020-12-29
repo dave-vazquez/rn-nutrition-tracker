@@ -9,30 +9,30 @@ import {
   View,
 } from "react-native";
 import { Button } from "../components";
-import { default as s } from "../style";
+import g from "../style";
 
 const HomeScreen = ({ navigation: { navigate } }) => {
   return (
-    <SafeAreaView style={styles.container} forceInset={{ top: "always" }}>
+    <SafeAreaView style={s.container} forceInset={{ top: "always" }}>
       <StatusBar barStyle="light-content" />
       <ImageBackground
-        style={styles.image}
+        style={s.image}
         source={require("../assets/images/home-background.png")}
       >
         <LinearGradient
-          style={styles.gradient}
+          style={s.gradient}
           colors={["rgba(0, 0, 0, 0.70)", "transparent"]}
         />
         <View>
-          <Text style={[styles.title, styles.title_1]}>WELCOME TO</Text>
-          <Text style={[styles.title, styles.title_2]}>NutriJournal</Text>
+          <Text style={[s.title, s.title_1]}>WELCOME TO</Text>
+          <Text style={[s.title, s.title_2]}>NutriJournal</Text>
         </View>
-        <View style={styles.buttonContainer}>
+        <View style={s.buttonContainer}>
           <Button text="SIGN UP" onPress={() => navigate("GetStarted")} />
           <Button
             text="LOGIN"
-            buttonStyles={s.bgColor.white}
-            textStyles={s.textColor.grey_8}
+            buttonStyles={g.bgColor.white}
+            textStyles={g.textColor.grey_8}
             onPress={() => navigate("Login")}
           />
         </View>
@@ -41,7 +41,11 @@ const HomeScreen = ({ navigation: { navigate } }) => {
   );
 };
 
-const styles = StyleSheet.create({
+HomeScreen.navigationOptions = {
+  header: () => false,
+};
+
+const s = StyleSheet.create({
   container: { flex: 1 },
   gradient: {
     height: "65%",
@@ -57,7 +61,7 @@ const styles = StyleSheet.create({
   },
   title: {
     textAlign: "center",
-    color: s.color.white,
+    color: g.color.white,
     fontFamily: "Manrope_Reg",
   },
   title_1: {

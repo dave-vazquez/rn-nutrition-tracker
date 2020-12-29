@@ -7,14 +7,14 @@ const JournalScreen = () => {
   const { signout } = useContext(AuthContext);
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <View style={styles.container}>
+      <View style={s.container}>
         <Button title="Log Off" onPress={signout} />
       </View>
     </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({
+const s = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
