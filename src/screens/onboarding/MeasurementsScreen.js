@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Button, Icon, Input } from "react-native-elements";
 import VMasker from "vanilla-masker";
 import { Gutter } from "../../components";
+import { Context as AuthContext } from "../../contexts/AuthContext";
 import g from "../../style";
 import OnboardingView from "./components/OnboardingView";
 
 const UserInfoScreen = () => {
+  const { updateMeasurements } = useContext(AuthContext);
   const [feet, setFeet] = useState("");
   const [weight, setWeight] = useState("");
   const [inches, setInches] = useState("");
@@ -14,6 +16,15 @@ const UserInfoScreen = () => {
 
   const maskDateOfBirth = (date) => {
     setDateOfBirth(VMasker.toPattern(date, "99/99/9999"));
+  };
+
+  const handlePress = () => {
+    updateMeasurements({
+      feet,
+      inches,
+      weight,
+      dateOfBirth,
+    });
   };
 
   return (
@@ -73,8 +84,8 @@ const UserInfoScreen = () => {
       </View>
       <Button
         raised
+        onPress={handlePress}
         buttonStyle={s.button}
-        containerStyle={s.buttonContainer}
         titleStyle={s.buttonTitle}
         icon={<Icon name="arrow-right" size={30} color="white" />}
         iconRight
@@ -93,6 +104,7 @@ const s = StyleSheet.create({
   },
   buttonTitle: {
     fontSize: 22,
+    fontFamily: "Lato_Regular",
   },
 });
 

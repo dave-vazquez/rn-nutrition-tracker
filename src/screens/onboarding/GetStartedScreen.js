@@ -24,7 +24,7 @@ const GetStartedScreen = ({ navigation: { navigate } }) => {
         text="Next"
         buttonStyles={g.bgColor.white}
         textStyles={g.textColor.grey_8}
-        onPress={() => navigate("UserInfo")}
+        onPress={() => navigate("Gender")}
       />
     </SafeAreaView>
   );

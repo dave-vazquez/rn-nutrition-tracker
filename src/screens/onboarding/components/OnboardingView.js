@@ -29,7 +29,7 @@ const s = StyleSheet.create({
     flex: 1,
     width: "100%",
     paddingTop: 30,
-    paddingHorizontal: 15,
+    paddingHorizontal: 10,
   },
   h1: {
     fontFamily: "NunitoSans_Bold",

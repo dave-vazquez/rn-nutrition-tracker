@@ -6,6 +6,8 @@ import createContext from "./createContext";
 const AUTHENTICATE_START = "AUTHENTICATE_START";
 const AUTHENTICATE_FAIL = "AUTHENTICATE_FAIL";
 const AUTHENTICATE_REFRESH = "AUTHENTICATE_REFRESH";
+const UPDATE_GENDER = "UPDATE_GENDER";
+const UPDATE_MEASUREMENTS = "UPDATE_MEASUREMENTS";
 
 const authReducer = (state, action) => {
   switch (action.type) {
@@ -22,6 +24,19 @@ const authReducer = (state, action) => {
         authStart: false,
         authFail: true,
         errorMessage: action.payload,
+      };
+    case UPDATE_GENDER:
+      return {
+        ...state,
+        gender: action.gender,
+      };
+    case UPDATE_MEASUREMENTS:
+      return {
+        ...state,
+        feet: action.payload.feet,
+        inches: action.payload.inches,
+        weight: action.payload.weight,
+        dateOfBirth: action.payload.dateOfBirth,
       };
     default:
       return state;
@@ -82,14 +97,37 @@ const signout = () => async () => {
   NavigationService.navigate("SignIn");
 };
 
+const updateGender = (dispatch) => (gender) => {
+  dispatch({ type: UPDATE_GENDER, payload: gender });
+  NavigationService.navigate("Measurements");
+};
+
+const updateMeasurements = (dispatch) => (measurements) => {
+  dispatch({ type: UPDATE_MEASUREMENTS, payload: measurements });
+  NavigationService.navigate("Home");
+};
+
 const initialState = {
   authStart: false,
   authFail: false,
   errorMessage: "",
+  gender: "",
+  feet: "",
+  inches: "",
+  weight: "",
+  dateOfBirth: "",
 };
 
 export const { Provider, Context } = createContext(
   authReducer,
-  { createAccount, refreshAuth, tryLocalSignin, signout, signin },
+  {
+    createAccount,
+    refreshAuth,
+    tryLocalSignin,
+    signout,
+    signin,
+    updateGender,
+    updateMeasurements,
+  },
   initialState
 );
