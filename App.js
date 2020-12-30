@@ -8,6 +8,7 @@ import NavigationService from "./src/NavigationService";
 import { Provider as AuthProvider } from "./src/contexts/AuthContext";
 import HomeScreen from "./src/screens/HomeScreen";
 import JournalScreen from "./src/screens/JournalScreen";
+import SignUpScreen from "./src/screens/SignUpScreen";
 import ActivityLevelScreen from "./src/screens/onboarding/ActivityLevelScreen";
 import GenderSelectScreen from "./src/screens/onboarding/GenderSelectScreen";
 import MeasurementsScreen from "./src/screens/onboarding/MeasurementsScreen";
@@ -20,8 +21,9 @@ const AuthNavigator = createStackNavigator(
     Measurements: MeasurementsScreen,
     WeightGoal: WeightGoalScreen,
     ActivityLevel: ActivityLevelScreen,
+    SignUp: SignUpScreen,
   },
-  { initialRouteName: "ActivityLevel" }
+  { initialRouteName: "SignUp" }
 );
 
 const switchNavigator = createSwitchNavigator(
@@ -47,6 +49,7 @@ export default () => {
     Roboto_Regular: require("./src/assets/fonts/Roboto/Roboto-Regular.ttf"),
     Roboto_Bold: require("./src/assets/fonts/Roboto/Roboto-Bold.ttf"),
     Lato_Regular: require("./src/assets/fonts/Lato/Lato-Regular.ttf"),
+    Lato_Light: require("./src/assets/fonts/Lato/Lato-Light.ttf"),
   });
 
   if (!loaded) return <AppLoading />;

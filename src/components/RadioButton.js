@@ -1,15 +1,8 @@
 import React from "react";
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import g from "../style";
-import Gutter from "./KeyboardGutter";
 
-const RadioButton = ({ style, selected, setSelected, label }) => {
+const RadioButton = ({ style, selected, setSelected, label, subLabel }) => {
   return (
     <TouchableOpacity
       style={s.touchable}
@@ -19,7 +12,10 @@ const RadioButton = ({ style, selected, setSelected, label }) => {
       <View style={[s.radioBorder, style]}>
         {selected && <View style={s.radioFill} />}
       </View>
-      <Text style={s.label}>{label}</Text>
+      <View style={s.labelContainer}>
+        <Text style={s.label}>{label}</Text>
+        <Text style={s.subLabel}>{subLabel}</Text>
+      </View>
     </TouchableOpacity>
   );
 };
@@ -29,11 +25,11 @@ const s = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     alignSelf: "stretch",
-    alignItems: "center",
+    alignItems: "flex-start",
   },
   radioBorder: {
-    height: 22,
-    width: 22,
+    height: 24,
+    width: 24,
     borderRadius: 12,
     borderWidth: 2,
     marginLeft: 10,
@@ -42,14 +38,25 @@ const s = StyleSheet.create({
     justifyContent: "center",
   },
   radioFill: {
-    height: 10,
-    width: 10,
+    height: 12,
+    width: 12,
     borderRadius: 6,
     backgroundColor: g.color.grey_8,
   },
+  // labelContainer: {
+
+  // },
   label: {
-    fontSize: 20,
+    fontSize: 22,
+    marginTop: -1,
     marginLeft: 10,
+    fontFamily: "Lato_Regular",
+  },
+  subLabel: {
+    marginTop: 5,
+    fontSize: 18,
+    marginLeft: 10,
+    fontFamily: "Lato_Light",
   },
 });
 

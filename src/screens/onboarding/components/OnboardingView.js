@@ -27,6 +27,18 @@ const OnboardingView = ({ children, containerStyles, headingText }) => {
   );
 };
 
+/*
+<TouchableWithoutFeedback
+      onPress={() => {
+        Keyboard.dismiss();
+      }}
+    >
+      
+    </TouchableWithoutFeedback>
+
+
+*/
+
 const s = StyleSheet.create({
   h2: {
     fontFamily: "NunitoSans_Regular",

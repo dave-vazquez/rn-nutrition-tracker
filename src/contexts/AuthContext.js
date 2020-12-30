@@ -8,6 +8,7 @@ const AUTHENTICATE_FAIL = "AUTHENTICATE_FAIL";
 const AUTHENTICATE_REFRESH = "AUTHENTICATE_REFRESH";
 const UPDATE_GENDER = "UPDATE_GENDER";
 const UPDATE_MEASUREMENTS = "UPDATE_MEASUREMENTS";
+const UPDATE_ACTIVITY = "UPDATE_ACTIVITY";
 
 const authReducer = (state, action) => {
   switch (action.type) {
@@ -28,7 +29,7 @@ const authReducer = (state, action) => {
     case UPDATE_GENDER:
       return {
         ...state,
-        gender: action.gender,
+        gender: action.payload,
       };
     case UPDATE_MEASUREMENTS:
       return {
@@ -37,6 +38,11 @@ const authReducer = (state, action) => {
         inches: action.payload.inches,
         weight: action.payload.weight,
         dateOfBirth: action.payload.dateOfBirth,
+      };
+    case UPDATE_ACTIVITY:
+      return {
+        ...state,
+        activityLevel: action.payload,
       };
     default:
       return state;
@@ -107,6 +113,10 @@ const updateMeasurements = (dispatch) => (measurements) => {
   NavigationService.navigate("WeightGoal");
 };
 
+const updateActivityLevel = (dispatch) => (activityLevel) => {
+  dispatch({ type: UPDATE_ACTIVITY, payload: activityLevel });
+};
+
 const initialState = {
   authStart: false,
   authFail: false,
@@ -116,6 +126,7 @@ const initialState = {
   inches: "",
   weight: "",
   dateOfBirth: "",
+  activityLevel: 1.375,
 };
 
 export const { Provider, Context } = createContext(
@@ -128,6 +139,7 @@ export const { Provider, Context } = createContext(
     signin,
     updateGender,
     updateMeasurements,
+    updateActivityLevel,
   },
   initialState
 );
