@@ -71,8 +71,6 @@ const s = StyleSheet.create({
   },
   radioGroup: {
     flex: 1,
-    // borderWidth: 1,
-    // borderColor: "red",
     marginTop: 10,
   },
 });
