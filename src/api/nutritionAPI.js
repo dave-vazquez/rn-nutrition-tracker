@@ -1,6 +1,6 @@
 import axios from "axios";
+import getEnvVars from "environment";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import getEnvVars from "../environment";
 
 const { serverURL } = getEnvVars();
 

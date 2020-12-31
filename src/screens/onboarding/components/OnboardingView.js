@@ -1,3 +1,4 @@
+import g from "/global-styles";
 import React from "react";
 import {
   KeyboardAvoidingView,
@@ -15,7 +16,9 @@ const OnboardingView = ({ children, containerStyles, headingText }) => {
       keyboardVerticalOffset={50}
       style={{ flex: 1 }}
     >
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+      <ScrollView
+        contentContainerStyle={{ flexGrow: 1, backgroundColor: g.color.white }}
+      >
         <View style={containerStyles}>
           <Text h2 h2Style={s.h2}>
             {headingText}

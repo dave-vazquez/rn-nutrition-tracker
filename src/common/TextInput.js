@@ -1,6 +1,6 @@
+import g from "/global-styles";
 import React from "react";
 import ReactNative, { StyleSheet, Text, View } from "react-native";
-import g from "../style";
 
 const TextInput = ({
   label = " ",

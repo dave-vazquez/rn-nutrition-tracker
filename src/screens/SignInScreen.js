@@ -1,3 +1,4 @@
+import { Context as AuthContext } from "/contexts/AuthContext";
 import React, { useContext, useState } from "react";
 import {
   ActivityIndicator,
@@ -13,7 +14,6 @@ import {
   View,
 } from "react-native";
 import { NavigationEvents } from "react-navigation";
-import { Context as AuthContext } from "../contexts/AuthContext";
 
 const SignInScreen = ({ navigation: { navigate } }) => {
   const {

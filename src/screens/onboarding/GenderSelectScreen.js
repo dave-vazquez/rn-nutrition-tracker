@@ -1,12 +1,12 @@
+import { Context as OnboardingContext } from "/contexts/OnboardingContext";
+import g from "/global-styles";
 import React, { useContext } from "react";
 import { StyleSheet, View } from "react-native";
 import { Button } from "react-native-elements";
-import { Context as AuthContext } from "../../contexts/AuthContext";
-import g from "../../style";
-import OnboardingView from "./components/OnboardingView";
+import { OnboardingView } from "./components";
 
-const MeasurementsScreen = () => {
-  const { updateGender } = useContext(AuthContext);
+const GenderSelectScreen = () => {
+  const { updateGender } = useContext(OnboardingContext);
 
   return (
     <OnboardingView
@@ -73,7 +73,7 @@ const s = StyleSheet.create({
   },
 });
 
-MeasurementsScreen.navigationOptions = {
+GenderSelectScreen.navigationOptions = {
   headerTitle: "About You",
   headerTintColor: g.color.white,
   headerStyle: {
@@ -81,4 +81,4 @@ MeasurementsScreen.navigationOptions = {
   },
 };
 
-export default MeasurementsScreen;
+export default GenderSelectScreen;

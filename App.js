@@ -6,24 +6,27 @@ import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import NavigationService from "./src/NavigationService";
 import { Provider as AuthProvider } from "./src/contexts/AuthContext";
-import HomeScreen from "./src/screens/HomeScreen";
-import JournalScreen from "./src/screens/JournalScreen";
-import SignUpScreen from "./src/screens/SignUpScreen";
-import ActivityLevelScreen from "./src/screens/onboarding/ActivityLevelScreen";
-import GenderSelectScreen from "./src/screens/onboarding/GenderSelectScreen";
-import MeasurementsScreen from "./src/screens/onboarding/MeasurementsScreen";
-import WeightGoalScreen from "./src/screens/onboarding/WeightGoalScreen";
+import { Provider as OnboardingProvider } from "./src/contexts/OnboardingContext";
+import { AuthResolutionScreen, HomeScreen, JournalScreen } from "./src/screens";
+import { AuthScreen } from "./src/screens/authentication";
+import {
+  ActivityLevelScreen,
+  GenderSelectScreen,
+  MeasurementsScreen,
+  WeightGoalScreen,
+} from "./src/screens/onboarding";
 
 const AuthNavigator = createStackNavigator(
   {
+    AuthResolution: AuthResolutionScreen,
     Home: HomeScreen,
     Gender: GenderSelectScreen,
     Measurements: MeasurementsScreen,
     WeightGoal: WeightGoalScreen,
     ActivityLevel: ActivityLevelScreen,
-    SignUp: SignUpScreen,
+    AuthScreen: AuthScreen,
   },
-  { initialRouteName: "SignUp" }
+  { initialRouteName: "Measurements" }
 );
 
 const switchNavigator = createSwitchNavigator(
@@ -56,11 +59,13 @@ export default () => {
 
   return (
     <AuthProvider>
-      <App
-        ref={(navigatorRef) => {
-          NavigationService.setTopLevelNavigator(navigatorRef);
-        }}
-      />
+      <OnboardingProvider>
+        <App
+          ref={(navigatorRef) => {
+            NavigationService.setTopLevelNavigator(navigatorRef);
+          }}
+        />
+      </OnboardingProvider>
     </AuthProvider>
   );
 };

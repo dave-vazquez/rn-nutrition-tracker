@@ -1,6 +1,6 @@
+import g from "/global-styles";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
-import g from "../style";
 
 const Button = ({
   text,

@@ -1,3 +1,5 @@
+import { Button } from "/common";
+import g from "/global-styles";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import {
@@ -8,8 +10,6 @@ import {
   Text,
   View,
 } from "react-native";
-import { Button } from "../components";
-import g from "../style";
 
 const HomeScreen = ({ navigation: { navigate } }) => {
   return (
@@ -33,7 +33,7 @@ const HomeScreen = ({ navigation: { navigate } }) => {
             text="LOGIN"
             buttonStyles={g.bgColor.white}
             textStyles={g.textColor.grey_8}
-            onPress={() => navigate("Login")}
+            onPress={() => navigate("AuthScreen", { authType: "signin" })}
           />
         </View>
       </ImageBackground>

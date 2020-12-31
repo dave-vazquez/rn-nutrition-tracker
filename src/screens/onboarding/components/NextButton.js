@@ -1,9 +1,9 @@
+import g from "/global-styles";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { Button } from "react-native-elements";
-import g from "../../../style";
 
-const NextButton = ({ handlePress, gutterTop = 50 }) => {
+const NextButton = ({ title = "Next", handlePress, gutterTop = 50 }) => {
   return (
     <>
       <View style={{ flex: 1, minHeight: gutterTop }} />
@@ -19,7 +19,7 @@ const NextButton = ({ handlePress, gutterTop = 50 }) => {
             color: "white",
           }}
           iconRight
-          title="Next"
+          title={title}
         />
       </View>
     </>

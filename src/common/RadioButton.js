@@ -1,6 +1,6 @@
+import g from "/global-styles";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import g from "../style";
 
 const RadioButton = ({ style, selected, setSelected, label, subLabel }) => {
   return (

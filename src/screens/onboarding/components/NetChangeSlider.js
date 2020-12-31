@@ -1,13 +1,21 @@
+import g from "/global-styles";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { Slider, Text } from "react-native-elements";
-import g from "../../../style";
 
-const NetChangeSlider = ({ weight, targetWeight, netChange, setNetChange }) => {
-  if (targetWeight === "") return null;
+const NetChangeSlider = ({
+  weightLbs,
+  weightGoal,
+  targetWeightLbs,
+  netWeeklyChangeLbs,
+  setNetWeeklyChangeLbs,
+}) => {
+  if (targetWeightLbs === "") return null;
 
   const calcWeeks = () => {
-    return +Math.abs((+weight - +targetWeight) / +netChange).toFixed(1);
+    return +Math.abs(
+      (+weightLbs - +targetWeightLbs) / +netWeeklyChangeLbs
+    ).toFixed(2);
   };
 
   return (
@@ -17,13 +25,15 @@ const NetChangeSlider = ({ weight, targetWeight, netChange, setNetChange }) => {
         style={s.slider}
         disabled={false}
         maximumValue={2}
-        value={netChange}
+        value={netWeeklyChangeLbs}
         minimumValue={0.5}
         trackStyle={s.track}
         thumbStyle={s.thumb}
-        onValueChange={setNetChange}
+        onValueChange={(value) =>
+          setNetWeeklyChangeLbs(weightGoal === "lose" ? -value : +value)
+        }
       />
-      <Text style={s.netChangeText}>{netChange} lbs / week</Text>
+      <Text style={s.netChangeText}>{netWeeklyChangeLbs} lbs / week</Text>
       <Text style={s.netChangeText}>{calcWeeks()} weeks</Text>
     </View>
   );

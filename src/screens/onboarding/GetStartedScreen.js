@@ -1,8 +1,8 @@
+import { B, Button } from "/common";
+import g from "/global-styles";
 /* eslint-disable react-native/no-raw-text */
 import React from "react";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
-import { B, Button } from "../../components";
-import g from "../../style";
 
 const GetStartedScreen = ({ navigation: { navigate } }) => {
   return (

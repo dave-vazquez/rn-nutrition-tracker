@@ -1,50 +1,21 @@
-import React, { useContext, useReducer, useState } from "react";
+import { RadioButton } from "/common";
+import { Context as OnboardingContext } from "/contexts/OnboardingContext";
+import g from "/global-styles";
+import React, { useContext } from "react";
 import { StyleSheet, View } from "react-native";
-import { RadioButton } from "../../components";
-import { Context as AuthContext } from "../../contexts/AuthContext";
-import g from "../../style";
-import NextButton from "./components/NextButton";
-import OnboardingView from "./components/OnboardingView";
+import { NextButton, OnboardingView } from "./components";
 
-const initialState = {
-  inactive: false,
-  lightlyActive: false,
-  active: false,
-  veryActive: false,
-};
+const INACTIVE = 1.375;
+const LIGHT_ACTIVE = 1.55;
+const ACTIVE = 1.725;
+const VERY_ACTIVE = 1.9;
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case "INACTIVE":
-      return {
-        ...initialState,
-        inactive: true,
-      };
-    case "ACTIVE":
-      return {
-        ...initialState,
-        active: true,
-      };
-    case "LIGHT_ACTIVE":
-      return {
-        ...initialState,
-        lightlyActive: true,
-      };
-    case "VERY_ACTIVE":
-      return {
-        ...initialState,
-        veryActive: true,
-      };
-    default:
-      return state;
-  }
-};
-
-const ActivityLevelScreen = () => {
+const ActivityLevelScreen = ({ navigation: { navigate } }) => {
   const {
     state: { activityLevel },
     updateActivityLevel,
-  } = useContext(AuthContext);
+  } = useContext(OnboardingContext);
+
   return (
     <OnboardingView
       headingText="How active are you?"
@@ -52,31 +23,33 @@ const ActivityLevelScreen = () => {
     >
       <View style={s.radioGroup}>
         <RadioButton
-          selected={activityLevel === 1.375}
-          setSelected={() => updateActivityLevel(1.375)}
+          selected={activityLevel === INACTIVE}
+          setSelected={() => updateActivityLevel(INACTIVE)}
           label="Not Very Active"
           subLabel="(little to no exercise)"
         />
         <RadioButton
-          selected={activityLevel === 1.55}
-          setSelected={() => updateActivityLevel(1.55)}
+          selected={activityLevel === LIGHT_ACTIVE}
+          setSelected={() => updateActivityLevel(LIGHT_ACTIVE)}
           label="Lightly Active"
           subLabel="(light exercise 1 - 3 days/week)"
         />
         <RadioButton
-          selected={activityLevel === 1.725}
-          setSelected={() => updateActivityLevel(1.725)}
+          selected={activityLevel === ACTIVE}
+          setSelected={() => updateActivityLevel(ACTIVE)}
           label="Active"
           subLabel="(moderate exercise 3 - 5 days / week)"
         />
         <RadioButton
-          selected={activityLevel === 1.9}
-          setSelected={() => updateActivityLevel(1.9)}
+          selected={activityLevel === VERY_ACTIVE}
+          setSelected={() => updateActivityLevel(VERY_ACTIVE)}
           label="Very Active"
           subLabel="(strenuous exercise daily)"
         />
       </View>
-      <NextButton onPress={() => { }} />
+      <NextButton
+        handlePress={() => navigate("AuthScreen", { authType: "signup" })}
+      />
     </OnboardingView>
   );
 };

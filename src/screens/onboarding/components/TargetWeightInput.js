@@ -1,14 +1,18 @@
+import g from "/global-styles";
 import React from "react";
 import { Input } from "react-native-elements";
-import g from "../../../style";
 
-const TargetWeightInput = ({ goal, targetWeight, setTargetWeight }) => {
-  if (goal === "initial" || goal === "maintain") return null;
+const TargetWeightInput = ({
+  weightGoal,
+  targetWeightLbs,
+  setTargetWeightLbs,
+}) => {
+  if (weightGoal === "initial" || weightGoal === "maintain") return null;
 
   return (
     <Input
-      value={targetWeight}
-      onChangeText={setTargetWeight}
+      value={targetWeightLbs}
+      onChangeText={setTargetWeightLbs}
       placeholder="lbs."
       label="Target Weight"
       keyboardType="numeric"

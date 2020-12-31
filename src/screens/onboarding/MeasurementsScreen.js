@@ -1,31 +1,30 @@
+import { Context as OnboardingContext } from "/contexts/OnboardingContext.js";
+import g from "/global-styles";
 import React, { useContext, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Input } from "react-native-elements";
 import VMasker from "vanilla-masker";
-import { Context as AuthContext } from "../../contexts/AuthContext";
-import g from "../../style";
-import NextButton from "./components/NextButton";
-import OnboardingView from "./components/OnboardingView";
+import { NextButton, OnboardingView } from "./components";
 
 const MeasurementsScreen = () => {
-  const { updateMeasurements } = useContext(AuthContext);
+  const { updateMeasurements } = useContext(OnboardingContext);
 
-  const [feet, setFeet] = useState("");
-  const [weight, setWeight] = useState("");
-  const [inches, setInches] = useState("");
+  const [heightFt, setHeightFt] = useState("");
+  const [weightLbs, setWeightLbs] = useState("");
+  const [heightIn, setHeightIn] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
 
   const handlePress = () => {
     updateMeasurements({
-      feet,
-      inches,
-      weight,
+      heightFt,
+      weightLbs,
+      heightIn,
       dateOfBirth,
     });
   };
 
-  const maskDateOfBirth = (date) => {
-    setDateOfBirth(VMasker.toPattern(date, "99/99/9999"));
+  const maskAndSetDateOfBirth = (inputDate) => {
+    setDateOfBirth(VMasker.toPattern(inputDate, "99/99/9999"));
   };
 
   return (
@@ -36,10 +35,10 @@ const MeasurementsScreen = () => {
       <View>
         <Input
           label="Height"
-          value={feet}
+          value={heightFt}
           placeholder="ft."
           keyboardType="numeric"
-          onChangeText={setFeet}
+          onChangeText={setHeightFt}
           leftIcon={{
             type: "font-awesome-5",
             name: "ruler-vertical",
@@ -47,10 +46,10 @@ const MeasurementsScreen = () => {
           }}
         />
         <Input
-          value={inches}
+          value={heightIn}
           placeholder="in."
           keyboardType="numeric"
-          onChangeText={setInches}
+          onChangeText={setHeightIn}
           leftIcon={{
             type: "font-awesome-5",
             name: "ruler-vertical",
@@ -59,10 +58,10 @@ const MeasurementsScreen = () => {
         />
         <Input
           label="Weight"
-          value={weight}
+          value={weightLbs}
           placeholder="lbs."
           keyboardType="numeric"
-          onChangeText={setWeight}
+          onChangeText={setWeightLbs}
           leftIcon={{
             type: "font-awesome-5",
             name: "weight",
@@ -74,7 +73,7 @@ const MeasurementsScreen = () => {
           value={dateOfBirth}
           placeholder="mm/dd/yyyy"
           keyboardType="numeric"
-          onChangeText={maskDateOfBirth}
+          onChangeText={maskAndSetDateOfBirth}
           leftIcon={{
             type: "font-awesome-5",
             name: "calendar",

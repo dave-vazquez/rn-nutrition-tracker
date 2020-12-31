@@ -1,16 +1,16 @@
+import g from "/global-styles";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { Button } from "react-native-elements";
-import g from "../../../style";
 
-const WeightGoalButtonGroup = ({ goal, setGoal }) => {
+const WeightGoalButtonGroup = ({ weightGoal, setWeightGoal }) => {
   return (
     <View style={{ marginVertical: 20 }}>
-      {(goal === "initial" || goal === "lose") && (
+      {(weightGoal === "initial" || weightGoal === "lose") && (
         <Button
           buttonStyle={s.button}
-          raised={goal !== "lose"}
-          onPress={() => setGoal("lose")}
+          raised={weightGoal !== "lose"}
+          onPress={() => setWeightGoal("lose")}
           containerStyle={s.buttonContainer}
           titleStyle={s.buttonTitle}
           icon={{
@@ -23,11 +23,11 @@ const WeightGoalButtonGroup = ({ goal, setGoal }) => {
           title="Lose Weight"
         />
       )}
-      {(goal === "initial" || goal === "maintain") && (
+      {(weightGoal === "initial" || weightGoal === "maintain") && (
         <Button
           buttonStyle={s.button}
-          raised={goal !== "maintain"}
-          onPress={() => setGoal("maintain")}
+          raised={weightGoal !== "maintain"}
+          onPress={() => setWeightGoal("maintain")}
           containerStyle={s.buttonContainer}
           titleStyle={s.buttonTitle}
           icon={{
@@ -40,11 +40,11 @@ const WeightGoalButtonGroup = ({ goal, setGoal }) => {
           title="Maintain Weight"
         />
       )}
-      {(goal === "initial" || goal === "gain") && (
+      {(weightGoal === "initial" || weightGoal === "gain") && (
         <Button
           buttonStyle={s.button}
-          raised={goal !== "gain"}
-          onPress={() => setGoal("gain")}
+          raised={weightGoal !== "gain"}
+          onPress={() => setWeightGoal("gain")}
           containerStyle={s.buttonContainer}
           titleStyle={s.buttonTitle}
           icon={{
