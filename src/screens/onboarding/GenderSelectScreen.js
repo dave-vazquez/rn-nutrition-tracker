@@ -5,8 +5,12 @@ import { StyleSheet, View } from "react-native";
 import { Button } from "react-native-elements";
 import { OnboardingView } from "./components";
 
-const GenderSelectScreen = () => {
+const GenderSelectScreen = ({ navigation: { navigate } }) => {
   const { updateGender } = useContext(OnboardingContext);
+
+  const handleSubmit = (gender) => {
+    updateGender(gender, () => navigate("Measurements"));
+  };
 
   return (
     <OnboardingView
@@ -20,7 +24,7 @@ const GenderSelectScreen = () => {
           title="Male"
           buttonStyle={s.button}
           titleStyle={s.buttonTitle}
-          onPress={() => updateGender("male")}
+          onPress={() => handleSubmit("male")}
           icon={{
             type: "foundation",
             name: "male-symbol",
@@ -35,7 +39,7 @@ const GenderSelectScreen = () => {
           buttonStyle={s.button}
           titleStyle={s.buttonTitle}
           containerStyle={s.buttonContainer}
-          onPress={() => updateGender("female")}
+          onPress={() => handleSubmit("female")}
           icon={{
             type: "foundation",
             name: "female-symbol",
@@ -55,10 +59,8 @@ const s = StyleSheet.create({
     paddingHorizontal: 10,
   },
   buttonGroup: {
-    flex: 0.3,
-    justifyContent: "flex-end",
-    // borderWidth: 1,
-    // borderColor: "red",
+    flex: .8,
+    justifyContent: "center",
   },
   button: {
     backgroundColor: g.color.light_green_4,

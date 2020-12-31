@@ -1,4 +1,3 @@
-import NavigationService from "_NavigationService";
 import createContext from "./helper/createContext";
 
 const UPDATE_GENDER = "UPDATE_GENDER";
@@ -46,26 +45,27 @@ const authReducer = (state, action) => {
   }
 };
 
-const updateGender = (dispatch) => (gender) => {
+const updateGender = (dispatch) => (gender, navigationCallback) => {
   dispatch({ type: UPDATE_GENDER, gender });
-
-  NavigationService.navigate("Measurements");
+  navigationCallback();
 };
 
 const updateActivityLevel = (dispatch) => (activityLevel) => {
   dispatch({ type: UPDATE_ACTIVITY, activityLevel });
 };
 
-const updateGoals = (dispatch) => (targetWeightLbs, netWeeklyChangeLbs) => {
+const updateGoals = (dispatch) => (
+  { targetWeightLbs, netWeeklyChangeLbs },
+  navigationCallback
+) => {
   dispatch({ type: UPDATE_ACTIVITY, targetWeightLbs, netWeeklyChangeLbs });
+  navigationCallback();
 };
 
-const updateMeasurements = (dispatch) => ({
-  heightFt,
-  heightIn,
-  weightLbs,
-  dateOfBirth,
-}) => {
+const updateMeasurements = (dispatch) => (
+  { heightFt, heightIn, weightLbs, dateOfBirth },
+  navigationCallback
+) => {
   dispatch({
     type: UPDATE_MEASUREMENTS,
     heightFt,
@@ -74,7 +74,7 @@ const updateMeasurements = (dispatch) => ({
     dateOfBirth,
   });
 
-  NavigationService.navigate("ActivityLevel");
+  navigationCallback();
 };
 
 export const { Provider, Context } = createContext(

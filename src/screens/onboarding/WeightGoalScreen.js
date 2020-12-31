@@ -11,20 +11,20 @@ import {
   WeightGoalButtonGroup,
 } from "./components";
 
-const WeightGoalScreen = () => {
+const WeightGoalScreen = ({ navigation: { navigate } }) => {
   const {
     state: { weightLbs },
     updateGoals,
   } = useContext(OnboardingContext);
+
   const [weightGoal, setWeightGoal] = useState("initial");
-  const [netWeeklyChangeLbs, setNetWeeklyChangeLbs] = useState(0.5);
   const [targetWeightLbs, setTargetWeightLbs] = useState("");
+  const [netWeeklyChangeLbs, setNetWeeklyChangeLbs] = useState(0.5);
 
   const handlePress = () => {
-    updateGoals({
-      targetWeightLbs,
-      netWeeklyChangeLbs,
-    });
+    updateGoals({ targetWeightLbs, netWeeklyChangeLbs }, () =>
+      navigate("ActivityLevel")
+    );
   };
 
   return (

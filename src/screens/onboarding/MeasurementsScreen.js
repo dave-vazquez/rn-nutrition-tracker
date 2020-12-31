@@ -6,21 +6,24 @@ import { Input } from "react-native-elements";
 import VMasker from "vanilla-masker";
 import { NextButton, OnboardingView } from "./components";
 
-const MeasurementsScreen = () => {
+const MeasurementsScreen = ({ navigation: { navigate } }) => {
   const { updateMeasurements } = useContext(OnboardingContext);
 
   const [heightFt, setHeightFt] = useState("");
-  const [weightLbs, setWeightLbs] = useState("");
   const [heightIn, setHeightIn] = useState("");
+  const [weightLbs, setWeightLbs] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
 
-  const handlePress = () => {
-    updateMeasurements({
-      heightFt,
-      weightLbs,
-      heightIn,
-      dateOfBirth,
-    });
+  const handleSubmit = () => {
+    updateMeasurements(
+      {
+        heightFt,
+        weightLbs,
+        heightIn,
+        dateOfBirth,
+      },
+      () => navigate("WeightGoal")
+    );
   };
 
   const maskAndSetDateOfBirth = (inputDate) => {
@@ -81,7 +84,7 @@ const MeasurementsScreen = () => {
           }}
         />
       </View>
-      <NextButton gutterTop={20} handlePress={handlePress} />
+      <NextButton gutterTop={20} handlePress={handleSubmit} />
     </OnboardingView>
   );
 };
