@@ -1,6 +1,6 @@
-import { RadioButton } from "/common";
-import { Context as OnboardingContext } from "/contexts/OnboardingContext";
-import g from "/global-styles";
+import { RadioButton } from "_common";
+import { Context as OnboardingContext } from "_contexts/OnboardingContext";
+import g from "_globalstyles";
 import React, { useContext } from "react";
 import { StyleSheet, View } from "react-native";
 import { NextButton, OnboardingView } from "./components";

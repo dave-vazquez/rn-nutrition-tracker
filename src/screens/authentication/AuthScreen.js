@@ -1,10 +1,10 @@
-import g from "/global-styles";
+import g from "_globalstyles";
 import React, { useState } from "react";
 import { StyleSheet, Text } from "react-native";
 import { Input } from "react-native-elements";
 import NextButton from "../onboarding/components/NextButton";
 import OnboardingView from "../onboarding/components/OnboardingView";
-import useAuthenticate from "./useAuthenticate";
+import useAuthenticate from "./hooks/useAuthenticate";
 
 const AuthScreen = ({ navigation }) => {
   const authType = navigation.getParam("authType");

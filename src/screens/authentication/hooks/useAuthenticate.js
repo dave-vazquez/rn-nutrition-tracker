@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { Context as AuthContext } from "/contexts/AuthContext";
-import { Context as OnboardingContext } from "/contexts/OnboardingContext";
+import { Context as AuthContext } from "_contexts/AuthContext";
+import { Context as OnboardingContext } from "_contexts/OnboardingContext";
 import { useCallback, useContext } from "react";
 
 const useAuthenticate = (authType) => {

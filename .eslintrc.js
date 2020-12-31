@@ -5,7 +5,7 @@ module.exports = {
     "prettier",
     "prettier/react",
   ],
-  plugins: ["react", "react-native", "react-hooks", "prettier"],
+  plugins: ["react", "react-native", "react-hooks", "prettier", "import"],
   parser: "babel-eslint",
   env: {
     jest: true,
@@ -37,5 +37,18 @@ module.exports = {
     react: {
       version: "detect",
     },
-  },
-};
+    "import/resolver": {
+      node: {
+        paths: ["src"],
+        alias: {
+          _assets: "./src/assets",
+          _api: "./src/api",
+          _common: "./src/common",
+          _contexts: "./src/contexts",
+          _screens: "./src/screens",
+          _NavigationService: "./src/NavigationService.js",
+          _globalstyles: "./src/global-styles.js",
+        },
+      },
+    },
+  };

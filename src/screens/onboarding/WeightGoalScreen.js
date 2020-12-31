@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
-import { Context as OnboardingContext } from "/contexts/OnboardingContext.js";
-import g from "/global-styles";
+import { Context as OnboardingContext } from "_contexts/OnboardingContext.js";
+import g from "_globalstyles";
 import React, { useContext, useState } from "react";
 import { StyleSheet } from "react-native";
 import {

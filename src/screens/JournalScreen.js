@@ -1,4 +1,4 @@
-import { Context as AuthContext } from "/contexts/AuthContext";
+import { Context as AuthContext } from "_contexts/AuthContext";
 import React, { useContext } from "react";
 import { Button, StyleSheet, View } from "react-native";
 import { SafeAreaView } from "react-navigation";

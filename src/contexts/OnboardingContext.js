@@ -1,4 +1,4 @@
-import NavigationService from "/NavigationService";
+import NavigationService from "_NavigationService";
 import createContext from "./helper/createContext";
 
 const UPDATE_GENDER = "UPDATE_GENDER";

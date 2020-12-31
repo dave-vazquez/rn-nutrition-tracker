@@ -1,4 +1,4 @@
-import NavigationService from "/NavigationService";
+import NavigationService from "_NavigationService";
 import nutritionAPI from "api/nutritionAPI";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import createContext from "./helper/createContext";

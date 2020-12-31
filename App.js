@@ -7,8 +7,8 @@ import { createStackNavigator } from "react-navigation-stack";
 import NavigationService from "./src/NavigationService";
 import { Provider as AuthProvider } from "./src/contexts/AuthContext";
 import { Provider as OnboardingProvider } from "./src/contexts/OnboardingContext";
-import { AuthResolutionScreen, HomeScreen, JournalScreen } from "./src/screens";
-import { AuthScreen } from "./src/screens/authentication";
+import { HomeScreen, JournalScreen } from "./src/screens";
+import { AuthResolutionScreen, AuthScreen } from "./src/screens/authentication";
 import {
   ActivityLevelScreen,
   GenderSelectScreen,
@@ -26,7 +26,7 @@ const AuthNavigator = createStackNavigator(
     ActivityLevel: ActivityLevelScreen,
     AuthScreen: AuthScreen,
   },
-  { initialRouteName: "Measurements" }
+  { initialRouteName: "AuthResolution" }
 );
 
 const switchNavigator = createSwitchNavigator(

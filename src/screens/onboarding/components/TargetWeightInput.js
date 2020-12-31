@@ -1,4 +1,4 @@
-import g from "/global-styles";
+import g from "_globalstyles";
 import React from "react";
 import { Input } from "react-native-elements";
 

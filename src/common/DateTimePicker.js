@@ -1,5 +1,5 @@
+import g from "_globalstyles";
 import dayjs from "dayjs";
-import g from "/global-styles";
 import React, { useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import RNDateTimePicker from "@react-native-community/datetimepicker";

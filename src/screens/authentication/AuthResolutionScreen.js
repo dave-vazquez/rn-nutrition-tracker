@@ -1,4 +1,4 @@
-import { Context as AuthContext } from "/contexts/AuthContext";
+import { Context as AuthContext } from "_contexts/AuthContext";
 import { useContext, useEffect } from "react";
 
 const AuthResolutionScreen = () => {
