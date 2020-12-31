@@ -6,13 +6,13 @@ const UPDATE_ACTIVITY = "UPDATE_ACTIVITY";
 const UPDATE_GOALS = "UPDATE_GOALS";
 
 const initialState = {
-  gender: "male",
-  heightFt: 5,
-  heightIn: 11,
-  weightLbs: 180,
-  dateOfBirth: "09/29/1987",
-  targetWeightLbs: 160,
-  netWeeklyChangeLbs: -0.5,
+  gender: "",
+  heightFt: "",
+  heightIn: "",
+  weightLbs: "",
+  dateOfBirth: "",
+  targetWeightLbs: "",
+  netWeeklyChangeLbs: 0,
   activityLevel: 1.375,
 };
 
@@ -58,7 +58,7 @@ const updateGoals = (dispatch) => (
   { targetWeightLbs, netWeeklyChangeLbs },
   navigationCallback
 ) => {
-  dispatch({ type: UPDATE_ACTIVITY, targetWeightLbs, netWeeklyChangeLbs });
+  dispatch({ type: UPDATE_GOALS, targetWeightLbs, netWeeklyChangeLbs });
   navigationCallback();
 };
 

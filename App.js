@@ -26,7 +26,7 @@ const AuthNavigator = createStackNavigator(
     ActivityLevel: ActivityLevelScreen,
     AuthScreen: AuthScreen,
   },
-  { initialRouteName: "Gender" }
+  { initialRouteName: "AuthResolution" }
 );
 
 const switchNavigator = createSwitchNavigator(
