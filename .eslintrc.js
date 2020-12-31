@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 module.exports = {
   extends: [
     "plugin:react/recommended",
@@ -52,4 +53,4 @@ module.exports = {
       },
     },
   },
-};
+}
