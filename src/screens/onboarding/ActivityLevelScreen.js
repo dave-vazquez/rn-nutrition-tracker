@@ -48,7 +48,7 @@ const ActivityLevelScreen = ({ navigation: { navigate } }) => {
         />
       </View>
       <NextButton
-        handlePress={() => navigate("AuthScreen", { authType: "signup" })}
+        onPress={() => navigate("AuthScreen", { authType: "signup" })}
       />
     </OnboardingView>
   );

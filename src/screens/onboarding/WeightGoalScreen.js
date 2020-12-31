@@ -49,7 +49,7 @@ const WeightGoalScreen = ({ navigation: { navigate } }) => {
         setNetWeeklyChangeLbs={setNetWeeklyChangeLbs}
       />
       {(targetWeightLbs !== "" || weightGoal === "maintain") && (
-        <NextButton handlePress={handlePress} />
+        <NextButton onPress={handlePress} />
       )}
     </OnboardingView>
   );

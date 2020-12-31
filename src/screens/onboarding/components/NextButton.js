@@ -3,14 +3,14 @@ import React from "react";
 import { StyleSheet, View } from "react-native";
 import { Button } from "react-native-elements";
 
-const NextButton = ({ title = "Next", handlePress, gutterTop = 50 }) => {
+const NextButton = ({ title = "Next", onPress, gutterTop = 50 }) => {
   return (
     <>
       <View style={{ flex: 1, minHeight: gutterTop }} />
       <View style={s.bottom}>
         <Button
           raised
-          onPress={handlePress}
+          onPress={onPress}
           buttonStyle={s.button}
           titleStyle={s.buttonTitle}
           icon={{

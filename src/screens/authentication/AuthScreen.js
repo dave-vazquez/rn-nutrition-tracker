@@ -55,7 +55,7 @@ const AuthScreen = ({ navigation }) => {
       />
       {authStart && <Text>Loading...</Text>}
       {authFail && <Text>{errorMessage}</Text>}
-      <NextButton handlePress={() => authenticate(email, password)} />
+      <NextButton onPress={() => authenticate(email, password)} />
     </OnboardingView>
   );
 };
