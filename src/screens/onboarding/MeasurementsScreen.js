@@ -1,20 +1,18 @@
 import { Context as OnboardingContext } from "_contexts/OnboardingContext.js";
 import g from "_globalstyles";
-import { isAfter, isBefore } from "date-fns";
 import React, { useContext } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { StyleSheet, View } from "react-native";
 import { Input } from "react-native-elements";
 import VMasker from "vanilla-masker";
-import isValidDate from "../../util/isValidDate";
 import { NextButton, OnboardingView } from "./components";
-
-const DATE_MAX = new Date().setFullYear(new Date().getFullYear() - 13);
-const DATE_MIN = new Date().setFullYear(new Date().getFullYear() - 100);
+import useFocusNextInput from "./hooks/useFocusNextInput";
+import { measurementRules as rules } from "./validationRules";
 
 const MeasurementsScreen = ({ navigation: { navigate } }) => {
   const { updateMeasurements } = useContext(OnboardingContext);
 
+  const [setRef, focusNextInput] = useFocusNextInput();
   const { handleSubmit, control, errors } = useForm({
     mode: "onBlur",
   });
@@ -35,13 +33,15 @@ const MeasurementsScreen = ({ navigation: { navigate } }) => {
       <View>
         <Controller
           name="heightFt"
-          control={control}
           defaultValue=""
+          control={control}
           rules={rules.heightFt}
           render={({ onChange, onBlur, value }) => (
             <Input
               label="Height"
               value={value}
+              onSubmitEditing={() => focusNextInput("heightIn")}
+              blurOnSubmit={false}
               placeholder="ft."
               errorStyle={s.error}
               onBlur={onBlur}
@@ -58,18 +58,22 @@ const MeasurementsScreen = ({ navigation: { navigate } }) => {
         />
         <Controller
           name="heightIn"
-          control={control}
           defaultValue=""
+          control={control}
           rules={rules.heightIn}
           render={({ onChange, onBlur, value }) => (
             <Input
+              ref={setRef}
               value={value}
-              placeholder="in."
-              errorStyle={s.error}
               onBlur={onBlur}
-              errorMessage={errors.heightIn?.message}
+              placeholder="in."
+              nativeID="heightIn"
+              blurOnSubmit={false}
+              errorStyle={s.error}
               keyboardType="numeric"
               onChangeText={onChange}
+              errorMessage={errors.heightIn?.message}
+              onSubmitEditing={() => focusNextInput("weightLbs")}
               leftIcon={{
                 type: "font-awesome-5",
                 name: "ruler-vertical",
@@ -80,19 +84,23 @@ const MeasurementsScreen = ({ navigation: { navigate } }) => {
         />
         <Controller
           name="weightLbs"
-          control={control}
           defaultValue=""
+          control={control}
           rules={rules.weightLbs}
           render={({ onChange, onBlur, value }) => (
             <Input
-              label="Weight"
+              ref={setRef}
               value={value}
-              placeholder="lbs."
+              label="Weight"
               onBlur={onBlur}
+              placeholder="lbs."
+              nativeID="weightLbs"
+              blurOnSubmit={false}
               errorStyle={s.error}
-              errorMessage={errors.weightLbs?.message}
               keyboardType="numeric"
               onChangeText={onChange}
+              errorMessage={errors.weightLbs?.message}
+              onSubmitEditing={() => focusNextInput("dateOfBirth")}
               leftIcon={{
                 type: "font-awesome-5",
                 name: "weight",
@@ -103,18 +111,20 @@ const MeasurementsScreen = ({ navigation: { navigate } }) => {
         />
         <Controller
           name="dateOfBirth"
-          control={control}
           defaultValue=""
+          control={control}
           rules={rules.dateOfBirth}
           render={({ onChange, onBlur, value }) => (
             <Input
-              label="Date of Birth"
+              ref={setRef}
               value={value}
-              errorStyle={s.error}
               onBlur={onBlur}
-              errorMessage={errors.dateOfBirth?.message}
-              placeholder="mm/dd/yyyy"
+              errorStyle={s.error}
+              label="Date of Birth"
+              nativeID="dateOfBirth"
               keyboardType="numeric"
+              placeholder="mm/dd/yyyy"
+              errorMessage={errors.dateOfBirth?.message}
               onChangeText={(text) => onChange(maskAndSetDateOfBirth(text))}
               leftIcon={{
                 type: "font-awesome-5",
@@ -128,69 +138,6 @@ const MeasurementsScreen = ({ navigation: { navigate } }) => {
       <NextButton gutterTop={20} onPress={handleSubmit(onSubmit)} />
     </OnboardingView>
   );
-};
-
-const rules = {
-  heightFt: {
-    required: {
-      value: true,
-      message: "Required field",
-    },
-    min: {
-      value: 2,
-      message: "Are you sure? The world record is 1'11\"",
-    },
-    max: {
-      value: 9,
-      message: "Are you sure? The world record is 8'11\"",
-    },
-  },
-  heightIn: {
-    required: {
-      value: true,
-      message: "Required field",
-    },
-    min: {
-      value: 0,
-      message: "Inches should be at least 0",
-    },
-    max: {
-      value: 11,
-      message: "Inches should be less than 12",
-    },
-  },
-  weightLbs: {
-    required: {
-      value: true,
-      message: "Required field",
-    },
-    min: {
-      value: 66,
-      message: "Weight should be at least 66 lbs",
-    },
-    max: {
-      value: 1399,
-      message: "This weight is not supported",
-    },
-  },
-  dateOfBirth: {
-    required: {
-      value: true,
-      message: "Required field",
-    },
-    validate: {
-      isValid: (dateOfBirth) =>
-        isValidDate(dateOfBirth) ? true : "Invalid Date",
-      min: (dateOfBirth) =>
-        isAfter(new Date(dateOfBirth), DATE_MIN)
-          ? true
-          : "This age is not supported",
-      max: (dateOfBirth) =>
-        isBefore(new Date(dateOfBirth), DATE_MAX)
-          ? true
-          : "Must be at least 13 years old",
-    },
-  },
 };
 
 const s = StyleSheet.create({
