@@ -1,22 +1,22 @@
+import { Context as OnboardingContext } from "_contexts/OnboardingContext";
 import g from "_globalstyles";
-import React from "react";
+import React, { useContext, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Slider, Text } from "react-native-elements";
 
-const NetChangeSlider = ({
-  weightLbs,
-  weightGoal,
-  targetWeightLbs,
-  netWeeklyChangeLbs,
-  setNetWeeklyChangeLbs,
-}) => {
-  if (targetWeightLbs === "") return null;
+const NetChangeSlider = () => {
+  const {
+    state: { weightLbs, targetWeightLbs },
+    updateNetWeeklyChange,
+  } = useContext(OnboardingContext);
+
+  const [value, setValue] = useState(0.5);
 
   const calcWeeks = () => {
-    return +Math.abs(
-      (+weightLbs - +targetWeightLbs) / +netWeeklyChangeLbs
-    ).toFixed(2);
+    return +Math.abs((+weightLbs - +targetWeightLbs) / +value).toFixed(1);
   };
+
+  if (!targetWeightLbs) return null;
 
   return (
     <View style={s.container}>
@@ -25,15 +25,14 @@ const NetChangeSlider = ({
         style={s.slider}
         disabled={false}
         maximumValue={2}
-        value={netWeeklyChangeLbs}
+        value={value}
         minimumValue={0.5}
         trackStyle={s.track}
         thumbStyle={s.thumb}
-        onValueChange={(value) =>
-          setNetWeeklyChangeLbs(weightGoal === "lose" ? -value : +value)
-        }
+        onValueChange={setValue}
+        onSlidingComplete={(value) => updateNetWeeklyChange(+value)}
       />
-      <Text style={s.netChangeText}>{netWeeklyChangeLbs} lbs / week</Text>
+      <Text style={s.netChangeText}>{value.toFixed(1)} lbs / week</Text>
       <Text style={s.netChangeText}>{calcWeeks()} weeks</Text>
     </View>
   );

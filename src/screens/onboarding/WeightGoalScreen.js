@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import { Context as OnboardingContext } from "_contexts/OnboardingContext.js";
+import { Context as OnboardingContext } from "_contexts/OnboardingContext";
 import g from "_globalstyles";
 import React, { useContext, useState } from "react";
 import { StyleSheet } from "react-native";
@@ -13,19 +13,10 @@ import {
 
 const WeightGoalScreen = ({ navigation: { navigate } }) => {
   const {
-    state: { weightLbs },
-    updateGoals,
+    state: { targetWeightLbs },
   } = useContext(OnboardingContext);
 
   const [weightGoal, setWeightGoal] = useState("initial");
-  const [targetWeightLbs, setTargetWeightLbs] = useState("");
-  const [netWeeklyChangeLbs, setNetWeeklyChangeLbs] = useState(0.5);
-
-  const handlePress = () => {
-    updateGoals({ targetWeightLbs, netWeeklyChangeLbs }, () =>
-      navigate("ActivityLevel")
-    );
-  };
 
   return (
     <OnboardingView
@@ -36,20 +27,10 @@ const WeightGoalScreen = ({ navigation: { navigate } }) => {
         weightGoal={weightGoal}
         setWeightGoal={setWeightGoal}
       />
-      <TargetWeightInput
-        weightGoal={weightGoal}
-        targetWeightLbs={targetWeightLbs}
-        setTargetWeightLbs={setTargetWeightLbs}
-      />
-      <NetChangeSlider
-        weightGoal={weightGoal}
-        weightLbs={weightLbs ? weightLbs : 180}
-        targetWeightLbs={targetWeightLbs}
-        netWeeklyChangeLbs={netWeeklyChangeLbs}
-        setNetWeeklyChangeLbs={setNetWeeklyChangeLbs}
-      />
+      <TargetWeightInput weightGoal={weightGoal} />
+      <NetChangeSlider />
       {(targetWeightLbs !== "" || weightGoal === "maintain") && (
-        <NextButton onPress={handlePress} />
+        <NextButton onPress={() => navigate("ActivityLevel")} />
       )}
     </OnboardingView>
   );
