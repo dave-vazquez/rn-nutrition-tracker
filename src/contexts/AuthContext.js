@@ -37,7 +37,7 @@ const tryLocalSignin = () => async () => {
   if (token) {
     NavigationService.navigate("Journal");
   } else {
-    NavigationService.navigate("Home");
+    NavigationService.resetStack(0, "Home");
   }
 };
 
@@ -47,7 +47,7 @@ const signup = (dispatch) => async (userInfo) => {
   try {
     const response = await nutritionAPI.post("/auth/signup", userInfo);
     await AsyncStorage.setItem("token", response.data.token);
-
+    dispatch({ type: AUTHENTICATE_REFRESH });
     NavigationService.navigate("Journal");
   } catch ({ response }) {
     dispatch({
@@ -67,19 +67,23 @@ const signin = (dispatch) => async (email, password) => {
       password,
     });
     await AsyncStorage.setItem("token", response.data.token);
-
+    dispatch({ type: AUTHENTICATE_REFRESH });
     NavigationService.navigate("Journal");
-  } catch (error) {
+  } catch ({ response }) {
     dispatch({
       type: AUTHENTICATE_FAIL,
-      errorMessage: "Unable to register at this time. Please try again later.",
+      errorMessage:
+        response.status === 401
+          ? "Email or Password is invalid"
+          : "Unable to sign in at this time. Please try again later.",
     });
   }
 };
 
-const signout = () => async () => {
+const signout = (dispatch) => async () => {
   await AsyncStorage.removeItem("token");
-  NavigationService.navigate("SignIn");
+  dispatch({ type: AUTHENTICATE_REFRESH });
+  NavigationService.navigate("Home");
 };
 
 const initialState = {
