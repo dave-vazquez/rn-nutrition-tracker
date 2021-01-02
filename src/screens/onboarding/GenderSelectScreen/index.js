@@ -3,7 +3,7 @@ import g from "_globalstyles";
 import React, { useContext } from "react";
 import { StyleSheet, View } from "react-native";
 import { Button } from "react-native-elements";
-import { OnboardingView } from "./components";
+import { OnboardingView } from "../common";
 
 const GenderSelectScreen = ({ navigation: { navigate } }) => {
   const { updateGender } = useContext(OnboardingContext);
@@ -59,7 +59,7 @@ const s = StyleSheet.create({
     paddingHorizontal: 10,
   },
   buttonGroup: {
-    flex: .8,
+    flex: 0.8,
     justifyContent: "center",
   },
   button: {

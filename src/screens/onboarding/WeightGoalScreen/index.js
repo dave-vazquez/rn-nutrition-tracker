@@ -1,12 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Context as OnboardingContext } from "_contexts/OnboardingContext";
 import g from "_globalstyles";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { StyleSheet } from "react-native";
+import { NextButton, OnboardingView } from "../common";
 import {
   NetChangeSlider,
-  NextButton,
-  OnboardingView,
   TargetWeightInput,
   WeightGoalButtonGroup,
 } from "./components";

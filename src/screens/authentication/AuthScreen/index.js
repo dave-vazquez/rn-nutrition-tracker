@@ -1,15 +1,15 @@
 import g from "_globalstyles";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text } from "react-native";
 import { Input } from "react-native-elements";
 import Spinner from "react-native-loading-spinner-overlay";
 import { NavigationEvents } from "react-navigation";
-import NextButton from "../onboarding/components/NextButton";
-import OnboardingView from "../onboarding/components/OnboardingView";
-import useFocusNextInput from "../onboarding/hooks/useFocusNextInput";
-import { authRules } from "../onboarding/validationRules";
-import useAuthenticate from "./hooks/useAuthenticate";
+import NextButton from "../../onboarding/common/NextButton";
+import OnboardingView from "../../onboarding/common/OnboardingView";
+import useFocusNextInput from "../../onboarding/hooks/useFocusNextInput";
+import useAuthenticate from "../hooks/useAuthenticate";
+import rules from "./validationRules/authRules";
 
 const AuthScreen = ({ navigation }) => {
   const authType = navigation.getParam("authType");
@@ -42,7 +42,7 @@ const AuthScreen = ({ navigation }) => {
         name="email"
         defaultValue=""
         control={control}
-        rules={authRules.email}
+        rules={rules.email}
         render={({ onChange, onBlur, value }) => (
           <Input
             label="Email"
@@ -68,7 +68,7 @@ const AuthScreen = ({ navigation }) => {
         control={control}
         rules={
           authType === "signup"
-            ? authRules.password
+            ? rules.password
             : {
               required: {
                 value: true,

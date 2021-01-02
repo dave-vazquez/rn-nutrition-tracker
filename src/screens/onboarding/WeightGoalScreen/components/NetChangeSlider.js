@@ -1,5 +1,5 @@
-import { Context as OnboardingContext } from "_contexts/OnboardingContext";
 import g from "_globalstyles";
+import { Context as OnboardingContext } from "contexts/OnboardingContext";
 import React, { useContext, useState } from "react";
 import { StyleSheet, View } from "react-native";
 import { Slider, Text } from "react-native-elements";

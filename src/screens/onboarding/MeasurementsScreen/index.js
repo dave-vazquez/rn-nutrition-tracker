@@ -5,9 +5,9 @@ import { Controller, useForm } from "react-hook-form";
 import { StyleSheet, View } from "react-native";
 import { Input } from "react-native-elements";
 import VMasker from "vanilla-masker";
-import { NextButton, OnboardingView } from "./components";
-import useFocusNextInput from "./hooks/useFocusNextInput";
-import { measurementRules as rules } from "./validationRules";
+import { NextButton, OnboardingView } from "../common";
+import useFocusNextInput from "../hooks/useFocusNextInput";
+import rules from "./validationRules/measurementRules";
 
 const MeasurementsScreen = ({ navigation: { navigate } }) => {
   const { updateMeasurements } = useContext(OnboardingContext);
