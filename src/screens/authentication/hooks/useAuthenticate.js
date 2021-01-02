@@ -8,12 +8,13 @@ const useAuthenticate = (authType) => {
     state: { authStart, authFail, errorMessage },
     signup,
     signin,
+    refreshAuth
   } = useContext(AuthContext);
 
   const { state: onboardingState } = useContext(OnboardingContext);
 
   const authenticate = useCallback(
-    (email, password) => {
+    ({ email, password }) => {
       authType === "signin"
         ? signin(email, password)
         : signup({
@@ -32,7 +33,7 @@ const useAuthenticate = (authType) => {
     [authType, signin, signup, onboardingState]
   );
 
-  return [authenticate, authStart, authFail, errorMessage];
+  return [authenticate, refreshAuth, authStart, authFail, errorMessage];
 };
 
 export default useAuthenticate;

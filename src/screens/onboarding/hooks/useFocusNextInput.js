@@ -1,15 +1,14 @@
-import React, { useCallback, useRef } from "react";
+import { useCallback, useRef } from "react";
 
 const useFocusNextInput = () => {
   const inputs = useRef({});
 
-  const setRef = useCallback((input) => {
-    console.log("called with", input.props.nativeID);
-    inputs.current[input.props.nativeID] = input;
+  const setRef = useCallback((id, input) => {
+    inputs.current[id] = input;
   }, []);
 
-  const focusNextInput = (nativeId) => {
-    inputs.current[nativeId].focus();
+  const focusNextInput = (id) => {
+    inputs.current[id].focus();
   };
 
   return [setRef, focusNextInput];

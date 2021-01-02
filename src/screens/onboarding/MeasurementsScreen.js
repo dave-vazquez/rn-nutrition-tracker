@@ -12,7 +12,6 @@ import { measurementRules as rules } from "./validationRules";
 const MeasurementsScreen = ({ navigation: { navigate } }) => {
   const { updateMeasurements } = useContext(OnboardingContext);
 
-  const [setRef, focusNextInput] = useFocusNextInput();
   const { handleSubmit, control, errors } = useForm({
     mode: "onBlur",
   });
@@ -24,6 +23,8 @@ const MeasurementsScreen = ({ navigation: { navigate } }) => {
   const maskAndSetDateOfBirth = (inputDate) => {
     return VMasker.toPattern(inputDate, "99/99/9999");
   };
+
+  const [setRef, focusNextInput] = useFocusNextInput();
 
   return (
     <OnboardingView
@@ -63,11 +64,10 @@ const MeasurementsScreen = ({ navigation: { navigate } }) => {
           rules={rules.heightIn}
           render={({ onChange, onBlur, value }) => (
             <Input
-              ref={setRef}
+              ref={(input) => setRef("heightIn", input)}
               value={value}
               onBlur={onBlur}
               placeholder="in."
-              nativeID="heightIn"
               blurOnSubmit={false}
               errorStyle={s.error}
               keyboardType="numeric"
@@ -89,12 +89,11 @@ const MeasurementsScreen = ({ navigation: { navigate } }) => {
           rules={rules.weightLbs}
           render={({ onChange, onBlur, value }) => (
             <Input
-              ref={setRef}
+              ref={(input) => setRef("weightLbs", input)}
               value={value}
               label="Weight"
               onBlur={onBlur}
               placeholder="lbs."
-              nativeID="weightLbs"
               blurOnSubmit={false}
               errorStyle={s.error}
               keyboardType="numeric"
@@ -116,7 +115,7 @@ const MeasurementsScreen = ({ navigation: { navigate } }) => {
           rules={rules.dateOfBirth}
           render={({ onChange, onBlur, value }) => (
             <Input
-              ref={setRef}
+              ref={(input) => setRef("dateOfBirth", input)}
               value={value}
               onBlur={onBlur}
               errorStyle={s.error}

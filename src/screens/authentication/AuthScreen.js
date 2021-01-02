@@ -1,61 +1,101 @@
 import g from "_globalstyles";
-import React, { useState } from "react";
+import React from "react";
+import { Controller, useForm } from "react-hook-form";
 import { StyleSheet, Text } from "react-native";
 import { Input } from "react-native-elements";
+import { NavigationEvents } from "react-navigation";
 import NextButton from "../onboarding/components/NextButton";
 import OnboardingView from "../onboarding/components/OnboardingView";
+import useFocusNextInput from "../onboarding/hooks/useFocusNextInput";
+import { authRules } from "../onboarding/validationRules";
 import useAuthenticate from "./hooks/useAuthenticate";
 
 const AuthScreen = ({ navigation }) => {
   const authType = navigation.getParam("authType");
-  // const authType = "signup";
 
-  const [email, setEmail] = useState("test@test.com");
-  const [password, setPassword] = useState("password");
+  const headingText =
+    authType === "signup" ? "NutriJournal ~ Sign Up" : "NutriJournal ~ Sign In";
 
-  const [authenticate, authStart, authFail, errorMessage] = useAuthenticate(
-    email,
-    password,
-    authType
-  );
+  const [setRef, focusNextInput] = useFocusNextInput();
 
-  console.log("authStart", authStart);
-  console.log("authFail", authFail);
-  console.log("errorMessage", errorMessage);
-  console.log();
+  const { handleSubmit, control, errors } = useForm({
+    mode: "onBlur",
+  });
 
-  // eslint-disable-next-line prettier/prettier
-  const headingText = authType === "signup"
-    ? "NutriJournal ~ Sign Up"
-    : "NutriJournal ~ Sign In";
+  const onSubmit = (data) => {
+    authenticate(data);
+  };
+
+  const [
+    authenticate,
+    refreshAuth,
+    authStart,
+    authFail,
+    errorMessage,
+  ] = useAuthenticate(authType);
 
   return (
     <OnboardingView headingText={headingText} containerStyles={s.container}>
-      <Input
-        label="Email"
-        value={email}
-        keyboardType="email-address"
-        onChangeText={setEmail}
-        leftIcon={{
-          type: "material-community",
-          name: "email-outline",
-          color: g.color.grey_8,
-        }}
+      <NavigationEvents onWillFocus={refreshAuth} />
+      <Controller
+        name="email"
+        defaultValue=""
+        control={control}
+        rules={authRules.email}
+        render={({ onChange, onBlur, value }) => (
+          <Input
+            label="Email"
+            value={value}
+            onBlur={onBlur}
+            errorStyle={s.error}
+            blurOnSubmit={false}
+            onChangeText={onChange}
+            keyboardType="email-address"
+            errorMessage={errors.email?.message}
+            onSubmitEditing={() => focusNextInput("password")}
+            leftIcon={{
+              type: "material-community",
+              name: "email-outline",
+              color: g.color.grey_8,
+            }}
+          />
+        )}
       />
-      <Input
-        label="Password"
-        value={password}
-        secureTextEntry={true}
-        onChangeText={setPassword}
-        leftIcon={{
-          type: "material-community",
-          name: "form-textbox-password",
-          color: g.color.grey_8,
-        }}
+      <Controller
+        name="password"
+        defaultValue=""
+        control={control}
+        rules={
+          authType === "signup"
+            ? authRules.password
+            : {
+              required: {
+                value: true,
+                message: "Required field",
+              },
+            }
+        }
+        render={({ onChange, onBlur, value }) => (
+          <Input
+            value={value}
+            onBlur={onBlur}
+            label="Password"
+            errorStyle={s.error}
+            secureTextEntry={true}
+            onChangeText={onChange}
+            errorMessage={errors.password?.message}
+            ref={(input) => setRef("password", input)}
+            leftIcon={{
+              type: "material-community",
+              name: "form-textbox-password",
+              color: g.color.grey_8,
+            }}
+          />
+        )}
       />
-      {authStart && <Text>Loading...</Text>}
-      {authFail && <Text>{errorMessage}</Text>}
-      <NextButton onPress={() => authenticate(email, password)} />
+      {authStart && <Text style={s.error}>Loading...</Text>}
+      {authFail && <Text style={s.error}>{errorMessage}</Text>}
+      <NextButton onPress={handleSubmit(onSubmit)} />
     </OnboardingView>
   );
 };
@@ -75,6 +115,11 @@ const s = StyleSheet.create({
     justifyContent: "flex-end",
     paddingTop: 30,
     paddingHorizontal: 10,
+  },
+  error: {
+    fontSize: 16,
+    color: "red",
+    textAlign: "center",
   },
 });
 
