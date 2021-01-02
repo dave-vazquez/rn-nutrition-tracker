@@ -1,7 +1,6 @@
 import { Context as AuthContext } from "_contexts/AuthContext";
 import React, { useContext } from "react";
-import { Button, StyleSheet, View } from "react-native";
-import { SafeAreaView } from "react-navigation";
+import { Button, SafeAreaView, StyleSheet, View } from "react-native";
 
 const JournalScreen = () => {
   const { signout } = useContext(AuthContext);
