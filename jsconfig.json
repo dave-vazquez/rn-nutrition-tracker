@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "_assets": ["./src/assets"],
+      "_utils": ["./src/utils"],
+      "_api": ["./src/api"],
+      "_common": ["./src/common"],
+      "_contexts": ["./src/contexts"],
+      "_screens": ["./src/screens"],
+      "_NavigationService": ["./src/NavigationService.js"],
+      "_globalstyles": ["./src/global-styles.js"],
+    }
+  }
+}
