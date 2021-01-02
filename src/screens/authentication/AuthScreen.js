@@ -1,8 +1,9 @@
 import g from "_globalstyles";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { Input } from "react-native-elements";
+import Spinner from "react-native-loading-spinner-overlay";
 import { NavigationEvents } from "react-navigation";
 import NextButton from "../onboarding/components/NextButton";
 import OnboardingView from "../onboarding/components/OnboardingView";
@@ -93,9 +94,10 @@ const AuthScreen = ({ navigation }) => {
           />
         )}
       />
-      {authStart && <Text style={s.error}>Loading...</Text>}
+
+      <Spinner visible={authStart} animation="fade" size="large" />
       {authFail && <Text style={s.error}>{errorMessage}</Text>}
-      <NextButton onPress={handleSubmit(onSubmit)} />
+      <NextButton onPress={handleSubmit(onSubmit)} gutterTop={30} />
     </OnboardingView>
   );
 };
@@ -104,7 +106,7 @@ AuthScreen.navigationOptions = {
   headerTitle: "",
   headerTintColor: g.color.grey_8,
   headerStyle: {
-    backgroundColor: "transparent",
+    backgroundColor: g.color.white,
     elevation: 0,
   },
 };
@@ -115,6 +117,12 @@ const s = StyleSheet.create({
     justifyContent: "flex-end",
     paddingTop: 30,
     paddingHorizontal: 10,
+  },
+  form: {
+    flex: 0.5,
+    justifyContent: "flex-end",
+    // borderWidth: 1,
+    // borderColor: "red",
   },
   error: {
     fontSize: 16,

@@ -13,21 +13,16 @@ import {
 
 const WeightGoalScreen = ({ navigation: { navigate } }) => {
   const {
-    state: { targetWeightLbs },
+    state: { targetWeightLbs, weightGoal },
   } = useContext(OnboardingContext);
-
-  const [weightGoal, setWeightGoal] = useState("initial");
 
   return (
     <OnboardingView
       headingText="Let's set some goals!"
       containerStyles={s.container}
     >
-      <WeightGoalButtonGroup
-        weightGoal={weightGoal}
-        setWeightGoal={setWeightGoal}
-      />
-      <TargetWeightInput weightGoal={weightGoal} />
+      <WeightGoalButtonGroup />
+      <TargetWeightInput />
       <NetChangeSlider />
       {(targetWeightLbs !== "" || weightGoal === "maintain") && (
         <NextButton onPress={() => navigate("ActivityLevel")} />

@@ -1,16 +1,22 @@
+import { Context as OnboardingContext } from "_contexts/OnboardingContext";
 import g from "_globalstyles";
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, View } from "react-native";
 import { Button } from "react-native-elements";
 
-const WeightGoalButtonGroup = ({ weightGoal, setWeightGoal }) => {
+const WeightGoalButtonGroup = () => {
+  const {
+    state: { weightGoal, weightLbs },
+    updateWeightGoal,
+  } = useContext(OnboardingContext);
+
   return (
     <View style={{ marginVertical: 20 }}>
-      {(weightGoal === "initial" || weightGoal === "lose") && (
+      {(!weightGoal || weightGoal === "lose") && (
         <Button
           buttonStyle={s.button}
           raised={weightGoal !== "lose"}
-          onPress={() => setWeightGoal("lose")}
+          onPress={() => updateWeightGoal("lose")}
           containerStyle={s.buttonContainer}
           titleStyle={s.buttonTitle}
           icon={{
@@ -23,11 +29,13 @@ const WeightGoalButtonGroup = ({ weightGoal, setWeightGoal }) => {
           title="Lose Weight"
         />
       )}
-      {(weightGoal === "initial" || weightGoal === "maintain") && (
+      {(!weightGoal || weightGoal === "maintain") && (
         <Button
           buttonStyle={s.button}
           raised={weightGoal !== "maintain"}
-          onPress={() => setWeightGoal("maintain")}
+          onPress={() => {
+            updateWeightGoal("maintain", weightLbs);
+          }}
           containerStyle={s.buttonContainer}
           titleStyle={s.buttonTitle}
           icon={{
@@ -40,11 +48,11 @@ const WeightGoalButtonGroup = ({ weightGoal, setWeightGoal }) => {
           title="Maintain Weight"
         />
       )}
-      {(weightGoal === "initial" || weightGoal === "gain") && (
+      {(!weightGoal || weightGoal === "gain") && (
         <Button
           buttonStyle={s.button}
           raised={weightGoal !== "gain"}
-          onPress={() => setWeightGoal("gain")}
+          onPress={() => updateWeightGoal("gain")}
           containerStyle={s.buttonContainer}
           titleStyle={s.buttonTitle}
           icon={{

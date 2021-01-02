@@ -46,9 +46,11 @@ const signup = (dispatch) => async (userInfo) => {
 
   try {
     const response = await nutritionAPI.post("/auth/signup", userInfo);
+
     await AsyncStorage.setItem("token", response.data.token);
     dispatch({ type: AUTHENTICATE_REFRESH });
     NavigationService.navigate("Journal");
+    //
   } catch ({ response }) {
     dispatch({
       type: AUTHENTICATE_FAIL,
@@ -61,14 +63,18 @@ const signup = (dispatch) => async (userInfo) => {
 };
 
 const signin = (dispatch) => async (email, password) => {
+  dispatch({ type: AUTHENTICATE_START });
+
   try {
     const response = await nutritionAPI.post("/auth/signin", {
       email,
       password,
     });
+
     await AsyncStorage.setItem("token", response.data.token);
     dispatch({ type: AUTHENTICATE_REFRESH });
     NavigationService.navigate("Journal");
+    //
   } catch ({ response }) {
     dispatch({
       type: AUTHENTICATE_FAIL,

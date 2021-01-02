@@ -6,17 +6,17 @@ import { Slider, Text } from "react-native-elements";
 
 const NetChangeSlider = () => {
   const {
-    state: { weightLbs, targetWeightLbs },
+    state: { weightLbs, targetWeightLbs, weightGoal },
     updateNetWeeklyChange,
   } = useContext(OnboardingContext);
 
   const [value, setValue] = useState(0.5);
 
+  if (!targetWeightLbs || !weightGoal || weightGoal === "maintain") return null;
+
   const calcWeeks = () => {
     return +Math.abs((+weightLbs - +targetWeightLbs) / +value).toFixed(1);
   };
-
-  if (!targetWeightLbs) return null;
 
   return (
     <View style={s.container}>

@@ -4,6 +4,7 @@ const UPDATE_GENDER = "UPDATE_GENDER";
 const UPDATE_MEASUREMENTS = "UPDATE_MEASUREMENTS";
 const UPDATE_TARGET_WEIGHT = "UPDATE_TARGET_WEIGHT";
 const UPDATE_NET_WEEKLY_CHANGE = "UPDATE_NET_WEEKLY_CHANGE";
+const UPDATE_WEIGHT_GOAL = "UPDATE_WEIGHT_GOAL";
 const UPDATE_ACTIVITY = "UPDATE_ACTIVITY";
 
 const initialState = {
@@ -13,8 +14,9 @@ const initialState = {
   weightLbs: "",
   dateOfBirth: "",
   targetWeightLbs: "",
-  netWeeklyChangeLbs: "",
+  netWeeklyChangeLbs: 0,
   activityLevel: 1.375,
+  weightGoal: "",
 };
 
 const authReducer = (state, action) => {
@@ -28,6 +30,12 @@ const authReducer = (state, action) => {
       return {
         ...state,
         activityLevel: action.activityLevel,
+      };
+    case UPDATE_WEIGHT_GOAL:
+      return {
+        ...state,
+        weightGoal: action.weightGoal,
+        targetWeightLbs: action.targetWeightLbs,
       };
     case UPDATE_TARGET_WEIGHT:
       return {
@@ -57,6 +65,14 @@ const updateGender = (dispatch) => (gender, navigationCallback) => {
 
 const updateActivityLevel = (dispatch) => (activityLevel) => {
   dispatch({ type: UPDATE_ACTIVITY, activityLevel });
+};
+
+const updateWeightGoal = (dispatch) => (weightGoal, targetWeightLbs = "") => {
+  dispatch({
+    type: UPDATE_WEIGHT_GOAL,
+    targetWeightLbs,
+    weightGoal,
+  });
 };
 
 const updateTargetWeight = (dispatch) => (targetWeightLbs) => {
@@ -90,6 +106,7 @@ export const { Provider, Context } = createContext(
     updateActivityLevel,
     updateTargetWeight,
     updateNetWeeklyChange,
+    updateWeightGoal,
   },
   initialState
 );

@@ -4,16 +4,16 @@ import React, { useContext, useState } from "react";
 import { StyleSheet } from "react-native";
 import { Input } from "react-native-elements";
 
-const TargetWeightInput = ({ weightGoal }) => {
-  if (weightGoal === "initial" || weightGoal === "maintain") return null;
-
+const TargetWeightInput = () => {
   const {
-    state: { weightLbs },
+    state: { weightGoal, weightLbs },
     updateTargetWeight,
   } = useContext(OnboardingContext);
 
   const [errorMessage, setErrorMessage] = useState("");
   const [targetWeightLbs, setTargetWeightLbs] = useState("");
+
+  if (!weightGoal || weightGoal === "maintain") return null;
 
   const validate = () => {
     if (weightGoal === "lose" && weightLbs <= +targetWeightLbs) {
