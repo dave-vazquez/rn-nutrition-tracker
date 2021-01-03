@@ -4,22 +4,29 @@ import { useFonts } from "expo-font";
 import React from "react";
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
+import { createBottomTabNavigator } from "react-navigation-tabs";
 import NavigationService from "./src/NavigationService";
 import { Provider as AuthProvider } from "./src/contexts/AuthContext";
 import { Provider as JournalProvider } from "./src/contexts/JournalContext";
 import { Provider as OnboardingProvider } from "./src/contexts/OnboardingContext";
-import { HomeScreen, JournalScreen } from "./src/screens";
+import {
+  BarcodeScreen,
+  FoodSearchScreen,
+  JournalScreen,
+  ProgressScreen,
+  SettingsScreen,
+} from "./src/screens/application";
 import { AuthResolutionScreen, AuthScreen } from "./src/screens/authentication";
 import {
   ActivityLevelScreen,
   GenderSelectScreen,
+  HomeScreen,
   MeasurementsScreen,
   WeightGoalScreen,
 } from "./src/screens/onboarding";
 
 const AuthNavigator = createStackNavigator(
   {
-    AuthResolution: AuthResolutionScreen,
     Home: HomeScreen,
     Gender: GenderSelectScreen,
     Measurements: MeasurementsScreen,
@@ -27,16 +34,30 @@ const AuthNavigator = createStackNavigator(
     ActivityLevel: ActivityLevelScreen,
     AuthScreen: AuthScreen,
   },
-  { initialRouteName: "AuthResolution" }
+  { initialRouteName: "Home" }
+);
+
+const AppNavigator = createBottomTabNavigator(
+  {
+    Journal: JournalScreen,
+    FoodSearch: FoodSearchScreen,
+    Barcode: BarcodeScreen,
+    Progress: ProgressScreen,
+    Settings: SettingsScreen,
+  },
+  {
+    initialRouteName: "Journal",
+  }
 );
 
 const switchNavigator = createSwitchNavigator(
   {
+    AuthResolution: AuthResolutionScreen,
     Auth: AuthNavigator,
-    Journal: JournalScreen,
+    App: AppNavigator,
   },
   {
-    initialRouteName: "Auth",
+    initialRouteName: "AuthResolution",
   }
 );
 
