@@ -8,7 +8,7 @@ const useAuthenticate = (authType) => {
     state: { authStart, authFail, errorMessage },
     signup,
     signin,
-    refreshAuth
+    refreshAuth,
   } = useContext(AuthContext);
 
   const { state: onboardingState } = useContext(OnboardingContext);

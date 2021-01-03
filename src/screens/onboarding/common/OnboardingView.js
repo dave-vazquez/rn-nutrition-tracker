@@ -1,6 +1,5 @@
-import { Context as OnboardingContext } from "_contexts/OnboardingContext";
 import g from "_globalstyles";
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import {
   KeyboardAvoidingView,
   Platform,
@@ -11,12 +10,6 @@ import {
 import { Text } from "react-native-elements";
 
 const OnboardingView = ({ children, containerStyles, headingText }) => {
-  const { state } = useContext(OnboardingContext);
-
-  useEffect(() => {
-    console.log("state", state);
-  }, [state]);
-
   return (
     <KeyboardAvoidingView
       {...(Platform.OS === "ios" && { behavior: "padding" })}

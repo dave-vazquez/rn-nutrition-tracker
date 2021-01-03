@@ -118,12 +118,6 @@ const s = StyleSheet.create({
     paddingTop: 30,
     paddingHorizontal: 10,
   },
-  form: {
-    flex: 0.5,
-    justifyContent: "flex-end",
-    // borderWidth: 1,
-    // borderColor: "red",
-  },
   error: {
     fontSize: 16,
     color: "red",

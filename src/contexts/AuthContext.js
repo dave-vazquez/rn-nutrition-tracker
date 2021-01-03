@@ -1,5 +1,5 @@
 import NavigationService from "_NavigationService";
-import nutritionAPI from "api/nutritionAPI";
+import nutritionAPI from "_api/nutritionAPI";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import createContext from "./helper/createContext";
 
@@ -48,6 +48,7 @@ const signup = (dispatch) => async (userInfo) => {
     const response = await nutritionAPI.post("/auth/signup", userInfo);
 
     await AsyncStorage.setItem("token", response.data.token);
+
     dispatch({ type: AUTHENTICATE_REFRESH });
     NavigationService.navigate("Journal");
     //

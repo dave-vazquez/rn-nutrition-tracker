@@ -6,6 +6,7 @@ import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import NavigationService from "./src/NavigationService";
 import { Provider as AuthProvider } from "./src/contexts/AuthContext";
+import { Provider as JournalProvider } from "./src/contexts/JournalContext";
 import { Provider as OnboardingProvider } from "./src/contexts/OnboardingContext";
 import { HomeScreen, JournalScreen } from "./src/screens";
 import { AuthResolutionScreen, AuthScreen } from "./src/screens/authentication";
@@ -60,11 +61,13 @@ export default () => {
   return (
     <AuthProvider>
       <OnboardingProvider>
-        <App
-          ref={(navigatorRef) => {
-            NavigationService.setTopLevelNavigator(navigatorRef);
-          }}
-        />
+        <JournalProvider>
+          <App
+            ref={(navigatorRef) => {
+              NavigationService.setTopLevelNavigator(navigatorRef);
+            }}
+          />
+        </JournalProvider>
       </OnboardingProvider>
     </AuthProvider>
   );
