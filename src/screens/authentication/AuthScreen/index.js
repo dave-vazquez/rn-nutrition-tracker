@@ -48,6 +48,7 @@ const AuthScreen = ({ navigation }) => {
             label="Email"
             value={value}
             onBlur={onBlur}
+            autoCapitalize="none"
             errorStyle={s.error}
             blurOnSubmit={false}
             onChangeText={onChange}
@@ -81,6 +82,7 @@ const AuthScreen = ({ navigation }) => {
             value={value}
             onBlur={onBlur}
             label="Password"
+            autoCapitalize="none"
             errorStyle={s.error}
             secureTextEntry={true}
             onChangeText={onChange}

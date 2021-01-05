@@ -6,11 +6,16 @@ const setTopLevelNavigator = (navigatorRef) => {
   _navigator = navigatorRef;
 };
 
-const navigate = (routeName, params) => {
+const navigate = (routeName, params, nestedRoute) => {
   _navigator.dispatch(
     NavigationActions.navigate({
       routeName,
       params,
+      action: nestedRoute
+        ? NavigationActions.navigate({
+          nestedRoute,
+        })
+        : undefined,
     })
   );
 };

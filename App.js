@@ -39,8 +39,12 @@ const AuthNavigator = createStackNavigator(
 
 const AppNavigator = createBottomTabNavigator(
   {
-    Journal: JournalScreen,
-    FoodSearch: FoodSearchScreen,
+    Journal: createStackNavigator({
+      Journal: JournalScreen,
+    }),
+    FoodSearch: createStackNavigator({
+      FoodSearch: FoodSearchScreen,
+    }),
     Barcode: BarcodeScreen,
     Progress: ProgressScreen,
     Settings: SettingsScreen,
@@ -74,6 +78,8 @@ export default () => {
     Roboto_Regular: require("./src/assets/fonts/Roboto/Roboto-Regular.ttf"),
     Roboto_Bold: require("./src/assets/fonts/Roboto/Roboto-Bold.ttf"),
     Lato_Regular: require("./src/assets/fonts/Lato/Lato-Regular.ttf"),
+    Lato_LightItalic: require("./src/assets/fonts/Lato/Lato-LightItalic.ttf"),
+    Lato_Bold: require("./src/assets/fonts/Lato/Lato-Bold.ttf"),
     Lato_Light: require("./src/assets/fonts/Lato/Lato-Light.ttf"),
   });
 

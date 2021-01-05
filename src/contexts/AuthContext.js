@@ -37,7 +37,7 @@ const tryLocalSignin = () => async () => {
   if (token) {
     NavigationService.navigate("App");
   } else {
-    NavigationService.resetStack(0, "Auth");
+    NavigationService.navigate("Auth", {}, "Home");
   }
 };
 

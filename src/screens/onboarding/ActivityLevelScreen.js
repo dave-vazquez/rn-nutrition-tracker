@@ -1,9 +1,9 @@
-import { RadioButton } from "_common";
+import { RadioButton } from "_components/common";
 import { Context as OnboardingContext } from "_contexts/OnboardingContext";
 import g from "_globalstyles";
 import React, { useContext } from "react";
 import { StyleSheet, View } from "react-native";
-import { NextButton, OnboardingView } from "../common";
+import { NextButton, OnboardingView } from "./common";
 
 const INACTIVE = 1.375;
 const LIGHT_ACTIVE = 1.55;
