@@ -7,6 +7,12 @@ const AUTHENTICATE_START = "AUTHENTICATE_START";
 const AUTHENTICATE_FAIL = "AUTHENTICATE_FAIL";
 const AUTHENTICATE_REFRESH = "AUTHENTICATE_REFRESH";
 
+const initialState = {
+  authFail: false,
+  authStart: false,
+  errorMessage: "",
+};
+
 const authReducer = (state, action) => {
   switch (action.type) {
     case AUTHENTICATE_REFRESH:
@@ -37,7 +43,7 @@ const tryLocalSignin = () => async () => {
   if (token) {
     NavigationService.navigate("App");
   } else {
-    NavigationService.navigate("Auth", {}, "Home");
+    NavigationService.navigate("Auth", {}, "Measurements");
   }
 };
 
@@ -91,12 +97,6 @@ const signout = (dispatch) => async () => {
   await AsyncStorage.removeItem("token");
   dispatch({ type: AUTHENTICATE_REFRESH });
   NavigationService.navigate("Home");
-};
-
-const initialState = {
-  authStart: false,
-  authFail: false,
-  errorMessage: "",
 };
 
 export const { Provider, Context } = createContext(

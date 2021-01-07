@@ -12,7 +12,7 @@ const RadioButton = ({ style, selected, setSelected, label, subLabel }) => {
       <View style={[s.radioBorder, style]}>
         {selected && <View style={s.radioFill} />}
       </View>
-      <View style={s.labelContainer}>
+      <View>
         <Text style={s.label}>{label}</Text>
         <Text style={s.subLabel}>{subLabel}</Text>
       </View>
@@ -41,11 +41,8 @@ const s = StyleSheet.create({
     height: 12,
     width: 12,
     borderRadius: 6,
-    backgroundColor: g.color.grey_8,
+    backgroundColor: g.color.blue,
   },
-  // labelContainer: {
-
-  // },
   label: {
     fontSize: 22,
     marginTop: -1,

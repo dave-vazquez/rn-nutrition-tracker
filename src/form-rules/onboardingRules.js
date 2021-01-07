@@ -4,7 +4,7 @@ import { isAfter, isBefore } from "date-fns";
 const DATE_MAX = new Date().setFullYear(new Date().getFullYear() - 13);
 const DATE_MIN = new Date().setFullYear(new Date().getFullYear() - 100);
 
-const measurementRules = {
+const onboardingRules = {
   heightFt: {
     required: {
       value: true,
@@ -47,6 +47,20 @@ const measurementRules = {
       message: "This weight is not supported",
     },
   },
+  targetWeightLbs: {
+    required: {
+      value: true,
+      message: "Required field",
+    },
+    min: {
+      value: 65,
+      message: "Target weight should be greater than 64 lbs",
+    },
+    max: {
+      value: 1395,
+      message: "Target weight should be less than 1395 lbs",
+    },
+  },
   dateOfBirth: {
     required: {
       value: true,
@@ -67,4 +81,4 @@ const measurementRules = {
   },
 };
 
-export default measurementRules;
+export default onboardingRules;

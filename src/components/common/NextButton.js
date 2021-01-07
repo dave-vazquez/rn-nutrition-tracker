@@ -5,7 +5,7 @@ import { Button } from "react-native-elements";
 
 const NextButton = ({ title = "Next", onPress, gutterTop = 50 }) => {
   return (
-    <>
+    <View>
       <View style={{ flex: 1, minHeight: gutterTop }} />
       <View style={s.bottom}>
         <Button
@@ -22,7 +22,7 @@ const NextButton = ({ title = "Next", onPress, gutterTop = 50 }) => {
           title={title}
         />
       </View>
-    </>
+    </View>
   );
 };
 

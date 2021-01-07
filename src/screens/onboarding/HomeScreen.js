@@ -3,18 +3,19 @@ import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import {
   ImageBackground,
+  Platform,
+  SafeAreaView,
   StatusBar,
   StyleSheet,
   Text,
   View,
 } from "react-native";
-import { Platform } from "react-native";
 import { Button } from "react-native-elements";
 
 const HomeScreen = ({ navigation: { navigate } }) => {
   return (
-    <View style={s.container}>
-      <StatusBar barStyle="light-content" />
+    <SafeAreaView style={{ flex: 1 }}>
+      <StatusBar translucent backgroundColor="transparent" />
       <ImageBackground
         style={s.imageContainer}
         source={require("_assets/images/home-background.png")}
@@ -34,7 +35,7 @@ const HomeScreen = ({ navigation: { navigate } }) => {
             titleStyle={s.buttonTitle}
             buttonStyle={s.buttonSignup}
             containerStyle={s.buttonContainer}
-            onPress={() => navigate("Gender")}
+            onPress={() => navigate("WeightGoal")}
           />
           <Button
             raised
@@ -46,7 +47,7 @@ const HomeScreen = ({ navigation: { navigate } }) => {
           />
         </View>
       </ImageBackground>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -55,21 +56,18 @@ HomeScreen.navigationOptions = {
 };
 
 const s = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   imageContainer: {
-    flex: 2,
+    flex: 1,
     paddingBottom: 30,
     resizeMode: "cover",
     alignItems: "center",
     paddingHorizontal: 10,
     flexDirection: "column",
     justifyContent: "space-between",
-    paddingTop: Platform.OS === "ios" ? 60 : 30,
+    paddingTop: Platform.OS === "ios" ? 60 : 50,
   },
   gradient: {
-    height: "65%",
+    height: 350,
     ...StyleSheet.absoluteFill,
   },
   titleContainer: {
@@ -82,11 +80,11 @@ const s = StyleSheet.create({
     fontFamily: "Manrope_Reg",
   },
   title_1: {
-    fontSize: 28,
+    fontSize: 34,
     letterSpacing: 3,
   },
   title_2: {
-    fontSize: 52,
+    fontSize: 58,
   },
   buttonGroup: {
     flex: 1,
@@ -108,7 +106,7 @@ const s = StyleSheet.create({
     fontFamily: "Lato_Regular",
   },
   buttonTitle_login: {
-    color: g.color.grey_8
+    color: g.color.grey_8,
   },
 });
 

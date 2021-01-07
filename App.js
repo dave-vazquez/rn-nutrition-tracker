@@ -3,56 +3,12 @@ import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
 import React from "react";
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack";
-import { createBottomTabNavigator } from "react-navigation-tabs";
 import NavigationService from "./src/NavigationService";
 import { Provider as AuthProvider } from "./src/contexts/AuthContext";
 import { Provider as JournalProvider } from "./src/contexts/JournalContext";
 import { Provider as OnboardingProvider } from "./src/contexts/OnboardingContext";
-import {
-  BarcodeScreen,
-  FoodSearchScreen,
-  JournalScreen,
-  ProgressScreen,
-  SettingsScreen,
-} from "./src/screens/application";
-import { AuthResolutionScreen, AuthScreen } from "./src/screens/authentication";
-import {
-  ActivityLevelScreen,
-  GenderSelectScreen,
-  HomeScreen,
-  MeasurementsScreen,
-  WeightGoalScreen,
-} from "./src/screens/onboarding";
-
-const AuthNavigator = createStackNavigator(
-  {
-    Home: HomeScreen,
-    Gender: GenderSelectScreen,
-    Measurements: MeasurementsScreen,
-    WeightGoal: WeightGoalScreen,
-    ActivityLevel: ActivityLevelScreen,
-    AuthScreen: AuthScreen,
-  },
-  { initialRouteName: "Home" }
-);
-
-const AppNavigator = createBottomTabNavigator(
-  {
-    Journal: createStackNavigator({
-      Journal: JournalScreen,
-    }),
-    FoodSearch: createStackNavigator({
-      FoodSearch: FoodSearchScreen,
-    }),
-    Barcode: BarcodeScreen,
-    Progress: ProgressScreen,
-    Settings: SettingsScreen,
-  },
-  {
-    initialRouteName: "Journal",
-  }
-);
+import { AppNavigator, AuthNavigator } from "./src/navigation";
+import { AuthResolutionScreen } from "./src/screens/authentication";
 
 const switchNavigator = createSwitchNavigator(
   {
@@ -61,7 +17,7 @@ const switchNavigator = createSwitchNavigator(
     App: AppNavigator,
   },
   {
-    initialRouteName: "AuthResolution",
+    initialRouteName: "Auth",
   }
 );
 

@@ -1,0 +1,88 @@
+import g from "_globalstyles";
+import React from "react";
+import { StyleSheet, View } from "react-native";
+import { Button } from "react-native-elements";
+
+const ToggleGenderForm = ({ gender, updateGender }) => {
+  //
+  const containerStyle = [s.container, !gender ? s.centered : null];
+
+  return (
+    <View style={containerStyle}>
+      <View style={s.buttonGroup}>
+        <ToggleButton
+          title="Male"
+          raised={gender !== "male"}
+          onPress={() => updateGender("male")}
+          selected={!gender || gender === "male"}
+        />
+        <ToggleButton
+          title="Female"
+          raised={gender !== "female"}
+          onPress={() => updateGender("female")}
+          selected={!gender || gender === "female"}
+        />
+      </View>
+    </View>
+  );
+};
+
+const ToggleButton = ({ title, onPress, selected, raised }) => {
+  //
+  const buttonStyle = selected ? s.button : s.buttonUnselected;
+
+  const titleStyle = [
+    s.title,
+    { color: selected ? g.color.white : g.color.grey_6 },
+  ];
+
+  return (
+    <Button
+      raised={raised}
+      iconRight
+      title={title}
+      onPress={onPress}
+      containerStyle={s.buttonContainer}
+      titleStyle={titleStyle}
+      buttonStyle={buttonStyle}
+    />
+  );
+};
+
+const s = StyleSheet.create({
+  container: {
+    marginBottom: 20,
+    paddingHorizontal: 10,
+    justifyContent: "center",
+  },
+  buttonGroup: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  centered: {
+    paddingHorizontal: 10,
+    ...StyleSheet.absoluteFill,
+  },
+  buttonContainer: {
+    width: "45%",
+    marginVertical: 10,
+    justifyContent: "space-between",
+  },
+  title: {
+    fontSize: 22,
+    marginRight: 10,
+    textAlign: "left",
+    fontFamily: "Lato_Regular",
+  },
+  button: {
+    paddingHorizontal: 20,
+    backgroundColor: g.color.light_green_4,
+  },
+  buttonUnselected: {
+    borderWidth: 1,
+    borderColor: g.color.grey_6,
+    backgroundColor: "transparent",
+  },
+});
+
+export default ToggleGenderForm;
