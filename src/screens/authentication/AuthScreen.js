@@ -56,7 +56,7 @@ const AuthScreen = ({ navigation }) => {
         <View>
           <Controller
             name="email"
-            defaultValue=""
+            defaultValue="t@t.com"
             control={control}
             rules={rules.email}
             render={({ onChange, onBlur, value }) => (
@@ -81,7 +81,7 @@ const AuthScreen = ({ navigation }) => {
           />
           <Controller
             name="password"
-            defaultValue=""
+            defaultValue="pass"
             control={control}
             rules={
               authType === "signup"

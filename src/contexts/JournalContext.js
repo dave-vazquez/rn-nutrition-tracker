@@ -7,13 +7,19 @@ const FETCH_ENTRIES_SUCCESS = "FETCH_ENTRIES_SUCCESS";
 
 const initialState = {
   fetchFail: false,
-  fetchStart: false,
+  fetchStart: true,
   fetchSuccess: false,
   budgets: {
-    caloricBudgetCal: 0,
-    fatBudgetGrams: 0,
-    carbBudgetGrams: 0,
-    proteinBudgetGrams: 0,
+    caloriesKcal: 0,
+    fatGrams: 0,
+    carbGrams: 0,
+    proteinGrams: 0,
+  },
+  consumed: {
+    caloriesKcal: 0,
+    fatGrams: 0,
+    carbGrams: 0,
+    proteinGrams: 0,
   },
 };
 
@@ -40,6 +46,7 @@ const journalReducer = (state, action) => {
         fetchStart: false,
         fetchSuccess: true,
         budgets: action.budgets,
+        consumed: action.consumed,
       };
     default:
       return state;
@@ -51,7 +58,16 @@ const fetchJournalEntries = (dispatch) => async () => {
 
   try {
     const response = await nutritionAPI.get("/journal/2020-01-01");
-    dispatch({ type: FETCH_ENTRIES_SUCCESS, budgets: response.data.budgets });
+    dispatch({
+      type: FETCH_ENTRIES_SUCCESS,
+      budgets: response.data.budgets,
+      consumed: {
+        caloriesKcal: 500,
+        fatGrams: 18,
+        carbGrams: 25,
+        proteinGrams: 38,
+      },
+    });
     //
   } catch (error) {
     dispatch({ type: FETCH_ENTRIES_FAIL });

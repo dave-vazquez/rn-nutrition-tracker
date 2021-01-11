@@ -75,7 +75,7 @@ const TargetWeightForm = ({
             <Slider
               allowTouchTrack
               animateTransitions
-              minimumTrackTintColor={g.color.light_green_4}
+              minimumTrackTintColor={g.color.green_light_4}
               animationType="spring"
               step={0.1}
               value={value}

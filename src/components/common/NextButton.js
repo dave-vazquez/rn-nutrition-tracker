@@ -32,7 +32,7 @@ const s = StyleSheet.create({
     marginBottom: 30,
   },
   button: {
-    backgroundColor: g.color.light_green_4,
+    backgroundColor: g.color.green_light_4,
   },
   buttonTitle: {
     fontFamily: "Lato_Regular",

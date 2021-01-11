@@ -17,7 +17,7 @@ const switchNavigator = createSwitchNavigator(
     App: AppNavigator,
   },
   {
-    initialRouteName: "Auth",
+    initialRouteName: "AuthResolution",
   }
 );
 

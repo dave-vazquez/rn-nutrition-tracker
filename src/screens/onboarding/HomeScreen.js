@@ -95,7 +95,7 @@ const s = StyleSheet.create({
     marginTop: 10,
   },
   buttonSignup: {
-    backgroundColor: g.color.light_green_4,
+    backgroundColor: g.color.green_light_4,
   },
   buttonLogin: {
     backgroundColor: g.color.white,

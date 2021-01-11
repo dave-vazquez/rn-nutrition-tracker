@@ -76,7 +76,7 @@ const s = StyleSheet.create({
   },
   button: {
     paddingHorizontal: 20,
-    backgroundColor: g.color.light_green_4,
+    backgroundColor: g.color.green_light_4,
   },
   buttonUnselected: {
     borderWidth: 1,

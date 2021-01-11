@@ -1,40 +1,49 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/display-name */
+import { BudgetCard, HeaderRight } from "_components/flows/journal";
 import { Context as JournalContext } from "_contexts/JournalContext";
 import g from "_globalstyles";
-import React, { useContext } from "react";
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
-import { NavigationEvents } from "react-navigation";
-import { HeaderRight } from "../common";
-import NutritionBudgets from "./components/NutritionBudgets";
+import React, { useContext, useLayoutEffect } from "react";
+import {
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+import Spinner from "react-native-loading-spinner-overlay";
 
 const JournalScreen = () => {
   const {
-    state: { fetchFail, fetchStart, fetchSuccess, budgets },
+    state: { fetchStart, fetchFail, budgets, consumed },
     fetchJournalEntries,
   } = useContext(JournalContext);
 
-  const consumed = {
-    calories: {
-      consumed: fetchSuccess ? 500 : 1,
-    },
-    carbs: {
-      consumed: fetchSuccess ? 10 : 1,
-    },
-    fats: {
-      consumed: fetchSuccess ? 25 : 1,
-    },
-    protein: {
-      consumed: fetchSuccess ? 58 : 1,
-    },
-  };
+  useLayoutEffect(() => {
+    fetchJournalEntries();
+  }, []);
+
+  if (fetchFail)
+    return (
+      <View>
+        <Text>Ooops! Something went wrong :/</Text>
+      </View>
+    );
 
   return (
     <SafeAreaView style={s.container}>
+      <StatusBar backgroundColor={g.color.blue} barStyle="light-content" />
+      <Spinner
+        size="large"
+        animation="fade"
+        visible={fetchStart}
+        color={g.color.grey_8}
+        overlayColor={g.color.white}
+      />
       <View style={s.background} />
-      <NavigationEvents onWillFocus={fetchJournalEntries} />
       <ScrollView style={s.scroll}>
-        <NutritionBudgets budgets={budgets} consumed={consumed} />
-        {fetchFail && <Text>Failed...</Text>}
+        <BudgetCard budgets={budgets} consumed={consumed} />
       </ScrollView>
     </SafeAreaView>
   );
@@ -42,15 +51,13 @@ const JournalScreen = () => {
 
 JournalScreen.navigationOptions = {
   headerTitle: "Journal",
+  headerTitleAlign: "left",
   headerTintColor: g.color.white,
   headerStyle: {
-    backgroundColor: g.color.blue,
     elevation: 0,
+    backgroundColor: g.color.blue,
   },
-  headerTitleAlign: "left",
-  headerTitleStyle: {
-    fontFamily: "Lato_Bold",
-  },
+  headerTitleStyle: { fontFamily: "Lato_Bold" },
   headerRight: () => (
     <HeaderRight
       text="Jan 1, 2020"
@@ -70,8 +77,8 @@ const s = StyleSheet.create({
   },
   background: {
     height: 120,
-    ...StyleSheet.absoluteFill,
     backgroundColor: g.color.blue,
+    ...StyleSheet.absoluteFill,
   },
 });
 
@@ -80,8 +87,4 @@ export default JournalScreen;
 /*
   <ScrollView contentInsetAdjustmentBehavior="automatic">
   https://github.com/facebook/react-native/issues/16997#issuecomment-423814312
-
-
-  {fetchStart && <Text>Fetching...</Text>}
-
 */
