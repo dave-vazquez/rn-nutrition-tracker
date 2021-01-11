@@ -6,10 +6,7 @@ import { PieChart } from "react-native-svg-charts";
 const screen = Dimensions.get("screen");
 
 const MacroWheel = ({ budget, consumed, colors, title }) => {
-  // console.log("title", title);
-  // console.log("budget", budget);
-  // console.log("consumed", consumed);
-  // console.log("\n");
+  //
   const data = [
     {
       key: 1,
