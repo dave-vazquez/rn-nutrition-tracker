@@ -3,39 +3,21 @@ import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
 import React from "react";
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack";
 import NavigationService from "./src/NavigationService";
 import { Provider as AuthProvider } from "./src/contexts/AuthContext";
+import { Provider as JournalProvider } from "./src/contexts/JournalContext";
 import { Provider as OnboardingProvider } from "./src/contexts/OnboardingContext";
-import { HomeScreen, JournalScreen } from "./src/screens";
-import { AuthResolutionScreen, AuthScreen } from "./src/screens/authentication";
-import {
-  ActivityLevelScreen,
-  GenderSelectScreen,
-  MeasurementsScreen,
-  WeightGoalScreen,
-} from "./src/screens/onboarding";
-
-const AuthNavigator = createStackNavigator(
-  {
-    AuthResolution: AuthResolutionScreen,
-    Home: HomeScreen,
-    Gender: GenderSelectScreen,
-    Measurements: MeasurementsScreen,
-    WeightGoal: WeightGoalScreen,
-    ActivityLevel: ActivityLevelScreen,
-    AuthScreen: AuthScreen,
-  },
-  { initialRouteName: "AuthResolution" }
-);
+import { AppNavigator, AuthNavigator } from "./src/navigation";
+import { AuthResolutionScreen } from "./src/screens/authentication";
 
 const switchNavigator = createSwitchNavigator(
   {
+    AuthResolution: AuthResolutionScreen,
     Auth: AuthNavigator,
-    Journal: JournalScreen,
+    App: AppNavigator,
   },
   {
-    initialRouteName: "Auth",
+    initialRouteName: "AuthResolution",
   }
 );
 
@@ -52,6 +34,8 @@ export default () => {
     Roboto_Regular: require("./src/assets/fonts/Roboto/Roboto-Regular.ttf"),
     Roboto_Bold: require("./src/assets/fonts/Roboto/Roboto-Bold.ttf"),
     Lato_Regular: require("./src/assets/fonts/Lato/Lato-Regular.ttf"),
+    Lato_LightItalic: require("./src/assets/fonts/Lato/Lato-LightItalic.ttf"),
+    Lato_Bold: require("./src/assets/fonts/Lato/Lato-Bold.ttf"),
     Lato_Light: require("./src/assets/fonts/Lato/Lato-Light.ttf"),
   });
 
@@ -60,11 +44,13 @@ export default () => {
   return (
     <AuthProvider>
       <OnboardingProvider>
-        <App
-          ref={(navigatorRef) => {
-            NavigationService.setTopLevelNavigator(navigatorRef);
-          }}
-        />
+        <JournalProvider>
+          <App
+            ref={(navigatorRef) => {
+              NavigationService.setTopLevelNavigator(navigatorRef);
+            }}
+          />
+        </JournalProvider>
       </OnboardingProvider>
     </AuthProvider>
   );

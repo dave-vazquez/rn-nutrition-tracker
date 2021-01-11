@@ -1,11 +1,17 @@
 import NavigationService from "_NavigationService";
-import nutritionAPI from "api/nutritionAPI";
+import nutritionAPI from "_api/nutritionAPI";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import createContext from "./helper/createContext";
 
 const AUTHENTICATE_START = "AUTHENTICATE_START";
 const AUTHENTICATE_FAIL = "AUTHENTICATE_FAIL";
 const AUTHENTICATE_REFRESH = "AUTHENTICATE_REFRESH";
+
+const initialState = {
+  authFail: false,
+  authStart: false,
+  errorMessage: "",
+};
 
 const authReducer = (state, action) => {
   switch (action.type) {
@@ -34,10 +40,11 @@ const refreshAuth = (dispatch) => () => {
 
 const tryLocalSignin = () => async () => {
   const token = await AsyncStorage.getItem("token");
+  console.log("token", token);
   if (token) {
-    NavigationService.navigate("Journal");
+    NavigationService.navigate("App", {}, "Journal");
   } else {
-    NavigationService.resetStack(0, "Home");
+    NavigationService.navigate("Auth", {}, "Measurements");
   }
 };
 
@@ -48,8 +55,9 @@ const signup = (dispatch) => async (userInfo) => {
     const response = await nutritionAPI.post("/auth/signup", userInfo);
 
     await AsyncStorage.setItem("token", response.data.token);
+
     dispatch({ type: AUTHENTICATE_REFRESH });
-    NavigationService.navigate("Journal");
+    NavigationService.navigate("App");
     //
   } catch ({ response }) {
     dispatch({
@@ -73,7 +81,7 @@ const signin = (dispatch) => async (email, password) => {
 
     await AsyncStorage.setItem("token", response.data.token);
     dispatch({ type: AUTHENTICATE_REFRESH });
-    NavigationService.navigate("Journal");
+    NavigationService.navigate("App");
     //
   } catch ({ response }) {
     dispatch({
@@ -90,12 +98,6 @@ const signout = (dispatch) => async () => {
   await AsyncStorage.removeItem("token");
   dispatch({ type: AUTHENTICATE_REFRESH });
   NavigationService.navigate("Home");
-};
-
-const initialState = {
-  authStart: false,
-  authFail: false,
-  errorMessage: "",
 };
 
 export const { Provider, Context } = createContext(
