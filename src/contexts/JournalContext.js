@@ -57,7 +57,7 @@ const fetchJournalEntries = (dispatch) => async () => {
   dispatch({ type: FETCH_ENTRIES_START });
 
   try {
-    const response = await nutritionAPI.get("/journal/2020-01-01");
+    const response = await nutritionAPI.get("/journal/2020-01-02");
     dispatch({
       type: FETCH_ENTRIES_SUCCESS,
       budgets: response.data.budgets,

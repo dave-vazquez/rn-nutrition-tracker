@@ -25,7 +25,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.dave_vazquez.nutrition_tracker"
+      "package": "com.dave_vazquez.nutrition_tracker",
+      "softwareKeyboardLayoutMode": "pan"
     },
     "web": {
       "favicon": "./assets/favicon.png"

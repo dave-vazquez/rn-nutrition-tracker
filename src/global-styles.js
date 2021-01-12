@@ -28,6 +28,7 @@ const color = {
   yellow: "#F4F097",
   yellow_light: "#FFFDD4",
   yellow_dark: "#DEDA81",
+  wheat: "#FFEABC",
   white: "#FFFFFF",
   grey_1: "#FAFAFA",
   grey_2: "#F5F5F5",

@@ -6,6 +6,7 @@ import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import {
   BarcodeScreen,
+  FoodDetailsScreen,
   FoodSearchScreen,
   JournalScreen,
   ProgressScreen,
@@ -19,13 +20,14 @@ const AppNavigator = createBottomTabNavigator(
     }),
     FoodSearch: createStackNavigator({
       FoodSearch: FoodSearchScreen,
+      FoodDetails: FoodDetailsScreen,
     }),
     Barcode: BarcodeScreen,
     Progress: ProgressScreen,
     Settings: SettingsScreen,
   },
   {
-    initialRouteName: "Journal",
+    initialRouteName: "FoodSearch",
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused }) => {
         let type, name, color;

@@ -13,8 +13,9 @@ import {
   View,
 } from "react-native";
 import Spinner from "react-native-loading-spinner-overlay";
+import { withNavigationFocus } from "react-navigation";
 
-const JournalScreen = () => {
+const JournalScreen = ({ isFocused }) => {
   const {
     state: { fetchStart, fetchFail, budgets, consumed },
     fetchJournalEntries,
@@ -33,7 +34,9 @@ const JournalScreen = () => {
 
   return (
     <SafeAreaView style={s.container}>
-      <StatusBar backgroundColor={g.color.blue} barStyle="light-content" />
+      {isFocused && (
+        <StatusBar backgroundColor={g.color.blue} barStyle="light-content" />
+      )}
       <Spinner
         size="large"
         animation="fade"
@@ -82,7 +85,7 @@ const s = StyleSheet.create({
   },
 });
 
-export default JournalScreen;
+export default withNavigationFocus(JournalScreen);
 
 /*
   <ScrollView contentInsetAdjustmentBehavior="automatic">

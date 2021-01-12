@@ -22,6 +22,7 @@ module.exports = {
     ],
     "no-unused-vars": 1,
     "react/prop-types": 0,
+    "react/display-name": 0,
     "comma-dangle": 0,
     "arrow-body-style": 0,
     "react-hooks/exhaustive-deps": 1,

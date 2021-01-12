@@ -34,7 +34,7 @@ export default () => {
     Roboto_Regular: require("./src/assets/fonts/Roboto/Roboto-Regular.ttf"),
     Roboto_Bold: require("./src/assets/fonts/Roboto/Roboto-Bold.ttf"),
     Lato_Regular: require("./src/assets/fonts/Lato/Lato-Regular.ttf"),
-    Lato_LightItalic: require("./src/assets/fonts/Lato/Lato-LightItalic.ttf"),
+    Lato_Italic: require("./src/assets/fonts/Lato/Lato-Italic.ttf"),
     Lato_Bold: require("./src/assets/fonts/Lato/Lato-Bold.ttf"),
     Lato_Light: require("./src/assets/fonts/Lato/Lato-Light.ttf"),
   });
