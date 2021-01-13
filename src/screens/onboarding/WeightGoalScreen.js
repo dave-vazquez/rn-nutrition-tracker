@@ -4,9 +4,9 @@ import { Heading } from "components/flows/onboarding";
 import React, { useContext } from "react";
 import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
 import { Button } from "react-native-elements";
-import { NavigationEvents } from "react-navigation";
+import { NavigationEvents, withNavigationFocus } from "react-navigation";
 
-const WeightGoalScreen = ({ navigation: { navigate } }) => {
+const WeightGoalScreen = ({ navigation: { navigate }, isFocused }) => {
   const { updateWeightGoal } = useContext(OnboardingContext);
 
   const handlePress = (weightGoal) => {
@@ -15,8 +15,10 @@ const WeightGoalScreen = ({ navigation: { navigate } }) => {
 
   return (
     <SafeAreaView style={s.container}>
+      {isFocused && (
+        <StatusBar backgroundColor={g.color.blue} barStyle="light-content" />
+      )}
       <NavigationEvents onWillFocus={() => null} />
-      <StatusBar backgroundColor={g.color.blue} barStyle="light-content" />
       <Heading title="What's your goal?" />
       <View style={s.content}>
         <Button

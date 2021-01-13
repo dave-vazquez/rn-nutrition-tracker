@@ -18,7 +18,7 @@ import { Input } from "react-native-elements";
 import Spinner from "react-native-loading-spinner-overlay";
 import { NavigationEvents } from "react-navigation";
 
-const AuthScreen = ({ navigation }) => {
+const AuthScreen = ({ navigation }, isFocused) => {
   const authType = navigation.getParam("authType");
 
   const headingText =
@@ -48,10 +48,12 @@ const AuthScreen = ({ navigation }) => {
       keyboardVerticalOffset={50}
       style={s.container}
     >
-      <Heading title={headingText} />
+      {isFocused && (
+        <StatusBar backgroundColor={g.color.white} barStyle="dark-content" />
+      )}
       <NavigationEvents onWillFocus={refreshAuth} />
-      <StatusBar backgroundColor={g.color.white} barStyle="dark-content" />
       <Spinner visible={authStart} animation="fade" size="large" />
+      <Heading title={headingText} />
       <View style={s.content}>
         <View>
           <Controller
