@@ -15,7 +15,11 @@ const AuthNavigator = createStackNavigator(
     UserInfo: UserInfoScreen,
     AuthScreen: AuthScreen,
   },
-  { initialRouteName: "Home" }
+  {
+    initialRouteName: "Home",
+    headerMode: "float",
+    gestureEnabled: "false",
+  }
 );
 
 export default AuthNavigator;
