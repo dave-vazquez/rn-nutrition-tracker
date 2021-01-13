@@ -22,7 +22,7 @@ const SearchResults = ({ results, navigation: { navigate } }) => {
   );
 };
 
-const ListItemResult = (item, onPress) => {
+const ListItemResult = ({ item, onPress }) => {
   return (
     <ListItem onPress={() => onPress(item.food)} bottomDivider>
       <Avatar
