@@ -11,7 +11,7 @@ const useAuthenticate = (authType) => {
     refreshAuth,
   } = useContext(AuthContext);
 
-  const { state: onboardingState } = useContext(OnboardingContext);
+  const { state: user } = useContext(OnboardingContext);
 
   const authenticate = useCallback(
     ({ email, password }) => {
@@ -20,17 +20,17 @@ const useAuthenticate = (authType) => {
         : signup({
           email,
           password,
-          gender: onboardingState.gender,
-          height_ft: onboardingState.heightFt,
-          height_in: onboardingState.heightIn,
-          weight_lbs: onboardingState.weightLbs,
-          date_of_birth: onboardingState.dateOfBirth,
-          activity_level: onboardingState.activityLevel,
-          target_weight_lbs: onboardingState.targetWeightLbs,
-          target_net_weekly_change_lbs: onboardingState.netWeeklyChangeLbs,
+          gender: user.gender,
+          height_ft: user.heightFt,
+          height_in: user.heightIn,
+          weight_lbs: user.weightLbs,
+          date_of_birth: user.dateOfBirth,
+          activity_level: user.activityLevel,
+          target_weight_lbs: user.weightGoal === "maintain" ? user.weightLbs : user.targetWeightLbs,
+          target_net_weekly_change_lbs: user.weightGoal === "maintain" ? 0 : user.netWeeklyChangeLbs,
         });
     },
-    [authType, signin, signup, onboardingState]
+    [authType, signin, signup, user]
   );
 
   return [authenticate, refreshAuth, authStart, authFail, errorMessage];
