@@ -16,7 +16,7 @@ import {
 } from "react-native";
 import { Input } from "react-native-elements";
 import Spinner from "react-native-loading-spinner-overlay";
-import { NavigationEvents } from "react-navigation";
+import { NavigationEvents, withNavigationFocus } from "react-navigation";
 
 const AuthScreen = ({ navigation }, isFocused) => {
   const authType = navigation.getParam("authType");
@@ -150,4 +150,4 @@ const s = StyleSheet.create({
   },
 });
 
-export default AuthScreen;
+export default withNavigationFocus(AuthScreen);

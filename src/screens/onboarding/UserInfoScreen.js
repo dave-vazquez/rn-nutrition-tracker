@@ -19,6 +19,7 @@ import {
   StyleSheet,
   View,
 } from "react-native";
+import { withNavigationFocus } from "react-navigation";
 
 const UserInfoScreen = ({ navigation: { navigate } }, isFocused) => {
   const {
@@ -104,4 +105,4 @@ UserInfoScreen.navigationOptions = {
   },
 };
 
-export default UserInfoScreen;
+export default withNavigationFocus(UserInfoScreen);

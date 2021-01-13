@@ -117,4 +117,4 @@ const s = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default withNavigationFocus(HomeScreen);

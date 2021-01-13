@@ -109,4 +109,4 @@ const s = StyleSheet.create({
   },
 });
 
-export default WeightGoalScreen;
+export default withNavigationFocus(WeightGoalScreen);
