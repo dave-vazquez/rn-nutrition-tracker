@@ -1,27 +1,30 @@
 import g from "_globalstyles";
 import React from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet } from "react-native";
 import { Avatar, ListItem } from "react-native-elements";
 import { withNavigation } from "react-navigation";
 
 const SearchResults = ({ results, navigation: { navigate } }) => {
+  //
   const handlePress = (foodData) => {
     navigate("FoodDetails", { foodData });
   };
 
   return (
     <FlatList
-      contentContainerStyle={s.results}
       data={results}
+      contentContainerStyle={s.results}
       keyExtractor={(item, index) => item.food.id + index}
-      renderItem={({ item }) => renderListItem(item, handlePress)}
+      renderItem={({ item }) => (
+        <ListItemResult item={item} onPress={handlePress} />
+      )}
     />
   );
 };
 
-const renderListItem = (item, handlePress) => {
+const ListItemResult = (item, onPress) => {
   return (
-    <ListItem onPress={() => handlePress(item.food)} bottomDivider>
+    <ListItem onPress={() => onPress(item.food)} bottomDivider>
       <Avatar
         source={
           item.food.image

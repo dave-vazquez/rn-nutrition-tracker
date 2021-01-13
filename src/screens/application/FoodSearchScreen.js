@@ -1,7 +1,7 @@
 import { SearchBar, SearchResults } from "_components/flows/foodsearch";
 import g from "_globalstyles";
 import { useDebouncedSearch } from "_hooks";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
 import { withNavigationFocus } from "react-navigation";
 import { NavigationEvents } from "react-navigation";
@@ -9,31 +9,31 @@ import { NavigationEvents } from "react-navigation";
 const FoodSearchScreen = ({ isFocused }) => {
   const [keyword, setKeyword] = useState("");
 
-  const [results, status, reset] = useDebouncedSearch(keyword, 500);
+  const [results, searchStatus, resetSearch] = useDebouncedSearch(
+    keyword,
+    1000
+  );
 
-  const resetSearch = () => {
-    setKeyword("");
-    reset();
-  };
+  useEffect(() => {
+    if (!keyword) resetSearch();
+  }, [keyword, resetSearch]);
 
   return (
     <SafeAreaView style={s.container}>
       {isFocused && (
         <StatusBar
-          backgroundColor={g.color.green_light_4}
           barStyle="light-content"
+          backgroundColor={g.color.green_light_4}
         />
       )}
-      <NavigationEvents onWillBlur={resetSearch} />
       <View style={s.background} />
       <SearchBar
         value={keyword}
         onChangeText={setKeyword}
-        onCancel={resetSearch}
-        onClear={resetSearch}
-        status={status}
+        searchStatus={searchStatus}
       />
       <SearchResults results={results} />
+      <NavigationEvents onWillBlur={resetSearch} />
     </SafeAreaView>
   );
 };
@@ -52,7 +52,7 @@ FoodSearchScreen.navigationOptions = {
 const s = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 10,
+    paddingHorizontal: 15,
     backgroundColor: g.color.wheat,
   },
   background: {

@@ -3,54 +3,58 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { SearchBar as RNESearchBar } from "react-native-elements";
 
-const SearchBar = ({ value, onChangeText, onCancel, onClear, status }) => {
+const SearchBar = ({ value, onChangeText, searchStatus }) => {
+  //
+  const searchIcon = {
+    size: 30,
+    name: "search",
+    color: g.color.grey_6,
+    type: "material-icons",
+  };
+
+  const loadingProps = {
+    color: g.color.grey_6,
+    animating: value !== "" && !searchStatus.complete,
+  };
+
   return (
     <View>
       <RNESearchBar
         lightTheme
         showLoading
         value={value}
+        searchIcon={searchIcon}
+        loadingProps={loadingProps}
         onChangeText={onChangeText}
-        onCancel={onCancel}
-        onClear={onClear}
         containerStyle={s.searchContainer}
         inputContainerStyle={s.inputContainer}
-        searchIcon={{
-          type: "material-icons",
-          name: "search",
-          size: 30,
-          color: g.color.grey_6,
-        }}
-        loadingProps={{
-          animating: status.start,
-          color: g.color.grey_6,
-        }}
+        placeholder="Search by name, brand, etc..."
       />
-      {status.error && (
-        <Text style={s.message}>Oops! Something went wrong :/</Text>
-      )}
-      {status.empty && <Text style={s.message}>No results!</Text>}
+      {/* eslint-disable-next-line prettier/prettier */}
+      {searchStatus.error && <Text style={s.message}>Oops! Something went wrong :/</Text>}
+      {searchStatus.empty && <Text style={s.message}>No results!</Text>}
     </View>
   );
 };
 
 const s = StyleSheet.create({
   searchContainer: {
+    paddingTop: 0,
+    paddingHorizontal: 0,
+    borderTopColor: "transparent",
     backgroundColor: "transparent",
     borderBottomColor: "transparent",
-    borderTopColor: "transparent",
-    paddingHorizontal: 0,
+  },
+  message: {
+    fontSize: 18,
+    marginTop: 14,
+    textAlign: "center",
+    fontWeight: "normal",
+    color: g.color.white,
+    fontFamily: "Lato_Regular",
   },
   inputContainer: {
     backgroundColor: g.color.white,
-  },
-  message: {
-    textAlign: "center",
-    marginTop: 15,
-    color: g.color.white,
-    fontFamily: "Lato_Regular",
-    fontWeight: "normal",
-    fontSize: 16,
   },
 });
 
