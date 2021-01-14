@@ -22,7 +22,6 @@ const stackNavigatorConfig = {
 };
 
 const tabNavigatorConfig = {
-  initialRouteName: "Journal",
   defaultNavigationOptions: ({ navigation }) => navigationOptions(navigation),
   tabBarOptions: {
     showLabel: false,
@@ -85,13 +84,19 @@ const AppNavigator = createBottomTabNavigator(
         FoodSearch: FoodSearchScreen,
         FoodDetails: FoodDetailsScreen,
       },
-      stackNavigatorConfig
+      {
+        initialRouteName: "FoodSearch",
+        ...stackNavigatorConfig,
+      }
     ),
     Barcode: BarcodeScreen,
     Progress: ProgressScreen,
     Settings: SettingsScreen,
   },
-  tabNavigatorConfig
+  {
+    initialRouteName: "Journal",
+    ...tabNavigatorConfig,
+  }
 );
 
 export default AppNavigator;
