@@ -63,3 +63,8 @@ const s = StyleSheet.create({
 });
 
 export default withNavigationFocus(FoodSearchScreen);
+
+// useEffect(() => {
+//   if (debouncedKeyword) searchFoodDatabase(debouncedKeyword);
+//   // eslint-disable-next-line react-hooks/exhaustive-deps
+// }, [debouncedKeyword]);
