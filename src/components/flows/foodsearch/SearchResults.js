@@ -14,6 +14,7 @@ const SearchResults = ({ results, navigation: { navigate } }) => {
     <FlatList
       data={results}
       contentContainerStyle={s.results}
+      keyboardShouldPersistTaps="handled"
       keyExtractor={(item, index) => item.food.id + index}
       renderItem={({ item }) => (
         <ListItemResult item={item} onPress={handlePress} />
