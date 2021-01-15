@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/display-name */
-import { BudgetCard, HeaderRight } from "_components/flows/journal";
+import { DailyBudgetsCard, HeaderRight } from "_components/flows/journal";
 import { Context as JournalContext } from "_contexts/JournalContext";
 import g from "_globalstyles";
 import React, { useContext, useLayoutEffect } from "react";
@@ -46,7 +46,7 @@ const JournalScreen = ({ isFocused }) => {
       />
       <View style={s.background} />
       <ScrollView style={s.scroll}>
-        <BudgetCard budgets={budgets} consumed={consumed} />
+        <DailyBudgetsCard budgets={budgets} consumed={consumed} />
       </ScrollView>
     </SafeAreaView>
   );

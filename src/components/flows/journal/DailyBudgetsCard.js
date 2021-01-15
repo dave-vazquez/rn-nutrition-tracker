@@ -5,7 +5,7 @@ import { StyleSheet, View } from "react-native";
 import CalorieBar from "./CalorieBar";
 import MacroWheel from "./MacroWheel";
 
-const BudgetCard = ({ budgets, consumed }) => {
+const DailyBudgetsCard = ({ budgets, consumed }) => {
   return (
     <Card bgColor={g.color.green_light_3}>
       <CalorieBar
@@ -45,7 +45,7 @@ const s = StyleSheet.create({
   },
 });
 
-export default BudgetCard;
+export default DailyBudgetsCard;
 
 /*
 

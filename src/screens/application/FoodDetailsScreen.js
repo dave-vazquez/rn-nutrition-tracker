@@ -1,5 +1,5 @@
 import { NutritionInfoCard } from "_components/flows/foodsearch";
-import { BudgetCard } from "_components/flows/journal";
+import { DailyBudgetsCard } from "_components/flows/journal";
 import { Context as JournalContext } from "_contexts/JournalContext";
 import g from "_globalstyles";
 import { useFetchNutritionData } from "_hooks";
@@ -56,7 +56,7 @@ const FoodDetailsScreen = ({ navigation }, isFocused) => {
             <View style={s.background} />
           )}
         <Spacer height={image ? 150 : 15} />
-        <BudgetCard budgets={budgets} consumed={consumed} />
+        <DailyBudgetsCard budgets={budgets} consumed={consumed} />
         <NutritionInfoCard nutrients={nutrition.nutrients} />
       </ScrollView>
     </SafeAreaView>
