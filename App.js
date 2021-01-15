@@ -5,16 +5,17 @@ import React from "react";
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import NavigationService from "./src/NavigationService";
 import { Provider as AuthProvider } from "./src/contexts/AuthContext";
+import { Provider as FoodSearchProvider } from "./src/contexts/FoodSearchContext";
 import { Provider as JournalProvider } from "./src/contexts/JournalContext";
 import { Provider as OnboardingProvider } from "./src/contexts/OnboardingContext";
-import { AppNavigator, AuthNavigator } from "./src/navigation";
+import { AuthNavigator, HomeNavigator } from "./src/navigation";
 import { AuthResolutionScreen } from "./src/screens/authentication";
 
 const switchNavigator = createSwitchNavigator(
   {
     AuthResolution: AuthResolutionScreen,
     Auth: AuthNavigator,
-    App: AppNavigator,
+    Home: HomeNavigator,
   },
   {
     initialRouteName: "AuthResolution",
@@ -45,11 +46,13 @@ export default () => {
     <AuthProvider>
       <OnboardingProvider>
         <JournalProvider>
-          <App
-            ref={(navigatorRef) => {
-              NavigationService.setTopLevelNavigator(navigatorRef);
-            }}
-          />
+          <FoodSearchProvider>
+            <App
+              ref={(navigatorRef) => {
+                NavigationService.setTopLevelNavigator(navigatorRef);
+              }}
+            />
+          </FoodSearchProvider>
         </JournalProvider>
       </OnboardingProvider>
     </AuthProvider>
