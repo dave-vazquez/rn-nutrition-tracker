@@ -11,10 +11,8 @@ import {
   ScrollView,
   StatusBar,
   StyleSheet,
-  Text,
   View,
 } from "react-native";
-import Spinner from "react-native-loading-spinner-overlay";
 import { withNavigationFocus } from "react-navigation";
 
 const FoodDetailsScreen = ({ navigation }, isFocused) => {
@@ -23,21 +21,11 @@ const FoodDetailsScreen = ({ navigation }, isFocused) => {
   } = useContext(JournalContext);
 
   const { image, id, measures } = navigation.getParam("foodData");
-  // const { image, id, measures } = foodData;
 
-  const [nutrition, fetchStatus] = useFetchNutritionData(id, measures[0].uri);
-
-  if (fetchStatus.start) {
-    return (
-      <Spinner
-        size="large"
-        animation="fade"
-        visible={fetchStatus.start}
-        color={g.color.grey_8}
-        overlayColor={g.color.white}
-      />
-    );
-  }
+  const [{ nutrients }, fetchStatus] = useFetchNutritionData(
+    id,
+    measures[0].uri
+  );
 
   return (
     <SafeAreaView style={s.container}>
@@ -57,7 +45,7 @@ const FoodDetailsScreen = ({ navigation }, isFocused) => {
           )}
         <Spacer height={image ? 150 : 15} />
         <DailyBudgetsCard budgets={budgets} consumed={consumed} />
-        <NutritionInfoCard nutrients={nutrition.nutrients} />
+        <NutritionInfoCard fetchStatus={fetchStatus} nutrients={nutrients} />
       </ScrollView>
     </SafeAreaView>
   );
@@ -90,8 +78,8 @@ const s = StyleSheet.create({
 });
 
 FoodDetailsScreen.navigationOptions = ({ navigation }) => ({
-  headerTitle: navigation.getParam("foodData").label,
-  // headerTitle: foodData.label,
+  // headerTitle: navigation.getParam("foodData").label,
+  headerTitle: foodData.label,
   headerTitleAlign: "left",
   headerTintColor: g.color.white,
   headerTitleStyle: { fontFamily: "Lato_Bold" },
@@ -99,6 +87,7 @@ FoodDetailsScreen.navigationOptions = ({ navigation }) => ({
     elevation: 0,
     backgroundColor: g.color.red_4,
   },
+  tabBarOnPress: () => console.log("hey"),
 });
 
 export default withNavigationFocus(FoodDetailsScreen);

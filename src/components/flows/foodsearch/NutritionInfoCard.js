@@ -2,9 +2,12 @@ import { Card } from "_components/common";
 import g from "_globalstyles";
 import { toPrecision } from "_utils";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 
-const NutritionInfoCard = ({ nutrients }) => {
+const NutritionInfoCard = ({ nutrients, fetchStatus }) => {
+  if (fetchStatus.start)
+    return <ActivityIndicator size="large" color={g.color.grey_8} />;
+
   return (
     <Card>
       <Text style={s.heading}>Nutrition Information</Text>

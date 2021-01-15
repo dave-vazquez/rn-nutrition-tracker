@@ -4,7 +4,6 @@ import { useDebouncedSearch } from "_hooks";
 import React, { useEffect, useState } from "react";
 import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
 import { withNavigationFocus } from "react-navigation";
-import { NavigationEvents } from "react-navigation";
 
 const FoodSearchScreen = ({ isFocused }) => {
   const [keyword, setKeyword] = useState("");
@@ -33,7 +32,6 @@ const FoodSearchScreen = ({ isFocused }) => {
         searchStatus={searchStatus}
       />
       <SearchResults results={results} />
-      <NavigationEvents onWillBlur={resetSearch} />
     </SafeAreaView>
   );
 };

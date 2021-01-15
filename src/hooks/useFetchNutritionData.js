@@ -32,7 +32,7 @@ const initialState = {
   start: true,
   error: false,
   success: false,
-  nutrition: null,
+  nutrition: {},
 };
 
 const useFetchNutritionData = (foodId, measureURI, qualifier) => {
