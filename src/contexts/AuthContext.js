@@ -41,7 +41,7 @@ const refreshAuth = (dispatch) => () => {
 const tryLocalSignin = () => async () => {
   const token = await AsyncStorage.getItem("token");
   if (token) {
-    NavigationService.navigate("Home", {}, "Home");
+    NavigationService.navigate("App");
   } else {
     NavigationService.navigate("Auth", {}, "Measurements");
   }
@@ -56,7 +56,7 @@ const signup = (dispatch) => async (userInfo) => {
     await AsyncStorage.setItem("token", response.data.token);
 
     dispatch({ type: AUTHENTICATE_REFRESH });
-    NavigationService.navigate("Home");
+    NavigationService.navigate("App");
     //
   } catch ({ response }) {
     dispatch({
@@ -80,7 +80,7 @@ const signin = (dispatch) => async (email, password) => {
 
     await AsyncStorage.setItem("token", response.data.token);
     dispatch({ type: AUTHENTICATE_REFRESH });
-    NavigationService.navigate("Home");
+    NavigationService.navigate("App");
     //
   } catch ({ response }) {
     dispatch({

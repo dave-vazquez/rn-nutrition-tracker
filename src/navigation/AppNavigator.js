@@ -34,12 +34,12 @@ const TabNavigator = createBottomTabNavigator(
   }
 );
 
-const HomeNavigator = createStackNavigator({
-  Tabs: {
+const AppNavigator = createStackNavigator({
+  App: {
     screen: TabNavigator,
     navigationOptions: { headerShown: false },
   },
   FoodDetails: FoodDetailsScreen,
 });
 
-export default HomeNavigator;
+export default AppNavigator;

@@ -8,14 +8,14 @@ import { Provider as AuthProvider } from "./src/contexts/AuthContext";
 import { Provider as FoodSearchProvider } from "./src/contexts/FoodSearchContext";
 import { Provider as JournalProvider } from "./src/contexts/JournalContext";
 import { Provider as OnboardingProvider } from "./src/contexts/OnboardingContext";
-import { AuthNavigator, HomeNavigator } from "./src/navigation";
+import { AppNavigator, AuthNavigator } from "./src/navigation";
 import { AuthResolutionScreen } from "./src/screens/authentication";
 
 const switchNavigator = createSwitchNavigator(
   {
     AuthResolution: AuthResolutionScreen,
     Auth: AuthNavigator,
-    Home: HomeNavigator,
+    App: AppNavigator,
   },
   {
     initialRouteName: "AuthResolution",
