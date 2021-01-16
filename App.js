@@ -4,10 +4,7 @@ import { useFonts } from "expo-font";
 import React from "react";
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import NavigationService from "./src/NavigationService";
-import { Provider as AuthProvider } from "./src/contexts/AuthContext";
-import { Provider as FoodSearchProvider } from "./src/contexts/FoodSearchContext";
-import { Provider as JournalProvider } from "./src/contexts/JournalContext";
-import { Provider as OnboardingProvider } from "./src/contexts/OnboardingContext";
+import CombinedProvider from "./src/contexts/CombinedProvider";
 import { AppNavigator, AuthNavigator } from "./src/navigation";
 import { AuthResolutionScreen } from "./src/screens/authentication";
 
@@ -43,18 +40,12 @@ export default () => {
   if (!loaded) return <AppLoading />;
 
   return (
-    <AuthProvider>
-      <OnboardingProvider>
-        <JournalProvider>
-          <FoodSearchProvider>
-            <App
-              ref={(navigatorRef) => {
-                NavigationService.setTopLevelNavigator(navigatorRef);
-              }}
-            />
-          </FoodSearchProvider>
-        </JournalProvider>
-      </OnboardingProvider>
-    </AuthProvider>
+    <CombinedProvider>
+      <App
+        ref={(navigatorRef) => {
+          NavigationService.setTopLevelNavigator(navigatorRef);
+        }}
+      />
+    </CombinedProvider>
   );
 };
