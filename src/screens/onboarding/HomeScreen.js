@@ -11,9 +11,8 @@ import {
   View,
 } from "react-native";
 import { Button } from "react-native-elements";
-import { withNavigationFocus } from "react-navigation";
 
-const HomeScreen = ({ navigation: { navigate }, isFocused }) => {
+const HomeScreen = ({ navigation: { navigate, isFocused } }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       {isFocused && (
@@ -117,4 +116,4 @@ const s = StyleSheet.create({
   },
 });
 
-export default withNavigationFocus(HomeScreen);
+export default HomeScreen;

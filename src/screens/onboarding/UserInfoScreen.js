@@ -19,9 +19,8 @@ import {
   StyleSheet,
   View,
 } from "react-native";
-import { withNavigationFocus } from "react-navigation";
 
-const UserInfoScreen = ({ navigation: { navigate } }, isFocused) => {
+const UserInfoScreen = ({ navigation: { navigate, isFocused } }) => {
   const {
     state: { weightGoal, gender },
     updateGender,
@@ -105,4 +104,4 @@ UserInfoScreen.navigationOptions = {
   },
 };
 
-export default withNavigationFocus(UserInfoScreen);
+export default UserInfoScreen;

@@ -13,7 +13,7 @@ const ACTIVE = 1.55;
 const VERY_ACTIVE = 1.725;
 const EXTREMELY_ACTIVE = 1.9;
 
-const ActivityLevelScreen = ({ navigation: { navigate } }, isFocused) => {
+const ActivityLevelScreen = ({ navigation: { navigate, isFocused } }) => {
   const {
     state: { activityLevel },
     updateActivityLevel,
@@ -90,4 +90,4 @@ const s = StyleSheet.create({
   },
 });
 
-export default withNavigationFocus(ActivityLevelScreen);
+export default ActivityLevelScreen;

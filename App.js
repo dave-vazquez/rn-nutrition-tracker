@@ -8,7 +8,7 @@ import CombinedProvider from "./src/contexts/CombinedProvider";
 import { AppNavigator, AuthNavigator } from "./src/navigation";
 import { AuthResolutionScreen } from "./src/screens/authentication";
 
-const switchNavigator = createSwitchNavigator(
+const RootNavigator = createSwitchNavigator(
   {
     AuthResolution: AuthResolutionScreen,
     Auth: AuthNavigator,
@@ -19,7 +19,7 @@ const switchNavigator = createSwitchNavigator(
   }
 );
 
-const App = createAppContainer(switchNavigator);
+export const App = createAppContainer(RootNavigator);
 
 export default () => {
   const [loaded] = useFonts({

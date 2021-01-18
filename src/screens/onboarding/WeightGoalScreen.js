@@ -4,9 +4,9 @@ import { Heading } from "components/flows/onboarding";
 import React, { useContext } from "react";
 import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
 import { Button } from "react-native-elements";
-import { NavigationEvents, withNavigationFocus } from "react-navigation";
+import { NavigationEvents } from "react-navigation";
 
-const WeightGoalScreen = ({ navigation: { navigate }, isFocused }) => {
+const WeightGoalScreen = ({ navigation: { navigate, isFocused } }) => {
   const { updateWeightGoal } = useContext(OnboardingContext);
 
   const handlePress = (weightGoal) => {
@@ -109,4 +109,4 @@ const s = StyleSheet.create({
   },
 });
 
-export default withNavigationFocus(WeightGoalScreen);
+export default WeightGoalScreen;

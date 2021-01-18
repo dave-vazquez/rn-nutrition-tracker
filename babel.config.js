@@ -16,6 +16,7 @@ module.exports = function (api) {
             _contexts: "./src/contexts",
             _formrules: "./src/form-rules",
             _components: "./src/components",
+            _navigation: "./src/navigation",
             _globalstyles: "./src/global-styles.js",
             _NavigationService: "./src/NavigationService.js",
           },
