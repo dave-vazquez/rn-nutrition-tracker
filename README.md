@@ -3,8 +3,8 @@
 <p align="center">
   <h1 align="center">NutriJournal</h1>
   <p align="center">
-    <img src="./readme/home-page-preview.png" style="height: 500px; margin-right: 20px"/>
-    <img src="./readme/journal-preview.png" style="height: 500px; margin-right: 20px"/>
+    <img src="./readme/home-page-preview.png" height="500px" width="auto" style="margin-right: 20px"/>
+    <img src="./readme/journal-preview.png" height="500px" width="auto" style="margin-right: 20px"/>
     <img src="./readme/food-detail-preview.png" style="height: 500px"/>
   </p>
   <p align="center">
@@ -36,9 +36,9 @@
   <li><a href="#license">License</a></li>
   <li><a href="#contact">Contact</a></li>
 </ol>
+
 <!-- GETTING STARTED -->
 ## Getting Started
-
 ### Prerequisites
 
 This application was built using Expo, a framework and platform for the development of universal React applications, containing a set of tools and services built around React Native and native platforms.
