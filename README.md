@@ -3,16 +3,16 @@
 <p align="center">
   <h1 align="center">NutriJournal</h1>
   <p align="center">
-    <img src="../rn-nutrition/readme/home-page-preview.png" style="height: 500px; margin-right: 20px"/>
-    <img src="../rn-nutrition/readme/journal-preview.png" style="height: 500px; margin-right: 20px"/>
-    <img src="../rn-nutrition/readme/food-detail-preview.png" style="height: 500px"/>
+    <img src="./readme/home-page-preview.png" style="height: 500px; margin-right: 20px"/>
+    <img src="./readme/journal-preview.png" style="height: 500px; margin-right: 20px"/>
+    <img src="./readme/food-detail-preview.png" style="height: 500px"/>
   </p>
   <p align="center">
     <a href="https://expo.io/@dave_vazquez/projects/rn-nutrition">View Demo</a>
     <span>&nbsp;|&nbsp;</span>
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
+    <a href="https://github.com/dave-vazquez/rn-nutrition-tracker/issues">Report Bug</a>
     <span>&nbsp;|&nbsp;</span>
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
+    <a href="https://github.com/dave-vazquez/rn-nutrition-tracker/issues">Request Feature</a>
     <br />
   </p>
 </p>
