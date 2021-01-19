@@ -108,7 +108,6 @@ This application was built using Expo, a framework and platform for the developm
 * [Node.js](https://nodejs.org/en/)
 * [Express.js](https://expressjs.com/)
 * [Knex.js](http://knexjs.org/)
-* [Knex.js](http://knexjs.org/)
 * [PostgreSQL](https://www.postgresql.org/)
 
 <!-- ROADMAP -->
