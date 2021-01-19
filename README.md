@@ -98,13 +98,13 @@ This application was built using Expo, a framework and platform for the developm
 <!-- BUILTWITH -->
 ### Built With
 
-####Client
+#### Client
 * [React Native](https://reactnative.dev/)
 * [React Navigation v4](https://reactnavigation.org/)
 * [Context API](https://reactjs.org/docs/context.html)
 * [Expo](https://docs.expo.io/)
 
-####Server
+#### Server
 * [Node.js](https://nodejs.org/en/)
 * [Express.js](https://expressjs.com/)
 * [Knex.js](http://knexjs.org/)
