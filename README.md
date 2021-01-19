@@ -5,7 +5,7 @@
   <p align="center">
     <img src="./readme/home-page-preview.png" height="500px" width="auto" style="margin-right: 20px"/>
     <img src="./readme/journal-preview.png" height="500px" width="auto" style="margin-right: 20px"/>
-    <img src="./readme/food-detail-preview.png" style="height: 500px"/>
+    <img src="./readme/food-detail-preview.png" height="500px" width="auto" />
   </p>
   <p align="center">
     <a href="https://expo.io/@dave_vazquez/projects/rn-nutrition">View Demo</a>
