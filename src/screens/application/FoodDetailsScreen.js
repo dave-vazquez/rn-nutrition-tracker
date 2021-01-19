@@ -32,17 +32,17 @@ const FoodDetailsScreen = ({ navigation }, isFocused) => {
       {isFocused && (
         <StatusBar barStyle="light-content" backgroundColor={g.color.red_4} />
       )}
+      {image ? (
+        <ImageBackground
+          resizeMethod="auto"
+          imageStyle={s.image}
+          style={s.imageBackground}
+          source={{ uri: image }}
+        />
+      ) : (
+          <View style={s.background} />
+        )}
       <ScrollView style={s.scrollView}>
-        {image ? (
-          <ImageBackground
-            resizeMethod="auto"
-            imageStyle={s.image}
-            style={s.imageBackground}
-            source={{ uri: image }}
-          />
-        ) : (
-            <View style={s.background} />
-          )}
         <Spacer height={image ? 150 : 15} />
         <DailyBudgetsCard budgets={budgets} consumed={consumed} />
         <NutritionInfoCard fetchStatus={fetchStatus} nutrients={nutrients} />
@@ -87,7 +87,6 @@ FoodDetailsScreen.navigationOptions = ({ navigation }) => ({
     elevation: 0,
     backgroundColor: g.color.red_4,
   },
-  tabBarOnPress: () => console.log("hey"),
 });
 
 export default withNavigationFocus(FoodDetailsScreen);
