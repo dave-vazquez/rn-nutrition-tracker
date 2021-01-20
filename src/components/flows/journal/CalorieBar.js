@@ -62,6 +62,7 @@ const s = StyleSheet.create({
   },
   overlay: {
     elevation: 4,
+    zIndex: 1,
     alignItems: "center",
     flexDirection: "row",
     paddingHorizontal: 15,
