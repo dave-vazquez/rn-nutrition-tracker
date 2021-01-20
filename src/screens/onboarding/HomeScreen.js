@@ -12,10 +12,16 @@ import {
 } from "react-native";
 import { Button } from "react-native-elements";
 
-const HomeScreen = ({ navigation: { navigate } }) => {
+const HomeScreen = ({ navigation: { navigate, isFocused } }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      <StatusBar translucent backgroundColor="transparent" />
+      {isFocused() && (
+        <StatusBar
+          translucent
+          backgroundColor="transparent"
+          barStyle="light-content"
+        />
+      )}
       <ImageBackground
         style={s.imageContainer}
         source={require("_assets/images/home-background.png")}

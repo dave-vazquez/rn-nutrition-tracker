@@ -4,6 +4,7 @@ import { Context as OnboardingContext } from "_contexts/OnboardingContext";
 import g from "_globalstyles";
 import React, { useContext } from "react";
 import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
+import { withNavigationFocus } from "react-navigation";
 
 const NOT_ACTIVE = 1.2;
 const LIGHT_ACTIVE = 1.375;
@@ -12,7 +13,7 @@ const ACTIVE = 1.55;
 const VERY_ACTIVE = 1.725;
 const EXTREMELY_ACTIVE = 1.9;
 
-const ActivityLevelScreen = ({ navigation: { navigate } }) => {
+const ActivityLevelScreen = ({ navigation: { navigate, isFocused } }) => {
   const {
     state: { activityLevel },
     updateActivityLevel,
@@ -20,7 +21,9 @@ const ActivityLevelScreen = ({ navigation: { navigate } }) => {
 
   return (
     <SafeAreaView style={s.container}>
-      <StatusBar backgroundColor={g.color.blue} barStyle="light-content" />
+      {isFocused() && (
+        <StatusBar backgroundColor={g.color.blue_2} barStyle="light-content" />
+      )}
       <Heading title="How active are you?" />
       <View style={s.radioGroup}>
         <RadioButton
@@ -69,7 +72,7 @@ ActivityLevelScreen.navigationOptions = {
   headerTitle: "About You",
   headerTintColor: g.color.white,
   headerStyle: {
-    backgroundColor: g.color.blue,
+    backgroundColor: g.color.blue_2,
   },
 };
 

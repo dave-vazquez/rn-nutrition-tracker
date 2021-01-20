@@ -1,38 +1,32 @@
 import g from "_globalstyles";
+import { useFormatMacroData } from "_hooks";
+import { toPrecision } from "_utils";
 import React from "react";
 import { Dimensions, StyleSheet, Text, View } from "react-native";
 import { PieChart } from "react-native-svg-charts";
 
 const screen = Dimensions.get("screen");
 
-const MacroWheel = ({ budget, consumed, colors, title }) => {
-  // console.log("title", title);
-  // console.log("budget", budget);
-  // console.log("consumed", consumed);
-  // console.log("\n");
-  const data = [
-    {
-      key: 1,
-      amount: consumed,
-      svg: {
-        fill: colors[0],
-        stroke: colors[2] ? colors[2] : colors[0],
-      },
-    },
-    {
-      key: 2,
-      amount: budget - consumed,
-      svg: {
-        fill: colors[1],
-        stroke: colors[2] ? colors[2] : colors[0],
-      },
-    },
-  ];
+const MacroWheel = ({ budget, consumed, added, title }) => {
+  const { data, consumedColor, titleColor, titleBgColor } = useFormatMacroData(
+    title,
+    added,
+    budget,
+    consumed
+  );
 
   return (
     <View style={s.container}>
-      <Title title={title} bgColor={colors[0]} />
-      <ValueOverlay consumed={consumed} budget={budget} />
+      <Title
+        title={title}
+        titleColor={titleColor}
+        titleBgColor={titleBgColor}
+      />
+      <ValueOverlay
+        budget={budget}
+        consumed={consumed + added}
+        consumedColor={consumedColor}
+      />
       <PieChart
         data={data}
         style={s.chart}
@@ -45,25 +39,20 @@ const MacroWheel = ({ budget, consumed, colors, title }) => {
   );
 };
 
-const Title = ({ bgColor, title }) => {
+const Title = ({ title, titleColor, titleBgColor }) => {
   return (
-    <View style={[s.title, { backgroundColor: bgColor }]}>
-      <Text
-        style={[
-          s.titleText,
-          { color: title === "Fats" ? g.color.grey_8 : "white" },
-        ]}
-      >
-        {title}
-      </Text>
+    <View style={[s.title, { backgroundColor: titleBgColor }]}>
+      <Text style={[s.titleText, { color: titleColor }]}>{title}</Text>
     </View>
   );
 };
 
-const ValueOverlay = ({ consumed, budget }) => {
+const ValueOverlay = ({ budget, consumed, consumedColor }) => {
   return (
     <View style={s.overlay}>
-      <Text style={s.value}>{consumed} g</Text>
+      <Text style={[s.value, { color: consumedColor }]}>
+        {toPrecision(consumed, 0)} g
+      </Text>
       <Text style={[s.value, s.budget]}>{budget} g</Text>
     </View>
   );
@@ -93,7 +82,6 @@ const s = StyleSheet.create({
   titleText: {
     fontSize: 16,
     textAlign: "center",
-    color: g.color.grey_8,
     fontFamily: "Lato_Regular",
   },
   overlay: {

@@ -1,11 +1,11 @@
-import { createStackNavigator } from "react-navigation-stack";
-import { AuthScreen } from "../screens/authentication";
+import { AuthScreen } from "_screens/authentication";
 import {
   ActivityLevelScreen,
   HomeScreen,
   UserInfoScreen,
   WeightGoalScreen,
-} from "../screens/onboarding";
+} from "_screens/onboarding";
+import { createStackNavigator } from "react-navigation-stack";
 
 const AuthNavigator = createStackNavigator(
   {
@@ -15,7 +15,11 @@ const AuthNavigator = createStackNavigator(
     UserInfo: UserInfoScreen,
     AuthScreen: AuthScreen,
   },
-  { initialRouteName: "Home" }
+  {
+    initialRouteName: "Home",
+    headerMode: "float",
+    gestureEnabled: "false",
+  }
 );
 
 export default AuthNavigator;

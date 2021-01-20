@@ -48,10 +48,12 @@ const AuthScreen = ({ navigation }) => {
       keyboardVerticalOffset={50}
       style={s.container}
     >
-      <Heading title={headingText} />
+      {navigation.isFocused && (
+        <StatusBar backgroundColor={g.color.white} barStyle="dark-content" />
+      )}
       <NavigationEvents onWillFocus={refreshAuth} />
-      <StatusBar backgroundColor={g.color.white} barStyle="dark-content" />
       <Spinner visible={authStart} animation="fade" size="large" />
+      <Heading title={headingText} />
       <View style={s.content}>
         <View>
           <Controller

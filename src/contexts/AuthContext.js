@@ -40,9 +40,8 @@ const refreshAuth = (dispatch) => () => {
 
 const tryLocalSignin = () => async () => {
   const token = await AsyncStorage.getItem("token");
-  console.log("token", token);
   if (token) {
-    NavigationService.navigate("App", {}, "Journal");
+    NavigationService.navigate("App");
   } else {
     NavigationService.navigate("Auth", {}, "Measurements");
   }

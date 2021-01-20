@@ -9,9 +9,15 @@
       "_screens": ["./src/screens"],
       "_contexts": ["./src/contexts"],
       "_formrules": ["./src/form-rules"],
+      "_navigation": ["./src/navigation"],
       "_components": ["./src/components"],
       "_globalstyles": ["./src/global-styles.js"],
       "_NavigationService": ["./src/NavigationService.js"],
     }
   },
+  "typeAcquisition": {
+    "include": [
+      "jest",
+    ]
+  }
 }

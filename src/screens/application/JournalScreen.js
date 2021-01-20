@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/display-name */
-import { BudgetCard, HeaderRight } from "_components/flows/journal";
+import { DailyBudgetsCard, HeaderRight } from "_components/flows/journal";
 import { Context as JournalContext } from "_contexts/JournalContext";
 import g from "_globalstyles";
 import React, { useContext, useLayoutEffect } from "react";
@@ -13,8 +13,9 @@ import {
   View,
 } from "react-native";
 import Spinner from "react-native-loading-spinner-overlay";
+import { withNavigationFocus } from "react-navigation";
 
-const JournalScreen = () => {
+const JournalScreen = ({ navigation: { isFocused } }) => {
   const {
     state: { fetchStart, fetchFail, budgets, consumed },
     fetchJournalEntries,
@@ -33,7 +34,9 @@ const JournalScreen = () => {
 
   return (
     <SafeAreaView style={s.container}>
-      <StatusBar backgroundColor={g.color.blue} barStyle="light-content" />
+      {isFocused() && (
+        <StatusBar backgroundColor={g.color.blue_2} barStyle="light-content" />
+      )}
       <Spinner
         size="large"
         animation="fade"
@@ -43,7 +46,7 @@ const JournalScreen = () => {
       />
       <View style={s.background} />
       <ScrollView style={s.scroll}>
-        <BudgetCard budgets={budgets} consumed={consumed} />
+        <DailyBudgetsCard budgets={budgets} consumed={consumed} />
       </ScrollView>
     </SafeAreaView>
   );
@@ -55,7 +58,7 @@ JournalScreen.navigationOptions = {
   headerTintColor: g.color.white,
   headerStyle: {
     elevation: 0,
-    backgroundColor: g.color.blue,
+    backgroundColor: g.color.blue_2,
   },
   headerTitleStyle: { fontFamily: "Lato_Bold" },
   headerRight: () => (
@@ -77,12 +80,12 @@ const s = StyleSheet.create({
   },
   background: {
     height: 120,
-    backgroundColor: g.color.blue,
+    backgroundColor: g.color.blue_2,
     ...StyleSheet.absoluteFill,
   },
 });
 
-export default JournalScreen;
+export default withNavigationFocus(JournalScreen);
 
 /*
   <ScrollView contentInsetAdjustmentBehavior="automatic">

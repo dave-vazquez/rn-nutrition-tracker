@@ -1,0 +1,919 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AuthScreen /> renders correctly with "signin" param 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#FFFFFF",
+        "flex": 1,
+        "paddingHorizontal": 10,
+        "paddingVertical": 20,
+      },
+      Object {
+        "paddingBottom": 0,
+      },
+    ]
+  }
+>
+  <mockNavigationEvents
+    onWillFocus={[Function]}
+  />
+  <Modal
+    animationType="fade"
+    hardwareAccelerated={false}
+    onRequestClose={[Function]}
+    statusBarTranslucent={true}
+    supportedOrientations={
+      Array [
+        "landscape",
+        "portrait",
+      ]
+    }
+    transparent={true}
+    visible={false}
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+            "bottom": 0,
+            "flex": 1,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          },
+          Object {
+            "backgroundColor": "rgba(0, 0, 0, 0.25)",
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "bottom": 0,
+            "justifyContent": "center",
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      >
+        <ActivityIndicator
+          animating={true}
+          color="white"
+          hidesWhenStopped={true}
+          size="large"
+          style={
+            Array [
+              Object {
+                "flex": 1,
+              },
+              Object {},
+            ]
+          }
+        />
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "bottom": 0,
+                "flex": 1,
+                "justifyContent": "center",
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+              Object {},
+            ]
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontSize": 20,
+                  "fontWeight": "bold",
+                  "height": 50,
+                  "top": 80,
+                },
+                undefined,
+              ]
+            }
+          >
+            
+          </Text>
+        </View>
+      </View>
+    </View>
+  </Modal>
+  <Text
+    style={
+      Object {
+        "color": "#616161",
+        "fontFamily": "NunitoSans_Regular",
+        "fontSize": 43.714285714285715,
+        "fontWeight": "normal",
+        "marginBottom": 20,
+        "textAlign": "center",
+      }
+    }
+  >
+    Welcome back!
+  </Text>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "justifyContent": "space-between",
+        "marginTop": 30,
+      }
+    }
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 10,
+            "width": "100%",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#86939e",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Email
+        </Text>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomWidth": 1,
+              "borderColor": "#86939e",
+              "flexDirection": "row",
+              "transform": Array [
+                Object {
+                  "translateX": 0,
+                },
+              ],
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "height": 40,
+                "justifyContent": "center",
+                "marginVertical": 4,
+                "paddingRight": 4,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "overflow": "hidden",
+                }
+              }
+            >
+              <View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "transparent",
+                      "justifyContent": "center",
+                    }
+                  }
+                >
+                  <Text />
+                </View>
+              </View>
+            </View>
+          </View>
+          <TextInput
+            allowFontScaling={true}
+            autoCapitalize="none"
+            blurOnSubmit={false}
+            editable={true}
+            keyboardType="email-address"
+            onBlur={[Function]}
+            onChangeText={[Function]}
+            onSubmitEditing={[Function]}
+            placeholderTextColor="#86939e"
+            rejectResponderTermination={true}
+            style={
+              Object {
+                "alignSelf": "center",
+                "color": "#242424",
+                "flex": 1,
+                "fontSize": 18,
+                "minHeight": 40,
+              }
+            }
+            testID="RNE__Input__text-input"
+            underlineColorAndroid="transparent"
+            value="t@t.com"
+          />
+        </View>
+        <Text
+          style={
+            Object {
+              "color": "red",
+              "fontSize": 16,
+              "margin": 5,
+              "textAlign": "center",
+            }
+          }
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 10,
+            "width": "100%",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#86939e",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Password
+        </Text>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomWidth": 1,
+              "borderColor": "#86939e",
+              "flexDirection": "row",
+              "transform": Array [
+                Object {
+                  "translateX": 0,
+                },
+              ],
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "height": 40,
+                "justifyContent": "center",
+                "marginVertical": 4,
+                "paddingRight": 4,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "overflow": "hidden",
+                }
+              }
+            >
+              <View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "transparent",
+                      "justifyContent": "center",
+                    }
+                  }
+                >
+                  <Text />
+                </View>
+              </View>
+            </View>
+          </View>
+          <TextInput
+            allowFontScaling={true}
+            autoCapitalize="none"
+            editable={true}
+            onBlur={[Function]}
+            onChangeText={[Function]}
+            placeholderTextColor="#86939e"
+            rejectResponderTermination={true}
+            secureTextEntry={true}
+            style={
+              Object {
+                "alignSelf": "center",
+                "color": "#242424",
+                "flex": 1,
+                "fontSize": 18,
+                "minHeight": 40,
+              }
+            }
+            testID="RNE__Input__text-input"
+            underlineColorAndroid="transparent"
+            value="pass"
+          />
+        </View>
+        <Text
+          style={
+            Object {
+              "color": "red",
+              "fontSize": 16,
+              "margin": 5,
+              "textAlign": "center",
+            }
+          }
+        />
+      </View>
+    </View>
+    <View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "minHeight": 30,
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "justifyContent": "flex-end",
+            "marginBottom": 30,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "#fff",
+              "borderRadius": 3,
+              "overflow": "visible",
+              "shadowColor": "rgba(0,0,0, .4)",
+              "shadowOffset": Object {
+                "height": 1,
+                "width": 1,
+              },
+              "shadowOpacity": 1,
+              "shadowRadius": 1,
+            }
+          }
+        >
+          <View
+            accessibilityRole="button"
+            accessibilityState={
+              Object {
+                "busy": false,
+                "disabled": false,
+              }
+            }
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#9CBE57",
+                  "borderColor": "#2089dc",
+                  "borderRadius": 3,
+                  "borderWidth": 0,
+                  "flexDirection": "row",
+                  "justifyContent": "center",
+                  "padding": 8,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "white",
+                    "fontFamily": "Lato_Regular",
+                    "fontSize": 22,
+                    "marginRight": 10,
+                    "paddingVertical": 1,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                Next
+              </Text>
+              <View
+                style={
+                  Object {
+                    "marginHorizontal": 5,
+                    "overflow": "hidden",
+                  }
+                }
+              >
+                <View>
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "transparent",
+                        "justifyContent": "center",
+                      }
+                    }
+                  >
+                    <Text />
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
+
+exports[`<AuthScreen /> renders correctly with "signup" param 1`] = `
+<View
+  onLayout={[Function]}
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#FFFFFF",
+        "flex": 1,
+        "paddingHorizontal": 10,
+        "paddingVertical": 20,
+      },
+      Object {
+        "paddingBottom": 0,
+      },
+    ]
+  }
+>
+  <mockNavigationEvents
+    onWillFocus={[Function]}
+  />
+  <Modal
+    animationType="fade"
+    hardwareAccelerated={false}
+    onRequestClose={[Function]}
+    statusBarTranslucent={true}
+    supportedOrientations={
+      Array [
+        "landscape",
+        "portrait",
+      ]
+    }
+    transparent={true}
+    visible={false}
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "backgroundColor": "transparent",
+            "bottom": 0,
+            "flex": 1,
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          },
+          Object {
+            "backgroundColor": "rgba(0, 0, 0, 0.25)",
+          },
+        ]
+      }
+    >
+      <View
+        style={
+          Object {
+            "alignItems": "center",
+            "bottom": 0,
+            "justifyContent": "center",
+            "left": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+          }
+        }
+      >
+        <ActivityIndicator
+          animating={true}
+          color="white"
+          hidesWhenStopped={true}
+          size="large"
+          style={
+            Array [
+              Object {
+                "flex": 1,
+              },
+              Object {},
+            ]
+          }
+        />
+        <View
+          style={
+            Array [
+              Object {
+                "alignItems": "center",
+                "bottom": 0,
+                "flex": 1,
+                "justifyContent": "center",
+                "left": 0,
+                "position": "absolute",
+                "right": 0,
+                "top": 0,
+              },
+              Object {},
+            ]
+          }
+        >
+          <Text
+            style={
+              Array [
+                Object {
+                  "fontSize": 20,
+                  "fontWeight": "bold",
+                  "height": 50,
+                  "top": 80,
+                },
+                undefined,
+              ]
+            }
+          >
+            
+          </Text>
+        </View>
+      </View>
+    </View>
+  </Modal>
+  <Text
+    style={
+      Object {
+        "color": "#616161",
+        "fontFamily": "NunitoSans_Regular",
+        "fontSize": 43.714285714285715,
+        "fontWeight": "normal",
+        "marginBottom": 20,
+        "textAlign": "center",
+      }
+    }
+  >
+    Welcome back!
+  </Text>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "justifyContent": "space-between",
+        "marginTop": 30,
+      }
+    }
+  >
+    <View>
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 10,
+            "width": "100%",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#86939e",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Email
+        </Text>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomWidth": 1,
+              "borderColor": "#86939e",
+              "flexDirection": "row",
+              "transform": Array [
+                Object {
+                  "translateX": 0,
+                },
+              ],
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "height": 40,
+                "justifyContent": "center",
+                "marginVertical": 4,
+                "paddingRight": 4,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "overflow": "hidden",
+                }
+              }
+            >
+              <View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "transparent",
+                      "justifyContent": "center",
+                    }
+                  }
+                >
+                  <Text />
+                </View>
+              </View>
+            </View>
+          </View>
+          <TextInput
+            allowFontScaling={true}
+            autoCapitalize="none"
+            blurOnSubmit={false}
+            editable={true}
+            keyboardType="email-address"
+            onBlur={[Function]}
+            onChangeText={[Function]}
+            onSubmitEditing={[Function]}
+            placeholderTextColor="#86939e"
+            rejectResponderTermination={true}
+            style={
+              Object {
+                "alignSelf": "center",
+                "color": "#242424",
+                "flex": 1,
+                "fontSize": 18,
+                "minHeight": 40,
+              }
+            }
+            testID="RNE__Input__text-input"
+            underlineColorAndroid="transparent"
+            value="t@t.com"
+          />
+        </View>
+        <Text
+          style={
+            Object {
+              "color": "red",
+              "fontSize": 16,
+              "margin": 5,
+              "textAlign": "center",
+            }
+          }
+        />
+      </View>
+      <View
+        style={
+          Object {
+            "paddingHorizontal": 10,
+            "width": "100%",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "color": "#86939e",
+              "fontSize": 16,
+              "fontWeight": "bold",
+            }
+          }
+        >
+          Password
+        </Text>
+        <View
+          style={
+            Object {
+              "alignItems": "center",
+              "borderBottomWidth": 1,
+              "borderColor": "#86939e",
+              "flexDirection": "row",
+              "transform": Array [
+                Object {
+                  "translateX": 0,
+                },
+              ],
+            }
+          }
+        >
+          <View
+            style={
+              Object {
+                "alignItems": "center",
+                "height": 40,
+                "justifyContent": "center",
+                "marginVertical": 4,
+                "paddingRight": 4,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "overflow": "hidden",
+                }
+              }
+            >
+              <View>
+                <View
+                  style={
+                    Object {
+                      "alignItems": "center",
+                      "backgroundColor": "transparent",
+                      "justifyContent": "center",
+                    }
+                  }
+                >
+                  <Text />
+                </View>
+              </View>
+            </View>
+          </View>
+          <TextInput
+            allowFontScaling={true}
+            autoCapitalize="none"
+            editable={true}
+            onBlur={[Function]}
+            onChangeText={[Function]}
+            placeholderTextColor="#86939e"
+            rejectResponderTermination={true}
+            secureTextEntry={true}
+            style={
+              Object {
+                "alignSelf": "center",
+                "color": "#242424",
+                "flex": 1,
+                "fontSize": 18,
+                "minHeight": 40,
+              }
+            }
+            testID="RNE__Input__text-input"
+            underlineColorAndroid="transparent"
+            value="pass"
+          />
+        </View>
+        <Text
+          style={
+            Object {
+              "color": "red",
+              "fontSize": 16,
+              "margin": 5,
+              "textAlign": "center",
+            }
+          }
+        />
+      </View>
+    </View>
+    <View>
+      <View
+        style={
+          Object {
+            "flex": 1,
+            "minHeight": 30,
+          }
+        }
+      />
+      <View
+        style={
+          Object {
+            "justifyContent": "flex-end",
+            "marginBottom": 30,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "backgroundColor": "#fff",
+              "borderRadius": 3,
+              "overflow": "visible",
+              "shadowColor": "rgba(0,0,0, .4)",
+              "shadowOffset": Object {
+                "height": 1,
+                "width": 1,
+              },
+              "shadowOpacity": 1,
+              "shadowRadius": 1,
+            }
+          }
+        >
+          <View
+            accessibilityRole="button"
+            accessibilityState={
+              Object {
+                "busy": false,
+                "disabled": false,
+              }
+            }
+            accessible={true}
+            focusable={true}
+            onClick={[Function]}
+            onResponderGrant={[Function]}
+            onResponderMove={[Function]}
+            onResponderRelease={[Function]}
+            onResponderTerminate={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            style={
+              Object {
+                "opacity": 1,
+              }
+            }
+          >
+            <View
+              style={
+                Object {
+                  "alignItems": "center",
+                  "backgroundColor": "#9CBE57",
+                  "borderColor": "#2089dc",
+                  "borderRadius": 3,
+                  "borderWidth": 0,
+                  "flexDirection": "row",
+                  "justifyContent": "center",
+                  "padding": 8,
+                }
+              }
+            >
+              <Text
+                style={
+                  Object {
+                    "color": "white",
+                    "fontFamily": "Lato_Regular",
+                    "fontSize": 22,
+                    "marginRight": 10,
+                    "paddingVertical": 1,
+                    "textAlign": "center",
+                  }
+                }
+              >
+                Next
+              </Text>
+              <View
+                style={
+                  Object {
+                    "marginHorizontal": 5,
+                    "overflow": "hidden",
+                  }
+                }
+              >
+                <View>
+                  <View
+                    style={
+                      Object {
+                        "alignItems": "center",
+                        "backgroundColor": "transparent",
+                        "justifyContent": "center",
+                      }
+                    }
+                  >
+                    <Text />
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;

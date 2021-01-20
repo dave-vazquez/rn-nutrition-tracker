@@ -15,11 +15,12 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
+  StatusBar,
   StyleSheet,
   View,
 } from "react-native";
 
-const UserInfoScreen = ({ navigation: { navigate } }) => {
+const UserInfoScreen = ({ navigation: { navigate, isFocused } }) => {
   const {
     state: { weightGoal, gender },
     updateGender,
@@ -30,11 +31,6 @@ const UserInfoScreen = ({ navigation: { navigate } }) => {
 
   const scrollView = useRef(null);
   const [setRef, focusNextInput] = useFocusNextInput();
-
-  const scrollToEnd = () => {
-    if (formState.isDirty && formState.isValid)
-      scrollView.current.scrollToEnd({ animated: true });
-  };
 
   const onSubmit = (userInfo) => {
     updateUserInfo(userInfo, () =>
@@ -48,12 +44,17 @@ const UserInfoScreen = ({ navigation: { navigate } }) => {
       keyboardVerticalOffset={50}
       style={s.container}
     >
+      {isFocused() && (
+        <StatusBar backgroundColor={g.color.blue_2} barStyle="light-content" />
+      )}
       <ScrollView
-        contentContainerStyle={{ flexGrow: 1 }}
-        ref={(ref) => (scrollView.current = ref)}
         keyboardDismissMode="interactive"
         showsVerticalScrollIndicator={false}
-        onLayout={scrollToEnd}
+        contentContainerStyle={{ flexGrow: 1 }}
+        ref={(ref) => (scrollView.current = ref)}
+        onContentSizeChange={() =>
+          scrollView.current.scrollToEnd({ animated: true })
+        }
       >
         <Heading
           title={!gender ? "Are you male or female?" : "Tell us about you!"}
@@ -99,7 +100,7 @@ UserInfoScreen.navigationOptions = {
   headerTitle: "About You",
   headerTintColor: g.color.white,
   headerStyle: {
-    backgroundColor: g.color.blue,
+    backgroundColor: g.color.blue_2,
   },
 };
 

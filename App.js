@@ -4,13 +4,11 @@ import { useFonts } from "expo-font";
 import React from "react";
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import NavigationService from "./src/NavigationService";
-import { Provider as AuthProvider } from "./src/contexts/AuthContext";
-import { Provider as JournalProvider } from "./src/contexts/JournalContext";
-import { Provider as OnboardingProvider } from "./src/contexts/OnboardingContext";
+import CombinedProvider from "./src/contexts/CombinedProvider";
 import { AppNavigator, AuthNavigator } from "./src/navigation";
 import { AuthResolutionScreen } from "./src/screens/authentication";
 
-const switchNavigator = createSwitchNavigator(
+const RootNavigator = createSwitchNavigator(
   {
     AuthResolution: AuthResolutionScreen,
     Auth: AuthNavigator,
@@ -21,7 +19,7 @@ const switchNavigator = createSwitchNavigator(
   }
 );
 
-const App = createAppContainer(switchNavigator);
+export const App = createAppContainer(RootNavigator);
 
 export default () => {
   const [loaded] = useFonts({
@@ -34,7 +32,7 @@ export default () => {
     Roboto_Regular: require("./src/assets/fonts/Roboto/Roboto-Regular.ttf"),
     Roboto_Bold: require("./src/assets/fonts/Roboto/Roboto-Bold.ttf"),
     Lato_Regular: require("./src/assets/fonts/Lato/Lato-Regular.ttf"),
-    Lato_LightItalic: require("./src/assets/fonts/Lato/Lato-LightItalic.ttf"),
+    Lato_Italic: require("./src/assets/fonts/Lato/Lato-Italic.ttf"),
     Lato_Bold: require("./src/assets/fonts/Lato/Lato-Bold.ttf"),
     Lato_Light: require("./src/assets/fonts/Lato/Lato-Light.ttf"),
   });
@@ -42,16 +40,12 @@ export default () => {
   if (!loaded) return <AppLoading />;
 
   return (
-    <AuthProvider>
-      <OnboardingProvider>
-        <JournalProvider>
-          <App
-            ref={(navigatorRef) => {
-              NavigationService.setTopLevelNavigator(navigatorRef);
-            }}
-          />
-        </JournalProvider>
-      </OnboardingProvider>
-    </AuthProvider>
+    <CombinedProvider>
+      <App
+        ref={(navigatorRef) => {
+          NavigationService.setTopLevelNavigator(navigatorRef);
+        }}
+      />
+    </CombinedProvider>
   );
 };
