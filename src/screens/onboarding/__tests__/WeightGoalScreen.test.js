@@ -5,7 +5,7 @@ import WeightGoalScreen from "../WeightGoalScreen";
 
 const navigation = {
   navigate: jest.fn(),
-  isFocused: true,
+  isFocused: () => true,
 };
 
 jest.mock("react-navigation", () => ({

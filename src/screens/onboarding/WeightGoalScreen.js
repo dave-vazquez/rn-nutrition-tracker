@@ -15,7 +15,7 @@ const WeightGoalScreen = ({ navigation: { navigate, isFocused } }) => {
 
   return (
     <SafeAreaView style={s.container}>
-      {isFocused && (
+      {isFocused() && (
         <StatusBar backgroundColor={g.color.blue_2} barStyle="light-content" />
       )}
       <NavigationEvents onWillFocus={() => null} />

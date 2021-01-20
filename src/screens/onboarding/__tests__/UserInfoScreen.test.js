@@ -5,7 +5,7 @@ import UserInfoScreen from "../UserInfoScreen";
 
 const navigation = {
   navigate: jest.fn(),
-  isFocused: true,
+  isFocused: () => true,
 };
 
 describe("<UserInfoScreen />", () => {

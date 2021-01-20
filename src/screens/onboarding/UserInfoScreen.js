@@ -44,7 +44,7 @@ const UserInfoScreen = ({ navigation: { navigate, isFocused } }) => {
       keyboardVerticalOffset={50}
       style={s.container}
     >
-      {isFocused && (
+      {isFocused() && (
         <StatusBar backgroundColor={g.color.blue_2} barStyle="light-content" />
       )}
       <ScrollView

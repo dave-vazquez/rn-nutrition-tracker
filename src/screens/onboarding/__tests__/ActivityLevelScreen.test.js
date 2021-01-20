@@ -5,7 +5,7 @@ import ActivityLevelScreen from "../ActivityLevelScreen";
 
 const navigation = {
   navigate: jest.fn(),
-  isFocused: true,
+  isFocused: () => true,
 };
 
 describe("<ActivityLevelScreen />", () => {

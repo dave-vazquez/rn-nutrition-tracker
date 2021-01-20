@@ -15,7 +15,7 @@ import { Button } from "react-native-elements";
 const HomeScreen = ({ navigation: { navigate, isFocused } }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
-      {isFocused && (
+      {isFocused() && (
         <StatusBar
           translucent
           backgroundColor="transparent"

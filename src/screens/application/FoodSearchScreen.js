@@ -3,9 +3,8 @@ import g from "_globalstyles";
 import { useDebouncedSearch } from "_hooks";
 import React, { useEffect, useState } from "react";
 import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
-import { withNavigationFocus } from "react-navigation";
 
-const FoodSearchScreen = ({ isFocused }) => {
+const FoodSearchScreen = ({ navigation }) => {
   const [keyword, setKeyword] = useState("");
 
   const [results, searchStatus, resetSearch] = useDebouncedSearch(
@@ -19,7 +18,7 @@ const FoodSearchScreen = ({ isFocused }) => {
 
   return (
     <SafeAreaView style={s.container}>
-      {isFocused && (
+      {navigation.isFocused() && (
         <StatusBar
           barStyle="light-content"
           backgroundColor={g.color.green_light_4}
@@ -60,7 +59,7 @@ const s = StyleSheet.create({
   },
 });
 
-export default withNavigationFocus(FoodSearchScreen);
+export default FoodSearchScreen;
 
 // useEffect(() => {
 //   if (debouncedKeyword) searchFoodDatabase(debouncedKeyword);

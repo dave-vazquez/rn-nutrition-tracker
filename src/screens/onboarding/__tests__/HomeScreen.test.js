@@ -4,7 +4,7 @@ import HomeScreen from "../HomeScreen";
 
 const navigation = {
   navigate: jest.fn(),
-  isFocused: true,
+  isFocused: () => true,
 };
 
 describe("<HomeScreen />", () => {
