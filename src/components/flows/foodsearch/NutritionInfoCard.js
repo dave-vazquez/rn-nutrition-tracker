@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Card } from "_components/common";
 import g from "_globalstyles";
 import { toPrecision } from "_utils";
@@ -5,112 +6,120 @@ import React from "react";
 import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 
 const NutritionInfoCard = ({ nutrients, fetchStatus }) => {
-  if (fetchStatus.start)
-    return <ActivityIndicator size="large" color={g.color.grey_8} />;
-
   return (
     <Card>
-      <Text style={s.heading}>Nutrition Information</Text>
-      <Nutrient
-        name={"Fat"}
-        quantity={toPrecision(nutrients.fat, 1)}
-        unit={"g"}
-      />
-      <SubNutrient
-        name={"Saturated"}
-        quantity={toPrecision(nutrients.fatSat, 1)}
-        unit={"g"}
-      />
-      <SubNutrient
-        name={"Trans Fat"}
-        quantity={toPrecision(nutrients.fatTrans, 1)}
-        unit={"g"}
-      />
-      <SubNutrient
-        name={"Polyunsaturated Fat"}
-        quantity={toPrecision(nutrients.fatPoly, 1)}
-        unit={"g"}
-      />
-      <SubNutrient
-        name={"Monounsaturated Fat"}
-        quantity={toPrecision(nutrients.fatMono, 1)}
-        unit={"g"}
-      />
-      <Nutrient
-        name={"Cholesterol"}
-        quantity={toPrecision(nutrients.cholesterol, 1)}
-        unit={"mg"}
-      />
-      <Nutrient
-        name={"Sodium"}
-        quantity={toPrecision(nutrients.sodium, 1)}
-        unit={"mg"}
-      />
-      <Nutrient
-        name={"Carbohydrates"}
-        quantity={toPrecision(nutrients.carbs, 1)}
-        unit={"g"}
-      />
-      <SubNutrient
-        name={"Dietary Fiber"}
-        quantity={toPrecision(nutrients.fiber, 1)}
-        unit={"g"}
-      />
-      <SubNutrient
-        name={"Sugars"}
-        quantity={toPrecision(nutrients.sugar, 1)}
-        unit={"g"}
-      />
-      <Nutrient
-        name={"Protein"}
-        quantity={toPrecision(nutrients.protein, 1)}
-        unit={"g"}
-      />
-      <SubNutrient
-        name={"Vitamin C"}
-        quantity={toPrecision(nutrients.vitaminC, 1)}
-        unit={"mg"}
-      />
-      <SubNutrient
-        name={"Vitamin B6"}
-        quantity={toPrecision(nutrients.vitaminB6, 1)}
-        unit={"mg"}
-      />
-      <SubNutrient
-        name={"Vitamin B12"}
-        quantity={toPrecision(nutrients.vitaminB12, 1)}
-        unit={"µg"}
-      />
-      <SubNutrient
-        name={"Thiamin (B1)"}
-        quantity={toPrecision(nutrients.thiamin, 1)}
-        unit={"mg"}
-      />
-      <SubNutrient
-        name={"Riboflavin (B2)"}
-        quantity={toPrecision(nutrients.riboflavin, 1)}
-        unit={"mg"}
-      />
-      <SubNutrient
-        name={"Niacin (B3)"}
-        quantity={toPrecision(nutrients.niacin, 1)}
-        unit={"mg"}
-      />
-      <SubNutrient
-        name={"Potassium"}
-        quantity={toPrecision(nutrients.potassium, 1)}
-        unit={"mg"}
-      />
-      <SubNutrient
-        name={"Calcium"}
-        quantity={toPrecision(nutrients.calcium, 1)}
-        unit={"mg"}
-      />
-      <SubNutrient
-        name={"Iron"}
-        quantity={toPrecision(nutrients.iron, 1)}
-        unit={"mg"}
-      />
+      {fetchStatus.start ? (
+        <ActivityIndicator size="large" color={g.color.grey_8} />
+      ) : (
+          <View>
+            <Text style={s.heading}>Nutrition Information</Text>
+            <Nutrient
+              name={"Calories"}
+              quantity={toPrecision(nutrients.calories_kcal, 0)}
+              unit={"cal"}
+            />
+            <Nutrient
+              name={"Fat"}
+              quantity={toPrecision(nutrients.fat_g, 1)}
+              unit={"g"}
+            />
+            <SubNutrient
+              name={"Saturated"}
+              quantity={toPrecision(nutrients.fatSat_g, 1)}
+              unit={"g"}
+            />
+            <SubNutrient
+              name={"Trans Fat"}
+              quantity={toPrecision(nutrients.fatTrans_g, 1)}
+              unit={"g"}
+            />
+            <SubNutrient
+              name={"Polyunsaturated Fat"}
+              quantity={toPrecision(nutrients.fatPoly_g, 1)}
+              unit={"g"}
+            />
+            <SubNutrient
+              name={"Monounsaturated Fat"}
+              quantity={toPrecision(nutrients.fatMono_g, 1)}
+              unit={"g"}
+            />
+            <Nutrient
+              name={"Cholesterol"}
+              quantity={toPrecision(nutrients.cholesterol_mg, 1)}
+              unit={"mg"}
+            />
+            <Nutrient
+              name={"Sodium"}
+              quantity={toPrecision(nutrients.sodium_mg, 1)}
+              unit={"mg"}
+            />
+            <Nutrient
+              name={"Carbohydrates"}
+              quantity={toPrecision(nutrients.carbs_g, 1)}
+              unit={"g"}
+            />
+            <SubNutrient
+              name={"Dietary Fiber"}
+              quantity={toPrecision(nutrients.fiber_g, 1)}
+              unit={"g"}
+            />
+            <SubNutrient
+              name={"Sugars"}
+              quantity={toPrecision(nutrients.sugar_g, 1)}
+              unit={"g"}
+            />
+            <Nutrient
+              name={"Protein"}
+              quantity={toPrecision(nutrients.protein_g, 1)}
+              unit={"g"}
+            />
+            <SubNutrient
+              name={"Vitamin C"}
+              quantity={toPrecision(nutrients.vitaminC_mg, 1)}
+              unit={"mg"}
+            />
+            <SubNutrient
+              name={"Vitamin B6"}
+              quantity={toPrecision(nutrients.vitaminB6_mg, 1)}
+              unit={"mg"}
+            />
+            <SubNutrient
+              name={"Vitamin B12"}
+              quantity={toPrecision(nutrients.vitaminB12_ug, 1)}
+              unit={"µg"}
+            />
+            <SubNutrient
+              name={"Thiamin (B1)"}
+              quantity={toPrecision(nutrients.thiamin_mg, 1)}
+              unit={"mg"}
+            />
+            <SubNutrient
+              name={"Riboflavin (B2)"}
+              quantity={toPrecision(nutrients.riboflavin_mg, 1)}
+              unit={"mg"}
+            />
+            <SubNutrient
+              name={"Niacin (B3)"}
+              quantity={toPrecision(nutrients.niacin_mg, 1)}
+              unit={"mg"}
+            />
+            <SubNutrient
+              name={"Potassium"}
+              quantity={toPrecision(nutrients.potassium_mg, 1)}
+              unit={"mg"}
+            />
+            <SubNutrient
+              name={"Calcium"}
+              quantity={toPrecision(nutrients.calcium_mg, 1)}
+              unit={"mg"}
+            />
+            <SubNutrient
+              name={"Iron"}
+              quantity={toPrecision(nutrients.iron_mg, 1)}
+              unit={"mg"}
+            />
+          </View>
+        )}
     </Card>
   );
 };

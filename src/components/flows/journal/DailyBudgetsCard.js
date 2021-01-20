@@ -1,36 +1,41 @@
 import { Card } from "_components/common";
+import { Context as JournalContext } from "_contexts/JournalContext";
 import g from "_globalstyles";
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, View } from "react-native";
 import CalorieBar from "./CalorieBar";
 import MacroWheel from "./MacroWheel";
 
-const DailyBudgetsCard = ({ budgets, consumed }) => {
+const DailyBudgetsCard = ({ added }) => {
+  const {
+    state: { budgets, consumed },
+  } = useContext(JournalContext);
+
   return (
     <Card bgColor={g.color.green_light_3}>
       <CalorieBar
-        budget={budgets.caloriesKcal}
-        consumed={consumed.caloriesKcal}
-        colors={[g.color.green_light_4, g.color.white]}
+        added={added?.calories_kcal || 0}
+        budget={budgets.calories_kcal}
+        consumed={consumed.calories_kcal}
       />
       <View style={s.macros}>
         <MacroWheel
           title="Fats"
-          consumed={consumed.fatGrams}
-          budget={budgets.fatGrams}
-          colors={[g.color.yellow, g.color.yellow_light, g.color.yellow_dark]}
+          added={added?.fat_g || 0}
+          budget={budgets.fat_g}
+          consumed={consumed.fat_g}
         />
         <MacroWheel
           title="Carbs"
-          consumed={consumed.carbGrams}
-          budget={budgets.carbGrams}
-          colors={[g.color.blue, g.color.blue_light]}
+          added={added?.carbs_g || 0}
+          budget={budgets.carbs_g}
+          consumed={consumed.carbs_g}
         />
         <MacroWheel
           title="Protein"
-          consumed={consumed.proteinGrams}
-          budget={budgets.proteinGrams}
-          colors={[g.color.pink, g.color.pink_light]}
+          added={added?.protein_g || 0}
+          budget={budgets.protein_g}
+          consumed={consumed.protein_g}
         />
       </View>
     </Card>

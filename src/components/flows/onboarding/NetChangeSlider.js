@@ -49,7 +49,7 @@ const s = StyleSheet.create({
   thumb: {
     height: 25,
     width: 25,
-    backgroundColor: g.color.blue,
+    backgroundColor: g.color.blue_2,
   },
   netChangeText: {
     textAlign: "right",

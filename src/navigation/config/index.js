@@ -17,7 +17,7 @@ export const tabNavigatorConfig = {
         case "Journal": {
           type = "material-community";
           name = "notebook";
-          color = focused ? g.color.blue : g.color.grey_5;
+          color = focused ? g.color.blue_2 : g.color.grey_5;
           break;
         }
         case "FoodSearch": {
@@ -41,7 +41,7 @@ export const tabNavigatorConfig = {
         case "Settings": {
           type = "font-awesome";
           name = "gear";
-          color = focused ? g.color.blue : g.color.grey_5;
+          color = focused ? g.color.blue_2 : g.color.grey_5;
           break;
         }
         default:

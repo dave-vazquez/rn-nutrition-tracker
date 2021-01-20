@@ -35,7 +35,7 @@ const JournalScreen = ({ isFocused }) => {
   return (
     <SafeAreaView style={s.container}>
       {isFocused && (
-        <StatusBar backgroundColor={g.color.blue} barStyle="light-content" />
+        <StatusBar backgroundColor={g.color.blue_2} barStyle="light-content" />
       )}
       <Spinner
         size="large"
@@ -58,7 +58,7 @@ JournalScreen.navigationOptions = {
   headerTintColor: g.color.white,
   headerStyle: {
     elevation: 0,
-    backgroundColor: g.color.blue,
+    backgroundColor: g.color.blue_2,
   },
   headerTitleStyle: { fontFamily: "Lato_Bold" },
   headerRight: () => (
@@ -80,7 +80,7 @@ const s = StyleSheet.create({
   },
   background: {
     height: 120,
-    backgroundColor: g.color.blue,
+    backgroundColor: g.color.blue_2,
     ...StyleSheet.absoluteFill,
   },
 });

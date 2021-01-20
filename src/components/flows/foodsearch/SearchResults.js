@@ -55,7 +55,7 @@ const s = StyleSheet.create({
   },
   subTitle: {
     fontFamily: "Lato_Italic",
-    color: g.color.blue,
+    color: g.color.blue_2,
   },
 });
 

@@ -41,7 +41,7 @@ const s = StyleSheet.create({
     height: 12,
     width: 12,
     borderRadius: 6,
-    backgroundColor: g.color.blue,
+    backgroundColor: g.color.blue_2,
   },
   label: {
     fontSize: 22,

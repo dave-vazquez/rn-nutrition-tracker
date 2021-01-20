@@ -10,16 +10,16 @@ const initialState = {
   fetchStart: true,
   fetchSuccess: false,
   budgets: {
-    caloriesKcal: 0,
-    fatGrams: 0,
-    carbGrams: 0,
-    proteinGrams: 0,
+    fat_g: 0,
+    carbs_g: 0,
+    protein_g: 0,
+    calories_kcal: 0,
   },
   consumed: {
-    caloriesKcal: 0,
-    fatGrams: 0,
-    carbGrams: 0,
-    proteinGrams: 0,
+    fat_g: 0,
+    carbs_g: 0,
+    protein_g: 0,
+    calories_kcal: 0,
   },
 };
 
@@ -62,10 +62,10 @@ const fetchJournalEntries = (dispatch) => async () => {
       type: FETCH_ENTRIES_SUCCESS,
       budgets: response.data.budgets,
       consumed: {
-        caloriesKcal: 500,
-        fatGrams: 18,
-        carbGrams: 25,
-        proteinGrams: 38,
+        fat_g: 18,
+        carbs_g: 25,
+        protein_g: 38,
+        calories_kcal: 500,
       },
     });
     //

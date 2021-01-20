@@ -1,29 +1,30 @@
 import g from "_globalstyles";
+import { useFormatCalorieData } from "_hooks";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { StackedBarChart } from "react-native-svg-charts";
 
-const CalorieBar = ({ consumed, budget, colors }) => {
-  const keys = ["consumed", "budget"];
-  const data = [{ consumed, budget }];
+const CalorieBar = ({ budget, consumed, added }) => {
+  //
+  const [data, colors] = useFormatCalorieData(budget, consumed, added);
 
   return (
     <View style={s.container}>
-      <ValueOverlay consumed={consumed} budget={budget} />
+      <ValueOverlay budget={budget} consumed={consumed + added} />
       <StackedBarChart
+        animate
         horizontal
-        data={data}
-        keys={keys}
-        style={s.chart}
+        data={[data]}
         colors={colors}
-        animated={true}
+        style={s.chart}
         animationDuration={500}
+        keys={["consumed", "added", "budget"]}
       />
     </View>
   );
 };
 
-const ValueOverlay = ({ consumed, budget }) => {
+const ValueOverlay = ({ budget, consumed }) => {
   const color = {
     consumed: {
       color: consumed / budget <= 0.25 ? g.color.grey_8 : g.color.white,
@@ -35,7 +36,7 @@ const ValueOverlay = ({ consumed, budget }) => {
 
   return (
     <View style={s.overlay}>
-      <Text style={[s.value, color.consumed]}>{consumed} cal</Text>
+      <Text style={[s.value, color.consumed]}>{Math.round(consumed)} cal</Text>
       <Text style={[s.value, color.budget]}>{budget} cal</Text>
     </View>
   );
@@ -43,7 +44,7 @@ const ValueOverlay = ({ consumed, budget }) => {
 
 const s = StyleSheet.create({
   container: {
-    height: 40,
+    height: 39,
     elevation: 3,
     width: "100%",
     shadowRadius: 1,

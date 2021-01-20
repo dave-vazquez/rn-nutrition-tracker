@@ -44,7 +44,16 @@ const FoodDetailsScreen = ({ navigation }, isFocused) => {
         )}
       <ScrollView style={s.scrollView}>
         <Spacer height={image ? 150 : 15} />
-        <DailyBudgetsCard budgets={budgets} consumed={consumed} />
+        <DailyBudgetsCard
+          budgets={budgets}
+          consumed={consumed}
+          added={{
+            fat_g: nutrients?.fat_g || 0,
+            carbs_g: nutrients?.carbs_g || 0,
+            protein_g: nutrients?.protein_g || 0,
+            calories_kcal: nutrients?.calories_kcal || 0,
+          }}
+        />
         <NutritionInfoCard fetchStatus={fetchStatus} nutrients={nutrients} />
       </ScrollView>
     </SafeAreaView>
@@ -78,11 +87,10 @@ const s = StyleSheet.create({
 });
 
 FoodDetailsScreen.navigationOptions = ({ navigation }) => ({
-  // headerTitle: navigation.getParam("foodData").label,
-  headerTitle: foodData.label,
   headerTitleAlign: "left",
   headerTintColor: g.color.white,
   headerTitleStyle: { fontFamily: "Lato_Bold" },
+  headerTitle: navigation.getParam("foodData").label,
   headerStyle: {
     elevation: 0,
     backgroundColor: g.color.red_4,
@@ -90,95 +98,3 @@ FoodDetailsScreen.navigationOptions = ({ navigation }) => ({
 });
 
 export default withNavigationFocus(FoodDetailsScreen);
-
-/*
-
-
-
-
-
-*/
-
-const foodData = {
-  id: "food_a3049hmbqj5wstaeeb3udaz6uaqv",
-  label: "Bread",
-  brand: "Generic",
-  image:
-    "https://www.edamam.com/food-img/886/886960f6ce6ccec5b9163bacf2996853.jpg",
-  measures: [
-    {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_unit",
-      label: "Whole",
-    },
-    {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_unit",
-      label: "Whole (small)",
-      qualifierUri:
-        "http://www.edamam.com/ontologies/edamam.owl#Qualifier_small",
-    },
-    {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_loaf",
-      label: "Loaf",
-    },
-    {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_serving",
-      label: "Standard Serving",
-    },
-    {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_roll",
-      label: "Roll",
-    },
-    {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_stick",
-      label: "Stick",
-    },
-    {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_hunk",
-      label: "Hunk",
-    },
-    {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_piece",
-      label: "Piece",
-    },
-    {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_slice",
-      label: "Slice",
-    },
-    {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_round",
-      label: "Round",
-    },
-    {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_cube",
-      label: "Cube",
-    },
-    {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_box",
-      label: "Box",
-    },
-    {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_package",
-      label: "Package",
-    },
-    {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
-      label: "Gram",
-    },
-    {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_ounce",
-      label: "Ounce",
-    },
-    {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_pound",
-      label: "Pound",
-    },
-    {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram",
-      label: "Kilogram",
-    },
-    {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_cup",
-      label: "Cup",
-    },
-  ],
-};

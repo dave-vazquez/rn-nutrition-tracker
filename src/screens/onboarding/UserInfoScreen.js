@@ -45,7 +45,7 @@ const UserInfoScreen = ({ navigation: { navigate, isFocused } }) => {
       style={s.container}
     >
       {isFocused && (
-        <StatusBar backgroundColor={g.color.blue} barStyle="light-content" />
+        <StatusBar backgroundColor={g.color.blue_2} barStyle="light-content" />
       )}
       <ScrollView
         keyboardDismissMode="interactive"
@@ -100,7 +100,7 @@ UserInfoScreen.navigationOptions = {
   headerTitle: "About You",
   headerTintColor: g.color.white,
   headerStyle: {
-    backgroundColor: g.color.blue,
+    backgroundColor: g.color.blue_2,
   },
 };
 
