@@ -14,7 +14,7 @@ import {
   View,
 } from "react-native";
 
-const FoodDetailsScreen = ({ navigation: { isFocused } }) => {
+const FoodDetailsScreen = ({ navigation }) => {
   const {
     state: { budgets, consumed },
   } = useContext(JournalContext);
@@ -28,7 +28,7 @@ const FoodDetailsScreen = ({ navigation: { isFocused } }) => {
 
   return (
     <SafeAreaView style={s.container}>
-      {isFocused() && (
+      {navigation.isFocused() && (
         <StatusBar barStyle="light-content" backgroundColor={g.color.red_4} />
       )}
       {image ? (
