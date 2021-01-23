@@ -14,6 +14,7 @@ module.exports = function (api) {
             _assets: "./src/assets",
             _screens: "./src/screens",
             _contexts: "./src/contexts",
+            _constants: "./src/constants",
             _formrules: "./src/form-rules",
             _components: "./src/components",
             _navigation: "./src/navigation",

@@ -8,6 +8,7 @@
       "_assets": ["./src/assets"],
       "_screens": ["./src/screens"],
       "_contexts": ["./src/contexts"],
+      "_constants": ["./src/constants"],
       "_formrules": ["./src/form-rules"],
       "_navigation": ["./src/navigation"],
       "_components": ["./src/components"],
