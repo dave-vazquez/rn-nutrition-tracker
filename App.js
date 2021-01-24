@@ -5,21 +5,21 @@ import React from "react";
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import NavigationService from "./src/NavigationService";
 import CombinedProvider from "./src/contexts/CombinedProvider";
-import { AppNavigator, AuthNavigator } from "./src/navigation";
+import { HomeNavigator, OnboardingNavigator } from "./src/navigation";
 import { AuthResolutionScreen } from "./src/screens/authentication";
 
 const RootNavigator = createSwitchNavigator(
   {
     AuthResolution: AuthResolutionScreen,
-    Auth: AuthNavigator,
-    App: AppNavigator,
+    Onboarding: OnboardingNavigator,
+    Home: HomeNavigator,
   },
   {
     initialRouteName: "AuthResolution",
   }
 );
 
-export const App = createAppContainer(RootNavigator);
+export const Root = createAppContainer(RootNavigator);
 
 export default () => {
   const [loaded] = useFonts({
@@ -41,7 +41,7 @@ export default () => {
 
   return (
     <CombinedProvider>
-      <App
+      <Root
         ref={(navigatorRef) => {
           NavigationService.setTopLevelNavigator(navigatorRef);
         }}

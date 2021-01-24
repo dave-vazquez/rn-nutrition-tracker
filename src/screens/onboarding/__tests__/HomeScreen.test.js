@@ -1,14 +1,14 @@
 import React from "react";
 import { render } from "@testing-library/react-native";
-import HomeScreen from "../HomeScreen";
+import LandingScreen from "../LandingScreen";
 
 const navigation = {
   navigate: jest.fn(),
   isFocused: () => true,
 };
 
-describe("<HomeScreen />", () => {
-  const tree = render(<HomeScreen navigation={navigation} />).toJSON();
+describe("<LandingScreen />", () => {
+  const tree = render(<LandingScreen navigation={navigation} />).toJSON();
 
   it("renders correctly", () => {
     expect(tree).toMatchSnapshot();

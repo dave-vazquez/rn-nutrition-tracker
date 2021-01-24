@@ -10,20 +10,20 @@ import {
 } from "../screens/application";
 import { stackNavigatorConfig, tabNavigatorConfig } from "./config";
 
-const FoodSearchNavigator = createStackNavigator(
+const FoodSearch = createStackNavigator(
   { FoodSearch: FoodSearchScreen },
   stackNavigatorConfig
 );
 
-const JournalNavigator = createStackNavigator(
+const Journal = createStackNavigator(
   { Journal: JournalScreen },
   stackNavigatorConfig
 );
 
 const TabNavigator = createBottomTabNavigator(
   {
-    Journal: JournalNavigator,
-    FoodSearch: FoodSearchNavigator,
+    Journal,
+    FoodSearch,
     Barcode: BarcodeScreen,
     Progress: ProgressScreen,
     Settings: SettingsScreen,
@@ -34,19 +34,20 @@ const TabNavigator = createBottomTabNavigator(
   }
 );
 
-const AppNavigator = createStackNavigator(
+const HomeNavigator = createStackNavigator(
   {
-    App: {
+    Tabs: {
       screen: TabNavigator,
       navigationOptions: { headerShown: false },
     },
     FoodDetails: FoodDetailsScreen,
   },
   {
+    initialRouteName: "Tabs",
     defaultNavigationOptions: {
       headerBackTitleVisible: false,
     },
   }
 );
 
-export default AppNavigator;
+export default HomeNavigator;

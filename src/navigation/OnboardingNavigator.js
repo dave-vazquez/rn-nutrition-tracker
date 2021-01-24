@@ -1,25 +1,34 @@
 import { AuthScreen } from "_screens/authentication";
 import {
   ActivityLevelScreen,
-  HomeScreen,
+  LandingScreen,
   UserInfoScreen,
   WeightGoalScreen,
 } from "_screens/onboarding";
 import { createStackNavigator } from "react-navigation-stack";
 
-const AuthNavigator = createStackNavigator(
+const OnboardingNavigator = createStackNavigator(
   {
-    Home: HomeScreen,
+    Landing: LandingScreen,
     WeightGoal: WeightGoalScreen,
     ActivityLevel: ActivityLevelScreen,
     UserInfo: UserInfoScreen,
     AuthScreen: AuthScreen,
   },
   {
-    initialRouteName: "Home",
+    initialRouteName: "Landing",
     headerMode: "float",
     gestureEnabled: "false",
   }
 );
 
-export default AuthNavigator;
+export default OnboardingNavigator;
+
+/*
+
+
+
+
+
+
+*/

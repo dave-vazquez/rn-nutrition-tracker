@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import { Button } from "react-native-elements";
 
-const HomeScreen = ({ navigation: { navigate, isFocused } }) => {
+const LandingScreen = ({ navigation: { navigate, isFocused } }) => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       {isFocused() && (
@@ -57,7 +57,7 @@ const HomeScreen = ({ navigation: { navigate, isFocused } }) => {
   );
 };
 
-HomeScreen.navigationOptions = {
+LandingScreen.navigationOptions = {
   header: () => false,
 };
 
@@ -116,4 +116,4 @@ const s = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default LandingScreen;

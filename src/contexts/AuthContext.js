@@ -39,11 +39,11 @@ const refreshAuth = (dispatch) => () => {
 };
 
 const tryLocalSignin = () => async () => {
-  const token = await AsyncStorage.getItem("token");
-  if (token) {
-    NavigationService.navigate("App");
-  } else {
-    NavigationService.navigate("Auth", {}, "Measurements");
+  try {
+    await nutritionAPI.get("/auth/validateToken");
+    NavigationService.navigate("Home");
+  } catch (err) {
+    NavigationService.navigate("Onboarding");
   }
 };
 
@@ -56,7 +56,7 @@ const signup = (dispatch) => async (userInfo) => {
     await AsyncStorage.setItem("token", response.data.token);
 
     dispatch({ type: AUTHENTICATE_REFRESH });
-    NavigationService.navigate("App");
+    NavigationService.navigate("Home");
     //
   } catch ({ response }) {
     dispatch({
@@ -80,7 +80,7 @@ const signin = (dispatch) => async (email, password) => {
 
     await AsyncStorage.setItem("token", response.data.token);
     dispatch({ type: AUTHENTICATE_REFRESH });
-    NavigationService.navigate("App");
+    NavigationService.navigate("Home");
     //
   } catch ({ response }) {
     dispatch({
@@ -96,7 +96,7 @@ const signin = (dispatch) => async (email, password) => {
 const signout = (dispatch) => async () => {
   await AsyncStorage.removeItem("token");
   dispatch({ type: AUTHENTICATE_REFRESH });
-  NavigationService.navigate("Home");
+  NavigationService.navigate("Onboarding");
 };
 
 export const { Provider, Context } = createContext(
