@@ -1,17 +1,17 @@
 import { NextButton, RadioButton } from "_components/common";
 import { Heading } from "_components/flows/onboarding";
+import {
+  ACTIVE,
+  EXTREMELY_ACTIVE,
+  LIGHT_ACTIVE,
+  MODERATE_ACTIVE,
+  NOT_ACTIVE,
+  VERY_ACTIVE,
+} from "_constants";
 import { Context as OnboardingContext } from "_contexts/OnboardingContext";
 import g from "_globalstyles";
 import React, { useContext } from "react";
 import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
-import { withNavigationFocus } from "react-navigation";
-
-const NOT_ACTIVE = 1.2;
-const LIGHT_ACTIVE = 1.375;
-const MODERATE_ACTIVE = 1.465;
-const ACTIVE = 1.55;
-const VERY_ACTIVE = 1.725;
-const EXTREMELY_ACTIVE = 1.9;
 
 const ActivityLevelScreen = ({ navigation: { navigate, isFocused } }) => {
   const {

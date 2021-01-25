@@ -5,7 +5,6 @@ import { StyleSheet, Text, View } from "react-native";
 import { StackedBarChart } from "react-native-svg-charts";
 
 const CalorieBar = ({ budget, consumed, added }) => {
-  //
   const [data, colors] = useFormatCalorieData(budget, consumed, added);
 
   return (

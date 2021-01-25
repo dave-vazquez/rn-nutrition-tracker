@@ -4,20 +4,15 @@ import { FlatList, StyleSheet } from "react-native";
 import { Avatar, ListItem } from "react-native-elements";
 import { withNavigation } from "react-navigation";
 
-const SearchResults = ({ results, navigation: { navigate } }) => {
-  //
-  const handlePress = (foodData) => {
-    navigate("FoodDetails", { foodData });
-  };
-
+const SearchResults = ({ results, viewDetails }) => {
   return (
     <FlatList
       data={results}
       contentContainerStyle={s.results}
       keyboardShouldPersistTaps="handled"
-      keyExtractor={(item, index) => item.food.id + index}
+      keyExtractor={(item, index) => item.food.foodId + index}
       renderItem={({ item }) => (
-        <ListItemResult item={item} onPress={handlePress} />
+        <ListItemResult item={item} onPress={viewDetails} />
       )}
     />
   );

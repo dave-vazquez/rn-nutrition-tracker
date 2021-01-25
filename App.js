@@ -1,10 +1,10 @@
+import CombinedProvider from "contexts/CombinedProvider";
 /* eslint-disable react/display-name */
 import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
 import React from "react";
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import NavigationService from "./src/NavigationService";
-import CombinedProvider from "./src/contexts/CombinedProvider";
 import { HomeNavigator, OnboardingNavigator } from "./src/navigation";
 import { AuthResolutionScreen } from "./src/screens/authentication";
 

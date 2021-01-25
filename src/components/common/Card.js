@@ -2,8 +2,12 @@ import g from "_globalstyles";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 
-const Card = ({ children, bgColor = g.color.white }) => {
-  return <View style={[s.card, { backgroundColor: bgColor }]}>{children}</View>;
+const Card = ({ children, bgColor = g.color.white, style }) => {
+  return (
+    <View style={[s.card, { backgroundColor: bgColor }, style]}>
+      {children}
+    </View>
+  );
 };
 
 const s = StyleSheet.create({

@@ -6,5 +6,10 @@ export const ACTIVE = 1.55;
 export const VERY_ACTIVE = 1.725;
 export const EXTREMELY_ACTIVE = 1.9;
 
-// _components/flows/foodsearch/FoodLogForm.js
-export const MEAL_TYPES = ["Breakfast", "Lunch", "Dinner", "Snack"];
+// _screens/onboarding/FoodDetailsScreen.js
+export const MEAL_TYPES = [
+  { label: "Breakfast" },
+  { label: "Lunch" },
+  { label: "Dinner" },
+  { label: "Snack" },
+];
