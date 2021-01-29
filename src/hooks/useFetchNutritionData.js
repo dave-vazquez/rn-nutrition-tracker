@@ -35,19 +35,24 @@ const initialState = {
   nutrition: {},
 };
 
-const useFetchNutritionData = (foodId, measureURI, qualifier) => {
+const useFetchNutritionData = (measure, foodId) => {
   const [{ nutrition, ...fetchStatus }, dispatch] = useReducer(
     reducer,
     initialState
   );
 
-  const fetchNutrition = async (requestBody) => {
+  const fetchNutrition = async ({ measureURI, qualifiers }, foodId) => {
     dispatch({ type: "SEARCH_START" });
 
     try {
       const {
         data: { nutrition },
-      } = await nutritionAPI.post("/food/nutrition", requestBody);
+      } = await nutritionAPI.post("/food/nutrition", {
+        foodId,
+        quantity: 1,
+        measureURI,
+        ...(qualifiers && { qualifiers }),
+      });
 
       dispatch({ type: "SEARCH_SUCCESS", nutrition });
     } catch (error) {
@@ -56,16 +61,8 @@ const useFetchNutritionData = (foodId, measureURI, qualifier) => {
   };
 
   useEffect(() => {
-    const requestBody = {
-      quantity: 1,
-      foodId,
-      measureURI,
-    };
-
-    if (qualifier) requestBody.qualifiers = [qualifier];
-
-    fetchNutrition(requestBody);
-  }, [foodId, measureURI, qualifier]);
+    fetchNutrition(measure, foodId);
+  }, [measure, foodId]);
 
   return [nutrition, fetchStatus];
 };

@@ -31,12 +31,15 @@ const s = StyleSheet.create({
   container: {
     justifyContent: "space-between",
     margin: 8,
+    // borderWidth: 1,
   },
   label: {
     fontSize: 16,
     fontFamily: "Lato_Regular",
     fontWeight: "normal",
     color: g.color.blue_3,
+    // borderWidth: 1,
+    // borderColor: "green",
   },
   input: {
     fontFamily: "Lato_Regular",
@@ -45,6 +48,8 @@ const s = StyleSheet.create({
     borderBottomWidth: 1,
     paddingVertical: 5,
     borderBottomColor: g.color.blue_2,
+    // borderWidth: 1,
+    // borderColor: "blue",
   },
 });
 

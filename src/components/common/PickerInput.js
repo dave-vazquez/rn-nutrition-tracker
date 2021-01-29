@@ -1,4 +1,5 @@
 import g from "_globalstyles";
+import isEqual from "lodash.isequal";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Icon } from "react-native-elements";
@@ -11,6 +12,10 @@ const PickerInput = ({
   onValueChange,
   containerStyle,
 }) => {
+  //
+  const itemWith = (newValue) =>
+    items.filter((item) => isEqual(newValue, item.value))[0];
+
   return (
     <View style={[s.container, containerStyle]}>
       <Text style={s.label}>{label}</Text>
@@ -18,9 +23,9 @@ const PickerInput = ({
         value={value}
         Icon={renderIcon}
         style={pickerStyles}
-        items={formatItems(items)}
+        items={items}
         useNativeAndroidPickerStyle={false}
-        onValueChange={(value) => onValueChange(value)}
+        onValueChange={(newValue) => onValueChange(itemWith(newValue))}
       />
     </View>
   );
@@ -81,14 +86,5 @@ const pickerStyles = StyleSheet.create({
     justifyContent: "center",
   },
 });
-
-const formatItems = (items) => {
-  return items.map((item, i) => ({
-    key: i,
-    label: item.label,
-    value: i,
-    color: g.color.grey_8,
-  }));
-};
 
 export default PickerInput;

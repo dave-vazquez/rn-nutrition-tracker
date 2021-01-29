@@ -1,3 +1,5 @@
+import "./src/wdyr";
+
 import CombinedProvider from "contexts/CombinedProvider";
 /* eslint-disable react/display-name */
 import AppLoading from "expo-app-loading";

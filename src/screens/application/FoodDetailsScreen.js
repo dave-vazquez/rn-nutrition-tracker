@@ -5,7 +5,7 @@ import { MEAL_TYPES } from "_constants";
 import { Context as JournalContext } from "_contexts/JournalContext";
 import g from "_globalstyles";
 import { useFetchNutritionData } from "_hooks";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   ImageBackground,
   SafeAreaView,
@@ -15,31 +15,53 @@ import {
   View,
 } from "react-native";
 
-// const { image, foodId, measures, gramMeasureIndex } = foodData;
+const BREAKFAST = MEAL_TYPES[0];
 
-// const [{ nutrients }, fetchStatus] = [
-//   nutrition,
-//   { started: false, error: false, success: true },
-// ];
+// const { foodId, measures, label, brand, image, defaultMeasure } = foodData;
+//   const fetchStatus = { start: false, error: false, success: true };
 
 const FoodDetailsScreen = ({ navigation }) => {
-  const { image, foodId, measures, gramMeasureIndex } = navigation.getParam(
-    "foodData"
-  );
+  const {
+    state: { createStatus },
+    createJournalEntry,
+  } = useContext(JournalContext);
+
+  const {
+    foodId,
+    measures,
+    label,
+    brand,
+    image,
+    defaultMeasure,
+  } = navigation.getParam("foodData");
 
   const [form, setForm] = useState({
     date: new Date(),
     quantity: "100",
-    mealTypeIndex: 0,
-    measureIndex: gramMeasureIndex,
+    mealType: BREAKFAST,
+    measure: defaultMeasure,
   });
 
   const [{ nutrients }, fetchStatus] = useFetchNutritionData(
-    foodId,
-    measures[form.measureIndex]
+    form.measure,
+    foodId
   );
 
   const added = caclulateAdded(nutrients, form.quantity);
+
+  const handleSubmitForm = () => {
+    createJournalEntry({
+      food_id: foodId,
+      food_name: label,
+      measure_name: form.measure.label,
+      brand_name: brand,
+      quantity: form.quantity,
+      measure_uri: form.measure.uri,
+      entry_date: form.date.toISOString(),
+      time_zone_name: "America/New_York",
+      meal_type: MEAL_TYPES[form.mealTypeIndex].label.toLowerCase(),
+    });
+  };
 
   return (
     <SafeAreaView style={s.container}>
@@ -55,10 +77,12 @@ const FoodDetailsScreen = ({ navigation }) => {
           setForm={setForm}
           measures={measures}
           mealTypes={MEAL_TYPES}
+          onSubmitForm={handleSubmitForm}
+          createStatus={createStatus}
         />
         <NutritionInfoCard
           nutrients={nutrients}
-          multiplier={+form.quantity}
+          quantity={+form.quantity}
           fetchStatus={fetchStatus}
         />
       </ScrollView>
@@ -119,13 +143,15 @@ FoodDetailsScreen.navigationOptions = ({ navigation }) => ({
   headerTitleAlign: "left",
   headerTintColor: g.color.white,
   headerTitleStyle: { fontFamily: "Lato_Bold" },
-  headerTitle: navigation.getParam("foodData").label,
-  // headerTitle: foodData.label,
+  // headerTitle: navigation.getParam("foodData").label,
+  headerTitle: foodData.label,
   headerStyle: {
     elevation: 0,
     backgroundColor: g.color.red_4,
   },
 });
+
+FoodDetailsScreen.whyDidYouRender = true;
 
 export default FoodDetailsScreen;
 
@@ -133,139 +159,131 @@ const foodData = {
   label: "Bread",
   measures: [
     {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_unit",
+      key: 0,
       label: "Whole",
+      measureURI: "http://www.edamam.com/ontologies/edamam.owl#Measure_unit",
     },
     {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_unit",
+      key: 1,
       label: "Whole (small)",
-      qualifierUri:
+      measureURI: "http://www.edamam.com/ontologies/edamam.owl#Measure_unit",
+      qualifiers: [
         "http://www.edamam.com/ontologies/edamam.owl#Qualifier_small",
+      ],
     },
     {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_loaf",
+      key: 2,
       label: "Loaf",
+      measureURI: "http://www.edamam.com/ontologies/edamam.owl#Measure_loaf",
     },
     {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_serving",
+      key: 3,
       label: "Standard Serving",
+      measureURI: "http://www.edamam.com/ontologies/edamam.owl#Measure_serving",
     },
     {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_roll",
+      key: 4,
       label: "Roll",
+      measureURI: "http://www.edamam.com/ontologies/edamam.owl#Measure_roll",
     },
     {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_stick",
+      key: 5,
       label: "Stick",
+      measureURI: "http://www.edamam.com/ontologies/edamam.owl#Measure_stick",
     },
     {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_hunk",
+      key: 6,
       label: "Hunk",
+      measureURI: "http://www.edamam.com/ontologies/edamam.owl#Measure_hunk",
     },
     {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_piece",
+      key: 7,
       label: "Piece",
+      measureURI: "http://www.edamam.com/ontologies/edamam.owl#Measure_piece",
     },
     {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_slice",
+      key: 8,
       label: "Slice",
+      measureURI: "http://www.edamam.com/ontologies/edamam.owl#Measure_slice",
     },
     {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_round",
+      key: 9,
       label: "Round",
+      measureURI: "http://www.edamam.com/ontologies/edamam.owl#Measure_round",
     },
     {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_cube",
+      key: 10,
       label: "Cube",
+      measureURI: "http://www.edamam.com/ontologies/edamam.owl#Measure_cube",
     },
     {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_box",
+      key: 11,
       label: "Box",
+      measureURI: "http://www.edamam.com/ontologies/edamam.owl#Measure_box",
     },
     {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_package",
+      key: 12,
       label: "Package",
+      measureURI: "http://www.edamam.com/ontologies/edamam.owl#Measure_package",
     },
     {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+      key: 13,
       label: "Gram",
+      measureURI: "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
     },
     {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_ounce",
+      key: 14,
       label: "Ounce",
+      measureURI: "http://www.edamam.com/ontologies/edamam.owl#Measure_ounce",
     },
     {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_pound",
+      key: 15,
       label: "Pound",
+      measureURI: "http://www.edamam.com/ontologies/edamam.owl#Measure_pound",
     },
     {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram",
+      key: 16,
       label: "Kilogram",
+      measureURI:
+        "http://www.edamam.com/ontologies/edamam.owl#Measure_kilogram",
     },
     {
-      uri: "http://www.edamam.com/ontologies/edamam.owl#Measure_cup",
+      key: 17,
       label: "Cup",
+      measureURI: "http://www.edamam.com/ontologies/edamam.owl#Measure_cup",
     },
   ],
-  gramMeasureIndex: 13,
+  defaultMeasure: {
+    key: 13,
+    label: "Gram",
+    measureURI: "http://www.edamam.com/ontologies/edamam.owl#Measure_gram",
+  },
   foodId: "food_a3049hmbqj5wstaeeb3udaz6uaqv",
   image:
     "https://www.edamam.com/food-img/886/886960f6ce6ccec5b9163bacf2996853.jpg",
   brand: "Generic",
 };
-const nutrition = {
-  healthLabels: [
-    "FAT_FREE",
-    "VEGAN",
-    "VEGETARIAN",
-    "PESCATARIAN",
-    "DAIRY_FREE",
-    "EGG_FREE",
-    "MILK_FREE",
-    "PEANUT_FREE",
-    "TREE_NUT_FREE",
-    "SOY_FREE",
-    "FISH_FREE",
-    "SHELLFISH_FREE",
-    "PORK_FREE",
-    "RED_MEAT_FREE",
-    "CRUSTACEAN_FREE",
-    "CELERY_FREE",
-    "MUSTARD_FREE",
-    "SESAME_FREE",
-    "LUPINE_FREE",
-    "MOLLUSK_FREE",
-    "ALCOHOL_FREE",
-    "KOSHER",
-  ],
-  nutrients: {
-    fat_g: 0.032400000000000005,
-    iron_mg: 0.0349,
-    sodium_mg: 5.08,
-    fiber_g: 0.04,
-    sugar_g: 0.0591,
-    niacin_mg: 0.0562,
-    calcium_mg: 1.33,
-    fatSat_g: 0.00777,
-    fatPoly_g: 0.014990000000000002,
-    fatMono_g: 0.00607,
-    carbs_g: 0.4868,
-    potassium_mg: 1.77,
-    thiamin_mg: 0.00415,
-    protein_g: 0.1072,
-    fatTrans_g: 0.00026,
-    vitaminC_mg: 0.002,
-    riboflavin_mg: 0.00253,
-    calories_kcal: 2.67,
-    vitaminB6_mg: 0.00111,
-    vitaminB12_ug: 0,
-    cholesterol_mg: 0,
-  },
+
+const nutrients = {
+  fat_g: 0.032400000000000005,
+  iron_mg: 0.0349,
+  sodium_mg: 5.08,
+  fiber_g: 0.04,
+  sugar_g: 0.0591,
+  niacin_mg: 0.0562,
+  calcium_mg: 1.33,
+  fatSat_g: 0.00777,
+  fatPoly_g: 0.014990000000000002,
+  fatMono_g: 0.00607,
+  carbs_g: 0.4868,
+  potassium_mg: 1.77,
+  thiamin_mg: 0.00415,
+  protein_g: 0.1072,
+  fatTrans_g: 0.00026,
+  vitaminC_mg: 0.002,
+  riboflavin_mg: 0.00253,
+  calories_kcal: 2.67,
+  vitaminB6_mg: 0.00111,
+  vitaminB12_ug: 0,
+  cholesterol_mg: 0,
 };
-
-// const { image, foodId, measures } = navigation.getParam("foodData");
-
-// const [{ nutrients }, fetchStatus] = useFetchNutritionData(
-//   foodId,
-//   measures[0].uri
-// );

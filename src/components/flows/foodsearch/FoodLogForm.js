@@ -1,11 +1,25 @@
-import { Card, DateTime, PickerInput, TextInput } from "_components/common";
+import {
+  Card,
+  DateTime,
+  SelectionInput,
+  TextInput,
+  _PickerInput,
+} from "_components/common";
+import { MEAL_TYPES } from "_constants";
 import g from "_globalstyles";
 import { maskQuantity } from "_utils";
 import React, { useState } from "react";
 import { Platform, StyleSheet, View } from "react-native";
 import { Button } from "react-native-elements";
 
-const FoodLogForm = ({ form, setForm, measures, mealTypes }) => {
+const FoodLogForm = ({
+  form,
+  setForm,
+  measures,
+  mealTypes,
+  onSubmitForm,
+  createStatus,
+}) => {
   const [dateMode, setDateMode] = useState("date");
   const [showDatePicker, setShowDatePicker] = useState(false);
 
@@ -37,13 +51,13 @@ const FoodLogForm = ({ form, setForm, measures, mealTypes }) => {
             setForm((form) => ({ ...form, quantity }));
           }}
         />
-        <PickerInput
+        <SelectionInput
           label="Measure"
           items={measures}
-          value={form.measureIndex}
+          value={form.measure}
           containerStyle={{ flex: 1 }}
-          onValueChange={(measureIndex) =>
-            setForm((form) => ({ ...form, measureIndex, quantity: "1" }))
+          onSelect={(measure) =>
+            setForm((form) => ({ ...form, measure, quantity: "1" }))
           }
         />
       </View>
@@ -70,21 +84,20 @@ const FoodLogForm = ({ form, setForm, measures, mealTypes }) => {
         />
       </View>
       <View style={[s.row, { alignItems: "flex-end" }]}>
-        <PickerInput
+        <SelectionInput
           label="Meal Type"
           items={mealTypes}
-          value={form.mealTypeIndex}
+          value={form.mealType}
           containerStyle={{ flex: 1 }}
-          onValueChange={(mealTypeIndex) =>
-            setForm((form) => ({ ...form, mealTypeIndex }))
-          }
+          onSelect={(mealType) => setForm((form) => ({ ...form, mealType }))}
         />
         <Button
           raised
-          loading={false}
+          loading={createStatus.start}
           title="Add to Journal"
           buttonStyle={s.button}
           containerStyle={s.buttonContainer}
+          onPress={onSubmitForm}
         />
       </View>
     </Card>

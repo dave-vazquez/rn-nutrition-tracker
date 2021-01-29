@@ -17,7 +17,7 @@ import { withNavigationFocus } from "react-navigation";
 
 const JournalScreen = ({ navigation: { isFocused } }) => {
   const {
-    state: { fetchStart, fetchFail, budgets, consumed },
+    state: { date, fetchStart, fetchFail, budgets, consumed },
     fetchJournalEntries,
   } = useContext(JournalContext);
 
@@ -47,6 +47,7 @@ const JournalScreen = ({ navigation: { isFocused } }) => {
       <View style={s.background} />
       <ScrollView style={s.scroll}>
         <DailyBudgetsCard budgets={budgets} consumed={consumed} />
+        <Text>{date.toString()}</Text>
       </ScrollView>
     </SafeAreaView>
   );
