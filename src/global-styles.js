@@ -61,6 +61,4 @@ export const nutrient_pallete = {
   cals: colors.green_light_4,
 };
 
-const g = { colors, budget_palette, nutrient_pallete };
-
-export default g;
+export default { colors, budget_palette, nutrient_pallete };
