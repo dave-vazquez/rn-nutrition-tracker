@@ -1,4 +1,4 @@
-import g from "_globalstyles";
+import { colors } from "_globalstyles";
 import { useFormatCalorieData } from "_hooks";
 import React, { memo } from "react";
 import { StyleSheet, Text, View } from "react-native";
@@ -30,10 +30,10 @@ const CalorieBar = ({ consumed, added, budget }) => {
 const ValueOverlay = ({ budget, consumed }) => {
   const color = {
     consumed: {
-      color: consumed / budget <= 0.25 ? g.color.grey_8 : g.color.white,
+      color: consumed / budget <= 0.25 ? colors.grey_8 : colors.white,
     },
     budget: {
-      color: consumed / budget >= 0.96 ? g.color.white : g.color.grey_8,
+      color: consumed / budget >= 0.96 ? colors.white : colors.grey_8,
     },
   };
 
@@ -55,7 +55,7 @@ const s = StyleSheet.create({
     shadowOpacity: 2,
     overflow: "hidden",
     justifyContent: "center",
-    backgroundColor: g.color.white,
+    backgroundColor: colors.white,
     shadowColor: "#00000030",
     shadowOffset: { width: 0, height: 2 },
   },

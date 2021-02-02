@@ -1,4 +1,4 @@
-import g from "_globalstyles";
+import { colors } from "_globalstyles";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { SearchBar as RNESearchBar } from "react-native-elements";
@@ -8,12 +8,12 @@ const SearchBar = ({ value, onChangeText, searchStatus }) => {
   const searchIcon = {
     size: 30,
     name: "search",
-    color: g.color.grey_6,
+    color: colors.grey_6,
     type: "material-icons",
   };
 
   const loadingProps = {
-    color: g.color.grey_6,
+    color: colors.grey_6,
     animating: value !== "" && !searchStatus.complete,
   };
 
@@ -50,11 +50,11 @@ const s = StyleSheet.create({
     marginTop: 14,
     textAlign: "center",
     fontWeight: "normal",
-    color: g.color.white,
+    color: colors.white,
     fontFamily: "Lato_Regular",
   },
   inputContainer: {
-    backgroundColor: g.color.white,
+    backgroundColor: colors.white,
   },
 });
 

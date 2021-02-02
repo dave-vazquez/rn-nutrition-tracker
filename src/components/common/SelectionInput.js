@@ -1,4 +1,4 @@
-import g from "_globalstyles";
+import { colors } from "_globalstyles";
 import React, { memo, useCallback, useState } from "react";
 import {
   Modal,
@@ -28,7 +28,7 @@ const SelectionInput = ({ onSelect, items, containerStyle, label, value }) => {
           name="caretdown"
           type="ant-design"
           iconStyle={s.icon}
-          color={g.color.blue_2}
+          color={colors.blue_2}
         />
       </TouchableOpacity>
       <SelectionModal
@@ -88,8 +88,8 @@ const SelectionModal = ({
 
 const SelectionItem = ({ item, selected, handlePress }) => {
   const labelFont = selected ? "Lato_Bold" : "Lato_Regular";
-  const labelColor = selected ? g.color.blue_2 : g.color.grey_8;
-  const iconColor = selected ? g.color.blue_2 : "transparent";
+  const labelColor = selected ? colors.blue_2 : colors.grey_8;
+  const iconColor = selected ? colors.blue_2 : "transparent";
 
   return (
     <TouchableWithoutFeedback
@@ -128,18 +128,18 @@ const s = StyleSheet.create({
     fontSize: 16,
     fontFamily: "Lato_Regular",
     fontWeight: "normal",
-    color: g.color.blue_3,
+    color: colors.blue_3,
   },
   inputContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    borderBottomColor: g.color.blue_2,
+    borderBottomColor: colors.blue_2,
     borderBottomWidth: 1,
   },
   input: {
     fontFamily: "Lato_Regular",
-    color: g.color.grey_9,
+    color: colors.grey_9,
     fontSize: 16,
     paddingVertical: 10,
   },
@@ -151,7 +151,7 @@ const s = StyleSheet.create({
   },
   scrollView: {
     flexGrow: 1,
-    backgroundColor: g.color.white,
+    backgroundColor: colors.white,
     borderRadius: 5,
     paddingHorizontal: 10,
   },
@@ -159,12 +159,12 @@ const s = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    borderBottomColor: g.color.blue_2,
+    borderBottomColor: colors.blue_2,
     borderBottomWidth: 1,
     paddingVertical: 15,
   },
   selectionLabel: {
-    color: g.color.grey_9,
+    color: colors.grey_9,
     fontSize: 16,
   },
 });

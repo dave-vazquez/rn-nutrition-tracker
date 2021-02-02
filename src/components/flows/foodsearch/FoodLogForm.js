@@ -1,5 +1,5 @@
 import { Card, DateTime, SelectionInput, TextInput } from "_components/common";
-import g from "_globalstyles";
+import { colors } from "_globalstyles";
 import { maskQuantity } from "_utils";
 import React, { memo, useState } from "react";
 import { Platform, StyleSheet, View } from "react-native";
@@ -106,7 +106,7 @@ const s = StyleSheet.create({
     marginBottom: 10,
   },
   button: {
-    backgroundColor: g.color.green_light_4,
+    backgroundColor: colors.green_light_4,
   },
 });
 

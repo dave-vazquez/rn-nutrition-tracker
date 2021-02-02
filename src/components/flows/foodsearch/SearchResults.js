@@ -1,4 +1,4 @@
-import g from "_globalstyles";
+import { colors } from "_globalstyles";
 import React, { memo } from "react";
 import { FlatList, StyleSheet } from "react-native";
 import { Avatar, ListItem } from "react-native-elements";
@@ -34,7 +34,7 @@ const ListItemResult = ({ item, onPress }) => {
           {item.food.brand}
         </ListItem.Subtitle>
       </ListItem.Content>
-      <ListItem.Chevron size={30} color={g.color.grey_5} />
+      <ListItem.Chevron size={30} color={colors.grey_5} />
     </ListItem>
   );
 };
@@ -50,7 +50,7 @@ const s = StyleSheet.create({
   },
   subTitle: {
     fontFamily: "Lato_Italic",
-    color: g.color.blue_2,
+    color: colors.blue_2,
   },
 });
 

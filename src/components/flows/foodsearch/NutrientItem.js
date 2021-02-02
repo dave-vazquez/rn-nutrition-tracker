@@ -1,4 +1,4 @@
-import g from "_globalstyles";
+import { colors } from "_globalstyles";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
@@ -34,13 +34,13 @@ const s = StyleSheet.create({
   },
   bold: {
     fontFamily: "Lato_Bold",
-    color: g.color.grey_8,
+    color: colors.grey_8,
     fontSize: 18,
     width: "100%",
   },
   regular: {
     fontFamily: "Lato_Regular",
-    color: g.color.grey_7,
+    color: colors.grey_7,
     fontSize: 17,
     width: "100%",
   },

@@ -2,7 +2,7 @@
 /* eslint-disable react/display-name */
 import { DailyBudgetsCard, HeaderRight } from "_components/flows/journal";
 import { Context as JournalContext } from "_contexts/JournalContext";
-import g from "_globalstyles";
+import { colors } from "_globalstyles";
 import React, { useContext, useEffect } from "react";
 import {
   SafeAreaView,
@@ -35,19 +35,19 @@ const JournalScreen = ({ navigation: { isFocused } }) => {
   return (
     <SafeAreaView style={s.container}>
       {isFocused() && (
-        <StatusBar backgroundColor={g.color.blue_2} barStyle="light-content" />
+        <StatusBar backgroundColor={colors.blue_2} barStyle="light-content" />
       )}
       <Spinner
         size="large"
         animation="fade"
         visible={fetchStatus.start}
-        color={g.color.grey_8}
-        overlayColor={g.color.white}
+        color={colors.grey_8}
+        overlayColor={colors.white}
       />
       <View style={s.background} />
       <ScrollView style={s.scroll}>
         <DailyBudgetsCard />
-        <Text>{date.toString()}</Text>
+        {/* <Text>{date.toString()}</Text> */}
       </ScrollView>
     </SafeAreaView>
   );
@@ -56,10 +56,10 @@ const JournalScreen = ({ navigation: { isFocused } }) => {
 JournalScreen.navigationOptions = {
   headerTitle: "Journal",
   headerTitleAlign: "left",
-  headerTintColor: g.color.white,
+  headerTintColor: colors.white,
   headerStyle: {
     elevation: 0,
-    backgroundColor: g.color.blue_2,
+    backgroundColor: colors.blue_2,
   },
   headerTitleStyle: { fontFamily: "Lato_Bold" },
   headerRight: () => (
@@ -74,14 +74,18 @@ JournalScreen.navigationOptions = {
 const s = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: g.color.white,
+    paddingHorizontal: 15,
+    backgroundColor: colors.wheat,
+    borderWidth: 1,
   },
   scroll: {
     flex: 1,
+    borderWidth: 1,
+    borderColor: "red",
   },
   background: {
     height: 120,
-    backgroundColor: g.color.blue_2,
+    backgroundColor: colors.blue_2,
     ...StyleSheet.absoluteFill,
   },
 });

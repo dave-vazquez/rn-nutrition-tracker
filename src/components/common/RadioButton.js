@@ -1,4 +1,4 @@
-import g from "_globalstyles";
+import { colors } from "_globalstyles";
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
@@ -33,7 +33,7 @@ const s = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 2,
     marginLeft: 10,
-    borderColor: g.color.grey_8,
+    borderColor: colors.grey_8,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -41,7 +41,7 @@ const s = StyleSheet.create({
     height: 12,
     width: 12,
     borderRadius: 6,
-    backgroundColor: g.color.blue_2,
+    backgroundColor: colors.blue_2,
   },
   label: {
     fontSize: 22,

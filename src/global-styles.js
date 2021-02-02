@@ -1,4 +1,4 @@
-const color = {
+export const colors = {
   green_light_1: "#EFF9DC",
   green_light_2: "#E0F3B9",
   green_light_3: "#C7E48D",
@@ -46,21 +46,21 @@ const color = {
   warning_2: "#c62f3e",
 };
 
-const budget_palette = {
-  cals: [color.green_light_4, color.green_light_5, color.white],
-  cals_exceeded: [color.warning_1, color.warning_2, color.green_light_5],
-  fats: [color.yellow_2, color.yellow_3, color.yellow_1],
-  carbs: [color.blue_2, color.blue_3, color.blue_1],
-  protein: [color.pink_2, color.pink_3, color.pink_1],
+export const budget_palette = {
+  cals: [colors.green_light_4, colors.green_light_5, colors.white],
+  cals_exceeded: [colors.warning_1, colors.warning_2, colors.green_light_5],
+  fats: [colors.yellow_2, colors.yellow_3, colors.yellow_1],
+  carbs: [colors.blue_2, colors.blue_3, colors.blue_1],
+  protein: [colors.pink_2, colors.pink_3, colors.pink_1],
 };
 
-const nutrient_pallete = {
-  fat: color.yellow_2,
-  carbs: color.blue_2,
-  protein: color.pink_2,
-  cals: color.green_light_4,
+export const nutrient_pallete = {
+  fat: colors.yellow_2,
+  carbs: colors.blue_2,
+  protein: colors.pink_2,
+  cals: colors.green_light_4,
 };
 
-const g = { color, budget_palette, nutrient_pallete };
+const g = { colors, budget_palette, nutrient_pallete };
 
 export default g;

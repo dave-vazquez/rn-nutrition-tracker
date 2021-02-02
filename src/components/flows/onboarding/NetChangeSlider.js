@@ -1,4 +1,4 @@
-import g from "_globalstyles";
+import { colors } from "_globalstyles";
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
 import { StyleSheet, View } from "react-native";
@@ -49,7 +49,7 @@ const s = StyleSheet.create({
   thumb: {
     height: 25,
     width: 25,
-    backgroundColor: g.color.blue_2,
+    backgroundColor: colors.blue_2,
   },
   netChangeText: {
     textAlign: "right",
@@ -59,7 +59,7 @@ const s = StyleSheet.create({
   },
   hidden: { display: "none" },
   slider: { marginHorizontal: 5 },
-  track: { backgroundColor: g.color.grey_8 },
+  track: { backgroundColor: colors.grey_8 },
 });
 
 export default NetChangeSlider;

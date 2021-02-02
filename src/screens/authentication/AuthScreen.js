@@ -1,7 +1,7 @@
 import { NextButton } from "_components/common";
 import { Heading } from "_components/flows/onboarding";
 import { authRules as rules } from "_formrules";
-import g from "_globalstyles";
+import { colors } from "_globalstyles";
 import { useFocusNextInput } from "_hooks";
 import { useAuthenticate } from "_hooks";
 import React from "react";
@@ -49,7 +49,7 @@ const AuthScreen = ({ navigation }) => {
       style={s.container}
     >
       {navigation.isFocused && (
-        <StatusBar backgroundColor={g.color.white} barStyle="dark-content" />
+        <StatusBar backgroundColor={colors.white} barStyle="dark-content" />
       )}
       <NavigationEvents onWillFocus={refreshAuth} />
       <Spinner visible={authStart} animation="fade" size="large" />
@@ -76,7 +76,7 @@ const AuthScreen = ({ navigation }) => {
                 leftIcon={{
                   type: "material-community",
                   name: "email-outline",
-                  color: g.color.grey_8,
+                  color: colors.grey_8,
                 }}
               />
             )}
@@ -109,7 +109,7 @@ const AuthScreen = ({ navigation }) => {
                 leftIcon={{
                   type: "material-community",
                   name: "form-textbox-password",
-                  color: g.color.grey_8,
+                  color: colors.grey_8,
                 }}
               />
             )}
@@ -124,9 +124,9 @@ const AuthScreen = ({ navigation }) => {
 
 AuthScreen.navigationOptions = {
   headerTitle: "",
-  headerTintColor: g.color.grey_8,
+  headerTintColor: colors.grey_8,
   headerStyle: {
-    backgroundColor: g.color.white,
+    backgroundColor: colors.white,
     elevation: 0,
   },
 };
@@ -136,7 +136,7 @@ const s = StyleSheet.create({
     flex: 1,
     paddingVertical: 20,
     paddingHorizontal: 10,
-    backgroundColor: g.color.white,
+    backgroundColor: colors.white,
   },
   content: {
     flex: 1,

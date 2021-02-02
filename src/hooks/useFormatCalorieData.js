@@ -1,4 +1,4 @@
-import g from "_globalstyles";
+import { budget_palette } from "_globalstyles";
 import { useEffect, useState } from "react";
 
 const useFormatCalorieData = (consumed, added, budget) => {
@@ -13,7 +13,7 @@ const useFormatCalorieData = (consumed, added, budget) => {
         budget,
       },
     ],
-    colors: g.budget_palette.cals,
+    colors: budget_palette.cals,
   });
 
   useEffect(() => {
@@ -26,7 +26,7 @@ const useFormatCalorieData = (consumed, added, budget) => {
             budget: balance,
           },
         ],
-        colors: g.budget_palette.cals,
+        colors: budget_palette.cals,
       });
     } else {
       // when over budget, "consumed" is set to maximum amount: "budget"
@@ -39,7 +39,7 @@ const useFormatCalorieData = (consumed, added, budget) => {
             added: 0,
           },
         ],
-        colors: g.budget_palette.cals_exceeded,
+        colors: budget_palette.cals_exceeded,
       });
     }
   }, [added, budget, balance, consumed, underBudget]);

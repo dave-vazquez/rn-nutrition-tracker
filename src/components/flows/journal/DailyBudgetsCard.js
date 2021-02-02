@@ -1,6 +1,6 @@
 import { Card } from "_components/common";
 import { Context as JournalContext } from "_contexts/JournalContext";
-import g from "_globalstyles";
+import { colors } from "_globalstyles";
 import React, { memo, useContext } from "react";
 import { StyleSheet, View } from "react-native";
 import CalorieBar from "./CalorieBar";
@@ -12,7 +12,7 @@ const DailyBudgetsCard = ({ added }) => {
   } = useContext(JournalContext);
 
   return (
-    <Card bgColor={g.color.green_light_3}>
+    <Card bgColor={colors.green_light_3}>
       <CalorieBar
         added={added?.calories_kcal || 0}
         budget={budgets.calories_kcal}
@@ -68,7 +68,7 @@ export default memo(DailyBudgetsCard);
     shadowOpacity: 2,
     shadowColor: "#00000030",
     shadowOffset: { width: 0, height: 2 },
-    backgroundColor: g.color.white,
+    backgroundColor: colors.white,
   },
 
   <LinearGradient

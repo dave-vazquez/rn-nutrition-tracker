@@ -1,4 +1,4 @@
-import g from "_globalstyles";
+import { colors } from "_globalstyles";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { Button } from "react-native-elements";
@@ -33,7 +33,7 @@ const ToggleButton = ({ title, onPress, selected, raised }) => {
 
   const titleStyle = [
     s.title,
-    { color: selected ? g.color.white : g.color.grey_6 },
+    { color: selected ? colors.white : colors.grey_6 },
   ];
 
   return (
@@ -76,11 +76,11 @@ const s = StyleSheet.create({
   },
   button: {
     paddingHorizontal: 20,
-    backgroundColor: g.color.green_light_4,
+    backgroundColor: colors.green_light_4,
   },
   buttonUnselected: {
     borderWidth: 1,
-    borderColor: g.color.grey_6,
+    borderColor: colors.grey_6,
     backgroundColor: "transparent",
   },
 });

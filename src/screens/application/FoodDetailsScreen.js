@@ -6,7 +6,7 @@ import {
 import { DailyBudgetsCard } from "_components/flows/journal";
 import { IDLE, MEAL_TYPES } from "_constants";
 import { Context as JournalContext } from "_contexts/JournalContext";
-import g from "_globalstyles";
+import { colors } from "_globalstyles";
 import { useFetchNutritionData } from "_hooks";
 import * as Localization from "expo-localization";
 import React, { useContext, useState } from "react";
@@ -68,7 +68,7 @@ const FoodDetailsScreen = ({
   return (
     <SafeAreaView style={s.container}>
       {isFocused() && (
-        <StatusBar barStyle="light-content" backgroundColor={g.color.red_4} />
+        <StatusBar barStyle="light-content" backgroundColor={colors.red_4} />
       )}
       <View style={s.background} />
       <ScrollView style={s.scrollView}>
@@ -110,27 +110,27 @@ const caclulateAdded = (nutrients, quantity) => {
 const s = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: g.color.wheat,
+    paddingHorizontal: 15,
+    backgroundColor: colors.wheat,
   },
   scrollView: {
     flexGrow: 1,
-    paddingTop: 15,
   },
   background: {
     height: 120,
-    backgroundColor: g.color.red_4,
+    backgroundColor: colors.red_4,
     ...StyleSheet.absoluteFill,
   },
 });
 
 FoodDetailsScreen.navigationOptions = ({ navigation }) => ({
   headerTitleAlign: "left",
-  headerTintColor: g.color.white,
+  headerTintColor: colors.white,
   headerTitleStyle: { fontFamily: "Lato_Bold" },
   headerTitle: navigation.getParam("foodData").label,
   headerStyle: {
     elevation: 0,
-    backgroundColor: g.color.red_4,
+    backgroundColor: colors.red_4,
   },
 });
 

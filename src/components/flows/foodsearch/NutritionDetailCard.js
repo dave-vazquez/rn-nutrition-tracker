@@ -1,17 +1,17 @@
+import { Card } from "_components/common";
 /* eslint-disable prettier/prettier */
 import { ERROR, STARTED } from "_constants";
+import { colors } from "_globalstyles";
+import { toPrecision } from "_utils";
 import React from "react";
 import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
-import g from "../../../global-styles";
-import { toPrecision } from "../../../utils";
-import { Card } from "../../common";
 
 const NutritionDetailCard = ({ nutrients, fetchStatus, quantity }) => {
 
   return (
     <Card>
       {fetchStatus === STARTED ? (
-        <ActivityIndicator size="large" color={g.color.grey_8} />
+        <ActivityIndicator size="large" color={colors.grey_8} />
       ) : fetchStatus === ERROR ? (
         <Text style={[s.heading, { textAlign: "center" }]}>Oops! Something went wrong :\</Text>
       ) : (
@@ -164,7 +164,7 @@ const s = StyleSheet.create({
   heading: {
     fontSize: 20,
     fontFamily: "Lato_Bold",
-    color: g.color.grey_8,
+    color: colors.grey_8,
     marginBottom: 10,
   },
   row: {
@@ -179,13 +179,13 @@ const s = StyleSheet.create({
   },
   bold: {
     fontFamily: "Lato_Bold",
-    color: g.color.grey_8,
+    color: colors.grey_8,
     fontSize: 18,
     width: "100%",
   },
   regular: {
     fontFamily: "Lato_Regular",
-    color: g.color.grey_7,
+    color: colors.grey_7,
     fontSize: 17,
     width: "100%",
   },

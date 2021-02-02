@@ -1,4 +1,4 @@
-import g from "_globalstyles";
+import { colors } from "_globalstyles";
 import React from "react";
 import { StyleSheet } from "react-native";
 import { Text } from "react-native-elements";
@@ -14,7 +14,7 @@ const Heading = ({ title }) => {
 const s = StyleSheet.create({
   heading: {
     marginBottom: 20,
-    color: g.color.grey_8,
+    color: colors.grey_8,
     textAlign: "center",
     fontWeight: "normal",
     fontFamily: "NunitoSans_Regular",

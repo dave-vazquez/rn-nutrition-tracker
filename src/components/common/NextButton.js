@@ -1,4 +1,4 @@
-import g from "_globalstyles";
+import { colors } from "_globalstyles";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 import { Button } from "react-native-elements";
@@ -32,7 +32,7 @@ const s = StyleSheet.create({
     marginBottom: 30,
   },
   button: {
-    backgroundColor: g.color.green_light_4,
+    backgroundColor: colors.green_light_4,
   },
   buttonTitle: {
     fontFamily: "Lato_Regular",
