@@ -22,7 +22,7 @@ src/firebase
 notes.txt
 
 #yarn
-yarn.error.log
+yarn-error.log
 
 #coverage
 coverage

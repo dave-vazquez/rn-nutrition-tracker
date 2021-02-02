@@ -54,6 +54,13 @@ const budget_palette = {
   protein: [color.pink_2, color.pink_3, color.pink_1],
 };
 
-const g = { color, budget_palette };
+const nutrient_pallete = {
+  fat: color.yellow_2,
+  carbs: color.blue_2,
+  protein: color.pink_2,
+  cals: color.green_light_4,
+};
+
+const g = { color, budget_palette, nutrient_pallete };
 
 export default g;

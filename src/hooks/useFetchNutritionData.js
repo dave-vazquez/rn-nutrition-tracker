@@ -1,67 +1,63 @@
-import nutritionAPI from "_api/nutritionAPI";
+import nutritionAPI, { cancelRequest } from "_api/nutritionAPI";
+import { ERROR, IDLE, STARTED, SUCCESS } from "_constants";
 import { useEffect, useReducer } from "react";
+
+const FETCH_START = "FETCH_START";
+const FETCH_ERROR = "FETCH_ERROR";
+const FETCH_SUCCESS = "FETCH_SUCCESS";
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case "SEARCH_START":
+    case FETCH_START:
+      return { ...initialState, fetchStatus: STARTED };
+    case FETCH_ERROR:
+      return { ...initialState, fetchStatus: ERROR };
+    case FETCH_SUCCESS:
       return {
         ...initialState,
-        start: true,
-      };
-    case "SEARCH_ERROR":
-      return {
-        ...initialState,
-        start: false,
-        error: true,
-      };
-    case "SEARCH_SUCCESS":
-      return {
-        ...initialState,
-        start: false,
-        success: true,
+        fetchStatus: SUCCESS,
         nutrition: action.nutrition,
       };
-    case "RESET_SEARCH":
-      return initialState;
     default:
       return state;
   }
 };
 
 const initialState = {
-  start: true,
-  error: false,
-  success: false,
   nutrition: {},
+  fetchStatus: IDLE,
 };
 
 const useFetchNutritionData = (measure, foodId) => {
-  const [{ nutrition, ...fetchStatus }, dispatch] = useReducer(
+  const [{ nutrition, fetchStatus }, dispatch] = useReducer(
     reducer,
     initialState
   );
 
   const fetchNutrition = async ({ measureURI, qualifiers }, foodId) => {
-    dispatch({ type: "SEARCH_START" });
+    dispatch({ type: FETCH_START });
+
+    const foodData = {
+      foodId,
+      measureURI,
+      quantity: 1,
+      ...(qualifiers && { qualifiers }),
+    };
 
     try {
       const {
         data: { nutrition },
-      } = await nutritionAPI.post("/food/nutrition", {
-        foodId,
-        quantity: 1,
-        measureURI,
-        ...(qualifiers && { qualifiers }),
-      });
+      } = await nutritionAPI.post("/food/nutrition", foodData);
 
-      dispatch({ type: "SEARCH_SUCCESS", nutrition });
+      dispatch({ type: FETCH_SUCCESS, nutrition });
     } catch (error) {
-      dispatch({ type: "SEARCH_ERROR" });
+      dispatch({ type: FETCH_ERROR });
     }
   };
 
   useEffect(() => {
     fetchNutrition(measure, foodId);
+    return () => cancelRequest();
   }, [measure, foodId]);
 
   return [nutrition, fetchStatus];

@@ -3,7 +3,7 @@
 import { DailyBudgetsCard, HeaderRight } from "_components/flows/journal";
 import { Context as JournalContext } from "_contexts/JournalContext";
 import g from "_globalstyles";
-import React, { useContext, useLayoutEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   SafeAreaView,
   ScrollView,
@@ -17,15 +17,15 @@ import { withNavigationFocus } from "react-navigation";
 
 const JournalScreen = ({ navigation: { isFocused } }) => {
   const {
-    state: { date, fetchStart, fetchFail, budgets, consumed },
+    state: { date, fetchStatus },
     fetchJournalEntries,
   } = useContext(JournalContext);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     fetchJournalEntries();
   }, []);
 
-  if (fetchFail)
+  if (fetchStatus.error)
     return (
       <View>
         <Text>Ooops! Something went wrong :/</Text>
@@ -40,13 +40,13 @@ const JournalScreen = ({ navigation: { isFocused } }) => {
       <Spinner
         size="large"
         animation="fade"
-        visible={fetchStart}
+        visible={fetchStatus.start}
         color={g.color.grey_8}
         overlayColor={g.color.white}
       />
       <View style={s.background} />
       <ScrollView style={s.scroll}>
-        <DailyBudgetsCard budgets={budgets} consumed={consumed} />
+        <DailyBudgetsCard />
         <Text>{date.toString()}</Text>
       </ScrollView>
     </SafeAreaView>

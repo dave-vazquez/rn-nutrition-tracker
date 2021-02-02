@@ -1,7 +1,7 @@
 import g from "global-styles";
 import React from "react";
 import { Icon } from "react-native-elements";
-
+import { pure } from "recompose";
 export const stackNavigatorConfig = {
   headerMode: "float",
   gestureEnabled: "false",

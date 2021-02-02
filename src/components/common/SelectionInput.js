@@ -1,5 +1,5 @@
 import g from "_globalstyles";
-import React, { useState } from "react";
+import React, { memo, useCallback, useState } from "react";
 import {
   Modal,
   StyleSheet,
@@ -11,23 +11,18 @@ import {
 import { ScrollView } from "react-native";
 import { Icon } from "react-native-elements";
 
-const _SelectionInput = (props) => {
+const SelectionInput = ({ onSelect, items, containerStyle, label, value }) => {
   const [modalVisible, setModalVisible] = useState(false);
 
-  const handlePress = (key) => {
-    props.onSelect(props.items[key]);
-    setModalVisible((visible) => !visible);
-  };
-
   return (
-    <View style={[s.container, props.containerStyle]}>
-      <Text style={s.label}>{props.label}</Text>
+    <View style={[s.container, containerStyle]}>
+      <Text style={s.label}>{label}</Text>
       <TouchableOpacity
         activeOpacity={0.5}
         style={s.inputContainer}
         onPress={() => setModalVisible(!modalVisible)}
       >
-        <Text style={s.input}>{props.value.label}</Text>
+        <Text style={s.input}>{value.label}</Text>
         <Icon
           size={12}
           name="caretdown"
@@ -37,24 +32,42 @@ const _SelectionInput = (props) => {
         />
       </TouchableOpacity>
       <SelectionModal
-        items={props.items}
-        value={props.value}
-        onSelect={props.onSelect}
-        visible={modalVisible}
-        setVisible={setModalVisible}
-        handlePress={handlePress}
+        items={items}
+        value={value}
+        onSelect={onSelect}
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
       />
     </View>
   );
 };
 
-const SelectionModal = ({ items, visible, setVisible, value, handlePress }) => {
+const SelectionModal = ({
+  items,
+  value,
+  onSelect,
+  modalVisible,
+  setModalVisible,
+}) => {
+  const handlePress = useCallback(
+    (key) => {
+      onSelect(items[key]);
+      setModalVisible((modalVisible) => !modalVisible);
+    },
+    [items, onSelect, setModalVisible]
+  );
+
   return (
-    <Modal visible={visible} transparent={true} animationType="fade">
+    <Modal
+      visible={modalVisible}
+      transparent={true}
+      animationType="fade"
+      hardwareAccelerated={true}
+    >
       <TouchableOpacity
         style={s.overlay}
         activeOpacity={1}
-        onPress={() => setVisible(!visible)}
+        onPress={() => setModalVisible((modalVisible) => !modalVisible)}
       >
         <View style={{ maxHeight: 400, width: 350 }}>
           <ScrollView contentContainerStyle={s.scrollView}>
@@ -76,6 +89,7 @@ const SelectionModal = ({ items, visible, setVisible, value, handlePress }) => {
 const SelectionItem = ({ item, selected, handlePress }) => {
   const labelFont = selected ? "Lato_Bold" : "Lato_Regular";
   const labelColor = selected ? g.color.blue_2 : g.color.grey_8;
+  const iconColor = selected ? g.color.blue_2 : "transparent";
 
   return (
     <TouchableWithoutFeedback
@@ -92,15 +106,13 @@ const SelectionItem = ({ item, selected, handlePress }) => {
         >
           {item.label}
         </Text>
-        {selected && (
-          <Icon
-            size={20}
-            name="check"
-            type="ant-design"
-            color={g.color.blue_2}
-            iconStyle={s.icon}
-          />
-        )}
+        <Icon
+          size={20}
+          name="check"
+          type="ant-design"
+          color={iconColor}
+          iconStyle={{ marginBottom: 3 }}
+        />
       </View>
     </TouchableWithoutFeedback>
   );
@@ -108,6 +120,7 @@ const SelectionItem = ({ item, selected, handlePress }) => {
 
 const s = StyleSheet.create({
   container: {
+    flex: 1,
     margin: 8,
     justifyContent: "space-between",
   },
@@ -130,7 +143,6 @@ const s = StyleSheet.create({
     fontSize: 16,
     paddingVertical: 10,
   },
-  icon: { marginBottom: 3 },
   overlay: {
     flex: 1,
     alignItems: "center",
@@ -157,7 +169,11 @@ const s = StyleSheet.create({
   },
 });
 
-export default _SelectionInput;
+SelectionModal.whyDidYouRender = true;
+SelectionItem.whyDidYouRender = true;
+SelectionInput.whyDidYouRender = true;
+
+export default memo(SelectionInput);
 
 /*
 {

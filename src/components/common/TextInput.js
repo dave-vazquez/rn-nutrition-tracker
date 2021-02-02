@@ -1,5 +1,5 @@
 import g from "_globalstyles";
-import React from "react";
+import React, { memo } from "react";
 import { TextInput as RNTextInput, StyleSheet, Text, View } from "react-native";
 
 const TextInput = ({
@@ -29,6 +29,7 @@ const TextInput = ({
 
 const s = StyleSheet.create({
   container: {
+    flex: 1,
     justifyContent: "space-between",
     margin: 8,
     // borderWidth: 1,
@@ -53,4 +54,6 @@ const s = StyleSheet.create({
   },
 });
 
-export default TextInput;
+TextInput.whyDidYouRender = true;
+
+export default memo(TextInput);

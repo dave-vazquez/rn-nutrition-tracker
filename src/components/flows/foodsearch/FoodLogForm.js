@@ -1,14 +1,7 @@
-import {
-  Card,
-  DateTime,
-  SelectionInput,
-  TextInput,
-  _PickerInput,
-} from "_components/common";
-import { MEAL_TYPES } from "_constants";
+import { Card, DateTime, SelectionInput, TextInput } from "_components/common";
 import g from "_globalstyles";
 import { maskQuantity } from "_utils";
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import { Platform, StyleSheet, View } from "react-native";
 import { Button } from "react-native-elements";
 
@@ -45,7 +38,6 @@ const FoodLogForm = ({
           label="Quantity"
           value={form.quantity}
           keyboardType="numeric"
-          containerStyle={{ flex: 1 }}
           onEndEditing={setMaskedQuantity}
           onChangeText={(quantity) => {
             setForm((form) => ({ ...form, quantity }));
@@ -55,7 +47,6 @@ const FoodLogForm = ({
           label="Measure"
           items={measures}
           value={form.measure}
-          containerStyle={{ flex: 1 }}
           onSelect={(measure) =>
             setForm((form) => ({ ...form, measure, quantity: "1" }))
           }
@@ -66,14 +57,12 @@ const FoodLogForm = ({
           type="date"
           label="Date"
           value={form.date}
-          containerStyle={{ flex: 1 }}
           onTouch={() => showDatePickerWithMode("date")}
         />
         <DateTime.Input
           type="time"
           label="Time"
           value={form.date}
-          containerStyle={{ flex: 1 }}
           onTouch={() => showDatePickerWithMode("time")}
         />
         <DateTime.Picker
@@ -88,7 +77,6 @@ const FoodLogForm = ({
           label="Meal Type"
           items={mealTypes}
           value={form.mealType}
-          containerStyle={{ flex: 1 }}
           onSelect={(mealType) => setForm((form) => ({ ...form, mealType }))}
         />
         <Button
@@ -122,4 +110,6 @@ const s = StyleSheet.create({
   },
 });
 
-export default FoodLogForm;
+FoodLogForm.whyDidYouRender = true;
+
+export default memo(FoodLogForm);

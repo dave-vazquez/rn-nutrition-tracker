@@ -2,20 +2,22 @@ import nutritionAPI from "_api/nutritionAPI";
 import createContext from "./helper/createContext";
 
 const FETCH_ENTRIES_START = "FETCH_ENTRIES_START";
-const FETCH_ENTRIES_FAIL = "FETCH_ENTRIES_FAIL";
+const FETCH_ENTRIES_ERROR = "FETCH_ENTRIES_ERROR";
 const FETCH_ENTRIES_SUCCESS = "FETCH_ENTRIES_SUCCESS";
 const CREATE_ENTRY_START = "CREATE_ENTRY_START";
-const CREATE_ENTRY_FAIL = "CREATE_ENTRY_FAIL";
+const CREATE_ENTRY_ERROR = "CREATE_ENTRY_ERROR";
 const CREATE_ENTRY_SUCCESS = "CREATE_ENTRY_SUCCESS";
 
 const initialState = {
   date: new Date(),
-  fetchFail: false,
-  fetchStart: true,
-  fetchSuccess: false,
+  fetchStatus: {
+    start: true,
+    error: false,
+    success: false,
+  },
   createStatus: {
-    fail: false,
     start: false,
+    error: false,
     success: false,
   },
   budgets: {
@@ -38,23 +40,29 @@ const journalReducer = (state, action) => {
     case FETCH_ENTRIES_START:
       return {
         ...state,
-        fetchFail: false,
-        fetchStart: true,
-        fetchSuccess: false,
+        fetchStatus: {
+          start: true,
+          error: false,
+          success: false,
+        },
       };
-    case FETCH_ENTRIES_FAIL:
+    case FETCH_ENTRIES_ERROR:
       return {
         ...state,
-        fetchFail: true,
-        fetchStart: false,
-        fetchSuccess: false,
+        fetchStatus: {
+          start: false,
+          error: true,
+          success: false,
+        },
       };
     case FETCH_ENTRIES_SUCCESS:
       return {
         ...state,
-        fetchFail: false,
-        fetchStart: false,
-        fetchSuccess: true,
+        fetchStatus: {
+          start: false,
+          error: false,
+          success: true,
+        },
         budgets: action.budgets,
         consumed: action.consumed,
       };
@@ -63,8 +71,17 @@ const journalReducer = (state, action) => {
         ...state,
         createStatus: {
           start: true,
+          error: false,
           success: false,
-          fail: false,
+        },
+      };
+    case CREATE_ENTRY_ERROR:
+      return {
+        ...state,
+        createStatus: {
+          start: false,
+          error: true,
+          success: false,
         },
       };
     case CREATE_ENTRY_SUCCESS:
@@ -72,19 +89,10 @@ const journalReducer = (state, action) => {
         ...state,
         createStatus: {
           start: false,
+          error: false,
           success: true,
-          fail: false,
         },
         entries: action.entries,
-      };
-    case CREATE_ENTRY_FAIL:
-      return {
-        ...state,
-        createStatus: {
-          start: false,
-          success: false,
-          fail: true,
-        },
       };
     default:
       return state;
@@ -103,16 +111,19 @@ const fetchJournalEntries = (dispatch) => async () => {
         fat_g: 18,
         carbs_g: 25,
         protein_g: 38,
-        calories_kcal: 500,
+        calories_kcal: 423,
       },
     });
     //
   } catch (error) {
-    dispatch({ type: FETCH_ENTRIES_FAIL });
+    dispatch({ type: FETCH_ENTRIES_ERROR });
   }
 };
 
-const createJournalEntry = (dispatch, state) => async (entryData) => {
+const createJournalEntry = (dispatch, state) => async (
+  journalEntry,
+  navCallBack
+) => {
   dispatch({ type: CREATE_ENTRY_START });
 
   try {
@@ -121,14 +132,13 @@ const createJournalEntry = (dispatch, state) => async (entryData) => {
       journalEntry
     );
 
-    console.log("response", response.data);
     dispatch({
       type: CREATE_ENTRY_SUCCESS,
       entries: response.data.entries ? response.data.entries : state.entries,
     });
   } catch ({ response }) {
     console.log("error", response.data);
-    dispatch({ type: CREATE_ENTRY_FAIL });
+    dispatch({ type: CREATE_ENTRY_ERROR });
   }
 };
 

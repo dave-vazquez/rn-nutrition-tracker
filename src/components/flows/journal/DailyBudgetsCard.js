@@ -1,29 +1,15 @@
 import { Card } from "_components/common";
 import { Context as JournalContext } from "_contexts/JournalContext";
 import g from "_globalstyles";
-import React, { useContext, useEffect, useState } from "react";
+import React, { memo, useContext } from "react";
 import { StyleSheet, View } from "react-native";
 import CalorieBar from "./CalorieBar";
 import MacroWheel from "./MacroWheel";
 
-const budgets = {
-  fat_g: 73,
-  carbs_g: 122,
-  protein_g: 49,
-  calories_kcal: 2203,
-};
-
-const consumed = {
-  fat_g: 12,
-  carbs_g: 30,
-  protein_g: 10,
-  calories_kcal: 422,
-};
-
 const DailyBudgetsCard = ({ added }) => {
-  // const {
-  //   state: { budgets, consumed },
-  // } = useContext(JournalContext);
+  const {
+    state: { budgets, consumed },
+  } = useContext(JournalContext);
 
   return (
     <Card bgColor={g.color.green_light_3}>
@@ -64,7 +50,9 @@ const s = StyleSheet.create({
   },
 });
 
-export default DailyBudgetsCard;
+DailyBudgetsCard.whyDidYouRender = true;
+
+export default memo(DailyBudgetsCard);
 
 /*
 

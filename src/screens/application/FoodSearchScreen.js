@@ -1,19 +1,22 @@
 import { SearchBar, SearchResults } from "_components/flows/foodsearch";
 import g from "_globalstyles";
 import { useDebouncedSearch } from "_hooks";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
 
 const FoodSearchScreen = ({ navigation: { navigate, isFocused } }) => {
   //
-  const [keyword, setKeyword] = useState("");
+  const [keyword, setKeyword] = useState("bread");
 
   const [results, searchStatus, resetSearch] = useDebouncedSearch(
     keyword,
     1000
   );
 
-  const viewDetails = (foodData) => navigate("FoodDetails", { foodData });
+  const viewDetails = useCallback(
+    (foodData) => navigate("FoodDetails", { foodData }),
+    [navigate]
+  );
 
   useEffect(() => {
     if (!keyword) resetSearch();
@@ -61,6 +64,8 @@ const s = StyleSheet.create({
     ...StyleSheet.absoluteFill,
   },
 });
+
+FoodSearchScreen.whyDidYouRender = true;
 
 export default FoodSearchScreen;
 

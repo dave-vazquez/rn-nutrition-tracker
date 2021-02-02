@@ -8,7 +8,7 @@ dayjs.extend(calendar);
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-const deviceTimeZone = Localization.timezone;
+export const deviceTimeZone = Localization.timezone;
 
 export const toRelativeDate = (date) => {
   return dayjs(date).tz(deviceTimeZone).calendar(null, {

@@ -1,10 +1,9 @@
 import g from "_globalstyles";
 import { useFormatMacroData } from "_hooks";
 import { toPrecision } from "_utils";
-import React from "react";
+import React, { memo } from "react";
 import { Dimensions, StyleSheet, Text, View } from "react-native";
 import { PieChart } from "react-native-svg-charts";
-
 const screen = Dimensions.get("screen");
 
 const MacroWheel = ({ budget, consumed, added, title }) => {
@@ -106,4 +105,6 @@ const s = StyleSheet.create({
   },
 });
 
-export default MacroWheel;
+MacroWheel.whyDidYouRender = true;
+
+export default memo(MacroWheel);

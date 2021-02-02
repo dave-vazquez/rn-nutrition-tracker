@@ -1,11 +1,15 @@
 import g from "_globalstyles";
 import { useFormatCalorieData } from "_hooks";
-import React from "react";
+import React, { memo } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { StackedBarChart } from "react-native-svg-charts";
 
-const CalorieBar = ({ budget, consumed, added }) => {
-  const [data, colors] = useFormatCalorieData(budget, consumed, added);
+const keys = ["consumed", "added", "budget"];
+
+const CalorieBar = ({ consumed, added, budget }) => {
+  const [data, colors] = useFormatCalorieData(consumed, added, budget);
+
+  console.log("data", ...data);
 
   return (
     <View style={s.container}>
@@ -13,11 +17,11 @@ const CalorieBar = ({ budget, consumed, added }) => {
       <StackedBarChart
         animate
         horizontal
-        data={[data]}
+        data={data}
         colors={colors}
         style={s.chart}
         animationDuration={500}
-        keys={["consumed", "added", "budget"]}
+        keys={keys}
       />
     </View>
   );
@@ -51,6 +55,7 @@ const s = StyleSheet.create({
     shadowOpacity: 2,
     overflow: "hidden",
     justifyContent: "center",
+    backgroundColor: g.color.white,
     shadowColor: "#00000030",
     shadowOffset: { width: 0, height: 2 },
   },
@@ -74,4 +79,6 @@ const s = StyleSheet.create({
   },
 });
 
-export default CalorieBar;
+CalorieBar.whyDidYouRender = true;
+
+export default memo(CalorieBar);

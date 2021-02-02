@@ -9,7 +9,7 @@ const Input = ({ label, containerStyle, value, onTouch, type }) => {
     <TouchableOpacity
       onPress={onTouch}
       activeOpacity={1}
-      style={containerStyle}
+      style={[{ flex: 1 }, containerStyle]}
     >
       <TextInput
         label={label}

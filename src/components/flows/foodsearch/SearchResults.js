@@ -1,5 +1,5 @@
 import g from "_globalstyles";
-import React from "react";
+import React, { memo } from "react";
 import { FlatList, StyleSheet } from "react-native";
 import { Avatar, ListItem } from "react-native-elements";
 import { withNavigation } from "react-navigation";
@@ -54,4 +54,6 @@ const s = StyleSheet.create({
   },
 });
 
-export default withNavigation(SearchResults);
+SearchResults.whyDidYouRender = true;
+
+export default withNavigation(memo(SearchResults));
