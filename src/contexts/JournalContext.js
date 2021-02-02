@@ -136,8 +136,9 @@ const createJournalEntry = (dispatch, state) => async (
       type: CREATE_ENTRY_SUCCESS,
       entries: response.data.entries ? response.data.entries : state.entries,
     });
+
+    navCallBack();
   } catch ({ response }) {
-    console.log("error", response.data);
     dispatch({ type: CREATE_ENTRY_ERROR });
   }
 };

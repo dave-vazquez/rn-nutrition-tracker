@@ -20,20 +20,17 @@ import {
 
 const BREAKFAST = MEAL_TYPES[0];
 
-const FoodDetailsScreen = ({ navigation }) => {
+const FoodDetailsScreen = ({
+  navigation: { getParam, navigate, isFocused },
+}) => {
   const {
     state: { createStatus },
     createJournalEntry,
   } = useContext(JournalContext);
 
-  const {
-    foodId,
-    measures,
-    label,
-    brand,
-    image,
-    defaultMeasure,
-  } = navigation.getParam("foodData");
+  const { foodId, measures, label, brand, image, defaultMeasure } = getParam(
+    "foodData"
+  );
 
   const [form, setForm] = useState({
     quantity: "100",
@@ -50,24 +47,27 @@ const FoodDetailsScreen = ({ navigation }) => {
   const added = caclulateAdded(nutrients, form.quantity);
 
   const handleSubmitForm = () => {
-    createJournalEntry({
-      food_id: foodId,
-      food_name: label,
-      brand_name: brand,
-      quantity: form.quantity,
-      meal_type: form.mealType.value,
-      measure_name: form.measure.label,
-      entry_date: form.date.toISOString(),
-      measure_uri: form.measure.measureURI,
-      time_zone_name: Localization.timezone,
-    });
+    createJournalEntry(
+      {
+        food_id: foodId,
+        food_name: label,
+        brand_name: brand,
+        quantity: form.quantity,
+        meal_type: form.mealType.value,
+        measure_name: form.measure.label,
+        entry_date: form.date.toISOString(),
+        measure_uri: form.measure.measureURI,
+        time_zone_name: Localization.timezone,
+      },
+      () => navigate("FoodSearch")
+    );
   };
 
   if (fetchStatus === IDLE) return null;
 
   return (
     <SafeAreaView style={s.container}>
-      {navigation.isFocused() && (
+      {isFocused() && (
         <StatusBar barStyle="light-content" backgroundColor={g.color.red_4} />
       )}
       <View style={s.background} />
