@@ -1,4 +1,4 @@
-import { colors } from "_globalstyles";
+import { colors } from "_global_styles";
 import { maskInputDate } from "_utils";
 import React from "react";
 import { Controller } from "react-hook-form";

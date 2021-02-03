@@ -1,4 +1,4 @@
-import { colors } from "_globalstyles";
+import { colors } from "_global_styles";
 import React, { useState } from "react";
 import { Controller } from "react-hook-form";
 import { StyleSheet, View } from "react-native";

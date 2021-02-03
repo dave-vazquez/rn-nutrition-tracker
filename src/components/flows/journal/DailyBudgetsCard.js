@@ -1,6 +1,6 @@
 import { Card } from "_components/common";
 import { Context as JournalContext } from "_contexts/JournalContext";
-import { colors } from "_globalstyles";
+import { colors } from "_global_styles";
 import React, { memo, useContext } from "react";
 import { StyleSheet, View } from "react-native";
 import CalorieBar from "./CalorieBar";

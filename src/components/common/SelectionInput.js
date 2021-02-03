@@ -1,4 +1,4 @@
-import { colors } from "_globalstyles";
+import { colors } from "_global_styles";
 import React, { memo, useCallback, useState } from "react";
 import {
   Modal,

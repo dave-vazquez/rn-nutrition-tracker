@@ -7,7 +7,7 @@ import {
 } from "_components/flows/onboarding";
 import { Context as OnboardingContext } from "_contexts/OnboardingContext";
 import { onboardingRules as rules } from "_formrules";
-import { colors } from "_globalstyles";
+import { colors } from "_global_styles";
 import { useFocusNextInput } from "_hooks";
 import React, { useContext, useRef } from "react";
 import { useForm } from "react-hook-form";

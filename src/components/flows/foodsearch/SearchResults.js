@@ -1,4 +1,4 @@
-import { colors } from "_globalstyles";
+import { colors } from "_global_styles";
 import React, { memo } from "react";
 import { FlatList, StyleSheet } from "react-native";
 import { Avatar, ListItem } from "react-native-elements";

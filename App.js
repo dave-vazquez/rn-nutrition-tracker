@@ -6,8 +6,8 @@ import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
 import React from "react";
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
-import NavigationService from "./src/NavigationService";
 import { HomeNavigator, OnboardingNavigator } from "./src/navigation";
+import { NavigationService } from "./src/navigation/utils";
 import { AuthResolutionScreen } from "./src/screens/authentication";
 
 const RootNavigator = createSwitchNavigator(

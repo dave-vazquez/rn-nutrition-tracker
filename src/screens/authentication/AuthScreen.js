@@ -1,7 +1,7 @@
 import { NextButton } from "_components/common";
 import { Heading } from "_components/flows/onboarding";
 import { authRules as rules } from "_formrules";
-import { colors } from "_globalstyles";
+import { colors } from "_global_styles";
 import { useFocusNextInput } from "_hooks";
 import { useAuthenticate } from "_hooks";
 import React from "react";

@@ -1,24 +1,11 @@
-import { colors } from "_globalstyles";
+import createStyles from "_global_styles";
 import React from "react";
-import { StyleSheet } from "react-native";
-import { Text } from "react-native-elements";
+import { Text } from "react-native";
+
+const s = createStyles();
 
 const Heading = ({ title }) => {
-  return (
-    <Text h2 h2Style={s.heading}>
-      {title}
-    </Text>
-  );
+  return <Text style={s.heading}>{title}</Text>;
 };
-
-const s = StyleSheet.create({
-  heading: {
-    marginBottom: 20,
-    color: colors.grey_8,
-    textAlign: "center",
-    fontWeight: "normal",
-    fontFamily: "NunitoSans_Regular",
-  },
-});
 
 export default Heading;

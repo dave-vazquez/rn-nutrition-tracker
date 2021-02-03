@@ -1,4 +1,4 @@
-import { colors } from "_globalstyles";
+import { colors } from "_global_styles";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { SearchBar as RNESearchBar } from "react-native-elements";

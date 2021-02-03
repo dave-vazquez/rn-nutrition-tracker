@@ -1,4 +1,4 @@
-import { colors } from "_globalstyles";
+import { colors } from "_global_styles";
 import { useFormatMacroData } from "_hooks";
 import { toPrecision } from "_utils";
 import React, { memo } from "react";

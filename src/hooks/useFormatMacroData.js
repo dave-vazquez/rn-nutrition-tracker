@@ -1,4 +1,4 @@
-import { budget_palette, colors } from "_globalstyles";
+import { budget_palette, colors } from "_global_styles";
 
 const useFormatMacroData = (title, added, budget, consumed) => {
   const colorKey = title.toLowerCase();

@@ -2,7 +2,7 @@
 /* eslint-disable react/display-name */
 import { DailyBudgetsCard, HeaderRight } from "_components/flows/journal";
 import { Context as JournalContext } from "_contexts/JournalContext";
-import { colors } from "_globalstyles";
+import { colors } from "_global_styles";
 import React, { useContext, useEffect } from "react";
 import {
   SafeAreaView,

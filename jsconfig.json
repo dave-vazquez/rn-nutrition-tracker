@@ -10,10 +10,9 @@
       "_contexts": ["./src/contexts"],
       "_constants": ["./src/constants"],
       "_formrules": ["./src/form-rules"],
+      "_global_styles": ["./src/styles"],
       "_navigation": ["./src/navigation"],
       "_components": ["./src/components"],
-      "_globalstyles": ["./src/global-styles.js"],
-      "_NavigationService": ["./src/NavigationService.js"],
     }
   },
   "typeAcquisition": {

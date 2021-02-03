@@ -1,5 +1,5 @@
 import { Card, DateTime, SelectionInput, TextInput } from "_components/common";
-import { colors } from "_globalstyles";
+import { colors } from "_global_styles";
 import { maskQuantity } from "_utils";
 import React, { memo, useState } from "react";
 import { Platform, StyleSheet, View } from "react-native";

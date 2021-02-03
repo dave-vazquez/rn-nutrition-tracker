@@ -1,4 +1,4 @@
-import { colors } from "_globalstyles";
+import { colors } from "_global_styles";
 import React, { memo } from "react";
 import { TextInput as RNTextInput, StyleSheet, Text, View } from "react-native";
 
@@ -30,17 +30,14 @@ const TextInput = ({
 const s = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "space-between",
     margin: 8,
-    // borderWidth: 1,
+    justifyContent: "space-between",
   },
   label: {
     fontSize: 16,
     fontFamily: "Lato_Regular",
     fontWeight: "normal",
     color: colors.blue_3,
-    // borderWidth: 1,
-    // borderColor: "green",
   },
   input: {
     fontFamily: "Lato_Regular",
@@ -49,8 +46,6 @@ const s = StyleSheet.create({
     borderBottomWidth: 1,
     paddingVertical: 5,
     borderBottomColor: colors.blue_2,
-    // borderWidth: 1,
-    // borderColor: "blue",
   },
 });
 

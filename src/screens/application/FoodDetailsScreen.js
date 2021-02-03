@@ -6,7 +6,7 @@ import {
 import { DailyBudgetsCard } from "_components/flows/journal";
 import { IDLE, MEAL_TYPES } from "_constants";
 import { Context as JournalContext } from "_contexts/JournalContext";
-import { colors } from "_globalstyles";
+import { colors } from "_global_styles";
 import { useFetchNutritionData } from "_hooks";
 import * as Localization from "expo-localization";
 import React, { useContext, useState } from "react";

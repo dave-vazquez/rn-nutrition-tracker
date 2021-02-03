@@ -1,7 +1,7 @@
 import { Card } from "_components/common";
 /* eslint-disable prettier/prettier */
 import { ERROR, STARTED } from "_constants";
-import { colors } from "_globalstyles";
+import { colors } from "_global_styles";
 import { toPrecision } from "_utils";
 import React from "react";
 import { ActivityIndicator, StyleSheet, Text, View } from "react-native";

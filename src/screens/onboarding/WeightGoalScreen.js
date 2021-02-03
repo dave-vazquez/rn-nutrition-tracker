@@ -1,5 +1,5 @@
 import { Context as OnboardingContext } from "_contexts/OnboardingContext";
-import { colors } from "_globalstyles";
+import { colors } from "_global_styles";
 import { Heading } from "components/flows/onboarding";
 import React, { useContext } from "react";
 import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";

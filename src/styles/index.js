@@ -1,3 +1,5 @@
+import { StyleSheet } from "react-native";
+
 export const colors = {
   green_light_1: "#EFF9DC",
   green_light_2: "#E0F3B9",
@@ -46,6 +48,37 @@ export const colors = {
   warning_2: "#c62f3e",
 };
 
+export const padding = {
+  xs: 5,
+  sm: 10,
+  md: 15,
+  lg: 20,
+  xl: 30,
+};
+
+export const margin = {
+  xs: 5,
+  sm: 10,
+  md: 15,
+  lg: 20,
+  xl: 30,
+};
+
+export const fonts = {
+  xs: 16,
+  sm: 18,
+  md: 22,
+  lg: 30,
+  xl: 58,
+  primary: "NunitoSans_Regular",
+  tertiary: {
+    light: "Lato_Light",
+    regular: "Lato_Regular",
+    bold: "Lato_Bold",
+    italic: "Lato_Italic",
+  },
+};
+
 export const budget_palette = {
   cals: [colors.green_light_4, colors.green_light_5, colors.white],
   cals_exceeded: [colors.warning_1, colors.warning_2, colors.green_light_5],
@@ -61,4 +94,18 @@ export const nutrient_pallete = {
   cals: colors.green_light_4,
 };
 
-export default { colors, budget_palette, nutrient_pallete };
+const baseStyles = {
+  heading: {
+    textAlign: "center",
+    color: colors.grey_8,
+    marginBottom: padding.lg,
+    fontFamily: fonts.primary,
+    fontSize: fonts.lg,
+  },
+};
+
+const createStyles = (overrides = {}) => {
+  return StyleSheet.create({ ...baseStyles, ...overrides });
+};
+
+export default createStyles;

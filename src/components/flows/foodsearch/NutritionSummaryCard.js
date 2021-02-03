@@ -1,6 +1,6 @@
 import { Card } from "_components/common";
 import { ERROR, STARTED } from "_constants";
-import { colors } from "_globalstyles";
+import { colors } from "_global_styles";
 import { toPrecision } from "_utils";
 import React from "react";
 import { ActivityIndicator, Image, StyleSheet, Text, View } from "react-native";
@@ -96,8 +96,7 @@ const Nutrient = ({ name, amount, unit, plateColor, loading }) => {
 };
 
 const Amount = ({ loading, amount }) => {
-  if (loading)
-    return <ActivityIndicator size="small" color={colors.grey_8} />;
+  if (loading) return <ActivityIndicator size="small" color={colors.grey_8} />;
 
   return <Text style={s.text}>{amount}</Text>;
 };

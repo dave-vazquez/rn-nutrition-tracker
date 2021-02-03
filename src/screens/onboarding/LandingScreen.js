@@ -1,4 +1,4 @@
-import { colors } from "_globalstyles";
+import { colors } from "_global_styles";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import {
