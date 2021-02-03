@@ -13,8 +13,8 @@ const Input = ({ label, containerStyle, value, onTouch, type }) => {
     >
       <TextInput
         label={label}
-        value={formatValue(value, type)}
         editable={false}
+        value={formatValue(value, type)}
       />
     </TouchableOpacity>
   );

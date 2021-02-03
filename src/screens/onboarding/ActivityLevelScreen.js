@@ -9,7 +9,7 @@ import {
   VERY_ACTIVE,
 } from "_constants";
 import { Context as OnboardingContext } from "_contexts/OnboardingContext";
-import { colors } from "_global_styles";
+import { Colors } from "_global_styles";
 import React, { useContext } from "react";
 import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
 
@@ -70,9 +70,9 @@ const ActivityLevelScreen = ({ navigation: { navigate, isFocused } }) => {
 
 ActivityLevelScreen.navigationOptions = {
   headerTitle: "About You",
-  headerTintColor: colors.white,
+  headerTintColor: Colors.white,
   headerStyle: {
-    backgroundColor: colors.blue_2,
+    backgroundColor: Colors.blue.s2,
   },
 };
 
@@ -81,7 +81,7 @@ const s = StyleSheet.create({
     flex: 1,
     paddingTop: 20,
     paddingHorizontal: 10,
-    backgroundColor: colors.white,
+    backgroundColor: Colors.white,
   },
   radioGroup: {
     flex: 1,

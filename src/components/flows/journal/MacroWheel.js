@@ -1,4 +1,4 @@
-import { colors } from "_global_styles";
+import { Colors } from "_global_styles";
 import { useFormatMacroData } from "_hooks";
 import { toPrecision } from "_utils";
 import React, { memo } from "react";
@@ -89,14 +89,14 @@ const s = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width: screen.width / 4 - 5,
-    backgroundColor: colors.white,
+    backgroundColor: Colors.white,
     ...StyleSheet.absoluteFillObject,
     top: 35,
     left: 3,
   },
   value: {
     fontSize: 16,
-    color: colors.grey_8,
+    color: Colors.grey.s8,
     fontFamily: "Lato_Regular",
   },
   budget: {

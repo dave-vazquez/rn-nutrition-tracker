@@ -1,5 +1,5 @@
 import { SearchBar, SearchResults } from "_components/flows/foodsearch";
-import { colors } from "_global_styles";
+import { Colors } from "_global_styles";
 import { useDebouncedSearch } from "_hooks";
 import React, { useCallback, useEffect, useState } from "react";
 import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
@@ -27,7 +27,7 @@ const FoodSearchScreen = ({ navigation: { navigate, isFocused } }) => {
       {isFocused() && (
         <StatusBar
           barStyle="light-content"
-          backgroundColor={colors.green_light_4}
+          backgroundColor={Colors.green.light.s4}
         />
       )}
       <View style={s.background} />
@@ -44,11 +44,11 @@ const FoodSearchScreen = ({ navigation: { navigate, isFocused } }) => {
 FoodSearchScreen.navigationOptions = {
   headerTitle: "Food Search",
   headerTitleAlign: "left",
-  headerTintColor: colors.white,
+  headerTintColor: Colors.white,
   headerTitleStyle: { fontFamily: "Lato_Bold" },
   headerStyle: {
     elevation: 0,
-    backgroundColor: colors.green_light_4,
+    backgroundColor: Colors.green.light.s4,
   },
 };
 
@@ -56,11 +56,11 @@ const s = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 15,
-    backgroundColor: colors.wheat,
+    backgroundColor: Colors.wheat,
   },
   background: {
     height: 120,
-    backgroundColor: colors.green_light_4,
+    backgroundColor: Colors.green.light.s4,
     ...StyleSheet.absoluteFill,
   },
 });

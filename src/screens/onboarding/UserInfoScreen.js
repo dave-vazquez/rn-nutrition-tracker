@@ -7,7 +7,7 @@ import {
 } from "_components/flows/onboarding";
 import { Context as OnboardingContext } from "_contexts/OnboardingContext";
 import { onboardingRules as rules } from "_formrules";
-import { colors } from "_global_styles";
+import { Colors } from "_global_styles";
 import { useFocusNextInput } from "_hooks";
 import React, { useContext, useRef } from "react";
 import { useForm } from "react-hook-form";
@@ -45,7 +45,7 @@ const UserInfoScreen = ({ navigation: { navigate, isFocused } }) => {
       style={s.container}
     >
       {isFocused() && (
-        <StatusBar backgroundColor={colors.blue_2} barStyle="light-content" />
+        <StatusBar backgroundColor={Colors.blue.s2} barStyle="light-content" />
       )}
       <ScrollView
         keyboardDismissMode="interactive"
@@ -92,15 +92,15 @@ const s = StyleSheet.create({
     flex: 1,
     paddingTop: 20,
     paddingHorizontal: 10,
-    backgroundColor: colors.white,
+    backgroundColor: Colors.white,
   },
 });
 
 UserInfoScreen.navigationOptions = {
   headerTitle: "About You",
-  headerTintColor: colors.white,
+  headerTintColor: Colors.white,
   headerStyle: {
-    backgroundColor: colors.blue_2,
+    backgroundColor: Colors.blue.s2,
   },
 };
 

@@ -1,4 +1,4 @@
-import { budget_palette } from "_global_styles";
+import { budget_palette } from "_global_styles/base.js";
 import { useEffect, useState } from "react";
 
 const useFormatCalorieData = (consumed, added, budget) => {

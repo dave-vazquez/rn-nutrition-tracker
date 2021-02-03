@@ -1,4 +1,4 @@
-import createStyles from "_global_styles";
+import createStyles from "_global_styles/base.js";
 import React from "react";
 import { Text } from "react-native";
 

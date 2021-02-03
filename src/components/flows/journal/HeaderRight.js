@@ -1,9 +1,9 @@
-import { colors } from "_global_styles";
+import { Colors } from "_global_styles";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Icon } from "react-native-elements";
 
-const HeaderRight = ({ color = colors.white, text, iconType, iconName }) => {
+const HeaderRight = ({ color = Colors.white, text, iconType, iconName }) => {
   return (
     <View style={s.container}>
       {text && <Text style={s.text}>{text}</Text>}
@@ -21,7 +21,7 @@ const s = StyleSheet.create({
   text: {
     fontSize: 18,
     fontFamily: "Lato_Light",
-    color: colors.white,
+    color: Colors.white,
     marginRight: 15,
   },
 });

@@ -1,6 +1,6 @@
 import { Card } from "_components/common";
 import { ERROR, STARTED } from "_constants";
-import { colors } from "_global_styles";
+import { Colors } from "_global_styles";
 import { toPrecision } from "_utils";
 import React from "react";
 import { ActivityIndicator, Image, StyleSheet, Text, View } from "react-native";
@@ -51,28 +51,28 @@ const Summary = ({ loading, calories, fat, carbs, protein }) => {
         name="Calories"
         amount={calories}
         loading={loading}
-        plateColor={colors.green_light_4}
+        plateColor={Colors.green.light.s4}
       />
       <Nutrient
         unit="g"
         name="Fats"
         amount={fat}
         loading={loading}
-        plateColor={colors.yellow_2}
+        plateColor={Colors.yellow.s2}
       />
       <Nutrient
         unit="g"
         name="Carbs"
         amount={carbs}
         loading={loading}
-        plateColor={colors.blue_2}
+        plateColor={Colors.blue.s2}
       />
       <Nutrient
         unit="g"
         name="Protein"
         amount={protein}
         loading={loading}
-        plateColor={colors.pink_2}
+        plateColor={Colors.pink.s2}
       />
     </View>
   );
@@ -80,7 +80,7 @@ const Summary = ({ loading, calories, fat, carbs, protein }) => {
 
 const Nutrient = ({ name, amount, unit, plateColor, loading }) => {
   const plateTextColor =
-    name === "Calories" || name === "Fats" ? colors.grey_8 : colors.white;
+    name === "Calories" || name === "Fats" ? Colors.grey.s8 : Colors.white;
 
   return (
     <View style={s.nutrient}>
@@ -96,7 +96,7 @@ const Nutrient = ({ name, amount, unit, plateColor, loading }) => {
 };
 
 const Amount = ({ loading, amount }) => {
-  if (loading) return <ActivityIndicator size="small" color={colors.grey_8} />;
+  if (loading) return <ActivityIndicator size="small" color={Colors.grey.s8} />;
 
   return <Text style={s.text}>{amount}</Text>;
 };
@@ -155,7 +155,7 @@ const s = StyleSheet.create({
   text: {
     fontSize: 17,
     fontFamily: "Lato_Bold",
-    color: colors.grey_8,
+    color: Colors.grey.s8,
   },
   plateText: {
     fontSize: 17,

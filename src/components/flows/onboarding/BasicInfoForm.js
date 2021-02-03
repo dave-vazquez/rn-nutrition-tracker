@@ -1,4 +1,4 @@
-import { colors } from "_global_styles";
+import { Colors } from "_global_styles";
 import { maskInputDate } from "_utils";
 import React from "react";
 import { Controller } from "react-hook-form";
@@ -29,7 +29,7 @@ const BasicInfoForm = ({
             nativeID="dateOfBirth"
             keyboardType="numeric"
             placeholder="mm/dd/yyyy"
-            labelStyle={{ color: colors.grey_8 }}
+            labelStyle={{ color: Colors.grey.s8 }}
             errorMessage={errors.dateOfBirth?.message}
             ref={(input) => setRef("dateOfBirth", input)}
             leftIconContainerStyle={s.inputIconContainer}
@@ -38,7 +38,7 @@ const BasicInfoForm = ({
             leftIcon={{
               type: "font-awesome-5",
               name: "calendar",
-              color: colors.grey_8,
+              color: Colors.grey.s8,
             }}
           />
         )}
@@ -60,7 +60,7 @@ const BasicInfoForm = ({
               keyboardType="numeric"
               onChangeText={onChange}
               containerStyle={{ flex: 1 }}
-              labelStyle={{ color: colors.grey_8 }}
+              labelStyle={{ color: Colors.grey.s8 }}
               errorMessage={errors.heightFt?.message}
               leftIconContainerStyle={s.inputIconContainer}
               ref={(input) => setRef("heightFt", input)}
@@ -68,7 +68,7 @@ const BasicInfoForm = ({
               leftIcon={{
                 type: "font-awesome-5",
                 name: "ruler-vertical",
-                color: colors.grey_8,
+                color: Colors.grey.s8,
               }}
             />
           )}
@@ -88,7 +88,7 @@ const BasicInfoForm = ({
               keyboardType="numeric"
               onChangeText={onChange}
               containerStyle={{ flex: 1 }}
-              labelStyle={{ color: colors.grey_8 }}
+              labelStyle={{ color: Colors.grey.s8 }}
               errorMessage={errors.heightIn?.message}
               ref={(input) => setRef("heightIn", input)}
               onSubmitEditing={() => focusNextInput("weightLbs")}
@@ -110,7 +110,7 @@ const BasicInfoForm = ({
             errorStyle={s.error}
             keyboardType="numeric"
             onChangeText={onChange}
-            labelStyle={{ color: colors.grey_8 }}
+            labelStyle={{ color: Colors.grey.s8 }}
             blurOnSubmit={weightGoal === "maintain"}
             errorMessage={errors.weightLbs?.message}
             ref={(input) => setRef("weightLbs", input)}
@@ -121,7 +121,7 @@ const BasicInfoForm = ({
             leftIcon={{
               type: "font-awesome-5",
               name: "weight",
-              color: colors.grey_8,
+              color: Colors.grey.s8,
             }}
           />
         )}

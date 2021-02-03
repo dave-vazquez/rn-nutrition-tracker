@@ -2,7 +2,7 @@
 /* eslint-disable react/display-name */
 import { DailyBudgetsCard, HeaderRight } from "_components/flows/journal";
 import { Context as JournalContext } from "_contexts/JournalContext";
-import { colors } from "_global_styles";
+import { Colors } from "_global_styles";
 import React, { useContext, useEffect } from "react";
 import {
   SafeAreaView,
@@ -35,14 +35,14 @@ const JournalScreen = ({ navigation: { isFocused } }) => {
   return (
     <SafeAreaView style={s.container}>
       {isFocused() && (
-        <StatusBar backgroundColor={colors.blue_2} barStyle="light-content" />
+        <StatusBar backgroundColor={Colors.blue.s2} barStyle="light-content" />
       )}
       <Spinner
         size="large"
         animation="fade"
         visible={fetchStatus.start}
-        color={colors.grey_8}
-        overlayColor={colors.white}
+        color={Colors.grey.s8}
+        overlayColor={Colors.white}
       />
       <View style={s.background} />
       <ScrollView style={s.scroll}>
@@ -56,10 +56,10 @@ const JournalScreen = ({ navigation: { isFocused } }) => {
 JournalScreen.navigationOptions = {
   headerTitle: "Journal",
   headerTitleAlign: "left",
-  headerTintColor: colors.white,
+  headerTintColor: Colors.white,
   headerStyle: {
     elevation: 0,
-    backgroundColor: colors.blue_2,
+    backgroundColor: Colors.blue.s2,
   },
   headerTitleStyle: { fontFamily: "Lato_Bold" },
   headerRight: () => (
@@ -75,7 +75,7 @@ const s = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 15,
-    backgroundColor: colors.wheat,
+    backgroundColor: Colors.wheat,
     borderWidth: 1,
   },
   scroll: {
@@ -85,7 +85,7 @@ const s = StyleSheet.create({
   },
   background: {
     height: 120,
-    backgroundColor: colors.blue_2,
+    backgroundColor: Colors.blue.s2,
     ...StyleSheet.absoluteFill,
   },
 });

@@ -1,8 +1,8 @@
-import { colors } from "_global_styles";
+import { Colors } from "_global_styles";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 
-const Card = ({ children, bgColor = colors.white, style }) => {
+const Card = ({ children, bgColor = Colors.white, style }) => {
   return (
     <View style={[s.card, { backgroundColor: bgColor }, style]}>
       {children}
@@ -18,7 +18,7 @@ const s = StyleSheet.create({
     marginBottom: 15,
     shadowOpacity: 2,
     shadowColor: "#00000030",
-    backgroundColor: colors.white,
+    backgroundColor: Colors.white,
     shadowOffset: { width: 0, height: 2 },
   },
 });

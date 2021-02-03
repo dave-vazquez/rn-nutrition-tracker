@@ -1,4 +1,4 @@
-import { colors } from "_global_styles";
+import { Colors } from "_global_styles";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import {
@@ -82,7 +82,7 @@ const s = StyleSheet.create({
   },
   title: {
     textAlign: "center",
-    color: colors.white,
+    color: Colors.white,
     fontFamily: "Manrope_Reg",
   },
   title_1: {
@@ -101,10 +101,10 @@ const s = StyleSheet.create({
     marginTop: 10,
   },
   buttonSignup: {
-    backgroundColor: colors.green_light_4,
+    backgroundColor: Colors.green.light.s4,
   },
   buttonLogin: {
-    backgroundColor: colors.white,
+    backgroundColor: Colors.white,
   },
   buttonTitle: {
     fontSize: 22,
@@ -112,7 +112,7 @@ const s = StyleSheet.create({
     fontFamily: "Lato_Regular",
   },
   buttonTitle_login: {
-    color: colors.grey_8,
+    color: Colors.grey.s8,
   },
 });
 

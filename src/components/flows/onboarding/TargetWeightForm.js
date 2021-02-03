@@ -1,4 +1,4 @@
-import { colors } from "_global_styles";
+import { Colors } from "_global_styles";
 import React, { useState } from "react";
 import { Controller } from "react-hook-form";
 import { StyleSheet, View } from "react-native";
@@ -53,14 +53,14 @@ const TargetWeightForm = ({
             keyboardType="numeric"
             onChangeText={onChange}
             onBlur={() => triggerValidation(value)}
-            labelStyle={{ color: colors.grey_8 }}
+            labelStyle={{ color: Colors.grey.s8 }}
             leftIconContainerStyle={s.inputIconContainer}
             errorMessage={errors.targetWeightLbs?.message}
             ref={(input) => setRef("targetWeightLbs", input)}
             leftIcon={{
               type: "feather",
               name: "target",
-              color: colors.grey_8,
+              color: Colors.grey.s8,
             }}
           />
         )}
@@ -75,7 +75,7 @@ const TargetWeightForm = ({
             <Slider
               allowTouchTrack
               animateTransitions
-              minimumTrackTintColor={colors.green_light_4}
+              minimumTrackTintColor={Colors.green.light.s4}
               animationType="spring"
               step={0.1}
               value={value}
@@ -115,14 +115,14 @@ const s = StyleSheet.create({
   thumb: {
     height: 25,
     width: 25,
-    backgroundColor: colors.blue_2,
+    backgroundColor: Colors.blue.s2,
     elevation: 5,
   },
   sliderLabel: {
     fontWeight: "bold",
     fontSize: 16,
     paddingLeft: 6,
-    color: colors.grey_8,
+    color: Colors.grey.s8,
     paddingBottom: 5,
   },
   netChangeText: {
@@ -133,7 +133,7 @@ const s = StyleSheet.create({
   },
   hidden: { display: "none" },
   slider: { marginHorizontal: 5 },
-  track: { backgroundColor: colors.grey_8 },
+  track: { backgroundColor: Colors.grey.s8 },
 });
 
 export default TargetWeightForm;

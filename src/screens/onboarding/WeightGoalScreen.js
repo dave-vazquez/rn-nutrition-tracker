@@ -1,5 +1,5 @@
 import { Context as OnboardingContext } from "_contexts/OnboardingContext";
-import { colors } from "_global_styles";
+import { Colors } from "_global_styles";
 import { Heading } from "components/flows/onboarding";
 import React, { useContext } from "react";
 import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
@@ -16,7 +16,7 @@ const WeightGoalScreen = ({ navigation: { navigate, isFocused } }) => {
   return (
     <SafeAreaView style={s.container}>
       {isFocused() && (
-        <StatusBar backgroundColor={colors.blue_2} barStyle="light-content" />
+        <StatusBar backgroundColor={Colors.blue.s2} barStyle="light-content" />
       )}
       <NavigationEvents onWillFocus={() => null} />
       <Heading title="What's your goal?" />
@@ -74,9 +74,9 @@ const WeightGoalScreen = ({ navigation: { navigate, isFocused } }) => {
 
 WeightGoalScreen.navigationOptions = {
   headerTitle: "About You",
-  headerTintColor: colors.white,
+  headerTintColor: Colors.white,
   headerStyle: {
-    backgroundColor: colors.blue_2,
+    backgroundColor: Colors.blue.s2,
   },
 };
 
@@ -85,7 +85,7 @@ const s = StyleSheet.create({
     flex: 1,
     paddingTop: 20,
     paddingHorizontal: 10,
-    backgroundColor: colors.white,
+    backgroundColor: Colors.white,
   },
   content: {
     alignItems: "center",
@@ -105,7 +105,7 @@ const s = StyleSheet.create({
   },
   button: {
     paddingHorizontal: 20,
-    backgroundColor: colors.green_light_4,
+    backgroundColor: Colors.green.light.s4,
   },
 });
 
