@@ -85,6 +85,7 @@
     "jest-expo": "^40.0.1",
     "jest-expo-enzyme": "^1.0.4",
     "prettier": "^2.2.1",
+    "prop-types": "^15.7.2",
     "react-native-debugger-open": "^0.3.25",
     "react-test-renderer": "^17.0.1"
   },

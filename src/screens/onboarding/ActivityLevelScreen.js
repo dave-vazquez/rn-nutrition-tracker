@@ -1,4 +1,4 @@
-import { NextButton, RadioButton } from "_components/common";
+import { NextButton, Radio } from "_components/common";
 import { Heading } from "_components/flows/onboarding";
 import {
   ACTIVE,
@@ -11,7 +11,7 @@ import {
 import { Context as OnboardingContext } from "_contexts/OnboardingContext";
 import { Colors } from "_global_styles";
 import React, { useContext } from "react";
-import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
+import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
 
 const ActivityLevelScreen = ({ navigation: { navigate, isFocused } }) => {
   const {
@@ -22,47 +22,47 @@ const ActivityLevelScreen = ({ navigation: { navigate, isFocused } }) => {
   return (
     <SafeAreaView style={s.container}>
       {isFocused() && (
-        <StatusBar backgroundColor={colors.blue_2} barStyle="light-content" />
+        <StatusBar backgroundColor={Colors.blue.s2} barStyle="light-content" />
       )}
       <Heading title="How active are you?" />
-      <View style={s.radioGroup}>
-        <RadioButton
+      <Radio.Group>
+        <Radio.Button
           label="Not Active"
           subLabel="little to no exercise"
           selected={activityLevel === NOT_ACTIVE}
           setSelected={() => updateActivityLevel(NOT_ACTIVE)}
         />
-        <RadioButton
+        <Radio.Button
           label="Lightly Active"
           subLabel="exercise 1-3 days per week"
           selected={activityLevel === LIGHT_ACTIVE}
           setSelected={() => updateActivityLevel(LIGHT_ACTIVE)}
         />
-        <RadioButton
+        <Radio.Button
           label="Moderately Active"
           subLabel="exercise 4-5 days per week)"
           selected={activityLevel === MODERATE_ACTIVE}
           setSelected={() => updateActivityLevel(MODERATE_ACTIVE)}
         />
-        <RadioButton
+        <Radio.Button
           label="Active"
           subLabel="intense exercise 3-4 days per week"
           selected={activityLevel === ACTIVE}
           setSelected={() => updateActivityLevel(ACTIVE)}
         />
-        <RadioButton
+        <Radio.Button
           label="Very Active"
           subLabel="intense exercise 6-7 days per week"
           selected={activityLevel === VERY_ACTIVE}
           setSelected={() => updateActivityLevel(VERY_ACTIVE)}
         />
-        <RadioButton
+        <Radio.Button
           label="Extremely Active"
           subLabel="very intense exercise daily or physical job"
           selected={activityLevel === EXTREMELY_ACTIVE}
           setSelected={() => updateActivityLevel(EXTREMELY_ACTIVE)}
         />
-      </View>
+      </Radio.Group>
       <NextButton onPress={() => navigate("UserInfo")} gutterTop={0} />
     </SafeAreaView>
   );
@@ -82,11 +82,6 @@ const s = StyleSheet.create({
     paddingTop: 20,
     paddingHorizontal: 10,
     backgroundColor: Colors.white,
-  },
-  radioGroup: {
-    flex: 1,
-    alignItems: "flex-start",
-    marginTop: 10,
   },
 });
 

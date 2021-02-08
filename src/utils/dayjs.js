@@ -10,7 +10,7 @@ dayjs.extend(timezone);
 
 export const deviceTimeZone = Localization.timezone;
 
-export const toRelativeDate = (date) => {
+export const getRelativeDate = (date) => {
   return dayjs(date).tz(deviceTimeZone).calendar(null, {
     sameDay: "[Today]",
     nextDay: "[Tomorrow]",
@@ -21,8 +21,14 @@ export const toRelativeDate = (date) => {
   });
 };
 
-export const formatTime = (time) => {
+export const getFormattedTime = (time) => {
   return dayjs(time).format("h:mm A");
+};
+
+export const getFormattedDateTime = (value, type) => {
+  if (type === "date") return getRelativeDate(value);
+  if (type === "time") return getFormattedTime(value);
+  return value;
 };
 
 export default dayjs;

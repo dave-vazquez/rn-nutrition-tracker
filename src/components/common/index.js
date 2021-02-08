@@ -1,6 +1,10 @@
-export { default as RadioButton } from "./RadioButton";
-export { default as NextButton } from "./NextButton";
-export { default as Card } from "./Card";
-export { default as TextInput } from "./TextInput";
-export { default as SelectionInput } from "./SelectionInput/SelectionInput";
-export { default as DateTime } from "./DateTimeInput";
+// INPUTS
+export { default as TextInput } from "./inputs/TextInput";
+export { default as Radio } from "./inputs/RadioInput/Radio";
+export { default as DateTimeInput } from "./inputs/DateTimeInput";
+export { default as SelectionInput } from "./inputs/SelectionInput";
+// BUTTONS
+export { default as Button } from "./buttons/Button";
+export { default as NextButton } from "./buttons/NextButton";
+// CONTAINERS
+export { default as Card } from "./containers/Card";

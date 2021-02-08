@@ -1,9 +1,15 @@
-import { Card, DateTime, SelectionInput, TextInput } from "_components/common";
-import { Colors } from "_global_styles";
+import {
+  Button,
+  Card,
+  DateTimeInput,
+  SelectionInput,
+  TextInput,
+} from "_components/common";
+import { Typography } from "_global_styles";
 import { maskQuantity } from "_utils";
 import React, { memo, useState } from "react";
 import { Platform, StyleSheet, View } from "react-native";
-import { Button } from "react-native-elements";
+import DateTimePicker from "@react-native-community/datetimepicker";
 
 const FoodLogForm = ({
   form,
@@ -53,24 +59,27 @@ const FoodLogForm = ({
         />
       </View>
       <View style={s.row}>
-        <DateTime.Input
+        <DateTimeInput
           type="date"
           label="Date"
           value={form.date}
           onTouch={() => showDatePickerWithMode("date")}
         />
-        <DateTime.Input
+        <DateTimeInput
           type="time"
           label="Time"
           value={form.date}
           onTouch={() => showDatePickerWithMode("time")}
         />
-        <DateTime.Picker
-          mode={dateMode}
-          value={form.date}
-          show={showDatePicker}
-          onChange={onDateChange}
-        />
+        {showDatePicker && (
+          <DateTimePicker
+            mode={dateMode}
+            value={form.date}
+            is24Hour={false}
+            minuteInterval={5}
+            onChange={onDateChange}
+          />
+        )}
       </View>
       <View style={[s.row, { alignItems: "flex-end" }]}>
         <SelectionInput
@@ -80,10 +89,9 @@ const FoodLogForm = ({
           onSelect={(mealType) => setForm((form) => ({ ...form, mealType }))}
         />
         <Button
-          raised
           loading={createStatus.start}
           title="Add to Journal"
-          buttonStyle={s.button}
+          titleStyle={s.buttonTitle}
           containerStyle={s.buttonContainer}
           onPress={onSubmitForm}
         />
@@ -99,14 +107,15 @@ const s = StyleSheet.create({
     alignItems: "flex-start",
     justifyContent: "space-between",
   },
+  buttonTitle: {
+    fontSize: Typography.size.xs,
+    marginRight: 0,
+  },
   buttonContainer: {
     flex: 1,
     marginLeft: 8,
     marginRight: 9,
     marginBottom: 10,
-  },
-  button: {
-    backgroundColor: Colors.green.light.s4,
   },
 });
 

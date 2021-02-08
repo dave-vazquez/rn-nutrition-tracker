@@ -6,7 +6,7 @@ const UPDATE_GENDER = "UPDATE_GENDER";
 const UPDATE_USER_INFO = "UPDATE_USER_INFO";
 
 const initialState = {
-  gender: "",
+  gender: "male",
   heightFt: "",
   heightIn: "",
   weightLbs: "",

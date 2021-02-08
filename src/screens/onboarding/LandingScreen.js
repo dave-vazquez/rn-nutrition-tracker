@@ -1,3 +1,4 @@
+import { Button } from "_components/common";
 import { Colors } from "_global_styles";
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
@@ -10,7 +11,6 @@ import {
   Text,
   View,
 } from "react-native";
-import { Button } from "react-native-elements";
 
 const LandingScreen = ({ navigation: { navigate, isFocused } }) => {
   return (
@@ -36,19 +36,14 @@ const LandingScreen = ({ navigation: { navigate, isFocused } }) => {
         </View>
         <View style={s.buttonGroup}>
           <Button
-            raised
+            width="100%"
             title="Sign Up"
-            titleStyle={s.buttonTitle}
-            buttonStyle={s.buttonSignup}
-            containerStyle={s.buttonContainer}
             onPress={() => navigate("WeightGoal")}
           />
           <Button
-            raised
+            width="100%"
             title="Login"
-            buttonStyle={s.buttonLogin}
-            containerStyle={s.buttonContainer}
-            titleStyle={[s.buttonTitle, s.buttonTitle_login]}
+            variant="white"
             onPress={() => navigate("AuthScreen", { authType: "signin" })}
           />
         </View>
@@ -96,23 +91,6 @@ const s = StyleSheet.create({
     flex: 1,
     width: "100%",
     justifyContent: "flex-end",
-  },
-  buttonContainer: {
-    marginTop: 10,
-  },
-  buttonSignup: {
-    backgroundColor: Colors.green.light.s4,
-  },
-  buttonLogin: {
-    backgroundColor: Colors.white,
-  },
-  buttonTitle: {
-    fontSize: 22,
-    marginRight: 10,
-    fontFamily: "Lato_Regular",
-  },
-  buttonTitle_login: {
-    color: Colors.grey.s8,
   },
 });
 

@@ -1,9 +1,9 @@
+import { Button } from "_components/common";
+import { Heading } from "_components/flows/onboarding";
 import { Context as OnboardingContext } from "_contexts/OnboardingContext";
 import { Colors } from "_global_styles";
-import { Heading } from "components/flows/onboarding";
 import React, { useContext } from "react";
 import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
-import { Button } from "react-native-elements";
 import { NavigationEvents } from "react-navigation";
 
 const WeightGoalScreen = ({ navigation: { navigate, isFocused } }) => {
@@ -22,12 +22,8 @@ const WeightGoalScreen = ({ navigation: { navigate, isFocused } }) => {
       <Heading title="What's your goal?" />
       <View style={s.content}>
         <Button
-          raised
-          iconRight
+          width={300}
           title="Lose Weight"
-          buttonStyle={s.button}
-          titleStyle={s.buttonTitle}
-          containerStyle={s.buttonContainer}
           onPress={() => handlePress("lose")}
           icon={{
             size: 30,
@@ -37,12 +33,8 @@ const WeightGoalScreen = ({ navigation: { navigate, isFocused } }) => {
           }}
         />
         <Button
-          raised
-          iconRight
+          width={300}
           title="Maintain Weight"
-          buttonStyle={s.button}
-          titleStyle={s.buttonTitle}
-          containerStyle={s.buttonContainer}
           onPress={() => handlePress("maintain")}
           icon={{
             size: 30,
@@ -52,13 +44,8 @@ const WeightGoalScreen = ({ navigation: { navigate, isFocused } }) => {
           }}
         />
         <Button
-          raised
-          iconRight
+          width={300}
           title="Gain Weight"
-          buttonStyle={s.button}
-          titleStyle={s.buttonTitle}
-          iconContainerStyle={s.iconContainer}
-          containerStyle={s.buttonContainer}
           onPress={() => handlePress("gain")}
           icon={{
             size: 30,
@@ -91,21 +78,6 @@ const s = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     ...StyleSheet.absoluteFill,
-  },
-  buttonContainer: {
-    marginVertical: 10,
-    justifyContent: "space-between",
-  },
-  buttonTitle: {
-    width: 200,
-    fontSize: 22,
-    marginRight: 10,
-    fontFamily: "Lato_Regular",
-    textAlign: "left",
-  },
-  button: {
-    paddingHorizontal: 20,
-    backgroundColor: Colors.green.light.s4,
   },
 });
 

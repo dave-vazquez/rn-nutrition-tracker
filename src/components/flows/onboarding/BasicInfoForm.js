@@ -1,9 +1,9 @@
+import { TextInput } from "_components/common";
 import { Colors } from "_global_styles";
 import { maskInputDate } from "_utils";
 import React from "react";
 import { Controller } from "react-hook-form";
 import { StyleSheet, View } from "react-native";
-import { Input } from "react-native-elements";
 
 const BasicInfoForm = ({
   rules,
@@ -20,19 +20,16 @@ const BasicInfoForm = ({
         control={control}
         rules={rules.dateOfBirth}
         render={({ onChange, onBlur, value }) => (
-          <Input
+          <TextInput
             value={value}
             onBlur={onBlur}
-            errorStyle={s.error}
+            variant="large"
             blurOnSubmit={false}
             label="Date of Birth"
-            nativeID="dateOfBirth"
             keyboardType="numeric"
             placeholder="mm/dd/yyyy"
-            labelStyle={{ color: Colors.grey.s8 }}
             errorMessage={errors.dateOfBirth?.message}
             ref={(input) => setRef("dateOfBirth", input)}
-            leftIconContainerStyle={s.inputIconContainer}
             onSubmitEditing={() => focusNextInput("heightFt")}
             onChangeText={(text) => onChange(maskInputDate(text))}
             leftIcon={{
@@ -50,19 +47,16 @@ const BasicInfoForm = ({
           control={control}
           rules={rules.heightFt}
           render={({ onChange, onBlur, value }) => (
-            <Input
+            <TextInput
               label="Height"
               value={value}
               onBlur={onBlur}
+              variant="large"
               placeholder="ft."
-              errorStyle={s.error}
               blurOnSubmit={false}
               keyboardType="numeric"
               onChangeText={onChange}
-              containerStyle={{ flex: 1 }}
-              labelStyle={{ color: Colors.grey.s8 }}
               errorMessage={errors.heightFt?.message}
-              leftIconContainerStyle={s.inputIconContainer}
               ref={(input) => setRef("heightFt", input)}
               onSubmitEditing={() => focusNextInput("heightIn")}
               leftIcon={{
@@ -79,16 +73,14 @@ const BasicInfoForm = ({
           control={control}
           rules={rules.heightIn}
           render={({ onChange, onBlur, value }) => (
-            <Input
+            <TextInput
               value={value}
               onBlur={onBlur}
+              variant="large"
               placeholder="in."
               blurOnSubmit={false}
-              errorStyle={s.error}
               keyboardType="numeric"
               onChangeText={onChange}
-              containerStyle={{ flex: 1 }}
-              labelStyle={{ color: Colors.grey.s8 }}
               errorMessage={errors.heightIn?.message}
               ref={(input) => setRef("heightIn", input)}
               onSubmitEditing={() => focusNextInput("weightLbs")}
@@ -102,19 +94,17 @@ const BasicInfoForm = ({
         control={control}
         rules={rules.weightLbs}
         render={({ onChange, onBlur, value }) => (
-          <Input
+          <TextInput
             value={value}
             label="Weight"
             onBlur={onBlur}
+            variant="large"
             placeholder="lbs."
-            errorStyle={s.error}
             keyboardType="numeric"
             onChangeText={onChange}
-            labelStyle={{ color: Colors.grey.s8 }}
             blurOnSubmit={weightGoal === "maintain"}
             errorMessage={errors.weightLbs?.message}
             ref={(input) => setRef("weightLbs", input)}
-            leftIconContainerStyle={s.inputIconContainer}
             onSubmitEditing={() =>
               weightGoal !== "maintain" && focusNextInput("targetWeightLbs")
             }
@@ -134,16 +124,8 @@ const s = StyleSheet.create({
   heightContainer: {
     flex: 1,
     flexDirection: "row",
-    alignItems: "flex-end",
-    justifyContent: "space-between",
-  },
-  inputIconContainer: {
-    width: 30,
     alignItems: "flex-start",
-  },
-  error: {
-    fontSize: 16,
-    color: "red",
+    justifyContent: "space-between",
   },
 });
 

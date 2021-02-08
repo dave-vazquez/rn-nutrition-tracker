@@ -1,7 +1,6 @@
-import { Colors } from "_global_styles";
+import { Button } from "_components/common";
 import React from "react";
 import { StyleSheet, View } from "react-native";
-import { Button } from "react-native-elements";
 
 const ToggleGenderForm = ({ gender, updateGender }) => {
   //
@@ -10,13 +9,15 @@ const ToggleGenderForm = ({ gender, updateGender }) => {
   return (
     <View style={containerStyle}>
       <View style={s.buttonGroup}>
-        <ToggleButton
+        <Button
+          width="45%"
           title="Male"
           raised={gender !== "male"}
           onPress={() => updateGender("male")}
           selected={!gender || gender === "male"}
         />
-        <ToggleButton
+        <Button
+          width="45%"
           title="Female"
           raised={gender !== "female"}
           onPress={() => updateGender("female")}
@@ -24,28 +25,6 @@ const ToggleGenderForm = ({ gender, updateGender }) => {
         />
       </View>
     </View>
-  );
-};
-
-const ToggleButton = ({ title, onPress, selected, raised }) => {
-  //
-  const buttonStyle = selected ? s.button : s.buttonUnselected;
-
-  const titleStyle = [
-    s.title,
-    { color: selected ? Colors.white : Colors.grey.s6 },
-  ];
-
-  return (
-    <Button
-      raised={raised}
-      iconRight
-      title={title}
-      onPress={onPress}
-      containerStyle={s.buttonContainer}
-      titleStyle={titleStyle}
-      buttonStyle={buttonStyle}
-    />
   );
 };
 
@@ -62,26 +41,6 @@ const s = StyleSheet.create({
   centered: {
     paddingHorizontal: 10,
     ...StyleSheet.absoluteFill,
-  },
-  buttonContainer: {
-    width: "45%",
-    marginVertical: 10,
-    justifyContent: "space-between",
-  },
-  title: {
-    fontSize: 22,
-    marginRight: 10,
-    textAlign: "left",
-    fontFamily: "Lato_Regular",
-  },
-  button: {
-    paddingHorizontal: 20,
-    backgroundColor: Colors.green.light.s4,
-  },
-  buttonUnselected: {
-    borderWidth: 1,
-    borderColor: Colors.grey.s6,
-    backgroundColor: "transparent",
   },
 });
 

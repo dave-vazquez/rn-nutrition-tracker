@@ -9,6 +9,7 @@ import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { HomeNavigator, OnboardingNavigator } from "./src/navigation";
 import { NavigationService } from "./src/navigation/utils";
 import { AuthResolutionScreen } from "./src/screens/authentication";
+import ThemeProvider from "./src/styles/theme";
 
 const RootNavigator = createSwitchNavigator(
   {
@@ -42,12 +43,14 @@ export default () => {
   if (!loaded) return <AppLoading />;
 
   return (
-    <CombinedProvider>
-      <Root
-        ref={(navigatorRef) => {
-          NavigationService.setTopLevelNavigator(navigatorRef);
-        }}
-      />
-    </CombinedProvider>
+    <ThemeProvider>
+      <CombinedProvider>
+        <Root
+          ref={(navigatorRef) => {
+            NavigationService.setTopLevelNavigator(navigatorRef);
+          }}
+        />
+      </CombinedProvider>
+    </ThemeProvider>
   );
 };
