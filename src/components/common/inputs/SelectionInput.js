@@ -1,5 +1,6 @@
 /* eslint-disable react-native/no-unused-styles */
 import { Colors, Layout, Typography } from "_global_styles";
+import PropTypes from "prop-types";
 import React, { memo, useCallback, useState } from "react";
 import {
   Modal,
@@ -11,23 +12,35 @@ import {
   View,
 } from "react-native";
 import { Icon } from "react-native-elements";
-import { textInputStyles } from "./styles";
+import { inputStyles } from "./styles";
 
-const SelectionInput = ({ onSelect, items, containerStyle, label, value }) => {
+const SelectionInput = ({
+  label,
+  value,
+  items,
+  variant,
+  onSelect,
+  containerStyle,
+}) => {
+  const styles = inputStyles.types.selection[variant];
+
   const [modalVisible, setModalVisible] = useState(false);
 
-  const s = textInputStyles.selection;
-
   return (
-    <View style={[s.container, containerStyle]}>
-      <Text style={s.label}>{label}</Text>
+    <View style={[styles.container, containerStyle]}>
+      <Text style={styles.label}>{label}</Text>
       <TouchableOpacity
         activeOpacity={0.5}
-        style={s.touchable}
+        style={styles.touchable}
         onPress={() => setModalVisible(!modalVisible)}
       >
-        <Text style={s.mockInput}>{value.label}</Text>
-        <Icon size={12} name="caretdown" type="ant-design" iconStyle={s.icon} />
+        <Text style={styles.mockInput}>{value.label}</Text>
+        <Icon
+          size={12}
+          name="caretdown"
+          type="ant-design"
+          iconStyle={styles.icon}
+        />
       </TouchableOpacity>
       <SelectionModal
         items={items}
@@ -40,6 +53,23 @@ const SelectionInput = ({ onSelect, items, containerStyle, label, value }) => {
   );
 };
 
+SelectionInput.defaultProps = {
+  label: " ",
+  variant: "base",
+};
+
+SelectionInput.propTypes = {
+  label: PropTypes.string,
+  value: PropTypes.any.isRequired,
+  items: PropTypes.array.isRequired,
+  onSelect: PropTypes.func,
+  containerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  variant: PropTypes.oneOf(["base", "large"]),
+};
+
+/********************************************************
+ *                     SELECTION MODAL                   *
+ ********************************************************/
 const SelectionModal = ({
   items,
   value,
@@ -63,12 +93,12 @@ const SelectionModal = ({
       hardwareAccelerated={true}
     >
       <TouchableOpacity
-        style={s.modal.overlay}
+        style={styles.modal.overlay}
         activeOpacity={1}
         onPress={() => setModalVisible((modalVisible) => !modalVisible)}
       >
         <View style={{ maxHeight: 400, width: 350 }}>
-          <ScrollView contentContainerStyle={s.modal.scrollView}>
+          <ScrollView contentContainerStyle={styles.modal.scrollView}>
             {items.map((item, i) => (
               <SelectionItem
                 key={i}
@@ -84,9 +114,12 @@ const SelectionModal = ({
   );
 };
 
+/********************************************************
+ *                     SELECTION ITEM                    *
+ ********************************************************/
 const SelectionItem = ({ item, selected, handlePress }) => {
-  const labelStyle = selected ? s.item.labelSelected : s.item.label;
-  const iconStyles = selected ? s.item.iconSelected : s.item.icon;
+  const labelStyle = selected ? styles.item.labelSelected : styles.item.label;
+  const iconStyles = selected ? styles.item.iconSelected : styles.item.icon;
 
   return (
     <TouchableWithoutFeedback
@@ -94,7 +127,7 @@ const SelectionItem = ({ item, selected, handlePress }) => {
       activeOpacity={1}
       onPress={() => handlePress(item.key)}
     >
-      <View style={s.item.container}>
+      <View style={styles.item.container}>
         <Text style={labelStyle}>{item.label}</Text>
         <Icon size={20} name="check" type="ant-design" iconStyle={iconStyles} />
       </View>
@@ -102,7 +135,7 @@ const SelectionItem = ({ item, selected, handlePress }) => {
   );
 };
 
-const s = {
+const styles = {
   modal: StyleSheet.create({
     overlay: {
       flex: 1,

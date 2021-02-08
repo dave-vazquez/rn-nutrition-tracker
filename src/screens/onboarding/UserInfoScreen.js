@@ -27,7 +27,9 @@ const UserInfoScreen = ({ navigation: { navigate, isFocused } }) => {
     updateUserInfo,
   } = useContext(OnboardingContext);
 
-  const { handleSubmit, formState, ...form } = useForm({ mode: "onBlur" });
+  const { handleSubmit, formState, ...form } = useForm({
+    mode: "onBlur",
+  });
 
   const scrollView = useRef(null);
   const [setRef, focusNextInput] = useFocusNextInput();
@@ -37,6 +39,8 @@ const UserInfoScreen = ({ navigation: { navigate, isFocused } }) => {
       navigate("AuthScreen", { authType: "signup" })
     );
   };
+
+  const { isDirty, isValid } = formState;
 
   return (
     <KeyboardAvoidingView
@@ -79,7 +83,7 @@ const UserInfoScreen = ({ navigation: { navigate, isFocused } }) => {
             )}
           </View>
         )}
-        {formState.isDirty && formState.isValid && (
+        {isDirty && isValid && (
           <NextButton gutterTop={20} onPress={handleSubmit(onSubmit)} />
         )}
       </ScrollView>

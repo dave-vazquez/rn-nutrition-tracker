@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React, { forwardRef, memo } from "react";
 import { TextInput as RNTextInput, Text, View } from "react-native";
 import { Icon } from "react-native-elements";
-import { textInputStyles } from "./styles";
+import { inputStyles } from "./styles";
 
 const TextInput = forwardRef(
   (
@@ -22,7 +22,7 @@ const TextInput = forwardRef(
     ref
   ) => {
     //
-    const styles = textInputStyles[variant];
+    const styles = inputStyles.variants[variant];
 
     return (
       <View style={[styles.container, containerStyle]}>

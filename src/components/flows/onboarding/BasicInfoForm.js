@@ -1,9 +1,10 @@
-import { TextInput } from "_components/common";
+import { DateTimeInput, TextInput } from "_components/common";
 import { Colors } from "_global_styles";
-import { maskInputDate } from "_utils";
-import React from "react";
+import { maxRegistrationDOB, minRegistrationDOB } from "_utils/dayjs";
+import React, { useState } from "react";
 import { Controller } from "react-hook-form";
 import { StyleSheet, View } from "react-native";
+import DateTimePicker from "@react-native-community/datetimepicker";
 
 const BasicInfoForm = ({
   rules,
@@ -12,32 +13,37 @@ const BasicInfoForm = ({
   focusNextInput,
   form: { errors, control },
 }) => {
+  const [showDatePicker, setShowDatePicker] = useState(false);
+
   return (
     <View>
       <Controller
         name="dateOfBirth"
-        defaultValue=""
         control={control}
-        rules={rules.dateOfBirth}
-        render={({ onChange, onBlur, value }) => (
-          <TextInput
-            value={value}
-            onBlur={onBlur}
-            variant="large"
-            blurOnSubmit={false}
-            label="Date of Birth"
-            keyboardType="numeric"
-            placeholder="mm/dd/yyyy"
-            errorMessage={errors.dateOfBirth?.message}
-            ref={(input) => setRef("dateOfBirth", input)}
-            onSubmitEditing={() => focusNextInput("heightFt")}
-            onChangeText={(text) => onChange(maskInputDate(text))}
-            leftIcon={{
-              type: "font-awesome-5",
-              name: "calendar",
-              color: Colors.grey.s8,
-            }}
-          />
+        defaultValue={maxRegistrationDOB}
+        render={({ value, onChange }) => (
+          <View>
+            <DateTimeInput
+              type="date"
+              label="Date of Birth"
+              value={value}
+              variant="large"
+              onTouch={() => setShowDatePicker(true)}
+            />
+            {showDatePicker && (
+              <DateTimePicker
+                mode="date"
+                value={value}
+                display="spinner"
+                maximumDate={maxRegistrationDOB}
+                minimumDate={minRegistrationDOB}
+                onChange={(_, selectedDate) => {
+                  setShowDatePicker(false);
+                  onChange(selectedDate || value);
+                }}
+              />
+            )}
+          </View>
         )}
       />
       <View style={s.heightContainer}>

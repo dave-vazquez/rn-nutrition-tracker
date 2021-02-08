@@ -1,7 +1,9 @@
 import { Colors, Layout, Typography } from "_global_styles";
 import { StyleSheet } from "react-native";
 
-// BASE STYLES
+/********************************************************
+ *                     VARIANTS                         *
+ ********************************************************/
 const base = StyleSheet.create({
   container: {
     flex: 1,
@@ -42,7 +44,6 @@ const base = StyleSheet.create({
   },
 });
 
-// VARIANTS
 const large = StyleSheet.create({
   ...base,
   container: {
@@ -61,27 +62,54 @@ const large = StyleSheet.create({
   },
 });
 
-const selection = StyleSheet.create({
-  ...base,
-  mockInput: {
-    ...base.input,
-    paddingVertical: Layout.spacing.sm,
-    borderBottomWidth: 0,
-  },
-  icon: {
-    color: Colors.blue.s2,
-  },
-  touchable: {
-    borderBottomWidth: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    borderBottomColor: Colors.blue.s2,
-  },
-});
-
-export const textInputStyles = {
+const variants = {
   base,
   large,
+};
+
+/********************************************************
+ *                           TYPES                      *
+ ********************************************************/
+const selection = {
+  base: StyleSheet.create({
+    ...base,
+    mockInput: {
+      ...base.input,
+      paddingVertical: Layout.spacing.sm,
+      borderBottomWidth: 0,
+    },
+    icon: {
+      color: Colors.blue.s2,
+    },
+    touchable: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+    },
+  }),
+  large: StyleSheet.create({
+    ...large,
+    mockInput: {
+      ...large.input,
+      paddingVertical: Layout.spacing.sm,
+      borderBottomWidth: 0,
+    },
+    icon: {
+      color: Colors.blue.s2,
+    },
+    touchable: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "space-between",
+    },
+  }),
+};
+
+const types = {
   selection,
+};
+
+export const inputStyles = {
+  types,
+  variants,
 };
