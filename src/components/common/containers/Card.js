@@ -1,7 +1,9 @@
 import { Colors } from "_global_styles";
 import React from "react";
 import { View } from "react-native";
-import { cardStyles as s } from "./styles";
+import CardStyles from "./styles";
+
+const s = CardStyles.baseStyles;
 
 const Card = ({ children, bgColor = Colors.white, style }) => {
   return (

@@ -3,9 +3,11 @@ import PropTypes from "prop-types";
 import React from "react";
 import { View } from "react-native";
 import Button from "./Button";
-import { buttonStyles } from "./styles";
+import ButtonStyles from "./styles";
 
-const s = buttonStyles.next;
+const s = ButtonStyles.nextButton;
+
+console.log("styles", s);
 
 const NextButton = ({ gutterTop, ...ButtonProps }) => {
   return (
@@ -16,6 +18,7 @@ const NextButton = ({ gutterTop, ...ButtonProps }) => {
           title="Next"
           raised={true}
           titleStyle={s.titleStyle}
+          iconRight
           icon={{
             size: 30,
             name: "arrow-right",

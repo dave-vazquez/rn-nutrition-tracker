@@ -1,12 +1,8 @@
 import { Colors, Layout, Typography } from "_global_styles";
 import { StyleSheet } from "react-native";
 
-/********************************************************
- *                     VARIANTS                         *
- ********************************************************/
-const base = StyleSheet.create({
+const baseStyles = StyleSheet.create({
   container: {
-    flex: 1,
     margin: 8,
     justifyContent: "space-between",
   },
@@ -37,6 +33,7 @@ const base = StyleSheet.create({
     alignItems: "flex-end",
   },
   error: {
+    textAlign: "center",
     fontFamily: Typography.font.lato.regular,
     fontSize: Typography.size.xs,
     color: Colors.warning.s1,
@@ -44,37 +41,14 @@ const base = StyleSheet.create({
   },
 });
 
-const large = StyleSheet.create({
-  ...base,
-  container: {
-    ...base.container,
-    marginBottom: Layout.spacing.sm,
-  },
-  label: {
-    ...base.label,
-    color: Colors.grey.s8,
-    fontSize: Typography.size.sm,
-  },
-  input: {
-    ...base.input,
-    fontSize: Typography.size.sm,
-    paddingVertical: Layout.spacing.sm,
-  },
-});
-
-const variants = {
-  base,
-  large,
-};
-
 /********************************************************
  *                           TYPES                      *
  ********************************************************/
-const selection = {
-  base: StyleSheet.create({
-    ...base,
+const selectionType = StyleSheet.flatten([
+  baseStyles,
+  {
     mockInput: {
-      ...base.input,
+      ...baseStyles.input,
       paddingVertical: Layout.spacing.sm,
       borderBottomWidth: 0,
     },
@@ -86,11 +60,40 @@ const selection = {
       alignItems: "center",
       justifyContent: "space-between",
     },
-  }),
-  large: StyleSheet.create({
-    ...large,
+  },
+]);
+
+/********************************************************
+ *                     VARIANTS                         *
+ ********************************************************/
+
+const smallVariant = baseStyles;
+const largeVariant = StyleSheet.flatten([
+  baseStyles,
+  {
+    container: {
+      ...baseStyles.container,
+      marginBottom: Layout.spacing.sm,
+    },
+    label: {
+      ...baseStyles.label,
+      color: Colors.grey.s8,
+      fontSize: Typography.size.sm,
+    },
+    input: {
+      ...baseStyles.input,
+      fontSize: Typography.size.sm,
+      paddingVertical: Layout.spacing.sm,
+    },
+  },
+]);
+
+const selectionSmallVariant = selectionType;
+const selectionLargeVariant = StyleSheet.flatten([
+  largeVariant,
+  {
     mockInput: {
-      ...large.input,
+      ...largeVariant.input,
       paddingVertical: Layout.spacing.sm,
       borderBottomWidth: 0,
     },
@@ -102,14 +105,18 @@ const selection = {
       alignItems: "center",
       justifyContent: "space-between",
     },
-  }),
+  },
+]);
+
+const InputStyles = {
+  textInput: {
+    small: smallVariant,
+    large: largeVariant,
+  },
+  selectionInput: {
+    small: selectionSmallVariant,
+    large: selectionLargeVariant,
+  },
 };
 
-const types = {
-  selection,
-};
-
-export const inputStyles = {
-  types,
-  variants,
-};
+export default InputStyles;

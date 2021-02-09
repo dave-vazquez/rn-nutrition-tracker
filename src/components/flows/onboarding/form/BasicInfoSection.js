@@ -6,7 +6,7 @@ import { Controller } from "react-hook-form";
 import { StyleSheet, View } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
-const BasicInfoForm = ({
+const BasicInfoSection = ({
   rules,
   setRef,
   weightGoal,
@@ -62,6 +62,7 @@ const BasicInfoForm = ({
               blurOnSubmit={false}
               keyboardType="numeric"
               onChangeText={onChange}
+              containerStyle={{ flex: 1 }}
               errorMessage={errors.heightFt?.message}
               ref={(input) => setRef("heightFt", input)}
               onSubmitEditing={() => focusNextInput("heightIn")}
@@ -85,6 +86,7 @@ const BasicInfoForm = ({
               variant="large"
               placeholder="in."
               blurOnSubmit={false}
+              containerStyle={{ flex: 1 }}
               keyboardType="numeric"
               onChangeText={onChange}
               errorMessage={errors.heightIn?.message}
@@ -135,4 +137,4 @@ const s = StyleSheet.create({
   },
 });
 
-export default BasicInfoForm;
+export default BasicInfoSection;

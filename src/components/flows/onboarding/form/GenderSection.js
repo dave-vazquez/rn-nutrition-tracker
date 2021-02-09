@@ -2,7 +2,7 @@ import { Button } from "_components/common";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 
-const ToggleGenderForm = ({ gender, updateGender }) => {
+const GenderSection = ({ gender, updateGender }) => {
   //
   const containerStyle = [s.container, !gender ? s.centered : null];
 
@@ -44,4 +44,4 @@ const s = StyleSheet.create({
   },
 });
 
-export default ToggleGenderForm;
+export default GenderSection;

@@ -1,9 +1,9 @@
 import { NextButton } from "_components/common";
 import {
-  BasicInfoForm,
+  BasicInfoSection,
+  GenderSection,
   Heading,
-  TargetWeightForm,
-  ToggleGenderForm,
+  TargetWeightSection,
 } from "_components/flows/onboarding";
 import { Context as OnboardingContext } from "_contexts/OnboardingContext";
 import { onboardingRules as rules } from "_formrules";
@@ -63,10 +63,10 @@ const UserInfoScreen = ({ navigation: { navigate, isFocused } }) => {
         <Heading
           title={!gender ? "Are you male or female?" : "Tell us about you!"}
         />
-        <ToggleGenderForm gender={gender} updateGender={updateGender} />
+        <GenderSection gender={gender} updateGender={updateGender} />
         {gender !== "" && (
           <View>
-            <BasicInfoForm
+            <BasicInfoSection
               form={form}
               rules={rules}
               setRef={setRef}
@@ -74,7 +74,7 @@ const UserInfoScreen = ({ navigation: { navigate, isFocused } }) => {
               focusNextInput={focusNextInput}
             />
             {weightGoal !== "maintain" && (
-              <TargetWeightForm
+              <TargetWeightSection
                 form={form}
                 rules={rules}
                 setRef={setRef}

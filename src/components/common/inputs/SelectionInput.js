@@ -12,7 +12,7 @@ import {
   View,
 } from "react-native";
 import { Icon } from "react-native-elements";
-import { inputStyles } from "./styles";
+import InputStyles from "./styles";
 
 const SelectionInput = ({
   label,
@@ -22,7 +22,7 @@ const SelectionInput = ({
   onSelect,
   containerStyle,
 }) => {
-  const styles = inputStyles.types.selection[variant];
+  const styles = InputStyles.selectionInput[variant];
 
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -55,7 +55,7 @@ const SelectionInput = ({
 
 SelectionInput.defaultProps = {
   label: " ",
-  variant: "base",
+  variant: "small",
 };
 
 SelectionInput.propTypes = {
@@ -64,7 +64,7 @@ SelectionInput.propTypes = {
   items: PropTypes.array.isRequired,
   onSelect: PropTypes.func,
   containerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  variant: PropTypes.oneOf(["base", "large"]),
+  variant: PropTypes.oneOf(["small", "large"]),
 };
 
 /********************************************************

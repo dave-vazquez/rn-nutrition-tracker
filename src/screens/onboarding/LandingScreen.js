@@ -43,7 +43,7 @@ const LandingScreen = ({ navigation: { navigate, isFocused } }) => {
           <Button
             width="100%"
             title="Login"
-            variant="white"
+            variant="secondary"
             onPress={() => navigate("AuthScreen", { authType: "signin" })}
           />
         </View>

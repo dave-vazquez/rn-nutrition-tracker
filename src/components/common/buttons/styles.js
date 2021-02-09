@@ -1,8 +1,7 @@
 import { Colors, Layout, Typography } from "_global_styles";
 import { StyleSheet } from "react-native";
 
-// BASE STYLES
-const base = StyleSheet.create({
+const baseStyles = StyleSheet.create({
   titleStyle: {
     color: Colors.white,
     fontSize: Typography.size.md,
@@ -18,48 +17,91 @@ const base = StyleSheet.create({
   },
 });
 
-// VARIANTS
-const white = StyleSheet.create({
-  ...base,
-  buttonStyle: {
-    ...base.buttonStyle,
-    backgroundColor: Colors.white,
+/********************************************************
+ *                        TYPES                         *
+ ********************************************************/
+const nextButton = StyleSheet.flatten([
+  baseStyles,
+  {
+    buttonWrapper: {
+      justifyContent: "flex-end",
+      marginBottom: Layout.spacing.xl,
+    },
+    titleStyle: {
+      marginLeft: Layout.spacing.lg,
+    },
   },
-  titleStyle: {
-    ...base.titleStyle,
-    color: Colors.grey.s8,
-  },
-});
+]);
 
-const deselected = StyleSheet.create({
-  ...base,
-  buttonStyle: {
-    ...base.buttonStyle,
-    borderWidth: 1,
-    borderColor: Colors.grey.s6,
-    backgroundColor: Colors.white,
+/********************************************************
+ *                       VARIANTS                        *
+ ********************************************************/
+const primaryVariant = baseStyles;
+const secondaryVariant = StyleSheet.flatten([
+  baseStyles,
+  {
+    buttonStyle: {
+      backgroundColor: Colors.white,
+    },
+    titleStyle: {
+      ...baseStyles.titleStyle,
+      color: Colors.grey.s8,
+    },
   },
-  titleStyle: {
-    ...base.titleStyle,
-    color: Colors.grey.s6,
-  },
-});
+]);
 
-const next = StyleSheet.create({
-  ...base,
-  buttonWrapper: {
-    marginBottom: Layout.spacing.xl,
-    justifyContent: "flex-end",
+/********************************************************
+ *                       STATES                          *
+ ********************************************************/
+const primarySelected = primaryVariant;
+const primaryDeslected = StyleSheet.flatten([
+  primaryVariant,
+  {
+    buttonStyle: {
+      borderWidth: 1,
+      borderColor: Colors.grey.s6,
+      backgroundColor: Colors.white,
+    },
+    titleStyle: {
+      ...primaryVariant.titleStyle,
+      color: Colors.grey.s6,
+    },
   },
-  titleStyle: {
-    ...base.titleStyle,
-    marginRight: Layout.spacing.sm,
-  },
-});
+]);
 
-export const buttonStyles = {
-  base,
-  next,
-  white,
-  deselected,
+const secondarySelected = secondaryVariant;
+const secondaryDeselected = StyleSheet.flatten([
+  secondaryVariant,
+  {
+    buttonStyle: {
+      borderWidth: 1,
+      borderColor: Colors.grey.s6,
+      backgroundColor: Colors.white,
+    },
+    titleStyle: {
+      color: Colors.grey.s6,
+    },
+  },
+]);
+
+const ButtonStyles = {
+  nextButton,
+  baseButton: {
+    primary: {
+      state: (selected) => {
+        if (selected === true) return primarySelected;
+        if (selected === false) return primaryDeslected;
+        return primaryVariant;
+      },
+    },
+    secondary: {
+      state: (selected) => {
+        if (selected === true) return secondarySelected;
+        if (selected === false) return secondaryDeselected;
+        return secondaryVariant;
+      },
+    },
+  },
 };
+
+export default ButtonStyles;

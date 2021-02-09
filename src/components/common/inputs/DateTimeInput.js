@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { Icon } from "react-native-elements";
-import { inputStyles } from "./styles";
+import InputStyles from "./styles";
 
 const DateTimeInput = ({
   label,
@@ -16,7 +16,7 @@ const DateTimeInput = ({
   containerStyle,
 }) => {
   //
-  const styles = inputStyles.types.selection[variant];
+  const styles = InputStyles.selectionInput[variant];
 
   return (
     <View style={[styles.container, containerStyle]}>

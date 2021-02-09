@@ -1,4 +1,4 @@
-import { NextButton } from "_components/common";
+import { NextButton, TextInput } from "_components/common";
 import { Heading } from "_components/flows/onboarding";
 import { authRules as rules } from "_formrules";
 import { Colors } from "_global_styles";
@@ -14,7 +14,6 @@ import {
   Text,
   View,
 } from "react-native";
-import { Input } from "react-native-elements";
 import Spinner from "react-native-loading-spinner-overlay";
 import { NavigationEvents } from "react-navigation";
 
@@ -55,69 +54,67 @@ const AuthScreen = ({ navigation }) => {
       <Spinner visible={authStart} animation="fade" size="large" />
       <Heading title={headingText} />
       <View style={s.content}>
-        <View>
-          <Controller
-            name="email"
-            defaultValue="t@t.com"
-            control={control}
-            rules={rules.email}
-            render={({ onChange, onBlur, value }) => (
-              <Input
-                label="Email"
-                value={value}
-                onBlur={onBlur}
-                autoCapitalize="none"
-                errorStyle={s.error}
-                blurOnSubmit={false}
-                onChangeText={onChange}
-                keyboardType="email-address"
-                errorMessage={errors.email?.message}
-                onSubmitEditing={() => focusNextInput("password")}
-                leftIcon={{
-                  type: "material-community",
-                  name: "email-outline",
-                  color: Colors.grey.s8,
-                }}
-              />
-            )}
-          />
-          <Controller
-            name="password"
-            defaultValue="pass"
-            control={control}
-            rules={
-              authType === "signup"
-                ? rules.password
-                : {
-                  required: {
-                    value: true,
-                    message: "Required field",
-                  },
-                }
-            }
-            render={({ onChange, onBlur, value }) => (
-              <Input
-                value={value}
-                onBlur={onBlur}
-                label="Password"
-                autoCapitalize="none"
-                errorStyle={s.error}
-                secureTextEntry={true}
-                onChangeText={onChange}
-                errorMessage={errors.password?.message}
-                ref={(input) => setRef("password", input)}
-                leftIcon={{
-                  type: "material-community",
-                  name: "form-textbox-password",
-                  color: Colors.grey.s8,
-                }}
-              />
-            )}
-          />
-          {authFail && <Text style={s.error}>{errorMessage}</Text>}
-        </View>
-        <NextButton onPress={handleSubmit(onSubmit)} gutterTop={30} />
+        <Controller
+          name="email"
+          defaultValue="t@t.com"
+          control={control}
+          rules={rules.email}
+          render={({ onChange, onBlur, value }) => (
+            <TextInput
+              label="Email"
+              variant="large"
+              value={value}
+              onBlur={onBlur}
+              autoCapitalize="none"
+              blurOnSubmit={false}
+              onChangeText={onChange}
+              keyboardType="email-address"
+              errorMessage={errors.email?.message}
+              onSubmitEditing={() => focusNextInput("password")}
+              leftIcon={{
+                type: "material-community",
+                name: "email-outline",
+                color: Colors.grey.s8,
+              }}
+            />
+          )}
+        />
+        <Controller
+          name="password"
+          defaultValue="pass"
+          control={control}
+          rules={
+            authType === "signup"
+              ? rules.password
+              : {
+                required: {
+                  value: true,
+                  message: "Required field",
+                },
+              }
+          }
+          render={({ onChange, onBlur, value }) => (
+            <TextInput
+              variant="large"
+              value={value}
+              onBlur={onBlur}
+              label="Password"
+              autoCapitalize="none"
+              secureTextEntry={true}
+              onChangeText={onChange}
+              errorMessage={errors.password?.message}
+              ref={(input) => setRef("password", input)}
+              leftIcon={{
+                type: "material-community",
+                name: "form-textbox-password",
+                color: Colors.grey.s8,
+              }}
+            />
+          )}
+        />
+        {authFail && <Text style={s.error}>{errorMessage}</Text>}
       </View>
+      <NextButton onPress={handleSubmit(onSubmit)} gutterTop={30} />
     </KeyboardAvoidingView>
   );
 };
@@ -134,6 +131,7 @@ AuthScreen.navigationOptions = {
 const s = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: "flex-start",
     paddingVertical: 20,
     paddingHorizontal: 10,
     backgroundColor: Colors.white,
@@ -141,7 +139,7 @@ const s = StyleSheet.create({
   content: {
     flex: 1,
     marginTop: 30,
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
   },
   error: {
     fontSize: 16,

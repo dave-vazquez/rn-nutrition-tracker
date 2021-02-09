@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React, { forwardRef, memo } from "react";
 import { TextInput as RNTextInput, Text, View } from "react-native";
 import { Icon } from "react-native-elements";
-import { inputStyles } from "./styles";
+import InputStyles from "./styles";
 
 const TextInput = forwardRef(
   (
@@ -22,7 +22,7 @@ const TextInput = forwardRef(
     ref
   ) => {
     //
-    const styles = inputStyles.variants[variant];
+    const styles = InputStyles.textInput[variant];
 
     return (
       <View style={[styles.container, containerStyle]}>
@@ -62,14 +62,14 @@ const TextInput = forwardRef(
 
 TextInput.defaultProps = {
   label: " ",
-  variant: "base",
+  variant: "small",
   editable: true,
   blurOnSubmit: true,
 };
 
 TextInput.propTypes = {
   label: PropTypes.string,
-  variant: PropTypes.oneOf(["base", "large"]),
+  variant: PropTypes.oneOf(["small", "large"]),
   leftIcon: PropTypes.shape({
     type: PropTypes.string,
     name: PropTypes.string,

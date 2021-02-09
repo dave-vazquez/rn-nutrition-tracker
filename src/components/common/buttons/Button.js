@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { Button as RNEButton } from "react-native-elements";
-import { buttonStyles } from "./styles";
+import ButtonStyles from "./styles";
 
 const Button = ({
   width,
@@ -13,7 +13,7 @@ const Button = ({
   ...RNEButtonProps
 }) => {
   //
-  const styles = selected ? buttonStyles[variant] : buttonStyles.deselected;
+  const styles = ButtonStyles.baseButton[variant].state(selected);
 
   return (
     <RNEButton
@@ -26,13 +26,12 @@ const Button = ({
 };
 
 Button.defaultProps = {
-  variant: "base",
-  selected: true,
+  variant: "primary",
 };
 
 Button.propTypes = {
   width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  variant: PropTypes.oneOf(["base", "white", "selected"]),
+  variant: PropTypes.oneOf(["primary", "secondary"]),
   selected: PropTypes.bool,
   title: PropTypes.string,
   titleStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),

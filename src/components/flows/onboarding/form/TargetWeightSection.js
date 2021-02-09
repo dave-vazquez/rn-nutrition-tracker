@@ -3,9 +3,9 @@ import { Colors, Layout } from "_global_styles";
 import React, { useState } from "react";
 import { Controller } from "react-hook-form";
 import { View } from "react-native";
-import NetChangeSlider from "./NetChangeSlider";
+import NetChangeSlider from "../NetChangeSlider";
 
-const TargetWeightForm = ({
+const TargetWeightSection = ({
   rules,
   setRef,
   weightGoal,
@@ -73,4 +73,4 @@ const TargetWeightForm = ({
   );
 };
 
-export default TargetWeightForm;
+export default TargetWeightSection;
