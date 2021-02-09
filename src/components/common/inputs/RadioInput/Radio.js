@@ -23,7 +23,7 @@ const Button = ({ style, selected, setSelected, label, subLabel }) => {
 };
 
 const Group = ({ children }) => {
-  return <View style={s.container}>{children}</View>;
+  return <View style={s.radioGroup}>{children}</View>;
 };
 
 const Radio = {

@@ -8,3 +8,5 @@ export { default as Button } from "./buttons/Button";
 export { default as NextButton } from "./buttons/NextButton";
 // CONTAINERS
 export { default as Card } from "./containers/Card";
+// HEADINGS
+export { default as Heading } from "./headings/Heading";

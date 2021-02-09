@@ -24,8 +24,8 @@ const nextButton = StyleSheet.flatten([
   baseStyles,
   {
     buttonWrapper: {
+      flex: 1,
       justifyContent: "flex-end",
-      marginBottom: Layout.spacing.xl,
     },
     titleStyle: {
       marginLeft: Layout.spacing.lg,

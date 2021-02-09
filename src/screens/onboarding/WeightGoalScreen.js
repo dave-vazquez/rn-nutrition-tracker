@@ -1,10 +1,8 @@
-import { Button } from "_components/common";
-import { Heading } from "_components/flows/onboarding";
+import { Button, Heading } from "_components/common";
 import { Context as OnboardingContext } from "_contexts/OnboardingContext";
-import { Colors } from "_global_styles";
+import { Colors, baseStyles } from "_global_styles";
 import React, { useContext } from "react";
 import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
-import { NavigationEvents } from "react-navigation";
 
 const WeightGoalScreen = ({ navigation: { navigate, isFocused } }) => {
   const { updateWeightGoal } = useContext(OnboardingContext);
@@ -14,12 +12,11 @@ const WeightGoalScreen = ({ navigation: { navigate, isFocused } }) => {
   };
 
   return (
-    <SafeAreaView style={s.container}>
+    <SafeAreaView style={baseStyles.container}>
       {isFocused() && (
         <StatusBar backgroundColor={Colors.blue.s2} barStyle="light-content" />
       )}
-      <NavigationEvents onWillFocus={() => null} />
-      <Heading title="What's your goal?" />
+      <Heading title="What's your goal?" size="h3" />
       <View style={s.content}>
         <Button
           width={300}
@@ -68,12 +65,6 @@ WeightGoalScreen.navigationOptions = {
 };
 
 const s = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 20,
-    paddingHorizontal: 10,
-    backgroundColor: Colors.white,
-  },
   content: {
     alignItems: "center",
     justifyContent: "center",

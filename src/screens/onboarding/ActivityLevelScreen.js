@@ -1,5 +1,4 @@
-import { NextButton, Radio } from "_components/common";
-import { Heading } from "_components/flows/onboarding";
+import { Heading, NextButton, Radio } from "_components/common";
 import {
   ACTIVE,
   EXTREMELY_ACTIVE,
@@ -9,7 +8,7 @@ import {
   VERY_ACTIVE,
 } from "_constants";
 import { Context as OnboardingContext } from "_contexts/OnboardingContext";
-import { Colors } from "_global_styles";
+import { Colors, baseStyles } from "_global_styles";
 import React, { useContext } from "react";
 import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
 
@@ -20,11 +19,11 @@ const ActivityLevelScreen = ({ navigation: { navigate, isFocused } }) => {
   } = useContext(OnboardingContext);
 
   return (
-    <SafeAreaView style={s.container}>
+    <SafeAreaView style={baseStyles.container}>
       {isFocused() && (
         <StatusBar backgroundColor={Colors.blue.s2} barStyle="light-content" />
       )}
-      <Heading title="How active are you?" />
+      <Heading title="How active are you?" size="h3" />
       <Radio.Group>
         <Radio.Button
           label="Not Active"
@@ -63,7 +62,7 @@ const ActivityLevelScreen = ({ navigation: { navigate, isFocused } }) => {
           setSelected={() => updateActivityLevel(EXTREMELY_ACTIVE)}
         />
       </Radio.Group>
-      <NextButton onPress={() => navigate("UserInfo")} gutterTop={0} />
+      <NextButton onPress={() => navigate("UserInfo")} />
     </SafeAreaView>
   );
 };
@@ -75,14 +74,5 @@ ActivityLevelScreen.navigationOptions = {
     backgroundColor: Colors.blue.s2,
   },
 };
-
-const s = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 20,
-    paddingHorizontal: 10,
-    backgroundColor: Colors.white,
-  },
-});
 
 export default ActivityLevelScreen;

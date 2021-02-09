@@ -1,13 +1,12 @@
-import { NextButton } from "_components/common";
+import { Heading, NextButton } from "_components/common";
 import {
   BasicInfoSection,
   GenderSection,
-  Heading,
   TargetWeightSection,
 } from "_components/flows/onboarding";
 import { Context as OnboardingContext } from "_contexts/OnboardingContext";
 import { onboardingRules as rules } from "_formrules";
-import { Colors } from "_global_styles";
+import { Colors, baseStyles } from "_global_styles";
 import { useFocusNextInput } from "_hooks";
 import React, { useContext, useRef } from "react";
 import { useForm } from "react-hook-form";
@@ -16,7 +15,6 @@ import {
   Platform,
   ScrollView,
   StatusBar,
-  StyleSheet,
   View,
 } from "react-native";
 
@@ -46,7 +44,7 @@ const UserInfoScreen = ({ navigation: { navigate, isFocused } }) => {
     <KeyboardAvoidingView
       {...(Platform.OS === "ios" && { behavior: "padding" })}
       keyboardVerticalOffset={50}
-      style={s.container}
+      style={baseStyles.container}
     >
       {isFocused() && (
         <StatusBar backgroundColor={Colors.blue.s2} barStyle="light-content" />
@@ -62,6 +60,7 @@ const UserInfoScreen = ({ navigation: { navigate, isFocused } }) => {
       >
         <Heading
           title={!gender ? "Are you male or female?" : "Tell us about you!"}
+          size="h3"
         />
         <GenderSection gender={gender} updateGender={updateGender} />
         {gender !== "" && (
@@ -90,15 +89,6 @@ const UserInfoScreen = ({ navigation: { navigate, isFocused } }) => {
     </KeyboardAvoidingView>
   );
 };
-
-const s = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 20,
-    paddingHorizontal: 10,
-    backgroundColor: Colors.white,
-  },
-});
 
 UserInfoScreen.navigationOptions = {
   headerTitle: "About You",

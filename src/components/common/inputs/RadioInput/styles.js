@@ -2,16 +2,15 @@ import { Colors, Layout, Typography } from "_global_styles";
 import { StyleSheet } from "react-native";
 
 const baseStyles = StyleSheet.create({
-  container: {
+  radioGroup: {
     flex: 1,
     alignItems: "flex-start",
-    marginTop: Layout.spacing.sm,
   },
   touchable: {
-    flex: 1,
     flexDirection: "row",
     alignSelf: "stretch",
     alignItems: "flex-start",
+    marginVertical: Layout.spacing.sm,
   },
   radioBorder: {
     width: 24,
@@ -31,14 +30,14 @@ const baseStyles = StyleSheet.create({
   },
   label: {
     marginTop: -1,
-    marginLeft: Layout.spacing.sm,
+    marginLeft: Layout.spacing.md,
     fontSize: Typography.size.md,
     fontFamily: Typography.font.lato.regular,
   },
   subLabel: {
     marginTop: Layout.spacing.xs,
-    fontSize: Typography.font.sm,
-    marginLeft: Layout.spacing.sm,
+    fontSize: Typography.size.sm,
+    marginLeft: Layout.spacing.md,
     fontFamily: Typography.font.lato.light,
   },
 });

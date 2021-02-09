@@ -7,6 +7,7 @@ export const size = {
 };
 
 export const font = {
+  manrope: "Manrope_Reg",
   nunito: "NunitoSans_Regular",
   lato: {
     light: "Lato_Light",

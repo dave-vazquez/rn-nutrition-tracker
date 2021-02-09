@@ -76,7 +76,6 @@ const s = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 15,
     backgroundColor: Colors.wheat,
-    borderWidth: 1,
   },
   scroll: {
     flex: 1,
