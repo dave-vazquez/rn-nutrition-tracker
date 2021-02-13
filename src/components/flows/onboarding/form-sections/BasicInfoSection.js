@@ -24,10 +24,10 @@ const BasicInfoSection = ({
         render={({ value, onChange }) => (
           <View>
             <DateTimeInput
+              size="large"
               type="date"
               label="Date of Birth"
               value={value}
-              variant="large"
               onTouch={() => setShowDatePicker(true)}
             />
             {showDatePicker && (
@@ -57,7 +57,7 @@ const BasicInfoSection = ({
               label="Height"
               value={value}
               onBlur={onBlur}
-              variant="large"
+              size="large"
               placeholder="ft."
               blurOnSubmit={false}
               keyboardType="numeric"
@@ -83,7 +83,7 @@ const BasicInfoSection = ({
             <TextInput
               value={value}
               onBlur={onBlur}
-              variant="large"
+              size="large"
               placeholder="in."
               blurOnSubmit={false}
               containerStyle={{ flex: 1 }}
@@ -106,7 +106,7 @@ const BasicInfoSection = ({
             value={value}
             label="Weight"
             onBlur={onBlur}
-            variant="large"
+            size="large"
             placeholder="lbs."
             keyboardType="numeric"
             onChangeText={onChange}

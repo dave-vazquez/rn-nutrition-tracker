@@ -2,7 +2,7 @@ import React from "react";
 import { Text, TouchableOpacity, View } from "react-native";
 import RadioStyles from "./styles";
 
-const s = RadioStyles.baseStyles;
+const s = RadioStyles;
 
 const Button = ({ style, selected, setSelected, label, subLabel }) => {
   return (

@@ -9,38 +9,34 @@ import InputStyles from "./styles";
 const DateTimeInput = ({
   label,
   value,
-  variant,
+  size,
   onTouch,
   hideIcon,
   formatType,
   containerStyle,
 }) => {
   //
-  const styles = InputStyles.selectionInput[variant];
+  const s = InputStyles.selection[size];
 
   return (
-    <View style={[styles.container, containerStyle]}>
-      <Text style={styles.label}>{label}</Text>
-      <View style={styles.inputContainer}>
+    <View style={[s.container, containerStyle]}>
+      <Text style={s.label}>{label}</Text>
+      <TouchableOpacity
+        onPress={onTouch}
+        activeOpacity={0.5}
+        style={[s.touchable, { justifyContent: "flex-start" }]}
+      >
         {!hideIcon && (
           <Icon
             size={20}
             type="font-awesome"
             name="calendar"
             color={Colors.grey.s8}
-            containerStyle={styles.leftIconContainer}
+            containerStyle={s.leftIconContainer}
           />
         )}
-        <TouchableOpacity
-          onPress={onTouch}
-          activeOpacity={0.5}
-          style={styles.touchable}
-        >
-          <Text style={styles.mockInput}>
-            {getFormattedDateTime(value, formatType)}
-          </Text>
-        </TouchableOpacity>
-      </View>
+        <Text style={s.input}>{getFormattedDateTime(value, formatType)}</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -48,7 +44,7 @@ const DateTimeInput = ({
 DateTimeInput.defaultProps = {
   label: " ",
   formatType: "default",
-  variant: "base",
+  size: "small",
   hideIcon: false,
 };
 
@@ -58,7 +54,7 @@ DateTimeInput.propTypes = {
   hideIcon: PropTypes.bool,
   value: PropTypes.any.isRequired,
   formatType: PropTypes.oneOf(["default", "relative-date", "12-hour"]),
-  variant: PropTypes.oneOf(["base", "large"]),
+  size: PropTypes.oneOf(["small", "large"]),
   containerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 };
 

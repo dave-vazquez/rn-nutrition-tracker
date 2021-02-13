@@ -20,22 +20,22 @@ const WeightGoalScreen = ({ navigation: { navigate, isFocused } }) => {
       <View style={s.content}>
         <Button
           width={300}
+          size="large"
+          buttonStyles={{ justifyContent: "space-between" }}
           title="Lose Weight"
           onPress={() => handlePress("lose")}
-          icon={{
-            size: 30,
-            color: "white",
+          iconRight={{
             name: "run-fast",
             type: "material-community",
           }}
         />
         <Button
           width={300}
+          size="large"
           title="Maintain Weight"
+          buttonStyles={{ justifyContent: "space-between" }}
           onPress={() => handlePress("maintain")}
-          icon={{
-            size: 30,
-            color: "white",
+          iconRight={{
             name: "barchart",
             type: "ant-design",
           }}
@@ -43,10 +43,9 @@ const WeightGoalScreen = ({ navigation: { navigate, isFocused } }) => {
         <Button
           width={300}
           title="Gain Weight"
+          buttonStyles={{ justifyContent: "space-between" }}
           onPress={() => handlePress("gain")}
-          icon={{
-            size: 30,
-            color: "white",
+          iconRight={{
             name: "weight-lifter",
             type: "material-community",
           }}

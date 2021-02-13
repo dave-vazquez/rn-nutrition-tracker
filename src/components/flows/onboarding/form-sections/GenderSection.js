@@ -12,6 +12,7 @@ const GenderSection = ({ gender, updateGender }) => {
         <Button
           width="45%"
           title="Male"
+          size="large"
           raised={gender !== "male"}
           onPress={() => updateGender("male")}
           selected={!gender || gender === "male"}
@@ -19,6 +20,7 @@ const GenderSection = ({ gender, updateGender }) => {
         <Button
           width="45%"
           title="Female"
+          size="large"
           raised={gender !== "female"}
           onPress={() => updateGender("female")}
           selected={!gender || gender === "female"}

@@ -7,8 +7,8 @@ import InputStyles from "./styles";
 const TextInput = forwardRef(
   (
     {
+      size,
       label,
-      variant,
       editable,
       leftIcon,
       rightIcon,
@@ -22,24 +22,24 @@ const TextInput = forwardRef(
     ref
   ) => {
     //
-    const styles = InputStyles.textInput[variant];
+    const s = InputStyles.text[size];
 
     return (
-      <View style={[styles.container, containerStyle]}>
-        <Text style={[styles.label, labelStyle]}>{label}</Text>
-        <View style={styles.inputContainer}>
+      <View style={[s.container, containerStyle]}>
+        <Text style={[s.label, labelStyle]}>{label}</Text>
+        <View style={s.inputContainer}>
           {leftIcon && (
             <Icon
               size={20}
               type={leftIcon.type}
               name={leftIcon.name}
               color={leftIcon.color}
-              containerStyle={styles.leftIconContainer}
+              containerStyle={s.leftIconContainer}
             />
           )}
           <RNTextInput
             ref={ref}
-            style={[styles.input, inputStyle]}
+            style={[s.input, inputStyle]}
             editable={editable}
             blurOnSubmit={blurOnSubmit}
             {...otherProps}
@@ -50,11 +50,11 @@ const TextInput = forwardRef(
               type={rightIcon.type}
               name={rightIcon.name}
               color={rightIcon.color}
-              containerStyle={styles.rightIconContainer}
+              containerStyle={s.rightIconContainer}
             />
           )}
         </View>
-        {errorMessage && <Text style={styles.error}>{errorMessage}</Text>}
+        {errorMessage && <Text style={s.error}>{errorMessage}</Text>}
       </View>
     );
   }
@@ -62,14 +62,14 @@ const TextInput = forwardRef(
 
 TextInput.defaultProps = {
   label: " ",
-  variant: "small",
+  size: "small",
   editable: true,
   blurOnSubmit: true,
 };
 
 TextInput.propTypes = {
   label: PropTypes.string,
-  variant: PropTypes.oneOf(["small", "large"]),
+  size: PropTypes.oneOf(["small", "large"]),
   leftIcon: PropTypes.shape({
     type: PropTypes.string,
     name: PropTypes.string,

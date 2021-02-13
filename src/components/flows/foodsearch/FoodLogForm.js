@@ -60,12 +60,14 @@ const FoodLogForm = ({
       </View>
       <View style={s.row}>
         <DateTimeInput
+          hideIcon
           type="date"
           label="Date"
           value={form.date}
           onTouch={() => showDatePickerWithMode("date")}
         />
         <DateTimeInput
+          hideIcon
           type="time"
           label="Time"
           value={form.date}
@@ -92,7 +94,7 @@ const FoodLogForm = ({
           loading={createStatus.start}
           title="Add to Journal"
           titleStyle={s.buttonTitle}
-          containerStyle={s.buttonContainer}
+          containerStyles={s.buttonContainer}
           onPress={onSubmitForm}
         />
       </View>
@@ -114,8 +116,8 @@ const s = StyleSheet.create({
   buttonContainer: {
     flex: 1,
     marginLeft: 8,
-    marginRight: 9,
-    marginBottom: 10,
+    marginRight: 8,
+    marginBottom: 0,
   },
 });
 

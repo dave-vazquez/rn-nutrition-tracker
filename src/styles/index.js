@@ -1,8 +1,8 @@
 import { StyleSheet } from "react-native";
 import * as Colors from "./colors";
-import * as Containers from "./containers";
 import * as Layout from "./layout";
 import * as Typography from "./typography";
+import composeStyles from "./utils/composeStyles";
 
 const baseStyles = StyleSheet.create({
   container: {
@@ -13,4 +13,4 @@ const baseStyles = StyleSheet.create({
   },
 });
 
-export { Colors, Typography, Containers, Layout, baseStyles };
+export { Colors, Typography, Layout, composeStyles, baseStyles };

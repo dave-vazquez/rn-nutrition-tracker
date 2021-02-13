@@ -1,4 +1,4 @@
-import { Heading, NextButton } from "_components/common";
+import { Button, Heading } from "_components/common";
 import {
   BasicInfoSection,
   GenderSection,
@@ -6,7 +6,7 @@ import {
 } from "_components/flows/onboarding";
 import { Context as OnboardingContext } from "_contexts/OnboardingContext";
 import { onboardingRules as rules } from "_formrules";
-import { Colors, baseStyles } from "_global_styles";
+import { Colors, Layout, baseStyles } from "_global_styles";
 import { useFocusNextInput } from "_hooks";
 import React, { useContext, useRef } from "react";
 import { useForm } from "react-hook-form";
@@ -29,14 +29,14 @@ const UserInfoScreen = ({ navigation: { navigate, isFocused } }) => {
     mode: "onBlur",
   });
 
-  const scrollView = useRef(null);
-  const [setRef, focusNextInput] = useFocusNextInput();
-
   const onSubmit = (userInfo) => {
     updateUserInfo(userInfo, () =>
       navigate("AuthScreen", { authType: "signup" })
     );
   };
+
+  const scrollView = useRef(null);
+  const [setRef, focusNextInput] = useFocusNextInput();
 
   const { isDirty, isValid } = formState;
 
@@ -83,7 +83,13 @@ const UserInfoScreen = ({ navigation: { navigate, isFocused } }) => {
           </View>
         )}
         {isDirty && isValid && (
-          <NextButton gutterTop={20} onPress={handleSubmit(onSubmit)} />
+          <View style={Layout.fixedBottom}>
+            <Button
+              title="Next"
+              size="large"
+              onPress={handleSubmit(onSubmit)}
+            />
+          </View>
         )}
       </ScrollView>
     </KeyboardAvoidingView>

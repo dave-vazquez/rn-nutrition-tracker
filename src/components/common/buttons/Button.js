@@ -1,64 +1,92 @@
+import { Colors } from "_global_styles";
 import PropTypes from "prop-types";
 import React from "react";
-import { Button as RNEButton } from "react-native-elements";
+import {
+  ActivityIndicator,
+  Platform,
+  Text,
+  TouchableNativeFeedback,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import { Icon } from "react-native-elements";
 import ButtonStyles from "./styles";
 
+const TouchableComponent = Platform.select({
+  android: TouchableNativeFeedback,
+  default: TouchableOpacity,
+});
+
 const Button = ({
+  size,
+  title,
   width,
+  raised,
   variant,
+  onPress,
+  loading,
   selected,
-  titleStyle,
-  buttonStyle,
-  containerStyle,
-  ...RNEButtonProps
+  disabled,
+  iconRight,
+  titleStyles,
+  buttonStyles,
+  containerStyles,
 }) => {
-  //
-  const styles = ButtonStyles.baseButton[variant].state(selected);
+  const state =
+    selected === undefined ? "default" : selected ? "selected" : "deselected";
+
+  const s = ButtonStyles[variant][size][state];
 
   return (
-    <RNEButton
-      titleStyle={[styles.titleStyle, titleStyle]}
-      buttonStyle={[styles.buttonStyle, buttonStyle]}
-      containerStyle={[styles.containerStyle, containerStyle, { width }]}
-      {...RNEButtonProps}
-    />
+    <View style={[s.container, containerStyles, raised && s.raised, { width }]}>
+      <TouchableComponent
+        onPress={onPress}
+        delayPressIn={0}
+        activeOpacity={0.3}
+        disabled={disabled}
+      >
+        <View style={[s.button, buttonStyles]}>
+          {loading && (
+            <ActivityIndicator style={s.loading} size="small" color="white" />
+          )}
+          {!loading && <Text style={[s.title, titleStyles]}>{title}</Text>}
+          {!loading && iconRight && (
+            <Icon
+              size={iconRight.size || 30}
+              type={iconRight.type}
+              name={iconRight.name}
+              color={iconRight.color || Colors.white}
+              style={s.iconContainer}
+            />
+          )}
+        </View>
+      </TouchableComponent>
+    </View>
   );
 };
 
 Button.defaultProps = {
+  size: "small",
+  raised: true,
+  loading: false,
+  disabled: false,
   variant: "primary",
 };
 
 Button.propTypes = {
-  width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  variant: PropTypes.oneOf(["primary", "secondary"]),
-  selected: PropTypes.bool,
+  size: PropTypes.oneOf(["small", "large"]),
   title: PropTypes.string,
-  titleStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  titleProps: PropTypes.object,
-  buttonStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  type: PropTypes.oneOf(["solid", "clear", "outline"]),
-  loading: PropTypes.bool,
-  loadingStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  loadingProps: PropTypes.object,
-  onPress: PropTypes.func,
-  containerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  icon: PropTypes.oneOfType([
-    PropTypes.element,
-    PropTypes.object,
-    PropTypes.bool,
-    PropTypes.func,
-  ]),
-  iconContainerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  iconRight: PropTypes.bool,
-  linearGradientProps: PropTypes.object,
-  TouchableComponent: PropTypes.elementType,
-  ViewComponent: PropTypes.elementType,
-  disabled: PropTypes.bool,
-  disabledStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
-  disabledTitleStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   raised: PropTypes.bool,
-  theme: PropTypes.object,
+  variant: PropTypes.oneOf(["primary", "secondary"]),
+  onPress: PropTypes.func,
+  loading: PropTypes.bool,
+  selected: PropTypes.bool,
+  disabled: PropTypes.bool,
+  iconRight: PropTypes.object,
+  titleStyles: PropTypes.object,
+  buttonStyles: PropTypes.object,
+  containerStyles: PropTypes.object,
 };
 
 export default Button;

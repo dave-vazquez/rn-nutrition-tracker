@@ -1,105 +1,173 @@
-import { Colors, Layout, Typography } from "_global_styles";
-import { StyleSheet } from "react-native";
+import { Colors, Layout, Typography, composeStyles } from "_global_styles";
+import { Platform } from "react-native";
 
-const baseStyles = StyleSheet.create({
-  titleStyle: {
-    color: Colors.white,
-    fontSize: Typography.size.md,
-    marginRight: Layout.spacing.sm,
-    fontFamily: Typography.font.lato.regular,
-  },
-  buttonStyle: {
-    backgroundColor: Colors.green.light.s4,
-  },
-  containerStyle: {
+const baseStyles = {
+  container: {
+    borderRadius: 3,
+    overflow: "hidden",
     justifyContent: "space-between",
     marginVertical: Layout.spacing.sm,
+  },
+  button: {
+    borderRadius: 3,
+    paddingVertical: 8,
+    alignItems: "center",
+    flexDirection: "row",
+    paddingHorizontal: 15,
+    justifyContent: "center",
+  },
+  title: {
+    paddingVertical: 1,
+    textAlign: "center",
+    fontFamily: Typography.font.lato.regular,
+  },
+  iconContainer: {
+    marginHorizontal: Layout.spacing.xs,
+  },
+  loading: {
+    marginVertical: 2,
+  },
+  raised: {
+    overflow: "visible",
+    ...Platform.select({
+      android: {
+        elevation: 4,
+      },
+      default: {
+        shadowRadius: 1,
+        shadowOpacity: 1,
+        shadowColor: "rgba(0,0,0, .4)",
+        shadowOffset: { height: 1, width: 1 },
+      },
+    }),
+  },
+};
+
+/********************************************************
+ *                       VARIANTS                       *
+ ********************************************************/
+const primary = (styles) => ({
+  ...styles,
+  button: {
+    ...styles.button,
+    backgroundColor: Colors.green.light.s4,
+  },
+  title: {
+    ...baseStyles.title,
+    color: Colors.white,
+  },
+});
+
+const secondary = (styles) => ({
+  ...styles,
+  button: {
+    ...styles.button,
+    backgroundColor: Colors.white,
+  },
+  title: {
+    ...styles.title,
+    color: Colors.grey.s8,
   },
 });
 
 /********************************************************
- *                        TYPES                         *
+ *                         SIZES                        *
  ********************************************************/
-const nextButton = StyleSheet.flatten([
-  baseStyles,
-  {
-    buttonWrapper: {
-      flex: 1,
-      justifyContent: "flex-end",
-    },
-    titleStyle: {
-      marginLeft: Layout.spacing.lg,
-    },
+const small = (styles) => ({
+  ...styles,
+  title: {
+    ...styles.title,
+    fontSize: Typography.size.sm,
   },
-]);
+});
+
+const large = (styles) => ({
+  ...styles,
+  title: {
+    ...styles.title,
+    fontSize: Typography.size.md,
+  },
+});
 
 /********************************************************
- *                       VARIANTS                        *
+ *                         STATES                       *
  ********************************************************/
-const primaryVariant = baseStyles;
-const secondaryVariant = StyleSheet.flatten([
-  baseStyles,
-  {
-    buttonStyle: {
-      backgroundColor: Colors.white,
-    },
-    titleStyle: {
-      ...baseStyles.titleStyle,
-      color: Colors.grey.s8,
-    },
+const selected = (styles) => ({
+  ...styles,
+  button: {
+    ...styles.button,
   },
-]);
+});
 
-/********************************************************
- *                       STATES                          *
- ********************************************************/
-const primarySelected = primaryVariant;
-const primaryDeslected = StyleSheet.flatten([
-  primaryVariant,
-  {
-    buttonStyle: {
-      borderWidth: 1,
-      borderColor: Colors.grey.s6,
-      backgroundColor: Colors.white,
-    },
-    titleStyle: {
-      ...primaryVariant.titleStyle,
-      color: Colors.grey.s6,
-    },
+const deselected = (styles) => ({
+  ...styles,
+  button: {
+    ...styles.button,
+    borderWidth: 1,
+    borderColor: Colors.grey.s6,
+    backgroundColor: Colors.white,
   },
-]);
-
-const secondarySelected = secondaryVariant;
-const secondaryDeselected = StyleSheet.flatten([
-  secondaryVariant,
-  {
-    buttonStyle: {
-      borderWidth: 1,
-      borderColor: Colors.grey.s6,
-      backgroundColor: Colors.white,
-    },
-    titleStyle: {
-      color: Colors.grey.s6,
-    },
+  title: {
+    ...styles.title,
+    color: Colors.grey.s6,
   },
-]);
+});
 
 const ButtonStyles = {
-  nextButton,
-  baseButton: {
-    primary: {
-      state: (selected) => {
-        if (selected === true) return primarySelected;
-        if (selected === false) return primaryDeslected;
-        return primaryVariant;
-      },
+  primary: {
+    small: {
+      default: composeStyles(baseStyles, { variant: primary, size: small }),
+      selected: composeStyles(baseStyles, {
+        variant: primary,
+        size: small,
+        state: selected,
+      }),
+      deselected: composeStyles(baseStyles, {
+        variant: primary,
+        size: small,
+        state: deselected,
+      }),
     },
-    secondary: {
-      state: (selected) => {
-        if (selected === true) return secondarySelected;
-        if (selected === false) return secondaryDeselected;
-        return secondaryVariant;
-      },
+    large: {
+      default: composeStyles(baseStyles, { variant: primary, size: large }),
+      selected: composeStyles(baseStyles, {
+        variant: primary,
+        size: large,
+        state: selected,
+      }),
+      deselected: composeStyles(baseStyles, {
+        variant: primary,
+        size: large,
+        state: deselected,
+      }),
+    },
+  },
+  secondary: {
+    small: {
+      default: composeStyles(baseStyles, { variant: secondary, size: small }),
+      selected: composeStyles(baseStyles, {
+        variant: secondary,
+        size: small,
+        state: selected,
+      }),
+      deselected: composeStyles(baseStyles, {
+        variant: secondary,
+        size: small,
+        state: deselected,
+      }),
+    },
+    large: {
+      default: composeStyles(baseStyles, { variant: secondary, size: large }),
+      selected: composeStyles(baseStyles, {
+        variant: secondary,
+        size: large,
+        state: selected,
+      }),
+      deselected: composeStyles(baseStyles, {
+        variant: secondary,
+        size: large,
+        state: deselected,
+      }),
     },
   },
 };

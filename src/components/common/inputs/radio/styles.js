@@ -1,7 +1,7 @@
 import { Colors, Layout, Typography } from "_global_styles";
 import { StyleSheet } from "react-native";
 
-const baseStyles = StyleSheet.create({
+const RadioStyles = StyleSheet.create({
   radioGroup: {
     flex: 1,
     alignItems: "flex-start",
@@ -41,9 +41,5 @@ const baseStyles = StyleSheet.create({
     fontFamily: Typography.font.lato.light,
   },
 });
-
-const RadioStyles = {
-  baseStyles,
-};
 
 export default RadioStyles;

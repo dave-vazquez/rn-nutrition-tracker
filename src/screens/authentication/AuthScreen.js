@@ -1,6 +1,6 @@
-import { Heading, NextButton, TextInput } from "_components/common";
+import { Button, Heading, TextInput } from "_components/common";
 import { authRules as rules } from "_formrules";
-import { Colors, baseStyles } from "_global_styles";
+import { Colors, Layout, baseStyles } from "_global_styles";
 import { useFocusNextInput } from "_hooks";
 import { useAuthenticate } from "_hooks";
 import React from "react";
@@ -61,7 +61,7 @@ const AuthScreen = ({ navigation }) => {
           render={({ onChange, onBlur, value }) => (
             <TextInput
               label="Email"
-              variant="large"
+              size="large"
               value={value}
               onBlur={onBlur}
               autoCapitalize="none"
@@ -94,7 +94,7 @@ const AuthScreen = ({ navigation }) => {
           }
           render={({ onChange, onBlur, value }) => (
             <TextInput
-              variant="large"
+              size="large"
               value={value}
               onBlur={onBlur}
               label="Password"
@@ -113,7 +113,9 @@ const AuthScreen = ({ navigation }) => {
         />
         {authFail && <Text style={s.error}>{errorMessage}</Text>}
       </View>
-      <NextButton onPress={handleSubmit(onSubmit)} gutterTop={30} />
+      <View style={Layout.fixedBottom}>
+        <Button title="Next" size="large" onPress={handleSubmit(onSubmit)} />
+      </View>
     </KeyboardAvoidingView>
   );
 };

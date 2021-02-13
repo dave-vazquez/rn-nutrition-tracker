@@ -39,7 +39,7 @@ const TargetWeightSection = ({
         render={({ onChange, value }) => (
           <TextInput
             value={value}
-            variant="large"
+            size="large"
             placeholder="lbs."
             label="Target Weight"
             keyboardType="numeric"

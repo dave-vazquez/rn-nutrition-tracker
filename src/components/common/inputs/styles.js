@@ -1,28 +1,12 @@
-import { Colors, Layout, Typography } from "_global_styles";
-import { StyleSheet } from "react-native";
+import { Colors, Layout, Typography, composeStyles } from "_global_styles";
 
-const baseStyles = StyleSheet.create({
-  container: {
-    margin: 8,
-    justifyContent: "space-between",
-  },
+const baseStyles = {
   label: {
-    color: Colors.blue.s2,
-    fontSize: Typography.size.xs,
     fontFamily: Typography.font.lato.regular,
   },
   input: {
-    flex: 1,
     color: Colors.grey.s8,
-    fontSize: Typography.size.xs,
-    paddingVertical: Layout.spacing.xs,
     fontFamily: Typography.font.lato.regular,
-  },
-  inputContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    borderBottomWidth: 1,
-    borderBottomColor: Colors.blue.s2,
   },
   leftIconContainer: {
     width: 25,
@@ -39,83 +23,100 @@ const baseStyles = StyleSheet.create({
     color: Colors.warning.s1,
     marginVertical: Layout.spacing.sm,
   },
+};
+
+/********************************************************
+ *                         TYPES                        *
+ ********************************************************/
+const text = (styles) => ({
+  ...styles,
+  input: {
+    ...styles.input,
+    flex: 1,
+  },
+  container: {
+    flex: 1,
+    justifyContent: "space-between",
+  },
+  inputContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.blue.s2,
+  },
+});
+
+const selection = (styles) => ({
+  ...styles,
+  container: {
+    justifyContent: "space-between",
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.blue.s2,
+  },
+  inputContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  icon: {
+    color: Colors.blue.s2,
+  },
+  touchable: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingVertical: Layout.spacing.xs,
+  },
 });
 
 /********************************************************
- *                           TYPES                      *
+ *                         SIZES                        *
  ********************************************************/
-const selectionType = StyleSheet.flatten([
-  baseStyles,
-  {
-    mockInput: {
-      ...baseStyles.input,
-      paddingVertical: Layout.spacing.sm,
-      borderBottomWidth: 0,
-    },
-    icon: {
-      color: Colors.blue.s2,
-    },
-    touchable: {
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "space-between",
-    },
+const small = (styles) => ({
+  ...styles,
+  container: {
+    ...styles.container,
+    flex: 1,
+    margin: 8,
   },
-]);
-
-/********************************************************
- *                     VARIANTS                         *
- ********************************************************/
-
-const smallVariant = baseStyles;
-const largeVariant = StyleSheet.flatten([
-  baseStyles,
-  {
-    container: {
-      ...baseStyles.container,
-      marginBottom: Layout.spacing.sm,
-    },
-    label: {
-      ...baseStyles.label,
-      color: Colors.grey.s8,
-      fontSize: Typography.size.sm,
-    },
-    input: {
-      ...baseStyles.input,
-      fontSize: Typography.size.sm,
-      paddingVertical: Layout.spacing.sm,
-    },
+  label: {
+    ...styles.label,
+    color: Colors.blue.s2,
+    fontSize: Typography.size.xs,
   },
-]);
-
-const selectionSmallVariant = selectionType;
-const selectionLargeVariant = StyleSheet.flatten([
-  largeVariant,
-  {
-    mockInput: {
-      ...largeVariant.input,
-      paddingVertical: Layout.spacing.sm,
-      borderBottomWidth: 0,
-    },
-    icon: {
-      color: Colors.blue.s2,
-    },
-    touchable: {
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "space-between",
-    },
+  input: {
+    ...styles.input,
+    fontSize: Typography.size.xs,
+    paddingVertical: Layout.spacing.xs,
   },
-]);
+});
+
+const large = (styles) => ({
+  ...styles,
+  container: {
+    ...styles.container,
+    flex: 0,
+    margin: Layout.spacing.sm,
+  },
+  label: {
+    ...styles.label,
+    color: Colors.grey.s8,
+    fontSize: Typography.size.sm,
+  },
+  input: {
+    ...styles.input,
+    fontSize: Typography.size.sm,
+    paddingVertical: Layout.spacing.sm,
+  },
+});
 
 const InputStyles = {
-  textInput: {
-    small: smallVariant,
-    large: largeVariant,
+  text: {
+    small: composeStyles(baseStyles, { type: text, size: small }),
+    large: composeStyles(baseStyles, { type: text, size: large }),
   },
-  selectionInput: {
-    small: selectionSmallVariant,
-    large: selectionLargeVariant,
+  selection: {
+    small: composeStyles(baseStyles, { type: selection, size: small }),
+    large: composeStyles(baseStyles, { type: selection, size: large }),
   },
 };
 

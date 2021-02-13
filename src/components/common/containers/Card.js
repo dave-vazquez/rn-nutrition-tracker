@@ -3,7 +3,7 @@ import React from "react";
 import { View } from "react-native";
 import CardStyles from "./styles";
 
-const s = CardStyles.baseStyles;
+const s = CardStyles;
 
 const Card = ({ children, bgColor = Colors.white, style }) => {
   return (

@@ -6,6 +6,11 @@ export const spacing = {
   xl: 30,
 };
 
+export const fixedBottom = {
+  flex: 1,
+  justifyContent: "flex-end",
+};
+
 export const hidden = {
   display: "none",
 };

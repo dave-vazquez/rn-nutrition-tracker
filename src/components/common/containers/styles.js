@@ -1,7 +1,7 @@
 import { Colors } from "_global_styles";
 import { StyleSheet } from "react-native";
 
-const baseStyles = StyleSheet.create({
+const CardStyles = StyleSheet.create({
   card: {
     padding: 15,
     elevation: 4,
@@ -13,9 +13,5 @@ const baseStyles = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
   },
 });
-
-const CardStyles = {
-  baseStyles,
-};
 
 export default CardStyles;

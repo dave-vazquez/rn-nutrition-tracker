@@ -1,4 +1,4 @@
-import { Heading, NextButton, Radio } from "_components/common";
+import { Button, Heading, Radio } from "_components/common";
 import {
   ACTIVE,
   EXTREMELY_ACTIVE,
@@ -8,9 +8,9 @@ import {
   VERY_ACTIVE,
 } from "_constants";
 import { Context as OnboardingContext } from "_contexts/OnboardingContext";
-import { Colors, baseStyles } from "_global_styles";
+import { Colors, Layout, baseStyles } from "_global_styles";
 import React, { useContext } from "react";
-import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
+import { SafeAreaView, StatusBar, View } from "react-native";
 
 const ActivityLevelScreen = ({ navigation: { navigate, isFocused } }) => {
   const {
@@ -62,7 +62,13 @@ const ActivityLevelScreen = ({ navigation: { navigate, isFocused } }) => {
           setSelected={() => updateActivityLevel(EXTREMELY_ACTIVE)}
         />
       </Radio.Group>
-      <NextButton onPress={() => navigate("UserInfo")} />
+      <View style={Layout.fixedBottom}>
+        <Button
+          title="Next"
+          size="large"
+          onPress={() => navigate("UserInfo")}
+        />
+      </View>
     </SafeAreaView>
   );
 };
