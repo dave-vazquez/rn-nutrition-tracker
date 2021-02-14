@@ -1,7 +1,7 @@
 import { Button, Heading } from "_components/common";
-import { LandingContainer } from "_components/flows/onboarding";
 import React from "react";
 import { SafeAreaView, StatusBar, View } from "react-native";
+import { LandingContainer } from "./components";
 
 const LandingScreen = ({ navigation: { navigate, isFocused } }) => {
   return (

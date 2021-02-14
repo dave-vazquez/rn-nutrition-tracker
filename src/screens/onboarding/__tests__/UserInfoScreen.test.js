@@ -1,7 +1,7 @@
 import { Provider as OnboardingProvider } from "_contexts/OnboardingContext";
 import React from "react";
 import { render } from "@testing-library/react-native";
-import UserInfoScreen from "../UserInfoScreen";
+import UserInfoScreen from "../UserInfoScreen/UserInfoScreen";
 
 const navigation = {
   navigate: jest.fn(),

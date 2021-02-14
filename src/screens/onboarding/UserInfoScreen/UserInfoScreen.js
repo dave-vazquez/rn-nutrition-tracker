@@ -1,9 +1,4 @@
 import { Button, Heading } from "_components/common";
-import {
-  BasicInfoSection,
-  GenderSection,
-  TargetWeightSection,
-} from "_components/flows/onboarding";
 import { Context as OnboardingContext } from "_contexts/OnboardingContext";
 import { onboardingRules as rules } from "_formrules";
 import { Colors, Layout, baseStyles } from "_global_styles";
@@ -17,6 +12,11 @@ import {
   StatusBar,
   View,
 } from "react-native";
+import {
+  BasicInfoSection,
+  GenderSection,
+  TargetWeightSection,
+} from "./components";
 
 const UserInfoScreen = ({ navigation: { navigate, isFocused } }) => {
   const {

@@ -3,7 +3,7 @@ import { Colors, Layout } from "_global_styles";
 import React, { useState } from "react";
 import { Controller } from "react-hook-form";
 import { View } from "react-native";
-import NetChangeSlider from "../NetChangeSlider";
+import NetChangeSlider from "./NetChangeSlider";
 
 const TargetWeightSection = ({
   rules,

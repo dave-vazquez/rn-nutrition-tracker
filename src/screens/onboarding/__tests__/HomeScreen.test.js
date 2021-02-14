@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react-native";
-import LandingScreen from "../LandingScreen";
+import LandingScreen from "../LandingScreen/LandingScreen";
 
 const navigation = {
   navigate: jest.fn(),
