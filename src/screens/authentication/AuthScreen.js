@@ -52,7 +52,7 @@ const AuthScreen = ({ navigation }) => {
       <NavigationEvents onWillFocus={refreshAuth} />
       <Spinner visible={authStart} animation="fade" size="large" />
       <Heading title={headingText} size="h3" />
-      <View style={s.content}>
+      <View>
         <Controller
           name="email"
           defaultValue="t@t.com"
@@ -130,11 +130,6 @@ AuthScreen.navigationOptions = {
 };
 
 const s = StyleSheet.create({
-  content: {
-    // flex: 1,
-    // marginTop: 30,
-    // justifyContent: "flex-start",
-  },
   error: {
     fontSize: 16,
     color: "red",
