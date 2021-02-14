@@ -1,3 +1,5 @@
+/* eslint-disable react/display-name */
+/* eslint-disable react-hooks/exhaustive-deps */
 import { Context as JournalContext } from "_contexts/JournalContext";
 import { Colors } from "_global_styles";
 import React, { useContext, useEffect } from "react";
@@ -12,8 +14,6 @@ import {
 import Spinner from "react-native-loading-spinner-overlay";
 import { withNavigationFocus } from "react-navigation";
 import { DailyBudgetsCard } from "../../components";
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable react/display-name */
 import { HeaderRight } from "./components";
 
 const JournalScreen = ({ navigation: { isFocused } }) => {
