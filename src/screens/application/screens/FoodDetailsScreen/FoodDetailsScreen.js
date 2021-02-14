@@ -1,8 +1,3 @@
-import {
-  FoodLogForm,
-  NutritionDetailCard,
-  NutritionSummaryCard,
-} from "_components/flows/foodsearch";
 import { IDLE, MEAL_TYPES } from "_constants";
 import { Context as JournalContext } from "_contexts/JournalContext";
 import { Colors } from "_global_styles";
@@ -16,7 +11,12 @@ import {
   StyleSheet,
   View,
 } from "react-native";
-import { DailyBudgetsCard } from "../components";
+import { DailyBudgetsCard } from "../../components";
+import {
+  FoodLogForm,
+  NutritionDetailCard,
+  NutritionSummaryCard,
+} from "./components";
 
 const BREAKFAST = MEAL_TYPES[0];
 
