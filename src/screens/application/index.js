@@ -1,4 +1,4 @@
-export { default as JournalScreen } from "./screens/JournalScreen";
+export { default as JournalScreen } from "./screens/JournalScreen/JournalScreen";
 export { default as BarcodeScreen } from "./screens/BarcodeScreen";
 export { default as FoodSearchScreen } from "./screens/FoodSearchScreen";
 export { default as ProgressScreen } from "./screens/ProgressScreen";
