@@ -1,8 +1,8 @@
-import { SearchBar, SearchResults } from "_components/flows/foodsearch";
 import { Colors } from "_global_styles";
 import { useDebouncedSearch } from "_hooks";
 import React, { useCallback, useEffect, useState } from "react";
 import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
+import { SearchBar, SearchResults } from "./components";
 
 const FoodSearchScreen = ({ navigation: { navigate, isFocused } }) => {
   //
