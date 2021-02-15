@@ -1,1 +1,1 @@
-export { default as DailyBudgetCard } from "./DailyBudgetCard/DailyBudgetsCard";
+export { default as DailyBudgetsCard } from "./DailyBudgetsCard/DailyBudgetsCard";
