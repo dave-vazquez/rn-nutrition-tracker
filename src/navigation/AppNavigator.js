@@ -1,7 +1,6 @@
 import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import {
-  BarcodeScreen,
   FoodDetailsScreen,
   FoodSearchScreen,
   JournalScreen,
@@ -10,21 +9,19 @@ import {
 } from "../screens/application";
 import { stackNavigatorConfig, tabNavigatorConfig } from "./config";
 
-const FoodSearch = createStackNavigator(
-  { FoodSearch: FoodSearchScreen },
-  stackNavigatorConfig
-);
+const FoodSearchNavigator = createStackNavigator({
+  FoodSearch: FoodSearchScreen,
+  FoodDetails: FoodDetailsScreen,
+});
 
-const Journal = createStackNavigator(
+const JournalNavigator = createStackNavigator(
   { Journal: JournalScreen },
   stackNavigatorConfig
 );
 
 const TabNavigator = createBottomTabNavigator(
   {
-    Journal,
-    FoodSearch,
-    Barcode: BarcodeScreen,
+    Journal: JournalNavigator,
     Progress: ProgressScreen,
     Settings: SettingsScreen,
   },
@@ -34,13 +31,16 @@ const TabNavigator = createBottomTabNavigator(
   }
 );
 
-const HomeNavigator = createStackNavigator(
+const AppNavigator = createStackNavigator(
   {
     Tabs: {
       screen: TabNavigator,
       navigationOptions: { headerShown: false },
     },
-    FoodDetails: FoodDetailsScreen,
+    FoodSearch: {
+      screen: FoodSearchNavigator,
+      navigationOptions: { headerShown: false },
+    },
   },
   {
     initialRouteName: "Tabs",
@@ -50,4 +50,4 @@ const HomeNavigator = createStackNavigator(
   }
 );
 
-export default HomeNavigator;
+export default AppNavigator;

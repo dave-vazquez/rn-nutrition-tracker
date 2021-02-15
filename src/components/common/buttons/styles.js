@@ -116,7 +116,10 @@ const deselected = (styles) => ({
 const ButtonStyles = {
   primary: {
     small: {
-      default: composeStyles(baseStyles, { variant: primary, size: small }),
+      default: composeStyles(baseStyles, {
+        variant: primary,
+        size: small,
+      }),
       selected: composeStyles(baseStyles, {
         variant: primary,
         size: small,
@@ -129,7 +132,10 @@ const ButtonStyles = {
       }),
     },
     large: {
-      default: composeStyles(baseStyles, { variant: primary, size: large }),
+      default: composeStyles(baseStyles, {
+        variant: primary,
+        size: large,
+      }),
       selected: composeStyles(baseStyles, {
         variant: primary,
         size: large,
@@ -144,7 +150,10 @@ const ButtonStyles = {
   },
   secondary: {
     small: {
-      default: composeStyles(baseStyles, { variant: secondary, size: small }),
+      default: composeStyles(baseStyles, {
+        variant: secondary,
+        size: small,
+      }),
       selected: composeStyles(baseStyles, {
         variant: secondary,
         size: small,
@@ -157,7 +166,10 @@ const ButtonStyles = {
       }),
     },
     large: {
-      default: composeStyles(baseStyles, { variant: secondary, size: large }),
+      default: composeStyles(baseStyles, {
+        variant: secondary,
+        size: large,
+      }),
       selected: composeStyles(baseStyles, {
         variant: secondary,
         size: large,

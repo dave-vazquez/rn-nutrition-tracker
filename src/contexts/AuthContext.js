@@ -41,7 +41,7 @@ const refreshAuth = (dispatch) => () => {
 const tryLocalSignin = () => async () => {
   try {
     await nutritionAPI.get("/auth/validateToken");
-    NavigationService.navigate("Home");
+    NavigationService.navigate("App");
   } catch (err) {
     NavigationService.navigate("Onboarding");
   }
@@ -56,7 +56,7 @@ const signup = (dispatch) => async (userInfo) => {
     await AsyncStorage.setItem("token", response.data.token);
 
     dispatch({ type: AUTHENTICATE_REFRESH });
-    NavigationService.navigate("Home");
+    NavigationService.navigate("App");
     //
   } catch ({ response }) {
     dispatch({
@@ -80,7 +80,7 @@ const signin = (dispatch) => async (email, password) => {
 
     await AsyncStorage.setItem("token", response.data.token);
     dispatch({ type: AUTHENTICATE_REFRESH });
-    NavigationService.navigate("Home");
+    NavigationService.navigate("App");
     //
   } catch ({ response }) {
     dispatch({

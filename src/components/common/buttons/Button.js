@@ -17,6 +17,11 @@ const TouchableComponent = Platform.select({
   default: TouchableOpacity,
 });
 
+const background =
+  Platform.OS === "android" && Platform.Version >= 21
+    ? TouchableNativeFeedback.Ripple(Colors.white, true)
+    : undefined;
+
 const Button = ({
   size,
   title,
@@ -44,6 +49,7 @@ const Button = ({
         delayPressIn={0}
         activeOpacity={0.3}
         disabled={disabled}
+        background={background}
       >
         <View style={[s.button, buttonStyles]}>
           {loading && (

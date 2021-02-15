@@ -14,6 +14,11 @@ export const fixedBottom = {
   justifyContent: "flex-end",
 };
 
+export const centered = {
+  width: "100%",
+  alignItems: "center",
+};
+
 export const hidden = {
   display: "none",
 };

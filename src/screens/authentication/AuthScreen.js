@@ -1,6 +1,6 @@
 import { Button, Heading, TextInput } from "_components/common";
 import { authRules as rules } from "_formrules";
-import { Colors, Layout, baseStyles } from "_global_styles";
+import { Colors, Layout } from "_global_styles";
 import { useFocusNextInput } from "_hooks";
 import { useAuthenticate } from "_hooks";
 import React from "react";
@@ -44,7 +44,7 @@ const AuthScreen = ({ navigation }) => {
     <KeyboardAvoidingView
       {...(Platform.OS === "ios" && { behavior: "padding" })}
       keyboardVerticalOffset={50}
-      style={baseStyles.container}
+      style={Layout.container.onboarding}
     >
       {navigation.isFocused && (
         <StatusBar backgroundColor={Colors.white} barStyle="dark-content" />

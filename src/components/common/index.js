@@ -1,5 +1,6 @@
 // BUTTONS
 export { default as Button } from "./buttons/Button";
+export { default as IconButton } from "./buttons/IconButton/IconButton";
 // CONTAINERS
 export { default as Card } from "./containers/Card";
 // HEADINGS

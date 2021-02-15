@@ -1,3 +1,4 @@
+import { IconButton } from "_components/common";
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Context as JournalContext } from "_contexts/JournalContext";
 import { Colors, Layout } from "_global_styles";
@@ -8,7 +9,7 @@ import Spinner from "react-native-loading-spinner-overlay";
 import { withNavigationFocus } from "react-navigation";
 import { HeaderRight } from "./components";
 
-const JournalScreen = ({ navigation: { isFocused } }) => {
+const JournalScreen = ({ navigation: { navigate, isFocused } }) => {
   const {
     state: { fetchStatus },
     fetchJournalEntries,
@@ -45,6 +46,16 @@ const JournalScreen = ({ navigation: { isFocused } }) => {
       <ScrollView style={{ flexGrow: 1 }}>
         <DailyBudgetsCard />
       </ScrollView>
+      <View style={Layout.centered}>
+        <IconButton
+          onPress={() => navigate("FoodSearch")}
+          icon={{
+            name: "add",
+            type: "material-icons",
+            color: Colors.green.light.s4,
+          }}
+        />
+      </View>
     </SafeAreaView>
   );
 };

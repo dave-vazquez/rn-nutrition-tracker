@@ -6,7 +6,7 @@ import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
 import React from "react";
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
-import { HomeNavigator, OnboardingNavigator } from "./src/navigation";
+import { AppNavigator, OnboardingNavigator } from "./src/navigation";
 import { NavigationService } from "./src/navigation/utils";
 import { AuthResolutionScreen } from "./src/screens/authentication";
 
@@ -14,7 +14,7 @@ const RootNavigator = createSwitchNavigator(
   {
     AuthResolution: AuthResolutionScreen,
     Onboarding: OnboardingNavigator,
-    Home: HomeNavigator,
+    App: AppNavigator,
   },
   {
     initialRouteName: "AuthResolution",
