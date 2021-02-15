@@ -1,4 +1,4 @@
-import { Colors } from "_global_styles";
+import { Colors, Layout, Typography } from "_global_styles";
 import React, { memo } from "react";
 import { FlatList, StyleSheet } from "react-native";
 import { Avatar, ListItem } from "react-native-elements";
@@ -8,7 +8,7 @@ const SearchResults = ({ results, viewDetails }) => {
   return (
     <FlatList
       data={results}
-      contentContainerStyle={s.results}
+      contentContainerStyle={s.container}
       keyboardShouldPersistTaps="handled"
       keyExtractor={(item, index) => item.food.foodId + index}
       renderItem={({ item }) => (
@@ -40,18 +40,17 @@ const ListItemResult = ({ item, onPress }) => {
 };
 
 const s = StyleSheet.create({
-  results: {
+  container: {
     borderRadius: 5,
-    marginHorizontal: 15,
     overflow: "hidden",
+    marginHorizontal: Layout.spacing.md,
   },
   title: {
-    width: "100%",
-    fontFamily: "Lato_Regular",
+    fontFamily: Typography.font.lato.regular,
   },
   subTitle: {
-    fontFamily: "Lato_Italic",
     color: Colors.blue.s2,
+    fontFamily: Typography.font.lato.italic,
   },
 });
 

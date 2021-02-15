@@ -164,32 +164,4 @@ const s = StyleSheet.create({
   },
 });
 
-/*
-<NutrientItem
-                  name={"Calories"}
-                  quantity={toPrecision(nutrients.calories_kcal * quantity, 0)}
-                  unit={"cal"}
-                  subNutrient={false}
-                />
-                <NutrientItem
-                  name={"Fat"}
-                  quantity={toPrecision(nutrients.fat_g * quantity, 1)}
-                  unit={"g"}
-                  subNutrient={false}
-                />
-                <NutrientItem
-                  name={"Carbs"}
-                  quantity={toPrecision(nutrients.carbs_g * quantity, 1)}
-                  unit={"g"}
-                  subNutrient={false}
-                />
-                <NutrientItem
-                  name={"Protein"}
-                  quantity={toPrecision(nutrients.protein_g * quantity, 1)}
-                  unit={"g"}
-                  subNutrient={false}
-                />
-
-*/
-
 export default NutritionSummaryCard;

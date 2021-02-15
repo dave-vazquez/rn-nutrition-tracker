@@ -1,10 +1,9 @@
-import { Colors } from "_global_styles";
+import { Colors, Layout, Typography } from "_global_styles";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { SearchBar as RNESearchBar } from "react-native-elements";
 
 const SearchBar = ({ value, onChangeText, searchStatus }) => {
-  //
   const searchIcon = {
     size: 30,
     name: "search",
@@ -40,18 +39,17 @@ const SearchBar = ({ value, onChangeText, searchStatus }) => {
 const s = StyleSheet.create({
   searchContainer: {
     paddingTop: 0,
-    paddingHorizontal: 15,
-    borderTopColor: "transparent",
-    backgroundColor: "transparent",
-    borderBottomColor: "transparent",
+    paddingHorizontal: Layout.spacing.md,
+    borderTopColor: Colors.transparent,
+    backgroundColor: Colors.transparent,
+    borderBottomColor: Colors.transparent,
   },
   message: {
-    fontSize: 18,
-    marginTop: 14,
+    fontSize: Typography.size.sm,
+    marginTop: Layout.spacing.md,
     textAlign: "center",
-    fontWeight: "normal",
+    fontFamily: Typography.font.lato.regular,
     color: Colors.white,
-    fontFamily: "Lato_Regular",
   },
   inputContainer: {
     backgroundColor: Colors.white,
