@@ -5,13 +5,6 @@ import { StyleSheet, Text, View } from "react-native";
 import { SearchBar as RNESearchBar } from "react-native-elements";
 
 const SearchBar = ({ value, onChangeText, searchStatus }) => {
-  const searchIcon = {
-    size: 30,
-    name: "search",
-    color: Colors.grey.s6,
-    type: "material-icons",
-  };
-
   const loadingProps = {
     color: Colors.grey.s6,
     animating: value !== "" && !searchStatus.complete,
@@ -23,15 +16,21 @@ const SearchBar = ({ value, onChangeText, searchStatus }) => {
         lightTheme
         showLoading
         value={value}
-        searchIcon={searchIcon}
+        searchIcon={{
+          size: 30,
+          name: "search",
+          color: Colors.grey.s6,
+          type: "material-icons",
+        }}
         loadingProps={loadingProps}
         onChangeText={onChangeText}
         containerStyle={s.container}
         inputContainerStyle={s.input}
         placeholder="Search by name, brand, etc..."
       />
-      {/* eslint-disable-next-line prettier/prettier */}
-      {searchStatus.error && <Text style={s.message}>Oops! Something went wrong :/</Text>}
+      {searchStatus.error && (
+        <Text style={s.message}>Oops! Something went wrong :/</Text>
+      )}
       {searchStatus.empty && <Text style={s.message}>No results!</Text>}
     </View>
   );

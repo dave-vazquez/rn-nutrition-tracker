@@ -7,6 +7,7 @@ import {
 } from "_components/common";
 import { Typography } from "_global_styles";
 import { maskQuantity } from "_utils";
+import PropTypes from "prop-types";
 import React, { memo, useState } from "react";
 import { Platform, StyleSheet, View } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
@@ -120,6 +121,14 @@ const s = StyleSheet.create({
     marginBottom: 0,
   },
 });
+FoodLogForm.propTypes = {
+  form: PropTypes.object.isRequired,
+  setForm: PropTypes.func.isRequired,
+  measures: PropTypes.arrayOf(PropTypes.object).isRequired,
+  mealTypes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onSubmitForm: PropTypes.func.isRequired,
+  createStatus: PropTypes.object.isRequired,
+};
 
 FoodLogForm.whyDidYouRender = true;
 

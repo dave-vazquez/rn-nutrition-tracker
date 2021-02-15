@@ -1,6 +1,7 @@
 import { Card } from "_components/common";
 import { Context as JournalContext } from "_contexts/JournalContext";
 import { Colors, Layout } from "_global_styles";
+import PropTypes from "prop-types";
 import React, { memo, useContext } from "react";
 import { StyleSheet, View } from "react-native";
 import CalorieBar from "./CalorieBar";
@@ -49,6 +50,15 @@ const s = StyleSheet.create({
     marginTop: Layout.spacing.md,
   },
 });
+
+DailyBudgetsCard.propTypes = {
+  added: PropTypes.shape({
+    fat_g: PropTypes.number.isRequired,
+    carbs_g: PropTypes.number.isRequired,
+    protein_g: PropTypes.number.isRequired,
+    calories_kcal: PropTypes.number.isRequired,
+  }),
+};
 
 DailyBudgetsCard.whyDidYouRender = true;
 

@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 import { StyleSheet, View } from "react-native";
 
@@ -11,5 +12,9 @@ const s = StyleSheet.create({
     ...StyleSheet.absoluteFill,
   },
 });
+
+HeaderBottom.propTypes = {
+  color: PropTypes.string.isRequired,
+};
 
 export default HeaderBottom;

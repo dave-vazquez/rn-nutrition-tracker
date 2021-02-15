@@ -28,8 +28,8 @@ const s = StyleSheet.create({
 });
 
 SearchResults.propTypes = {
-  results: PropTypes.arrayOf(PropTypes.object).isRequired,
   viewDetails: PropTypes.func.isRequired,
+  results: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 SearchResults.whyDidYouRender = true;
