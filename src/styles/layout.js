@@ -18,7 +18,7 @@ export const hidden = {
   display: "none",
 };
 
-export const dimensions = {
+export const screen = {
   width: Dimensions.get("screen").width,
   height: Dimensions.get("screen").height,
 };

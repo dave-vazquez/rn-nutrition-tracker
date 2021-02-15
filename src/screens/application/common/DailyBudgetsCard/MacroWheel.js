@@ -2,9 +2,8 @@ import { Colors, Layout, Typography } from "_global_styles";
 import { useFormatMacroData } from "_hooks";
 import { toPrecision } from "_utils";
 import React, { memo } from "react";
-import { Dimensions, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { PieChart } from "react-native-svg-charts";
-const screen = Dimensions.get("screen");
 
 const MacroWheel = ({ budget, consumed, added, title }) => {
   const { data, consumedColor, titleColor, titleBgColor } = useFormatMacroData(
@@ -64,7 +63,7 @@ const s = StyleSheet.create({
   },
   chart: {
     height: 100,
-    width: Layout.dimensions.width / 4,
+    width: Layout.screen.width / 4,
   },
   title: {
     height: 25,
@@ -88,7 +87,7 @@ const s = StyleSheet.create({
     borderRadius: 100,
     alignItems: "center",
     justifyContent: "center",
-    width: screen.width / 4 - 5,
+    width: Layout.screen.width / 4 - 5,
     backgroundColor: Colors.white,
     ...StyleSheet.absoluteFillObject,
     top: 35,
