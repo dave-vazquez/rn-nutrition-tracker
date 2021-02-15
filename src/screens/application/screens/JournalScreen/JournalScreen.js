@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Context as JournalContext } from "_contexts/JournalContext";
 import { Colors, Layout } from "_global_styles";
+import { DailyBudgetsCard, HeaderBottom } from "_screens/application/common";
 import React, { useContext, useEffect } from "react";
 import { SafeAreaView, ScrollView, StatusBar, Text, View } from "react-native";
 import Spinner from "react-native-loading-spinner-overlay";
 import { withNavigationFocus } from "react-navigation";
-import { DailyBudgetsCard, HeaderBottom } from "../../components";
 import { HeaderRight } from "./components";
 
 const JournalScreen = ({ navigation: { isFocused } }) => {

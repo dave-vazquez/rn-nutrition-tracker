@@ -25,8 +25,8 @@ const SearchBar = ({ value, onChangeText, searchStatus }) => {
         searchIcon={searchIcon}
         loadingProps={loadingProps}
         onChangeText={onChangeText}
-        containerStyle={s.searchContainer}
-        inputContainerStyle={s.inputContainer}
+        containerStyle={s.container}
+        inputContainerStyle={s.input}
         placeholder="Search by name, brand, etc..."
       />
       {/* eslint-disable-next-line prettier/prettier */}
@@ -37,7 +37,7 @@ const SearchBar = ({ value, onChangeText, searchStatus }) => {
 };
 
 const s = StyleSheet.create({
-  searchContainer: {
+  container: {
     paddingTop: 0,
     paddingHorizontal: Layout.spacing.md,
     borderTopColor: Colors.transparent,
@@ -51,7 +51,7 @@ const s = StyleSheet.create({
     fontFamily: Typography.font.lato.regular,
     color: Colors.white,
   },
-  inputContainer: {
+  input: {
     backgroundColor: Colors.white,
   },
 });

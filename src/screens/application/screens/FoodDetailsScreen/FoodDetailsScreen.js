@@ -2,6 +2,7 @@ import { IDLE, MEAL_TYPES } from "_constants";
 import { Context as JournalContext } from "_contexts/JournalContext";
 import { Colors, Layout } from "_global_styles";
 import { useFetchNutritionData } from "_hooks";
+import { DailyBudgetsCard, HeaderBottom } from "_screens/application/common";
 import * as Localization from "expo-localization";
 import React, { useContext, useState } from "react";
 import {
@@ -11,7 +12,6 @@ import {
   StyleSheet,
   View,
 } from "react-native";
-import { DailyBudgetsCard, HeaderBottom } from "../../components";
 import {
   FoodLogForm,
   NutritionDetailCard,
