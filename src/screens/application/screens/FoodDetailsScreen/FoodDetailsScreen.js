@@ -5,13 +5,7 @@ import { useFetchNutritionData } from "_hooks";
 import { DailyBudgetsCard, HeaderBottom } from "_screens/application/common";
 import * as Localization from "expo-localization";
 import React, { useContext, useState } from "react";
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  View,
-} from "react-native";
+import { SafeAreaView, ScrollView, StatusBar } from "react-native";
 import {
   FoodLogForm,
   NutritionDetailCard,

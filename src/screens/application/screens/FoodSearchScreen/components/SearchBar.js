@@ -1,4 +1,5 @@
 import { Colors, Layout, Typography } from "_global_styles";
+import PropTypes from "prop-types";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { SearchBar as RNESearchBar } from "react-native-elements";
@@ -34,6 +35,12 @@ const SearchBar = ({ value, onChangeText, searchStatus }) => {
       {searchStatus.empty && <Text style={s.message}>No results!</Text>}
     </View>
   );
+};
+
+SearchBar.propTypes = {
+  value: PropTypes.string,
+  onChangeText: PropTypes.func.isRequired,
+  searchStatus: PropTypes.object.isRequired,
 };
 
 const s = StyleSheet.create({
