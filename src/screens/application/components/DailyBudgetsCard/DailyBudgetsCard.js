@@ -1,6 +1,6 @@
 import { Card } from "_components/common";
 import { Context as JournalContext } from "_contexts/JournalContext";
-import { Colors } from "_global_styles";
+import { Colors, Layout } from "_global_styles";
 import React, { memo, useContext } from "react";
 import { StyleSheet, View } from "react-native";
 import CalorieBar from "./CalorieBar";
@@ -44,9 +44,9 @@ const DailyBudgetsCard = ({ added }) => {
 
 const s = StyleSheet.create({
   macros: {
-    marginTop: 10,
     flexDirection: "row",
     justifyContent: "space-between",
+    marginTop: Layout.spacing.md,
   },
 });
 

@@ -1,6 +1,6 @@
 import { Button, Heading } from "_components/common";
 import { Context as OnboardingContext } from "_contexts/OnboardingContext";
-import { Colors, baseStyles } from "_global_styles";
+import { Colors, Layout } from "_global_styles";
 import React, { useContext } from "react";
 import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
 
@@ -12,7 +12,7 @@ const WeightGoalScreen = ({ navigation: { navigate, isFocused } }) => {
   };
 
   return (
-    <SafeAreaView style={baseStyles.container}>
+    <SafeAreaView style={Layout.container.onboarding}>
       {isFocused() && (
         <StatusBar backgroundColor={Colors.blue.s2} barStyle="light-content" />
       )}

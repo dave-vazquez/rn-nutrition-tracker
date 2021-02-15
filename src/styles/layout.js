@@ -1,3 +1,6 @@
+import { Dimensions, StyleSheet } from "react-native";
+import * as Colors from "./colors";
+
 export const spacing = {
   xs: 5,
   sm: 10,
@@ -14,3 +17,21 @@ export const fixedBottom = {
 export const hidden = {
   display: "none",
 };
+
+export const dimensions = {
+  width: Dimensions.get("screen").width,
+  height: Dimensions.get("screen").height,
+};
+
+export const container = StyleSheet.create({
+  onboarding: {
+    flex: 1,
+    paddingTop: spacing.lg,
+    paddingHorizontal: spacing.md,
+    backgroundColor: Colors.white,
+  },
+  application: {
+    flex: 1,
+    backgroundColor: Colors.wheat,
+  },
+});

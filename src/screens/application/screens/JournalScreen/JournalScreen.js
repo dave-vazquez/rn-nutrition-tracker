@@ -1,24 +1,16 @@
-/* eslint-disable react/display-name */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { Context as JournalContext } from "_contexts/JournalContext";
-import { Colors } from "_global_styles";
+import { Colors, Layout } from "_global_styles";
 import React, { useContext, useEffect } from "react";
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { SafeAreaView, ScrollView, StatusBar, Text, View } from "react-native";
 import Spinner from "react-native-loading-spinner-overlay";
 import { withNavigationFocus } from "react-navigation";
-import { DailyBudgetsCard } from "../../components";
+import { DailyBudgetsCard, HeaderBottom } from "../../components";
 import { HeaderRight } from "./components";
 
 const JournalScreen = ({ navigation: { isFocused } }) => {
   const {
-    state: { date, fetchStatus },
+    state: { fetchStatus },
     fetchJournalEntries,
   } = useContext(JournalContext);
 
@@ -33,22 +25,25 @@ const JournalScreen = ({ navigation: { isFocused } }) => {
       </View>
     );
 
-  return (
-    <SafeAreaView style={s.container}>
-      {isFocused() && (
-        <StatusBar backgroundColor={Colors.blue.s2} barStyle="light-content" />
-      )}
+  if (fetchStatus.start)
+    return (
       <Spinner
         size="large"
         animation="fade"
-        visible={fetchStatus.start}
+        visible={true}
         color={Colors.grey.s8}
         overlayColor={Colors.white}
       />
-      <View style={s.background} />
-      <ScrollView style={s.scroll}>
+    );
+
+  return (
+    <SafeAreaView style={Layout.container.application}>
+      {isFocused() && (
+        <StatusBar backgroundColor={Colors.blue.s2} barStyle="light-content" />
+      )}
+      <HeaderBottom color={Colors.blue.s2} />
+      <ScrollView style={{ flexGrow: 1 }}>
         <DailyBudgetsCard />
-        {/* <Text>{date.toString()}</Text> */}
       </ScrollView>
     </SafeAreaView>
   );
@@ -72,27 +67,4 @@ JournalScreen.navigationOptions = {
   ),
 };
 
-const s = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 15,
-    backgroundColor: Colors.wheat,
-  },
-  scroll: {
-    flex: 1,
-    borderWidth: 1,
-    borderColor: "red",
-  },
-  background: {
-    height: 120,
-    backgroundColor: Colors.blue.s2,
-    ...StyleSheet.absoluteFill,
-  },
-});
-
 export default withNavigationFocus(JournalScreen);
-
-/*
-  <ScrollView contentInsetAdjustmentBehavior="automatic">
-  https://github.com/facebook/react-native/issues/16997#issuecomment-423814312
-*/

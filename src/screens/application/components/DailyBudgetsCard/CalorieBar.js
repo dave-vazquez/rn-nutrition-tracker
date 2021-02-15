@@ -1,7 +1,7 @@
-import { Colors } from "_global_styles";
+import { Colors, Layout, Typography } from "_global_styles";
 import { useFormatCalorieData } from "_hooks";
 import React, { memo } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Platform, StyleSheet, Text, View } from "react-native";
 import { StackedBarChart } from "react-native-svg-charts";
 
 const keys = ["consumed", "added", "budget"];
@@ -46,16 +46,22 @@ const ValueOverlay = ({ budget, consumed }) => {
 const s = StyleSheet.create({
   container: {
     height: 39,
-    elevation: 3,
+    ...Platform.select({
+      android: {
+        elevation: 3,
+      },
+      ios: {
+        shadowRadius: 1,
+        shadowOpacity: 2,
+        shadowColor: "#00000030",
+        shadowOffset: { width: 0, height: 2 },
+      },
+    }),
     width: "100%",
-    shadowRadius: 1,
     borderRadius: 5,
-    shadowOpacity: 2,
     overflow: "hidden",
     justifyContent: "center",
     backgroundColor: Colors.white,
-    shadowColor: "#00000030",
-    shadowOffset: { width: 0, height: 2 },
   },
   chart: {
     top: -3,
@@ -63,17 +69,17 @@ const s = StyleSheet.create({
     position: "relative",
   },
   overlay: {
-    elevation: 4,
     zIndex: 1,
+    elevation: 4,
     alignItems: "center",
     flexDirection: "row",
-    paddingHorizontal: 15,
+    paddingHorizontal: Layout.spacing.md,
     justifyContent: "space-between",
     ...StyleSheet.absoluteFill,
   },
   value: {
     fontSize: 20,
-    fontFamily: "Lato_Regular",
+    fontFamily: Typography.font.lato.regular,
   },
 });
 

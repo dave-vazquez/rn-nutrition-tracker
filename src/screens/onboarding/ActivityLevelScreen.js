@@ -8,7 +8,7 @@ import {
   VERY_ACTIVE,
 } from "_constants";
 import { Context as OnboardingContext } from "_contexts/OnboardingContext";
-import { Colors, Layout, baseStyles } from "_global_styles";
+import { Colors, Layout } from "_global_styles";
 import React, { useContext } from "react";
 import { SafeAreaView, StatusBar, View } from "react-native";
 
@@ -19,7 +19,7 @@ const ActivityLevelScreen = ({ navigation: { navigate, isFocused } }) => {
   } = useContext(OnboardingContext);
 
   return (
-    <SafeAreaView style={baseStyles.container}>
+    <SafeAreaView style={Layout.container.onboarding}>
       {isFocused() && (
         <StatusBar backgroundColor={Colors.blue.s2} barStyle="light-content" />
       )}

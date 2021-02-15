@@ -40,7 +40,7 @@ const SearchBar = ({ value, onChangeText, searchStatus }) => {
 const s = StyleSheet.create({
   searchContainer: {
     paddingTop: 0,
-    paddingHorizontal: 0,
+    paddingHorizontal: 15,
     borderTopColor: "transparent",
     backgroundColor: "transparent",
     borderBottomColor: "transparent",

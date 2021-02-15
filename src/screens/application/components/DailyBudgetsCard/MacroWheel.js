@@ -1,4 +1,4 @@
-import { Colors } from "_global_styles";
+import { Colors, Layout, Typography } from "_global_styles";
 import { useFormatMacroData } from "_hooks";
 import { toPrecision } from "_utils";
 import React, { memo } from "react";
@@ -64,7 +64,7 @@ const s = StyleSheet.create({
   },
   chart: {
     height: 100,
-    width: screen.width / 4,
+    width: Layout.dimensions.width / 4,
   },
   title: {
     height: 25,
@@ -72,7 +72,7 @@ const s = StyleSheet.create({
     width: "100%",
     shadowRadius: 1,
     borderRadius: 5,
-    marginBottom: 10,
+    marginBottom: Layout.spacing.sm,
     shadowOpacity: 2,
     justifyContent: "center",
     shadowColor: "#00000030",
@@ -81,7 +81,7 @@ const s = StyleSheet.create({
   titleText: {
     fontSize: 16,
     textAlign: "center",
-    fontFamily: "Lato_Regular",
+    fontFamily: Typography.font.lato.regular,
   },
   overlay: {
     height: 100,
@@ -97,7 +97,7 @@ const s = StyleSheet.create({
   value: {
     fontSize: 16,
     color: Colors.grey.s8,
-    fontFamily: "Lato_Regular",
+    fontFamily: Typography.font.lato.regular,
   },
   budget: {
     fontSize: 17,

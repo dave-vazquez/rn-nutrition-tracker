@@ -1,6 +1,6 @@
 import { IDLE, MEAL_TYPES } from "_constants";
 import { Context as JournalContext } from "_contexts/JournalContext";
-import { Colors } from "_global_styles";
+import { Colors, Layout } from "_global_styles";
 import { useFetchNutritionData } from "_hooks";
 import * as Localization from "expo-localization";
 import React, { useContext, useState } from "react";
@@ -11,7 +11,7 @@ import {
   StyleSheet,
   View,
 } from "react-native";
-import { DailyBudgetsCard } from "../../components";
+import { DailyBudgetsCard, HeaderBottom } from "../../components";
 import {
   FoodLogForm,
   NutritionDetailCard,
@@ -66,12 +66,12 @@ const FoodDetailsScreen = ({
   if (fetchStatus === IDLE) return null;
 
   return (
-    <SafeAreaView style={s.container}>
+    <SafeAreaView style={Layout.container.application}>
       {isFocused() && (
         <StatusBar barStyle="light-content" backgroundColor={Colors.red.s4} />
       )}
-      <View style={s.background} />
-      <ScrollView style={s.scrollView}>
+      <HeaderBottom color={Colors.red.s4} />
+      <ScrollView style={{ flexGrow: 1 }}>
         <DailyBudgetsCard added={added} />
         <NutritionSummaryCard
           image={image}
@@ -106,22 +106,6 @@ const caclulateAdded = (nutrients, quantity) => {
     calories_kcal: nutrients ? nutrients.calories_kcal * Math.abs(+quantity) : 0,
   };
 };
-
-const s = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 15,
-    backgroundColor: Colors.wheat,
-  },
-  scrollView: {
-    flexGrow: 1,
-  },
-  background: {
-    height: 120,
-    backgroundColor: Colors.red.s4,
-    ...StyleSheet.absoluteFill,
-  },
-});
 
 FoodDetailsScreen.navigationOptions = ({ navigation }) => ({
   headerTitleAlign: "left",

@@ -1,7 +1,8 @@
-import { Colors } from "_global_styles";
+import { Colors, Layout } from "_global_styles";
 import { useDebouncedSearch } from "_hooks";
 import React, { useCallback, useEffect, useState } from "react";
 import { SafeAreaView, StatusBar, StyleSheet, View } from "react-native";
+import { HeaderBottom } from "../../components";
 import { SearchBar, SearchResults } from "./components";
 
 const FoodSearchScreen = ({ navigation: { navigate, isFocused } }) => {
@@ -23,14 +24,14 @@ const FoodSearchScreen = ({ navigation: { navigate, isFocused } }) => {
   }, [keyword, resetSearch]);
 
   return (
-    <SafeAreaView style={s.container}>
+    <SafeAreaView style={Layout.container.application}>
       {isFocused() && (
         <StatusBar
           barStyle="light-content"
           backgroundColor={Colors.green.light.s4}
         />
       )}
-      <View style={s.background} />
+      <HeaderBottom color={Colors.green.light.s4} />
       <SearchBar
         value={keyword}
         onChangeText={setKeyword}
@@ -51,19 +52,6 @@ FoodSearchScreen.navigationOptions = {
     backgroundColor: Colors.green.light.s4,
   },
 };
-
-const s = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 15,
-    backgroundColor: Colors.wheat,
-  },
-  background: {
-    height: 120,
-    backgroundColor: Colors.green.light.s4,
-    ...StyleSheet.absoluteFill,
-  },
-});
 
 FoodSearchScreen.whyDidYouRender = true;
 

@@ -42,6 +42,7 @@ const ListItemResult = ({ item, onPress }) => {
 const s = StyleSheet.create({
   results: {
     borderRadius: 5,
+    marginHorizontal: 15,
     overflow: "hidden",
   },
   title: {

@@ -33,7 +33,7 @@ const baseStyles = {
       android: {
         elevation: 4,
       },
-      default: {
+      ios: {
         shadowRadius: 1,
         shadowOpacity: 1,
         shadowColor: "rgba(0,0,0, .4)",

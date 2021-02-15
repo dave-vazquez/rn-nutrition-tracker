@@ -1,7 +1,7 @@
 import { Button, Heading } from "_components/common";
 import { Context as OnboardingContext } from "_contexts/OnboardingContext";
 import { onboardingRules as rules } from "_formrules";
-import { Colors, Layout, baseStyles } from "_global_styles";
+import { Colors, Layout } from "_global_styles";
 import { useFocusNextInput } from "_hooks";
 import React, { useContext, useRef } from "react";
 import { useForm } from "react-hook-form";
@@ -44,7 +44,7 @@ const UserInfoScreen = ({ navigation: { navigate, isFocused } }) => {
     <KeyboardAvoidingView
       {...(Platform.OS === "ios" && { behavior: "padding" })}
       keyboardVerticalOffset={50}
-      style={baseStyles.container}
+      style={Layout.container.onboarding}
     >
       {isFocused() && (
         <StatusBar backgroundColor={Colors.blue.s2} barStyle="light-content" />
