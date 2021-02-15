@@ -16,17 +16,17 @@ const SearchBar = ({ value, onChangeText, searchStatus }) => {
         lightTheme
         showLoading
         value={value}
+        loadingProps={loadingProps}
+        onChangeText={onChangeText}
+        containerStyle={s.container}
+        inputContainerStyle={s.input}
+        placeholder="Search by name, brand, etc..."
         searchIcon={{
           size: 30,
           name: "search",
           color: Colors.grey.s6,
           type: "material-icons",
         }}
-        loadingProps={loadingProps}
-        onChangeText={onChangeText}
-        containerStyle={s.container}
-        inputContainerStyle={s.input}
-        placeholder="Search by name, brand, etc..."
       />
       {searchStatus.error && (
         <Text style={s.message}>Oops! Something went wrong :/</Text>
@@ -51,11 +51,11 @@ const s = StyleSheet.create({
     borderBottomColor: Colors.transparent,
   },
   message: {
+    textAlign: "center",
+    color: Colors.white,
     fontSize: Typography.size.sm,
     marginTop: Layout.spacing.md,
-    textAlign: "center",
     fontFamily: Typography.font.lato.regular,
-    color: Colors.white,
   },
   input: {
     backgroundColor: Colors.white,
