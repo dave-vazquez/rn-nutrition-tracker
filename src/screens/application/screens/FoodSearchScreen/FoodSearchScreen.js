@@ -56,8 +56,3 @@ FoodSearchScreen.navigationOptions = {
 FoodSearchScreen.whyDidYouRender = true;
 
 export default FoodSearchScreen;
-
-// useEffect(() => {
-//   if (debouncedKeyword) searchFoodDatabase(debouncedKeyword);
-//   // eslint-disable-next-line react-hooks/exhaustive-deps
-// }, [debouncedKeyword]);

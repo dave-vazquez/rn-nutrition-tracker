@@ -7,26 +7,21 @@ const reducer = (state, action) => {
     case "SEARCH_START":
       return {
         ...initialState,
-        start: true,
-        complete: false,
+        searchStatus: "started",
       };
     case "SEARCH_ERROR":
       return {
         ...initialState,
-        error: true,
-        complete: true,
+        searchStatus: "error",
       };
     case "SEARCH_EMPTY":
       return {
         ...initialState,
-        empty: true,
-        complete: true,
-        results: [],
+        searchStatus: "empty",
       };
     case "SEARCH_SUCCESS":
       return {
-        ...initialState,
-        complete: true,
+        searchStatus: "success",
         results: action.results,
       };
     case "RESET_SEARCH":
@@ -37,17 +32,14 @@ const reducer = (state, action) => {
 };
 
 const initialState = {
-  start: false,
-  error: false,
-  empty: false,
-  complete: false,
+  searchStatus: "idle",
   results: [],
 };
 
 const useDebouncedSearch = (keyword, delay) => {
   const debouncedKeyword = useDebounce(keyword, delay);
 
-  const [{ results, ...searchStatus }, dispatch] = useReducer(
+  const [{ results, searchStatus }, dispatch] = useReducer(
     reducer,
     initialState
   );

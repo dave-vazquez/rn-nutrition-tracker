@@ -1,5 +1,4 @@
 import nutritionAPI, { cancelRequest } from "_api/nutritionAPI";
-import { ERROR, IDLE, STARTED, SUCCESS } from "_constants";
 import { useEffect, useReducer } from "react";
 
 const FETCH_START = "FETCH_START";
@@ -9,13 +8,13 @@ const FETCH_SUCCESS = "FETCH_SUCCESS";
 const reducer = (state, action) => {
   switch (action.type) {
     case FETCH_START:
-      return { ...initialState, fetchStatus: STARTED };
+      return { ...initialState, fetchStatus: "started" };
     case FETCH_ERROR:
-      return { ...initialState, fetchStatus: ERROR };
+      return { ...initialState, fetchStatus: "error" };
     case FETCH_SUCCESS:
       return {
         ...initialState,
-        fetchStatus: SUCCESS,
+        fetchStatus: "success",
         nutrition: action.nutrition,
       };
     default:
@@ -25,7 +24,7 @@ const reducer = (state, action) => {
 
 const initialState = {
   nutrition: {},
-  fetchStatus: IDLE,
+  fetchStatus: "idle",
 };
 
 const useFetchNutritionData = (measure, foodId) => {

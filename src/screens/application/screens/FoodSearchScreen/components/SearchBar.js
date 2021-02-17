@@ -7,7 +7,8 @@ import { SearchBar as RNESearchBar } from "react-native-elements";
 const SearchBar = ({ value, onChangeText, searchStatus }) => {
   const loadingProps = {
     color: Colors.grey.s6,
-    animating: value !== "" && !searchStatus.complete,
+    animating:
+      value !== "" && searchStatus !== "success" && searchStatus !== "empty",
   };
 
   return (
@@ -39,7 +40,13 @@ const SearchBar = ({ value, onChangeText, searchStatus }) => {
 SearchBar.propTypes = {
   value: PropTypes.string,
   onChangeText: PropTypes.func.isRequired,
-  searchStatus: PropTypes.object.isRequired,
+  searchStatus: PropTypes.oneOf([
+    "idle",
+    "started",
+    "error",
+    "empty",
+    "success",
+  ]),
 };
 
 const s = StyleSheet.create({
