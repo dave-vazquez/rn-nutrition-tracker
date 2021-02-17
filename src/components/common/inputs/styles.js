@@ -68,6 +68,18 @@ const selection = (styles) => ({
   },
 });
 
+const spinner = (styles) => ({
+  ...styles,
+  container: {
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.blue.s2,
+  },
+  spinner: {
+    marginTop: 5,
+    marginBottom: 5,
+  },
+});
+
 /********************************************************
  *                         SIZES                        *
  ********************************************************/
@@ -117,6 +129,10 @@ const InputStyles = {
   selection: {
     small: composeStyles(baseStyles, { type: selection, size: small }),
     large: composeStyles(baseStyles, { type: selection, size: large }),
+  },
+  spinner: {
+    small: composeStyles(baseStyles, { type: spinner, size: small }),
+    large: composeStyles(baseStyles, { type: spinner, size: large }),
   },
 };
 

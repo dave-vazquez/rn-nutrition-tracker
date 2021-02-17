@@ -48,6 +48,7 @@
     "react-native-bouncing-preloader": "https://github.com/sonnylazuardi/react-native-bouncing-preloader",
     "react-native-elements": "^3.0.1",
     "react-native-gesture-handler": "~1.8.0",
+    "react-native-input-spinner": "^1.5.0",
     "react-native-keyboard-aware-scroll-view": "^0.9.3",
     "react-native-loading-spinner-overlay": "^2.0.0",
     "react-native-picker-select": "^8.0.4",
