@@ -4,7 +4,7 @@ import { Modal, ScrollView, TouchableOpacity, View } from "react-native";
 import SelectionItem, { itemProp } from "./SelectionItem";
 import SelectionModalStyles from "./styles";
 
-const s = SelectionModalStyles.item;
+const s = SelectionModalStyles.modal;
 
 const SelectionModal = ({
   items,
