@@ -39,7 +39,7 @@ const JournalEntryForm = ({
         <NumberInput
           label="Quantity"
           value={form.quantity}
-          step={form.measure.label === "Gram" && 5}
+          step={form.measure.label === "Gram" ? 5 : 1}
           onChange={(quantity) => {
             setForm((form) => ({
               ...form,
