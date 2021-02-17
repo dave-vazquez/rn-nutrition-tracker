@@ -5,7 +5,6 @@ import {
   NumberInput,
   SelectionInput,
 } from "_components/common";
-import { Typography } from "_global_styles";
 import PropTypes from "prop-types";
 import React, { memo, useState } from "react";
 import { Platform, StyleSheet, View } from "react-native";
@@ -49,7 +48,11 @@ const JournalEntryForm = ({
           items={measures}
           value={form.measure}
           onSelect={(measure) =>
-            setForm((form) => ({ ...form, measure, quantity: "1" }))
+            setForm((form) => ({
+              ...form,
+              quantity: measure.label === "Gram" ? "100" : "1",
+              measure,
+            }))
           }
         />
       </View>
