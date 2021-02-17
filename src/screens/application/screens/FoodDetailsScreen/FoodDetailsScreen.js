@@ -97,16 +97,6 @@ const FoodDetailsScreen = ({
   );
 };
 
-const caclulateAdded = (nutrients, quantity) => {
-  return {
-    fat_g: nutrients ? nutrients.fat_g * Math.abs(+quantity) : 0,
-    carbs_g: nutrients ? nutrients.carbs_g * Math.abs(+quantity) : 0,
-    protein_g: nutrients ? nutrients.protein_g * Math.abs(+quantity) : 0,
-    // eslint-disable-next-line prettier/prettier
-    calories_kcal: nutrients ? nutrients.calories_kcal * Math.abs(+quantity) : 0,
-  };
-};
-
 FoodDetailsScreen.navigationOptions = ({ navigation }) => ({
   headerTitleAlign: "left",
   headerTintColor: Colors.white,
