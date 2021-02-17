@@ -41,10 +41,7 @@ const JournalEntryForm = ({
           value={form.quantity}
           step={form.measure.label === "Gram" ? 5 : 1}
           onChange={(quantity) => {
-            setForm((form) => ({
-              ...form,
-              quantity: quantity,
-            }));
+            setForm((form) => ({ ...form, quantity }));
           }}
         />
         <SelectionInput
