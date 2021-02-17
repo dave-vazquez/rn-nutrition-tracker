@@ -19,14 +19,14 @@ const JournalScreen = ({ navigation: { navigate, isFocused } }) => {
     fetchJournalEntries();
   }, []);
 
-  if (fetchStatus.error)
+  if (fetchStatus === "error")
     return (
       <View>
         <Text>Ooops! Something went wrong :/</Text>
       </View>
     );
 
-  if (fetchStatus.start)
+  if (fetchStatus === "start")
     return (
       <Spinner
         size="large"

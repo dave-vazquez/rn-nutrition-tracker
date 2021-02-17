@@ -92,7 +92,7 @@ const FoodLogForm = ({
           onSelect={(mealType) => setForm((form) => ({ ...form, mealType }))}
         />
         <Button
-          loading={createStatus.start}
+          loading={createStatus === "start"}
           title="Add to Journal"
           titleStyle={s.buttonTitle}
           containerStyles={s.buttonContainer}
@@ -128,7 +128,7 @@ FoodLogForm.propTypes = {
   measures: PropTypes.arrayOf(PropTypes.object).isRequired,
   mealTypes: PropTypes.arrayOf(PropTypes.object).isRequired,
   onSubmitForm: PropTypes.func.isRequired,
-  createStatus: PropTypes.object.isRequired,
+  createStatus: PropTypes.oneOf(["idle", "start", "error", "success"]),
 };
 
 FoodLogForm.whyDidYouRender = true;

@@ -10,16 +10,8 @@ const CREATE_ENTRY_SUCCESS = "CREATE_ENTRY_SUCCESS";
 
 const initialState = {
   date: new Date(),
-  fetchStatus: {
-    start: true,
-    error: false,
-    success: false,
-  },
-  createStatus: {
-    start: false,
-    error: false,
-    success: false,
-  },
+  fetchStatus: "started",
+  createStatus: "idle",
   budgets: {
     fat_g: 0,
     carbs_g: 0,
@@ -40,58 +32,34 @@ const journalReducer = (state, action) => {
     case FETCH_ENTRIES_START:
       return {
         ...state,
-        fetchStatus: {
-          start: true,
-          error: false,
-          success: false,
-        },
+        fetchStatus: "start",
       };
     case FETCH_ENTRIES_ERROR:
       return {
         ...state,
-        fetchStatus: {
-          start: false,
-          error: true,
-          success: false,
-        },
+        fetchStatus: "error",
       };
     case FETCH_ENTRIES_SUCCESS:
       return {
         ...state,
-        fetchStatus: {
-          start: false,
-          error: false,
-          success: true,
-        },
+        fetchStatus: "success",
         budgets: action.budgets,
         consumed: action.consumed,
       };
     case CREATE_ENTRY_START:
       return {
         ...state,
-        createStatus: {
-          start: true,
-          error: false,
-          success: false,
-        },
+        createStatus: "start",
       };
     case CREATE_ENTRY_ERROR:
       return {
         ...state,
-        createStatus: {
-          start: false,
-          error: true,
-          success: false,
-        },
+        createStatus: "error",
       };
     case CREATE_ENTRY_SUCCESS:
       return {
         ...state,
-        createStatus: {
-          start: false,
-          error: false,
-          success: true,
-        },
+        createStatus: "success",
         entries: action.entries,
       };
     default:

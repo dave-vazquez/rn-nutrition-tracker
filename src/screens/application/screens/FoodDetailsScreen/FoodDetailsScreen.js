@@ -38,7 +38,13 @@ const FoodDetailsScreen = ({
     foodId
   );
 
-  const added = caclulateAdded(nutrients, form.quantity);
+  const added = {
+    fat_g: nutrients ? nutrients.fat_g * Math.abs(+form.quantity) : 0,
+    carbs_g: nutrients ? nutrients.carbs_g * Math.abs(+form.quantity) : 0,
+    protein_g: nutrients ? nutrients.protein_g * Math.abs(+form.quantity) : 0,
+    // eslint-disable-next-line prettier/prettier
+    calories_kcal: nutrients ? nutrients.calories_kcal * Math.abs(+form.quantity) : 0,
+  };
 
   const handleSubmitForm = () => {
     createJournalEntry(
