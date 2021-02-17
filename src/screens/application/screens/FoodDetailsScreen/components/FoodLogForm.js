@@ -62,15 +62,15 @@ const FoodLogForm = ({
       <View style={s.row}>
         <DateTimeInput
           hideIcon
-          type="date"
           label="Date"
+          formatType="date"
           value={form.date}
           onTouch={() => showDatePickerWithMode("date")}
         />
         <DateTimeInput
           hideIcon
-          type="time"
           label="Time"
+          formatType="time"
           value={form.date}
           onTouch={() => showDatePickerWithMode("time")}
         />
@@ -121,6 +121,7 @@ const s = StyleSheet.create({
     marginBottom: 0,
   },
 });
+
 FoodLogForm.propTypes = {
   form: PropTypes.object.isRequired,
   setForm: PropTypes.func.isRequired,

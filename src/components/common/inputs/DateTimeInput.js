@@ -53,7 +53,7 @@ DateTimeInput.propTypes = {
   onTouch: PropTypes.func,
   hideIcon: PropTypes.bool,
   value: PropTypes.any.isRequired,
-  formatType: PropTypes.oneOf(["default", "relative-date", "12-hour"]),
+  formatType: PropTypes.oneOf(["default", "date", "time"]),
   size: PropTypes.oneOf(["small", "large"]),
   containerStyle: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 };

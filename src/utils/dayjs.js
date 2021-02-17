@@ -38,8 +38,8 @@ export const formatDate = (date) => {
 };
 
 export const getFormattedDateTime = (value, type) => {
-  if (type === "relative-date") return getRelativeDate(value);
-  if (type === "12-hour") return getFormattedTime(value);
+  if (type === "date") return getRelativeDate(value);
+  if (type === "time") return getFormattedTime(value);
   return formatDate(value);
 };
 
