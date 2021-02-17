@@ -1,6 +1,5 @@
-import { Card } from "_components/common";
 /* eslint-disable prettier/prettier */
-import { ERROR, STARTED } from "_constants";
+import { Card } from "_components/common";
 import { Colors } from "_global_styles";
 import { toPrecision } from "_utils";
 import React from "react";
@@ -10,9 +9,9 @@ const NutritionDetailCard = ({ nutrients, fetchStatus, quantity }) => {
 
   return (
     <Card>
-      {fetchStatus === STARTED ? (
+      {fetchStatus === 'started' ? (
         <ActivityIndicator size="large" color={Colors.grey.s8} />
-      ) : fetchStatus === ERROR ? (
+      ) : fetchStatus === "error" ? (
         <Text style={[s.heading, { textAlign: "center" }]}>Oops! Something went wrong :\</Text>
       ) : (
             <View>

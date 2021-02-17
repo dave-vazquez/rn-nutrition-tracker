@@ -1,5 +1,4 @@
 import { Card } from "_components/common";
-import { ERROR, STARTED } from "_constants";
 import { Colors } from "_global_styles";
 import { toPrecision } from "_utils";
 import React from "react";
@@ -21,7 +20,7 @@ const NutritionSummaryCard = ({ image, fetchStatus, quantity, nutrients }) => {
           carbs={carbs}
           protein={protein}
           calories={calories}
-          loading={fetchStatus === STARTED}
+          loading={fetchStatus === "started"}
         />
       </View>
     </Card>

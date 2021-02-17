@@ -7,7 +7,7 @@ import { SearchBar, SearchResults } from "./components";
 
 const FoodSearchScreen = ({ navigation: { navigate, isFocused } }) => {
   //
-  const [keyword, setKeyword] = useState("bread");
+  const [keyword, setKeyword] = useState("");
 
   const [results, searchStatus, resetSearch] = useDebouncedSearch(
     keyword,

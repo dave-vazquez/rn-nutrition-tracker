@@ -1,4 +1,4 @@
-import { IDLE, MEAL_TYPES } from "_constants";
+import { MEAL_TYPES } from "_constants";
 import { Context as JournalContext } from "_contexts/JournalContext";
 import { Colors, Layout } from "_global_styles";
 import { useFetchNutritionData } from "_hooks";
@@ -57,7 +57,7 @@ const FoodDetailsScreen = ({
     );
   };
 
-  if (fetchStatus === IDLE) return null;
+  if (fetchStatus === "idle") return null;
 
   return (
     <SafeAreaView style={Layout.container.application}>
