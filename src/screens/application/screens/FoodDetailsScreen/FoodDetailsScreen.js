@@ -3,11 +3,10 @@ import { Context as JournalContext } from "_contexts/JournalContext";
 import { Colors, Layout } from "_global_styles";
 import { useFetchNutritionData } from "_hooks";
 import { DailyBudgetsCard, HeaderBottom } from "_screens/application/common";
-import * as Localization from "expo-localization";
 import React, { useContext, useState } from "react";
 import { SafeAreaView, ScrollView, StatusBar } from "react-native";
 import {
-  FoodLogForm,
+  JournalEntryForm,
   NutritionDetailCard,
   NutritionSummaryCard,
 } from "./components";
@@ -22,45 +21,29 @@ const FoodDetailsScreen = ({
     createJournalEntry,
   } = useContext(JournalContext);
 
-  const { foodId, measures, label, brand, image, defaultMeasure } = getParam(
-    "foodData"
-  );
+  const foodData = getParam("foodData");
 
   const [form, setForm] = useState({
     quantity: "100",
     date: new Date(),
     mealType: BREAKFAST,
-    measure: defaultMeasure,
+    measure: foodData.defaultMeasure,
   });
 
-  const [{ nutrients }, fetchStatus] = useFetchNutritionData(
+  const [nutrients, macros, fetchStatus] = useFetchNutritionData(
     form.measure,
-    foodId
+    foodData.foodId
   );
 
   const added = {
-    fat_g: nutrients ? nutrients.fat_g * Math.abs(+form.quantity) : 0,
-    carbs_g: nutrients ? nutrients.carbs_g * Math.abs(+form.quantity) : 0,
-    protein_g: nutrients ? nutrients.protein_g * Math.abs(+form.quantity) : 0,
-    // eslint-disable-next-line prettier/prettier
-    calories_kcal: nutrients ? nutrients.calories_kcal * Math.abs(+form.quantity) : 0,
+    fat_g: macros.fat_g * +form.quantity,
+    carbs_g: macros.carbs_g * +form.quantity,
+    protein_g: macros.protein_g * +form.quantity,
+    calories_kcal: macros.calories_kcal * +form.quantity,
   };
 
   const handleSubmitForm = () => {
-    createJournalEntry(
-      {
-        food_id: foodId,
-        food_name: label,
-        brand_name: brand,
-        quantity: form.quantity,
-        meal_type: form.mealType.value,
-        measure_name: form.measure.label,
-        entry_date: form.date.toISOString(),
-        measure_uri: form.measure.measureURI,
-        time_zone_name: Localization.timezone,
-      },
-      () => navigate("FoodSearch")
-    );
+    createJournalEntry({ ...foodData, ...form }, () => navigate("FoodSearch"));
   };
 
   if (fetchStatus === "idle") return null;
@@ -74,15 +57,15 @@ const FoodDetailsScreen = ({
       <ScrollView style={{ flexGrow: 1 }}>
         <DailyBudgetsCard added={added} />
         <NutritionSummaryCard
-          image={image}
+          image={foodData.image}
           nutrients={nutrients}
           quantity={+form.quantity}
           fetchStatus={fetchStatus}
         />
-        <FoodLogForm
+        <JournalEntryForm
           form={form}
           setForm={setForm}
-          measures={measures}
+          measures={foodData.measures}
           mealTypes={MEAL_TYPES}
           onSubmitForm={handleSubmitForm}
           createStatus={createStatus}

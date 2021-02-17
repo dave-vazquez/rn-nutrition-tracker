@@ -32,6 +32,7 @@ const MacroWheel = ({ budget, consumed, added, title }) => {
         padAngle={0}
         innerRadius={35}
         animate
+        animationDuration={500}
       />
     </View>
   );

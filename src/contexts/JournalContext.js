@@ -1,4 +1,5 @@
 import nutritionAPI from "_api/nutritionAPI";
+import * as Localization from "expo-localization";
 import createContext from "./helper/createContext";
 
 const FETCH_ENTRIES_START = "FETCH_ENTRIES_START";
@@ -88,16 +89,23 @@ const fetchJournalEntries = (dispatch) => async () => {
   }
 };
 
-const createJournalEntry = (dispatch, state) => async (
-  journalEntry,
-  navCallBack
-) => {
+const createJournalEntry = (dispatch, state) => async (entry, navCallBack) => {
   dispatch({ type: CREATE_ENTRY_START });
 
   try {
     const response = await nutritionAPI.post(
       `/journal/${state.date.toISOString()}`,
-      journalEntry
+      {
+        food_id: entry.foodId,
+        food_name: entry.label,
+        brand_name: entry.brand,
+        quantity: entry.quantity,
+        meal_type: entry.mealType.value,
+        measure_name: entry.measure.label,
+        entry_date: entry.date.toISOString(),
+        measure_uri: entry.measure.measureURI,
+        time_zone_name: Localization.timezone,
+      }
     );
 
     dispatch({

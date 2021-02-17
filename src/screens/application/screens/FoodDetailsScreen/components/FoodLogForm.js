@@ -2,17 +2,16 @@ import {
   Button,
   Card,
   DateTimeInput,
+  NumberInput,
   SelectionInput,
-  TextInput,
 } from "_components/common";
 import { Typography } from "_global_styles";
-import { maskQuantity } from "_utils";
 import PropTypes from "prop-types";
 import React, { memo, useState } from "react";
 import { Platform, StyleSheet, View } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
-const FoodLogForm = ({
+const JournalEntryForm = ({
   form,
   setForm,
   measures,
@@ -34,20 +33,18 @@ const FoodLogForm = ({
     setForm((form) => ({ ...form, date: currentDate }));
   };
 
-  const setMaskedQuantity = () => {
-    setForm((form) => ({ ...form, quantity: maskQuantity(form.quantity) }));
-  };
-
   return (
     <Card>
       <View style={s.row}>
-        <TextInput
+        <NumberInput
           label="Quantity"
           value={form.quantity}
-          keyboardType="numeric"
-          onEndEditing={setMaskedQuantity}
-          onChangeText={(quantity) => {
-            setForm((form) => ({ ...form, quantity }));
+          step={form.measure.label === "Gram" && 5}
+          onChange={(quantity) => {
+            setForm((form) => ({
+              ...form,
+              quantity: quantity,
+            }));
           }}
         />
         <SelectionInput
@@ -84,7 +81,7 @@ const FoodLogForm = ({
           />
         )}
       </View>
-      <View style={[s.row, { alignItems: "flex-end" }]}>
+      <View style={[s.row, { alignItems: "center" }]}>
         <SelectionInput
           label="Meal Type"
           items={mealTypes}
@@ -94,7 +91,6 @@ const FoodLogForm = ({
         <Button
           loading={createStatus === "start"}
           title="Add to Journal"
-          titleStyle={s.buttonTitle}
           containerStyles={s.buttonContainer}
           onPress={onSubmitForm}
         />
@@ -110,19 +106,16 @@ const s = StyleSheet.create({
     alignItems: "flex-start",
     justifyContent: "space-between",
   },
-  buttonTitle: {
-    fontSize: Typography.size.xs,
-    marginRight: 0,
-  },
   buttonContainer: {
     flex: 1,
+    marginTop: 15,
     marginLeft: 8,
     marginRight: 8,
     marginBottom: 0,
   },
 });
 
-FoodLogForm.propTypes = {
+JournalEntryForm.propTypes = {
   form: PropTypes.object.isRequired,
   setForm: PropTypes.func.isRequired,
   measures: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -131,6 +124,6 @@ FoodLogForm.propTypes = {
   createStatus: PropTypes.oneOf(["idle", "start", "error", "success"]),
 };
 
-FoodLogForm.whyDidYouRender = true;
+JournalEntryForm.whyDidYouRender = true;
 
-export default memo(FoodLogForm);
+export default memo(JournalEntryForm);

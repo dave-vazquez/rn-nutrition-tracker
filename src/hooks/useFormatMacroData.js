@@ -2,6 +2,7 @@ import { budget_palette, colors } from "_global_styles/base.js";
 
 const useFormatMacroData = (title, added, budget, consumed) => {
   const colorKey = title.toLowerCase();
+  const balance = budget - (consumed + added);
   const underBudget = consumed + added < budget;
 
   const titleBgColor = underBudget
@@ -39,7 +40,7 @@ const useFormatMacroData = (title, added, budget, consumed) => {
     {
       key: 3,
       // when over budget, "budget" is set 0 so the "consumed" slice fills the whole chart
-      amount: underBudget ? budget : 0,
+      amount: underBudget ? balance : 0,
       svg: {
         fill: underBudget ? budget_palette[colorKey][2] : colors.warning_1,
         stroke: underBudget ? budget_palette[colorKey][1] : colors.warning_2,
