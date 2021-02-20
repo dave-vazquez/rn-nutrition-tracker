@@ -36,10 +36,10 @@ NumberInput.defaultProps = {
 };
 
 NumberInput.propTypes = {
-  label: PropTypes.string,
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
   step: PropTypes.number,
+  label: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default NumberInput;

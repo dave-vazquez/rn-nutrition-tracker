@@ -1,7 +1,7 @@
 import { MEAL_TYPES } from "_constants";
 import { Context as JournalContext } from "_contexts/JournalContext";
 import { Colors, Layout } from "_global_styles";
-import { useFetchNutritionData } from "_hooks";
+import { useCalculateAdded, useFetchNutritionData } from "_hooks";
 import { DailyBudgetsCard, HeaderBottom } from "_screens/application/common";
 import React, { useContext, useState } from "react";
 import { SafeAreaView, ScrollView, StatusBar } from "react-native";
@@ -35,18 +35,13 @@ const FoodDetailsScreen = ({
     foodData.foodId
   );
 
-  const added = {
-    fat_g: macros.fat_g * +form.quantity,
-    carbs_g: macros.carbs_g * +form.quantity,
-    protein_g: macros.protein_g * +form.quantity,
-    calories_kcal: macros.calories_kcal * +form.quantity,
-  };
+  if (fetchStatus === "idle") return null;
+
+  const addedNutrients = useCalculateAdded(form.quantity, nutrients, macros);
 
   const handleSubmitForm = () => {
     createJournalEntry({ ...foodData, ...form }, () => navigate("FoodSearch"));
   };
-
-  if (fetchStatus === "idle") return null;
 
   return (
     <SafeAreaView style={Layout.container.application}>
@@ -55,12 +50,11 @@ const FoodDetailsScreen = ({
       )}
       <HeaderBottom color={Colors.red.s4} />
       <ScrollView style={{ flexGrow: 1 }}>
-        <DailyBudgetsCard added={added} />
+        <DailyBudgetsCard added={addedNutrients.macros} />
         <NutritionSummaryCard
           image={foodData.image}
-          nutrients={nutrients}
-          quantity={+form.quantity}
           fetchStatus={fetchStatus}
+          nutrients={addedNutrients.macros}
         />
         <JournalEntryForm
           form={form}
@@ -71,9 +65,8 @@ const FoodDetailsScreen = ({
           createStatus={createStatus}
         />
         <NutritionDetailCard
-          nutrients={nutrients}
-          quantity={+form.quantity}
           fetchStatus={fetchStatus}
+          nutrients={addedNutrients.all}
         />
       </ScrollView>
     </SafeAreaView>

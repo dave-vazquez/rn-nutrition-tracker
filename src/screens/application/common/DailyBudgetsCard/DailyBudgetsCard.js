@@ -15,26 +15,26 @@ const DailyBudgetsCard = ({ added }) => {
   return (
     <Card bgColor={Colors.green.light.s3}>
       <CalorieBar
-        added={added?.calories_kcal || 0}
+        added={added.calories_kcal}
         budget={budgets.calories_kcal}
         consumed={consumed.calories_kcal}
       />
       <View style={s.macros}>
         <MacroWheel
           title="Fats"
-          added={added?.fat_g || 0}
+          added={added.fat_g}
           budget={budgets.fat_g}
           consumed={consumed.fat_g}
         />
         <MacroWheel
           title="Carbs"
-          added={added?.carbs_g || 0}
+          added={added.carbs_g}
           budget={budgets.carbs_g}
           consumed={consumed.carbs_g}
         />
         <MacroWheel
           title="Protein"
-          added={added?.protein_g || 0}
+          added={added.protein_g}
           budget={budgets.protein_g}
           consumed={consumed.protein_g}
         />
@@ -50,6 +50,15 @@ const s = StyleSheet.create({
     marginTop: Layout.spacing.md,
   },
 });
+
+DailyBudgetsCard.defaultProps = {
+  added: {
+    fat_g: 0,
+    carbs_g: 0,
+    protein_g: 0,
+    calories_kcal: 0,
+  },
+};
 
 DailyBudgetsCard.propTypes = {
   added: PropTypes.shape({

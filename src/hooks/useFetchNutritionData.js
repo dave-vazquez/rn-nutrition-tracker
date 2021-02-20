@@ -4,7 +4,6 @@ import { useEffect, useReducer } from "react";
 const FETCH_START = "FETCH_START";
 const FETCH_ERROR = "FETCH_ERROR";
 const FETCH_SUCCESS = "FETCH_SUCCESS";
-const UPDATE_NUTRIENTS = "UPDATE_NUTRIENTS";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -20,35 +19,19 @@ const reducer = (state, action) => {
         nutrients: action.nutrients,
         healthLabels: action.healthLabels,
       };
-    case UPDATE_NUTRIENTS: {
-      return {
-        ...state,
-        macros: {
-          fat_g: state.nutrients.fat_g * action.quantity,
-          carbs_g: state.nutrients.carbs_g * action.quantity,
-          protein_g: state.nutrients.protein_g * action.quantity,
-          calories_kcal: state.nutrients.calories_kcal * action.quantity,
-        },
-      };
-    }
     default:
       return state;
   }
 };
 
 const initialState = {
+  macros: {},
   nutrients: {},
   healthLabels: [],
   fetchStatus: "idle",
-  macros: {
-    fat_g: 0,
-    carbs_g: 0,
-    protein_g: 0,
-    calories_kcal: 0,
-  },
 };
 
-const useFetchNutritionData = (measure, foodId, quantity) => {
+const useFetchNutritionData = (measure, foodId) => {
   const [{ nutrients, macros, fetchStatus }, dispatch] = useReducer(
     reducer,
     initialState
@@ -76,8 +59,6 @@ const useFetchNutritionData = (measure, foodId, quantity) => {
       dispatch({ type: FETCH_ERROR });
     }
   };
-
-  useEffect(() => { }, [quantity]);
 
   useEffect(() => {
     fetchNutrition(measure, foodId);

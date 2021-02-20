@@ -4,22 +4,16 @@ import { toPrecision } from "_utils";
 import React from "react";
 import { ActivityIndicator, Image, StyleSheet, Text, View } from "react-native";
 
-const NutritionSummaryCard = ({ image, fetchStatus, quantity, nutrients }) => {
-  //
-  const fat = toPrecision((nutrients?.fat_g || 0) * quantity, 0);
-  const carbs = toPrecision((nutrients?.carbs_g || 0) * quantity, 0);
-  const protein = toPrecision((nutrients?.protein_g || 0) * quantity, 0);
-  const calories = toPrecision((nutrients?.calories_kcal || 0) * quantity, 0);
-
+const NutritionSummaryCard = ({ image, fetchStatus, nutrients }) => {
   return (
     <Card>
       <View style={s.container}>
         <FoodImage image={image} />
         <Summary
-          fat={fat}
-          carbs={carbs}
-          protein={protein}
-          calories={calories}
+          fat={toPrecision(nutrients.fat_g, 0)}
+          carbs={toPrecision(nutrients.carbs_g, 0)}
+          protein={toPrecision(nutrients.protein_g, 0)}
+          calories={toPrecision(nutrients.calories_kcal, 0)}
           loading={fetchStatus === "started"}
         />
       </View>
