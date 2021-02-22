@@ -1,24 +1,46 @@
 import { Card } from "_components/common";
 import { Colors } from "_global_styles";
 import { toPrecision } from "_utils";
+import PropTypes from "prop-types";
 import React from "react";
 import { ActivityIndicator, Image, StyleSheet, Text, View } from "react-native";
 
-const NutritionSummaryCard = ({ image, fetchStatus, nutrients }) => {
+const NutritionSummaryCard = ({ image, fetchStatus, macros, quantity }) => {
   return (
     <Card>
       <View style={s.container}>
         <FoodImage image={image} />
         <Summary
-          fat={toPrecision(nutrients.fat_g, 0)}
-          carbs={toPrecision(nutrients.carbs_g, 0)}
-          protein={toPrecision(nutrients.protein_g, 0)}
-          calories={toPrecision(nutrients.calories_kcal, 0)}
           loading={fetchStatus === "started"}
+          fat_g={toPrecision(macros.fat_g * quantity, 0)}
+          carbs_g={toPrecision(macros.carbs_g * quantity, 0)}
+          protein_g={toPrecision(macros.protein_g * quantity, 0)}
+          calories_kcal={toPrecision(macros.calories_kcal * quantity, 0)}
         />
       </View>
     </Card>
   );
+};
+
+NutritionSummaryCard.defaultProps = {
+  macros: {
+    fat_g: 0,
+    carbs_g: 0,
+    protein_g: 0,
+    calories_kcal: 0,
+  },
+};
+
+NutritionSummaryCard.propTypes = {
+  image: PropTypes.any,
+  quantity: PropTypes.number,
+  fetchStatus: PropTypes.string.isRequired,
+  macros: PropTypes.shape({
+    fat_g: PropTypes.number.isRequired,
+    carbs_g: PropTypes.number.isRequired,
+    protein_g: PropTypes.number.isRequired,
+    calories_kcal: PropTypes.number.isRequired,
+  }),
 };
 
 const FoodImage = ({ image }) => {
@@ -36,34 +58,34 @@ const FoodImage = ({ image }) => {
   );
 };
 
-const Summary = ({ loading, calories, fat, carbs, protein }) => {
+const Summary = ({ loading, calories_kcal, fat_g, carbs_g, protein_g }) => {
   return (
     <View style={s.summary}>
       <Nutrient
         unit="cal"
         name="Calories"
-        amount={calories}
+        amount={calories_kcal}
         loading={loading}
         plateColor={Colors.green.light.s4}
       />
       <Nutrient
         unit="g"
         name="Fats"
-        amount={fat}
+        amount={fat_g}
         loading={loading}
         plateColor={Colors.yellow.s2}
       />
       <Nutrient
         unit="g"
         name="Carbs"
-        amount={carbs}
+        amount={carbs_g}
         loading={loading}
         plateColor={Colors.blue.s2}
       />
       <Nutrient
         unit="g"
         name="Protein"
-        amount={protein}
+        amount={protein_g}
         loading={loading}
         plateColor={Colors.pink.s2}
       />
@@ -101,7 +123,7 @@ const s = StyleSheet.create({
     justifyContent: "space-between",
   },
   imageContainer: {
-    flex: 0.8,
+    flex: 1,
     elevation: 3,
     shadowRadius: 1,
     borderRadius: 5,
@@ -115,7 +137,7 @@ const s = StyleSheet.create({
     borderRadius: 5,
   },
   summary: {
-    flex: 1.2,
+    flex: 1,
     height: 135,
     justifyContent: "space-between",
   },
@@ -126,7 +148,7 @@ const s = StyleSheet.create({
   },
   namePlate: {
     height: 25,
-    width: 100,
+    width: 90,
     elevation: 3,
     shadowRadius: 1,
     borderRadius: 5,

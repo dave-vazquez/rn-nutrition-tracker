@@ -5,6 +5,7 @@ import {
   NumberInput,
   SelectionInput,
 } from "_components/common";
+import { MEAL_TYPES } from "_constants";
 import PropTypes from "prop-types";
 import React, { memo, useState } from "react";
 import { Platform, StyleSheet, View } from "react-native";
@@ -14,7 +15,6 @@ const JournalEntryForm = ({
   form,
   setForm,
   measures,
-  mealTypes,
   onSubmitForm,
   createStatus,
 }) => {
@@ -84,7 +84,7 @@ const JournalEntryForm = ({
       <View style={[s.row, { alignItems: "center" }]}>
         <SelectionInput
           label="Meal Type"
-          items={mealTypes}
+          items={MEAL_TYPES}
           value={form.mealType}
           onSelect={(mealType) => setForm((form) => ({ ...form, mealType }))}
         />

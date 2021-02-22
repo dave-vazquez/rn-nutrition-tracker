@@ -1,7 +1,7 @@
 import { MEAL_TYPES } from "_constants";
 import { Context as JournalContext } from "_contexts/JournalContext";
 import { Colors, Layout } from "_global_styles";
-import { useCalculateAdded, useFetchNutritionData } from "_hooks";
+import { useFetchNutritionData } from "_hooks";
 import { DailyBudgetsCard, HeaderBottom } from "_screens/application/common";
 import React, { useContext, useState } from "react";
 import { SafeAreaView, ScrollView, StatusBar } from "react-native";
@@ -11,22 +11,21 @@ import {
   NutritionSummaryCard,
 } from "./components";
 
-const BREAKFAST = MEAL_TYPES[0];
-
 const FoodDetailsScreen = ({
   navigation: { getParam, navigate, isFocused },
 }) => {
+  //
+  const foodData = getParam("foodData");
+
   const {
     state: { createStatus },
     createJournalEntry,
   } = useContext(JournalContext);
 
-  const foodData = getParam("foodData");
-
   const [form, setForm] = useState({
     quantity: "100",
     date: new Date(),
-    mealType: BREAKFAST,
+    mealType: MEAL_TYPES[0],
     measure: foodData.defaultMeasure,
   });
 
@@ -35,13 +34,11 @@ const FoodDetailsScreen = ({
     foodData.foodId
   );
 
-  if (fetchStatus === "idle") return null;
-
-  const addedNutrients = useCalculateAdded(form.quantity, nutrients, macros);
-
   const handleSubmitForm = () => {
     createJournalEntry({ ...foodData, ...form }, () => navigate("FoodSearch"));
   };
+
+  if (fetchStatus === "idle") return null;
 
   return (
     <SafeAreaView style={Layout.container.application}>
@@ -50,23 +47,24 @@ const FoodDetailsScreen = ({
       )}
       <HeaderBottom color={Colors.red.s4} />
       <ScrollView style={{ flexGrow: 1 }}>
-        <DailyBudgetsCard added={addedNutrients.macros} />
+        <DailyBudgetsCard added={macros} quantity={+form.quantity} />
         <NutritionSummaryCard
+          macros={macros}
           image={foodData.image}
           fetchStatus={fetchStatus}
-          nutrients={addedNutrients.macros}
+          quantity={+form.quantity}
         />
         <JournalEntryForm
           form={form}
           setForm={setForm}
-          measures={foodData.measures}
-          mealTypes={MEAL_TYPES}
-          onSubmitForm={handleSubmitForm}
           createStatus={createStatus}
+          measures={foodData.measures}
+          onSubmitForm={handleSubmitForm}
         />
         <NutritionDetailCard
+          nutrients={nutrients}
+          quantity={+form.quantity}
           fetchStatus={fetchStatus}
-          nutrients={addedNutrients.all}
         />
       </ScrollView>
     </SafeAreaView>

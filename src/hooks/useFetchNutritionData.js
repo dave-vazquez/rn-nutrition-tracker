@@ -25,7 +25,12 @@ const reducer = (state, action) => {
 };
 
 const initialState = {
-  macros: {},
+  macros: {
+    fat_g: 0,
+    carbs_g: 0,
+    protein_g: 0,
+    calories_kcal: 0,
+  },
   nutrients: {},
   healthLabels: [],
   fetchStatus: "idle",

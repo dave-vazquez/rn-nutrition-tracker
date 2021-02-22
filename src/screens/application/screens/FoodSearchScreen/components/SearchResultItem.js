@@ -1,18 +1,21 @@
 import { Colors, Typography } from "_global_styles";
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet } from "react-native";
 import { Avatar, ListItem } from "react-native-elements";
 
+const placeholder = require("_assets/images/food_image_placeholder.png");
+
 const SearchResultItem = ({ item, onPress }) => {
+  const [source, setSource] = useState(
+    item.food.image ? { uri: item.food.image } : placeholder
+  );
+
   return (
     <ListItem onPress={() => onPress(item.food)} bottomDivider>
       <Avatar
-        source={
-          item.food.image
-            ? { uri: item.food.image }
-            : require("_assets/images/food_image_placeholder.png")
-        }
+        source={source}
+        imageProps={{ onError: () => setSource(() => placeholder) }}
       />
       <ListItem.Content>
         <ListItem.Title style={s.label}>{item.food.label}</ListItem.Title>
