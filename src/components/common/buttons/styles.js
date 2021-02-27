@@ -31,7 +31,7 @@ const baseStyles = {
     overflow: "visible",
     ...Platform.select({
       android: {
-        elevation: 4,
+        elevation: 2,
       },
       ios: {
         shadowRadius: 1,

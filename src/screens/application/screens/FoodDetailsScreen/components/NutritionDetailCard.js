@@ -1,20 +1,19 @@
-/* eslint-disable prettier/prettier */
 import { Card } from "_components/common";
 import { Colors, Layout, Typography } from "_global_styles";
 import React from "react";
 import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
-import { Cell, Table, TableWrapper } from 'react-native-table-component';
+import { Cell, Table, TableWrapper } from "react-native-table-component";
 
 const _NutritionDetailCard = ({ nutrients, quantity, fetchStatus }) => {
   return (
     <Card>
-      {fetchStatus === 'started' ? (
+      {fetchStatus === "start" ? (
         <ActivityIndicator size="large" color={Colors.grey.s8} />
       ) : fetchStatus === "error" ? (
         <ErrorMessage />
-      ) :
-          <NutritionTable nutrients={nutrients} quantity={quantity} />
-      }
+      ) : (
+            <NutritionTable nutrients={nutrients} quantity={quantity} />
+          )}
     </Card>
   );
 };
@@ -24,37 +23,40 @@ const NutritionTable = ({ nutrients, quantity }) => {
     <View>
       <TableHeader />
       <Table>
-        {
-          Object.values(nutrients).map((nutrient, i) => (
+        {Object.values(nutrients).map(
+          ({ name, amount, unit, dailyValue, keyNutrient }, i) => (
             <TableWrapper key={i} style={s.table_row}>
               <Cell
                 flex={7}
-                data={nutrient.name}
-                style={!nutrient.keyNutrient && { paddingLeft: 5 }}
-                textStyle={[nutrient.keyNutrient ? s.bold : s.regular, { textAlign: "left" }]}
+                data={name}
+                style={!keyNutrient && { paddingLeft: 5 }}
+                textStyle={[
+                  keyNutrient ? s.bold : s.regular,
+                  { textAlign: "left" },
+                ]}
               />
               <Cell
                 flex={3}
-                textStyle={nutrient.keyNutrient ? s.bold : s.regular}
-                data={nutrient.amount > 0 ? (nutrient.amount * quantity).toFixed(1) : "-"}
+                textStyle={keyNutrient ? s.bold : s.regular}
+                data={amount > 0 ? (amount * quantity).toFixed(1) : "-"}
               />
               <Cell
                 flex={1.5}
-                data={nutrient.unit}
-                textStyle={nutrient.keyNutrient ? s.bold : s.regular}
+                data={unit}
+                textStyle={keyNutrient ? s.bold : s.regular}
               />
               <Cell
                 flex={3}
-                textStyle={nutrient.keyNutrient ? s.bold : s.regular}
-                data={(nutrient.dailyValue * quantity).toFixed(0) + " %"}
+                textStyle={keyNutrient ? s.bold : s.regular}
+                data={(dailyValue * quantity).toFixed(0) + " %"}
               />
             </TableWrapper>
-          ))
-        }
+          )
+        )}
       </Table>
     </View>
-  )
-}
+  );
+};
 
 const TableHeader = () => {
   return (
@@ -63,10 +65,15 @@ const TableHeader = () => {
       <Text>(* DV)</Text>
     </View>
   );
-}
+};
+
 const ErrorMessage = () => {
-  return <Text style={[s.heading, { textAlign: "center" }]}>Oops! Something went wrong :\</Text>
-}
+  return (
+    <Text style={[s.heading, { textAlign: "center" }]}>
+      Oops! Something went wrong :\
+    </Text>
+  );
+};
 
 const s = StyleSheet.create({
   headingContainer: {
@@ -99,6 +106,5 @@ const s = StyleSheet.create({
     textAlign: "right",
   },
 });
-
 
 export default _NutritionDetailCard;

@@ -13,6 +13,11 @@ const CardStyles = StyleSheet.create({
     backgroundColor: Colors.white,
     shadowOffset: { width: 0, height: 2 },
   },
+  divider: {
+    borderBottomWidth: 1,
+    borderBottomColor: Colors.grey.s6,
+    paddingVertical: Layout.spacing.xs,
+  },
 });
 
 export default CardStyles;

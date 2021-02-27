@@ -3,14 +3,16 @@ import React from "react";
 import { View } from "react-native";
 import CardStyles from "./styles";
 
-const s = CardStyles;
-
-const Card = ({ children, bgColor = Colors.white, style }) => {
+const Card = ({ children, bgColor = Colors.white, containerStyle }) => {
   return (
-    <View style={[s.card, { backgroundColor: bgColor }, style]}>
+    <View
+      style={[CardStyles.card, { backgroundColor: bgColor }, containerStyle]}
+    >
       {children}
     </View>
   );
 };
+
+Card.Divider = () => <View style={CardStyles.divider} />;
 
 export default Card;

@@ -31,8 +31,6 @@ const MacroWheel = ({ budget, consumed, added, title }) => {
         valueAccessor={({ item }) => item.amount}
         padAngle={0}
         innerRadius={35}
-        animate
-        animationDuration={500}
       />
     </View>
   );
@@ -68,7 +66,7 @@ const s = StyleSheet.create({
   },
   title: {
     height: 25,
-    elevation: 3,
+    elevation: 1,
     width: "100%",
     shadowRadius: 1,
     borderRadius: 5,

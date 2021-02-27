@@ -16,26 +16,26 @@ const DailyBudgetsCard = ({ added, quantity }) => {
   return (
     <Card bgColor={Colors.green.light.s3}>
       <CalorieBar
-        added={toPrecision(added.calories_kcal * quantity, 0)}
+        added={toPrecision((added.calories_kcal?.amount || 0) * quantity, 0)}
         budget={budgets.calories_kcal}
         consumed={consumed.calories_kcal}
       />
       <View style={s.macros}>
         <MacroWheel
           title="Fats"
-          added={toPrecision(added.fat_g * quantity, 0)}
+          added={toPrecision((added.fat_g?.amount || 0) * quantity, 0)}
           budget={budgets.fat_g}
           consumed={consumed.fat_g}
         />
         <MacroWheel
           title="Carbs"
-          added={toPrecision(added.carbs_g * quantity, 0)}
+          added={toPrecision((added.carbs_g?.amount || 0) * quantity, 0)}
           budget={budgets.carbs_g}
           consumed={consumed.carbs_g}
         />
         <MacroWheel
           title="Protein"
-          added={toPrecision(added.protein_g * quantity, 0)}
+          added={toPrecision((added.protein_g?.amount || 0) * quantity, 0)}
           budget={budgets.protein_g}
           consumed={consumed.protein_g}
         />
@@ -54,21 +54,24 @@ const s = StyleSheet.create({
 
 DailyBudgetsCard.defaultProps = {
   added: {
-    fat_g: 0,
-    carbs_g: 0,
-    protein_g: 0,
-    calories_kcal: 0,
+    fat_g: {
+      amount: 0,
+    },
+    carbs_g: {
+      amount: 0,
+    },
+    protein_g: {
+      amount: 0,
+    },
+    calories_kcal: {
+      amount: 0,
+    },
   },
   quantity: 1,
 };
 
 DailyBudgetsCard.propTypes = {
-  added: PropTypes.shape({
-    fat_g: PropTypes.number.isRequired,
-    carbs_g: PropTypes.number.isRequired,
-    protein_g: PropTypes.number.isRequired,
-    calories_kcal: PropTypes.number.isRequired,
-  }),
+  added: PropTypes.object,
   quantity: PropTypes.number,
 };
 

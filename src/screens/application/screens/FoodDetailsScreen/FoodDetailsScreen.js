@@ -5,17 +5,11 @@ import { useFetchNutritionData } from "_hooks";
 import { DailyBudgetsCard, HeaderBottom } from "_screens/application/common";
 import React, { useContext, useState } from "react";
 import { SafeAreaView, ScrollView, StatusBar } from "react-native";
-import {
-  JournalEntryForm,
-  NutritionDetailCard,
-  NutritionSummaryCard,
-} from "./components";
+import { JournalEntryForm, NutritionInfo } from "./components";
 
-const FoodDetailsScreen = ({
-  navigation: { getParam, navigate, isFocused },
-}) => {
+const FoodDetailsScreen = ({ navigation }) => {
   //
-  const foodData = getParam("foodData");
+  const foodData = navigation.getParam("foodData");
 
   const {
     state: { createStatus },
@@ -35,22 +29,30 @@ const FoodDetailsScreen = ({
   );
 
   const handleSubmitForm = () => {
-    createJournalEntry({ ...foodData, ...form }, () => navigate("FoodSearch"));
+    createJournalEntry({ ...foodData, ...form }, () =>
+      navigation.navigate("FoodSearch")
+    );
   };
 
   if (fetchStatus === "idle") return null;
 
   return (
     <SafeAreaView style={Layout.container.application}>
-      {isFocused() && (
+      {navigation.isFocused() && (
         <StatusBar barStyle="light-content" backgroundColor={Colors.red.s4} />
       )}
       <HeaderBottom color={Colors.red.s4} />
       <ScrollView style={{ flexGrow: 1 }}>
-        <DailyBudgetsCard added={macros} quantity={+form.quantity} />
-        <NutritionSummaryCard
-          macros={macros}
+        <DailyBudgetsCard
+          added={macros}
+          quantity={+form.quantity}
           image={foodData.image}
+          fetchStatus={fetchStatus}
+          showSummary={true}
+        />
+        <NutritionInfo
+          macros={macros}
+          nutrients={nutrients}
           fetchStatus={fetchStatus}
           quantity={+form.quantity}
         />
@@ -60,11 +62,6 @@ const FoodDetailsScreen = ({
           createStatus={createStatus}
           measures={foodData.measures}
           onSubmitForm={handleSubmitForm}
-        />
-        <NutritionDetailCard
-          nutrients={nutrients}
-          quantity={+form.quantity}
-          fetchStatus={fetchStatus}
         />
       </ScrollView>
     </SafeAreaView>

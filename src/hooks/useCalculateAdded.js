@@ -1,7 +1,6 @@
 import { toPrecision } from "_utils";
 
 const useCalculateAdded = (quantity, nutrients, macros) => {
-  Object.values(macros).map((macro) => macro.toFixed);
   return {
     macros: {
       fat_g: toPrecision((macros.fat_g || 0) * +quantity, 0),

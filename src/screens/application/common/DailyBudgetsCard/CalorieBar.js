@@ -10,17 +10,19 @@ const CalorieBar = ({ consumed, added, budget }) => {
   const [data, colors] = useFormatCalorieData(consumed, added, budget);
 
   return (
-    <View style={s.container}>
-      <ValueOverlay budget={budget} consumed={consumed + added} />
-      <StackedBarChart
-        animate
-        horizontal
-        data={data}
-        colors={colors}
-        style={s.chart}
-        animationDuration={500}
-        keys={keys}
-      />
+    <View>
+      <View style={s.container}>
+        <ValueOverlay budget={budget} consumed={consumed + added} />
+        <StackedBarChart
+          animate
+          horizontal
+          data={data}
+          colors={colors}
+          style={s.chart}
+          animationDuration={500}
+          keys={keys}
+        />
+      </View>
     </View>
   );
 };
@@ -31,7 +33,7 @@ const ValueOverlay = ({ budget, consumed }) => {
       color: consumed / budget <= 0.25 ? Colors.grey.s8 : Colors.white,
     },
     budget: {
-      color: consumed / budget >= 0.96 ? Colors.white : Colors.grey.s8,
+      color: consumed / budget <= 0.96 ? Colors.grey.s8 : Colors.white,
     },
   };
 
@@ -48,7 +50,7 @@ const s = StyleSheet.create({
     height: 39,
     ...Platform.select({
       android: {
-        elevation: 3,
+        elevation: 1,
       },
       ios: {
         shadowRadius: 1,

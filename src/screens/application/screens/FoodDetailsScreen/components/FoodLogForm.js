@@ -119,7 +119,6 @@ JournalEntryForm.propTypes = {
   form: PropTypes.object.isRequired,
   setForm: PropTypes.func.isRequired,
   measures: PropTypes.arrayOf(PropTypes.object).isRequired,
-  mealTypes: PropTypes.arrayOf(PropTypes.object).isRequired,
   onSubmitForm: PropTypes.func.isRequired,
   createStatus: PropTypes.oneOf(["idle", "start", "error", "success"]),
 };
