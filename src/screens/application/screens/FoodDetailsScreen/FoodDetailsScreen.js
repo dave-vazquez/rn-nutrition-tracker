@@ -5,11 +5,14 @@ import { useFetchNutritionData } from "_hooks";
 import { DailyBudgetsCard, HeaderBottom } from "_screens/application/common";
 import React, { useContext, useState } from "react";
 import { SafeAreaView, ScrollView, StatusBar } from "react-native";
+import Toast from "react-native-simple-toast";
 import { JournalEntryForm, NutritionInfo } from "./components";
 
-const FoodDetailsScreen = ({ navigation }) => {
+const FoodDetailsScreen = ({
+  navigation: { getParam, isFocused, navigate },
+}) => {
   //
-  const foodData = navigation.getParam("foodData");
+  const foodData = getParam("foodData");
 
   const {
     state: { createStatus },
@@ -20,7 +23,7 @@ const FoodDetailsScreen = ({ navigation }) => {
     quantity: "100",
     date: new Date(),
     mealType: MEAL_TYPES[0],
-    measure: foodData.defaultMeasure,
+    measure: foodData.defaultSelection,
   });
 
   const [nutrients, macros, fetchStatus] = useFetchNutritionData(
@@ -29,16 +32,17 @@ const FoodDetailsScreen = ({ navigation }) => {
   );
 
   const handleSubmitForm = () => {
-    createJournalEntry({ ...foodData, ...form }, () =>
-      navigation.navigate("FoodSearch")
-    );
+    createJournalEntry({ ...foodData, ...form }, () => {
+      Toast.show("Journal Updated!");
+      setTimeout(() => navigate("FoodSearch"), 500);
+    });
   };
 
   if (fetchStatus === "idle") return null;
 
   return (
     <SafeAreaView style={Layout.container.application}>
-      {navigation.isFocused() && (
+      {isFocused() && (
         <StatusBar barStyle="light-content" backgroundColor={Colors.red.s4} />
       )}
       <HeaderBottom color={Colors.red.s4} />
@@ -72,7 +76,8 @@ FoodDetailsScreen.navigationOptions = ({ navigation }) => ({
   headerTitleAlign: "left",
   headerTintColor: Colors.white,
   headerTitleStyle: { fontFamily: "Lato_Bold" },
-  headerTitle: navigation.getParam("foodData").label,
+  headerTitle: `${navigation.getParam("foodData").label}, ${navigation.getParam("foodData").brand
+    }`,
   headerStyle: {
     elevation: 0,
     backgroundColor: Colors.red.s4,

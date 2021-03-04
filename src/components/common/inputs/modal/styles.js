@@ -9,7 +9,7 @@ const SelectionModalStyles = {
       justifyContent: "center",
       backgroundColor: "#00000050",
     },
-    scrollView: {
+    list: {
       flexGrow: 1,
       backgroundColor: Colors.white,
       borderRadius: 5,

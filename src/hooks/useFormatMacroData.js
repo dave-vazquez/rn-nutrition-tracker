@@ -1,49 +1,51 @@
-import { budget_palette, colors } from "_global_styles/base.js";
+import { Colors } from "_global_styles";
+
+const bgColors = {
+  Fats: Colors.yellow.s2,
+  Carbs: Colors.blue.s2,
+  Protein: Colors.pink.s2,
+};
+
+const chartColors = {
+  Fats: [Colors.yellow.s2, Colors.yellow.s3, Colors.yellow.s1],
+  Carbs: [Colors.blue.s2, Colors.blue.s3, Colors.blue.s1],
+  Protein: [Colors.pink.s2, Colors.pink.s3, Colors.pink.s1],
+};
 
 const useFormatMacroData = (title, added, budget, consumed) => {
-  const colorKey = title.toLowerCase();
   const balance = budget - (consumed + added);
   const underBudget = consumed + added < budget;
 
-  const titleBgColor = underBudget
-    ? budget_palette[colorKey][0]
-    : colors.warning_1;
+  const titleBgColor = underBudget ? bgColors[title] : Colors.warning.s1;
 
   const titleColor =
-    // always white with the exception of "Fats" when under budget
-    title === "Fats" && underBudget ? colors.grey_8 : colors.white;
+    title === "Fats" && underBudget ? Colors.grey.s8 : Colors.white;
 
-  const consumedColor = underBudget ? colors.grey_8 : colors.warning_1;
+  const consumedColor = underBudget ? Colors.grey.s8 : Colors.warning.s1;
 
   const pieChartData = [
-    // "consumed" slice
     {
       key: 1,
-      // when over budget, "consumed" is set to maximum amount: "budget"
       amount: underBudget ? consumed : budget,
       svg: {
-        fill: underBudget ? budget_palette[colorKey][0] : colors.warning_1,
-        stroke: underBudget ? budget_palette[colorKey][1] : colors.warning_2,
+        fill: underBudget ? chartColors[title][0] : Colors.warning.s1,
+        stroke: underBudget ? chartColors[title][1] : Colors.warning.s2,
       },
     },
-    // "added" slice
     {
       key: 2,
-      // when over budget, "added" is set 0 so the "consumed" slice fills the whole chart
       amount: underBudget ? added : 0,
       svg: {
-        fill: underBudget ? budget_palette[colorKey][1] : colors.warning_1,
-        stroke: underBudget ? budget_palette[colorKey][1] : colors.warning_2,
+        fill: underBudget ? chartColors[title][1] : Colors.warning.s1,
+        stroke: underBudget ? chartColors[title][1] : Colors.warning.s2,
       },
     },
-    // "budget" slice
     {
       key: 3,
-      // when over budget, "budget" is set 0 so the "consumed" slice fills the whole chart
       amount: underBudget ? balance : 0,
       svg: {
-        fill: underBudget ? budget_palette[colorKey][2] : colors.warning_1,
-        stroke: underBudget ? budget_palette[colorKey][1] : colors.warning_2,
+        fill: underBudget ? chartColors[title][2] : Colors.warning.s1,
+        stroke: underBudget ? chartColors[title][1] : Colors.warning.s2,
       },
     },
   ];
@@ -51,7 +53,7 @@ const useFormatMacroData = (title, added, budget, consumed) => {
   // handles exception for stroke color when formatting data for Fats
   if (title === "Fats") {
     pieChartData.map((slice) => {
-      slice.svg.stroke = underBudget ? colors.yellow_4 : slice.svg.stroke;
+      slice.svg.stroke = underBudget ? Colors.yellow.s4 : slice.svg.stroke;
       return slice;
     });
   }

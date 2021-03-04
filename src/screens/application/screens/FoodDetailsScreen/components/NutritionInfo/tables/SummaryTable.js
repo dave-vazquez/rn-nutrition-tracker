@@ -1,5 +1,5 @@
 import { Card } from "_components/common";
-import React from "react";
+import React, { memo } from "react";
 import { View } from "react-native";
 import { Table, TableWrapper } from "react-native-table-component";
 import NutrientData from "../cells/NutrientData";
@@ -7,7 +7,7 @@ import NutrientName from "../cells/NutrientName";
 import { calcAmount, calcDailyVal } from "../helper";
 import { default as s } from "../styles";
 
-const SummaryTable = ({ macros, quantity, loading, visible }) => {
+const SummaryTable = memo(({ macros, quantity, loading, visible }) => {
   return (
     <View style={{ display: visible ? "flex" : "none" }}>
       <Table>
@@ -37,6 +37,6 @@ const SummaryTable = ({ macros, quantity, loading, visible }) => {
       <Card.Divider />
     </View>
   );
-};
+});
 
 export default SummaryTable;

@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import React, { useCallback } from "react";
-import { Modal, ScrollView, TouchableOpacity, View } from "react-native";
+import { FlatList, Modal, TouchableOpacity, View } from "react-native";
 import SelectionItem, { itemProp } from "./SelectionItem";
 import SelectionModalStyles from "./styles";
 
@@ -27,6 +27,7 @@ const SelectionModal = ({
       transparent={true}
       animationType="fade"
       hardwareAccelerated={true}
+      statusBarTranslucent={true}
     >
       <TouchableOpacity
         style={s.overlay}
@@ -34,16 +35,19 @@ const SelectionModal = ({
         onPress={() => setModalVisible((modalVisible) => !modalVisible)}
       >
         <View style={{ maxHeight: 400, width: 350 }}>
-          <ScrollView contentContainerStyle={s.scrollView}>
-            {items.map((item, i) => (
+          <FlatList
+            style={s.list}
+            data={items}
+            keyExtractor={(item) => item.key.toString()}
+            renderItem={({ item }) => (
               <SelectionItem
-                key={i}
+                key={item.key}
                 item={item}
                 handlePress={handlePress}
                 selected={value.key === item.key}
               />
-            ))}
-          </ScrollView>
+            )}
+          />
         </View>
       </TouchableOpacity>
     </Modal>

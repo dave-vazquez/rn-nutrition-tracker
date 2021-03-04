@@ -34,15 +34,15 @@ const JournalEntryForm = ({
 
   return (
     <Card>
+      <NumberInput
+        label="Quantity"
+        value={form.quantity}
+        step={form.measure.label === "Gram" ? 5 : 1}
+        onChange={(quantity) => {
+          setForm((form) => ({ ...form, quantity }));
+        }}
+      />
       <View style={s.row}>
-        <NumberInput
-          label="Quantity"
-          value={form.quantity}
-          step={form.measure.label === "Gram" ? 5 : 1}
-          onChange={(quantity) => {
-            setForm((form) => ({ ...form, quantity }));
-          }}
-        />
         <SelectionInput
           label="Measure"
           items={measures}
@@ -55,8 +55,14 @@ const JournalEntryForm = ({
             }))
           }
         />
+        <SelectionInput
+          label="Meal Type"
+          items={MEAL_TYPES}
+          value={form.mealType}
+          onSelect={(mealType) => setForm((form) => ({ ...form, mealType }))}
+        />
       </View>
-      <View style={s.row}>
+      <View style={[s.row, { alignItems: "center" }]}>
         <DateTimeInput
           hideIcon
           label="Date"
@@ -81,20 +87,12 @@ const JournalEntryForm = ({
           />
         )}
       </View>
-      <View style={[s.row, { alignItems: "center" }]}>
-        <SelectionInput
-          label="Meal Type"
-          items={MEAL_TYPES}
-          value={form.mealType}
-          onSelect={(mealType) => setForm((form) => ({ ...form, mealType }))}
-        />
-        <Button
-          loading={createStatus === "start"}
-          title="Add to Journal"
-          containerStyles={s.buttonContainer}
-          onPress={onSubmitForm}
-        />
-      </View>
+      <Button
+        loading={createStatus === "start"}
+        title="Add to Journal"
+        containerStyles={s.buttonContainer}
+        onPress={onSubmitForm}
+      />
     </Card>
   );
 };

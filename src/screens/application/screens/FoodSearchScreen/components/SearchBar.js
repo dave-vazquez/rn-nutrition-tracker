@@ -20,7 +20,8 @@ const SearchBar = ({ value, onChangeText, searchStatus }) => {
         loadingProps={loadingProps}
         onChangeText={onChangeText}
         containerStyle={s.container}
-        inputContainerStyle={s.input}
+        inputContainerStyle={s.inputContainer}
+        inputStyle={s.input}
         placeholder="Search by name, brand, etc..."
         searchIcon={{
           size: 30,
@@ -64,8 +65,11 @@ const s = StyleSheet.create({
     marginTop: Layout.spacing.md,
     fontFamily: Typography.font.lato.regular,
   },
-  input: {
+  inputContainer: {
     backgroundColor: Colors.white,
+  },
+  input: {
+    color: Colors.grey.s8,
   },
 });
 

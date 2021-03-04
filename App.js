@@ -5,6 +5,7 @@ import CombinedProvider from "contexts/CombinedProvider";
 import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
 import React from "react";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
 import { AppNavigator, OnboardingNavigator } from "./src/navigation";
 import { NavigationService } from "./src/navigation/utils";
@@ -42,12 +43,14 @@ export default () => {
   if (!loaded) return <AppLoading />;
 
   return (
-    <CombinedProvider>
-      <Root
-        ref={(navigatorRef) => {
-          NavigationService.setTopLevelNavigator(navigatorRef);
-        }}
-      />
-    </CombinedProvider>
+    <SafeAreaProvider>
+      <CombinedProvider>
+        <Root
+          ref={(navigatorRef) => {
+            NavigationService.setTopLevelNavigator(navigatorRef);
+          }}
+        />
+      </CombinedProvider>
+    </SafeAreaProvider>
   );
 };

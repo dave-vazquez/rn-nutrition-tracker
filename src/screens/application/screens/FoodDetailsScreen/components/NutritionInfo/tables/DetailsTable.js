@@ -1,20 +1,13 @@
 import { Card } from "_components/common";
-import { Colors } from "_global_styles";
-import React from "react";
-import { ActivityIndicator, View } from "react-native";
+import React, { memo } from "react";
+import { View } from "react-native";
 import { Table, TableWrapper } from "react-native-table-component";
 import NutrientData from "../cells/NutrientData";
 import NutrientName from "../cells/NutrientName";
 import { calcAmount, calcDailyVal } from "../helper";
 import { default as s } from "../styles";
 
-const DetailsTable = ({ nutrients, quantity, loading, visible }) => {
-  // if (loading)
-  //   return (
-  //     <View style={{ alignItems: "center" }}>
-  //       <ActivityIndicator size="large" color={Colors.grey.s8} />
-  //     </View>
-  //   );
+const DetailsTable = memo(({ nutrients, quantity, loading, visible }) => {
   return (
     <View style={{ display: visible ? "flex" : "none" }}>
       <Table>
@@ -58,6 +51,6 @@ const DetailsTable = ({ nutrients, quantity, loading, visible }) => {
       </Table>
     </View>
   );
-};
+});
 
 export default DetailsTable;

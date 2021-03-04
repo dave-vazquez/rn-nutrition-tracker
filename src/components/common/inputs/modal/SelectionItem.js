@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { Text, TouchableWithoutFeedback, View } from "react-native";
-import { Icon } from "react-native-elements";
+import { Text, TouchableOpacity, View } from "react-native";
+import { Icon, ListItem } from "react-native-elements";
 import SelectionModalStyles from "./styles";
 
 const s = SelectionModalStyles.item;
@@ -11,16 +11,24 @@ const SelectionItem = ({ item, selected, handlePress }) => {
   const iconStyles = selected ? s.iconSelected : s.icon;
 
   return (
-    <TouchableWithoutFeedback
+    <TouchableOpacity
       key={item.key}
-      activeOpacity={1}
+      activeOpacity={0.2}
       onPress={() => handlePress(item.key)}
     >
-      <View style={s.container}>
-        <Text style={labelStyle}>{item.label}</Text>
-        <Icon size={20} name="check" type="ant-design" iconStyle={iconStyles} />
-      </View>
-    </TouchableWithoutFeedback>
+      <ListItem bottomDivider>
+        <ListItem.Content>
+          <ListItem.Title style={labelStyle}>{item.label}</ListItem.Title>
+        </ListItem.Content>
+        {selected && (
+          <ListItem.Chevron
+            type="ant-design"
+            name="check"
+            iconStyle={iconStyles}
+          />
+        )}
+      </ListItem>
+    </TouchableOpacity>
   );
 };
 

@@ -6,13 +6,14 @@ import { SafeAreaView, StatusBar } from "react-native";
 import { SearchBar, SearchResults } from "./components";
 
 const FoodSearchScreen = ({ navigation: { navigate, isFocused } }) => {
-  //
   const [keyword, setKeyword] = useState("bread");
 
-  const [results, searchStatus, resetSearch] = useDebouncedSearch(
-    keyword,
-    1000
-  );
+  const [
+    results,
+    resetSearch,
+    fetchNextResults,
+    searchStatus,
+  ] = useDebouncedSearch(keyword, 1000);
 
   const viewDetails = useCallback(
     (foodData) => navigate("FoodDetails", { foodData }),
@@ -37,7 +38,11 @@ const FoodSearchScreen = ({ navigation: { navigate, isFocused } }) => {
         onChangeText={setKeyword}
         searchStatus={searchStatus}
       />
-      <SearchResults results={results} viewDetails={viewDetails} />
+      <SearchResults
+        results={results}
+        viewDetails={viewDetails}
+        fetchNextResults={fetchNextResults}
+      />
     </SafeAreaView>
   );
 };

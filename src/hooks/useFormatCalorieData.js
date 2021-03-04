@@ -1,48 +1,20 @@
-import { budget_palette } from "_global_styles/base.js";
-import { useEffect, useState } from "react";
+import { Colors } from "_global_styles";
 
 const useFormatCalorieData = (consumed, added, budget) => {
   const balance = budget - (consumed + added);
   const underBudget = consumed + added < budget;
 
-  const [{ data, colors }, setData] = useState({
-    data: [
-      {
-        consumed: balance,
-        added,
-        budget,
-      },
-    ],
-    colors: budget_palette.cals,
-  });
+  const data = [
+    {
+      consumed: underBudget ? consumed : budget,
+      added: underBudget ? added : 0,
+      budget: underBudget ? balance : 0,
+    },
+  ];
 
-  useEffect(() => {
-    if (underBudget) {
-      setData({
-        data: [
-          {
-            consumed,
-            added,
-            budget: balance,
-          },
-        ],
-        colors: budget_palette.cals,
-      });
-    } else {
-      // when over budget, "consumed" is set to maximum amount: "budget"
-      // "added" and "budget" are set to 0, so "consumed" fills the entire bar
-      setData({
-        data: [
-          {
-            consumed: budget,
-            budget: 0,
-            added: 0,
-          },
-        ],
-        colors: budget_palette.cals_exceeded,
-      });
-    }
-  }, [added, budget, balance, consumed, underBudget]);
+  const colors = underBudget
+    ? [Colors.green.light.s4, Colors.green.light.s5, Colors.white]
+    : [Colors.warning.s1, Colors.warning.s2, Colors.green.light.s5];
 
   return [data, colors];
 };
