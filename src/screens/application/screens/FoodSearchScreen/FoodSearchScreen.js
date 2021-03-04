@@ -6,7 +6,7 @@ import { SafeAreaView, StatusBar } from "react-native";
 import { SearchBar, SearchResults } from "./components";
 
 const FoodSearchScreen = ({ navigation: { navigate, isFocused } }) => {
-  const [keyword, setKeyword] = useState("bread");
+  const [keyword, setKeyword] = useState("");
 
   const [
     results,
