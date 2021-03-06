@@ -40,7 +40,7 @@ const DetailsTable = memo(({ nutrients, quantity, loading, visible }) => {
                     flex={3}
                     loading={loading}
                     keyNutrient={keyNutrient === true}
-                    data={calcNetTotal(dailyValue, quantity, 1, true)}
+                    data={calcNetTotal(dailyValue, quantity, 1, true) + " %"}
                   />
                 </TableWrapper>
                 {name === "Protein" && <Card.Divider />}

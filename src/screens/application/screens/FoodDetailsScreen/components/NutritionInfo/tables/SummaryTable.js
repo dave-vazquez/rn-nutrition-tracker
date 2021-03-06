@@ -27,7 +27,7 @@ const SummaryTable = memo(({ macros, quantity, loading, visible }) => {
                   flex={3}
                   macroNutrient
                   loading={loading}
-                  data={calcNetTotal(dailyValue, quantity, 1, true)}
+                  data={calcNetTotal(dailyValue, quantity, 1, true) + " %"}
                 />
               </TableWrapper>
             );
