@@ -1,10 +1,10 @@
 import { Card } from "_components/common";
+import { calcNetTotal } from "_utils";
 import React, { memo } from "react";
 import { View } from "react-native";
 import { Table, TableWrapper } from "react-native-table-component";
 import NutrientData from "../cells/NutrientData";
 import NutrientName from "../cells/NutrientName";
-import { calcAmount, calcDailyVal } from "../helper";
 import { default as s } from "../styles";
 
 const SummaryTable = memo(({ macros, quantity, loading, visible }) => {
@@ -20,14 +20,14 @@ const SummaryTable = memo(({ macros, quantity, loading, visible }) => {
                   flex={3}
                   macroNutrient
                   loading={loading}
-                  data={calcAmount(amount, quantity)}
+                  data={calcNetTotal(amount, quantity, 1, true)}
                 />
                 <NutrientData flex={1.5} data={unit} macroNutrient />
                 <NutrientData
                   flex={3}
                   macroNutrient
                   loading={loading}
-                  data={calcDailyVal(dailyValue, quantity)}
+                  data={calcNetTotal(dailyValue, quantity, 1, true)}
                 />
               </TableWrapper>
             );

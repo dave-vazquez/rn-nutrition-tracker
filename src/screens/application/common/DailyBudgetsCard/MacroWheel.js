@@ -1,6 +1,5 @@
 import { Colors, Layout, Typography } from "_global_styles";
 import { useFormatMacroData } from "_hooks";
-import { toPrecision } from "_utils";
 import React, { memo } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { PieChart } from "react-native-svg-charts";
@@ -27,10 +26,10 @@ const MacroWheel = ({ budget, consumed, added, title }) => {
       />
       <PieChart
         data={data}
-        style={s.chart}
-        valueAccessor={({ item }) => item.amount}
         padAngle={0}
+        style={s.chart}
         innerRadius={35}
+        valueAccessor={({ item }) => item.amount}
       />
     </View>
   );
@@ -48,7 +47,7 @@ const ValueOverlay = ({ budget, consumed, consumedColor }) => {
   return (
     <View style={s.overlay}>
       <Text style={[s.value, { color: consumedColor }]}>
-        {toPrecision(consumed, 0)} g
+        {(+consumed).toFixed(0)} g
       </Text>
       <Text style={[s.value, s.budget]}>{budget} g</Text>
     </View>
@@ -77,7 +76,7 @@ const s = StyleSheet.create({
     shadowOffset: { width: 0, height: 2 },
   },
   titleText: {
-    fontSize: 16,
+    fontSize: Typography.size.xs,
     textAlign: "center",
     fontFamily: Typography.font.lato.regular,
   },
@@ -93,7 +92,7 @@ const s = StyleSheet.create({
     left: 3,
   },
   value: {
-    fontSize: 16,
+    fontSize: Typography.size.xs,
     color: Colors.grey.s8,
     fontFamily: Typography.font.lato.regular,
   },

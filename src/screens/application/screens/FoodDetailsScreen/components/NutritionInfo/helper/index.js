@@ -1,5 +1,12 @@
-export const calcAmount = (amount, quantity) => {
-  return amount * quantity >= 0.1 ? (amount * quantity).toFixed(1) : "< .1";
+export const calcNetTotal = (
+  amount,
+  quantity,
+  precision = 1,
+  format = false
+) => {
+  amount = (amount * quantity).toFixed(precision);
+
+  return format && amount < 0.1 ? "< .1" : amount;
 };
 
 export const calcDailyVal = (dailyValue, quantity) => {

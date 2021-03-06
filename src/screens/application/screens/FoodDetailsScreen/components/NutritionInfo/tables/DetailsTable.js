@@ -1,10 +1,10 @@
 import { Card } from "_components/common";
+import { calcNetTotal } from "_utils";
 import React, { memo } from "react";
 import { View } from "react-native";
 import { Table, TableWrapper } from "react-native-table-component";
 import NutrientData from "../cells/NutrientData";
 import NutrientName from "../cells/NutrientName";
-import { calcAmount, calcDailyVal } from "../helper";
 import { default as s } from "../styles";
 
 const DetailsTable = memo(({ nutrients, quantity, loading, visible }) => {
@@ -29,7 +29,7 @@ const DetailsTable = memo(({ nutrients, quantity, loading, visible }) => {
                     flex={3}
                     loading={loading}
                     keyNutrient={keyNutrient === true}
-                    data={calcAmount(amount, quantity)}
+                    data={calcNetTotal(amount, quantity, 1, true)}
                   />
                   <NutrientData
                     flex={1.5}
@@ -40,7 +40,7 @@ const DetailsTable = memo(({ nutrients, quantity, loading, visible }) => {
                     flex={3}
                     loading={loading}
                     keyNutrient={keyNutrient === true}
-                    data={calcDailyVal(dailyValue, quantity)}
+                    data={calcNetTotal(dailyValue, quantity, 1, true)}
                   />
                 </TableWrapper>
                 {name === "Protein" && <Card.Divider />}
