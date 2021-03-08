@@ -1,5 +1,5 @@
-import NavigationService from "_NavigationService";
 import nutritionAPI from "_api/nutritionAPI";
+import { NavigationService } from "_navigation/utils";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import createContext from "./helper/createContext";
 
@@ -39,11 +39,11 @@ const refreshAuth = (dispatch) => () => {
 };
 
 const tryLocalSignin = () => async () => {
-  const token = await AsyncStorage.getItem("token");
-  if (token) {
+  try {
+    await nutritionAPI.get("/auth/validateToken");
     NavigationService.navigate("App");
-  } else {
-    NavigationService.navigate("Auth", {}, "Measurements");
+  } catch (err) {
+    NavigationService.navigate("Onboarding");
   }
 };
 
@@ -96,7 +96,7 @@ const signin = (dispatch) => async (email, password) => {
 const signout = (dispatch) => async () => {
   await AsyncStorage.removeItem("token");
   dispatch({ type: AUTHENTICATE_REFRESH });
-  NavigationService.navigate("Home");
+  NavigationService.navigate("Onboarding");
 };
 
 export const { Provider, Context } = createContext(

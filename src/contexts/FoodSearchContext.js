@@ -1,45 +1,33 @@
+import createContext from "./createContext";
 import nutritionAPI from "_api/nutritionAPI";
-import createContext from "./helper/createContext";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const FOOD_SEARCH_START = "FOOD_SEARCH_START";
-const FOOD_SEARCH_ERROR = "FOOD_SEARCH_ERROR";
-const FOOD_SEARCH_SUCCESS = "FOOD_SEARCH_SUCCESS";
-const FOOD_SEARCH_EMPTY = "FOOD_SEARCH_EMPTY";
+const SEARCH_START = "SEARCH_START";
+const SEARCH_ERROR = "SEARCH_ERROR";
+const SEARCH_EMPTY = "SEARCH_EMPTY";
+const SEARCH_SUCCESS = "SEARCH_SUCCESS";
 const RESET_SEARCH = "RESET_SEARCH";
-
-const initialState = {
-  start: false,
-  error: false,
-  empty: false,
-  complete: false,
-  results: [],
-};
 
 const foodSearchReducer = (state, action) => {
   switch (action.type) {
-    case FOOD_SEARCH_START:
+    case SEARCH_START:
       return {
         ...initialState,
-        start: true,
-        complete: false,
+        searchStatus: "started",
       };
-    case FOOD_SEARCH_ERROR:
+    case SEARCH_ERROR:
       return {
         ...initialState,
-        error: true,
-        complete: true,
+        searchStatus: "error",
       };
-    case FOOD_SEARCH_EMPTY:
+    case SEARCH_EMPTY:
       return {
         ...initialState,
-        empty: true,
-        complete: true,
-        results: [],
+        searchStatus: "empty",
       };
-    case FOOD_SEARCH_SUCCESS:
+    case SEARCH_SUCCESS:
       return {
-        ...initialState,
-        complete: true,
+        searchStatus: "success",
         results: action.results,
       };
     case RESET_SEARCH:
@@ -50,26 +38,48 @@ const foodSearchReducer = (state, action) => {
 };
 
 const searchFoodDatabase = (dispatch) => async (keyword) => {
-  dispatch({ type: FOOD_SEARCH_START });
   try {
+    //
+    dispatch({ type: "SEARCH_START" });
+
     const {
       data: { results },
     } = await nutritionAPI.get(`/food/search/${keyword}`);
 
-    if (results.length) dispatch({ type: FOOD_SEARCH_SUCCESS, results });
-    else dispatch({ type: FOOD_SEARCH_EMPTY });
+    if (results.length) dispatch({ type: "SEARCH_SUCCESS", results });
+    else dispatch({ type: "SEARCH_EMPTY" });
     //
   } catch (error) {
-    dispatch({ type: FOOD_SEARCH_ERROR });
+    dispatch({ type: "SEARCH_ERROR" });
+  };
+
+  const updateSearchSettings = (dispatch) => {
+
   }
-};
 
-const resetSearch = (dispatch) => () => {
-  dispatch({ type: RESET_SEARCH });
-};
+  const initialState = {
+    results: [],
+    categories: [],
+    dietFilters: [],
+    healthFilters: [],
+    searchStatus: "idle",
+  };
 
-export const { Provider, Context } = createContext(
-  foodSearchReducer,
-  { searchFoodDatabase, resetSearch },
-  initialState
-);
+  export const { Provider, Context } = createContext(
+    foodSearchReducer,
+    { actionCreator },
+    initialState
+  );
+
+/*
+  user settings
+
+  DB email
+  DB password
+  DB all onboarding information
+
+
+
+
+
+*/

@@ -1,6 +1,6 @@
 import axios from "axios";
-import getEnvVars from "environment";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import getEnvVars from "../environment";
 
 const { serverURL } = getEnvVars();
 
@@ -19,5 +19,7 @@ nutritionAPI.interceptors.request.use(
     return Promise.reject(error);
   }
 );
+
+export const cancelRequest = () => axios.CancelToken.source().cancel();
 
 export default nutritionAPI;

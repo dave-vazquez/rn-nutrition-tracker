@@ -1,17 +1,20 @@
+import "./src/wdyr";
+
+import CombinedProvider from "contexts/CombinedProvider";
 /* eslint-disable react/display-name */
 import AppLoading from "expo-app-loading";
 import { useFonts } from "expo-font";
 import React from "react";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { createAppContainer, createSwitchNavigator } from "react-navigation";
-import NavigationService from "./src/NavigationService";
-import CombinedProvider from "./src/contexts/CombinedProvider";
-import { AppNavigator, AuthNavigator } from "./src/navigation";
+import { AppNavigator, OnboardingNavigator } from "./src/navigation";
+import { NavigationService } from "./src/navigation/utils";
 import { AuthResolutionScreen } from "./src/screens/authentication";
 
 const RootNavigator = createSwitchNavigator(
   {
     AuthResolution: AuthResolutionScreen,
-    Auth: AuthNavigator,
+    Onboarding: OnboardingNavigator,
     App: AppNavigator,
   },
   {
@@ -19,7 +22,7 @@ const RootNavigator = createSwitchNavigator(
   }
 );
 
-export const App = createAppContainer(RootNavigator);
+export const Root = createAppContainer(RootNavigator);
 
 export default () => {
   const [loaded] = useFonts({
@@ -40,12 +43,14 @@ export default () => {
   if (!loaded) return <AppLoading />;
 
   return (
-    <CombinedProvider>
-      <App
-        ref={(navigatorRef) => {
-          NavigationService.setTopLevelNavigator(navigatorRef);
-        }}
-      />
-    </CombinedProvider>
+    <SafeAreaProvider>
+      <CombinedProvider>
+        <Root
+          ref={(navigatorRef) => {
+            NavigationService.setTopLevelNavigator(navigatorRef);
+          }}
+        />
+      </CombinedProvider>
+    </SafeAreaProvider>
   );
 };

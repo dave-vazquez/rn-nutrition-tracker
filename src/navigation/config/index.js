@@ -1,4 +1,4 @@
-import g from "global-styles";
+import { Colors } from "_global_styles";
 import React from "react";
 import { Icon } from "react-native-elements";
 
@@ -17,31 +17,31 @@ export const tabNavigatorConfig = {
         case "Journal": {
           type = "material-community";
           name = "notebook";
-          color = focused ? g.color.blue_2 : g.color.grey_5;
+          color = focused ? Colors.blue.s2 : Colors.grey.s5;
           break;
         }
         case "FoodSearch": {
           type = "material-icons";
           name = "search";
-          color = focused ? g.color.green_light_4 : g.color.grey_5;
+          color = focused ? Colors.green.light.s4 : Colors.grey.s5;
           break;
         }
         case "Barcode": {
           type = "material-community";
           name = "barcode-scan";
-          color = focused ? g.color.grey_8 : g.color.grey_5;
+          color = focused ? Colors.grey.s8 : Colors.grey.s5;
           break;
         }
         case "Progress": {
           type = "material-community";
           name = "chart-bar";
-          color = focused ? g.color.grey_8 : g.color.grey_5;
+          color = focused ? Colors.grey.s8 : Colors.grey.s5;
           break;
         }
         case "Settings": {
           type = "font-awesome";
           name = "gear";
-          color = focused ? g.color.blue_2 : g.color.grey_5;
+          color = focused ? Colors.blue.s8 : Colors.grey.s5;
           break;
         }
         default:

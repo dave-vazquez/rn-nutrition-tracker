@@ -19,10 +19,10 @@ src/environment.js
 src/firebase
 
 #other
-notes.txt
+_notes
 
 #yarn
-yarn.error.log
+yarn-error.log
 
 #coverage
 coverage

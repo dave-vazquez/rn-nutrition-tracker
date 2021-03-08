@@ -1,14 +1,18 @@
 import nutritionAPI from "_api/nutritionAPI";
+import dayjs, { deviceTimeZone } from "_utils/dayjs";
 import createContext from "./helper/createContext";
 
 const FETCH_ENTRIES_START = "FETCH_ENTRIES_START";
-const FETCH_ENTRIES_FAIL = "FETCH_ENTRIES_FAIL";
+const FETCH_ENTRIES_ERROR = "FETCH_ENTRIES_ERROR";
 const FETCH_ENTRIES_SUCCESS = "FETCH_ENTRIES_SUCCESS";
+const CREATE_ENTRY_START = "CREATE_ENTRY_START";
+const CREATE_ENTRY_ERROR = "CREATE_ENTRY_ERROR";
+const CREATE_ENTRY_SUCCESS = "CREATE_ENTRY_SUCCESS";
 
 const initialState = {
-  fetchFail: false,
-  fetchStart: true,
-  fetchSuccess: false,
+  currentDate: new Date(),
+  fetchStatus: "started",
+  createStatus: "idle",
   budgets: {
     fat_g: 0,
     carbs_g: 0,
@@ -21,6 +25,7 @@ const initialState = {
     protein_g: 0,
     calories_kcal: 0,
   },
+  entries: [],
 };
 
 const journalReducer = (state, action) => {
@@ -28,54 +33,99 @@ const journalReducer = (state, action) => {
     case FETCH_ENTRIES_START:
       return {
         ...state,
-        fetchFail: false,
-        fetchStart: true,
-        fetchSuccess: false,
+        fetchStatus: "start",
       };
-    case FETCH_ENTRIES_FAIL:
+    case FETCH_ENTRIES_ERROR:
       return {
         ...state,
-        fetchFail: true,
-        fetchStart: false,
-        fetchSuccess: false,
+        fetchStatus: "error",
       };
     case FETCH_ENTRIES_SUCCESS:
       return {
         ...state,
-        fetchFail: false,
-        fetchStart: false,
-        fetchSuccess: true,
+        fetchStatus: "success",
         budgets: action.budgets,
         consumed: action.consumed,
+      };
+    case CREATE_ENTRY_START:
+      return {
+        ...state,
+        createStatus: "start",
+      };
+    case CREATE_ENTRY_ERROR:
+      return {
+        ...state,
+        createStatus: "error",
+      };
+    case CREATE_ENTRY_SUCCESS:
+      return {
+        ...state,
+        createStatus: "success",
       };
     default:
       return state;
   }
 };
 
-const fetchJournalEntries = (dispatch) => async () => {
+const fetchJournalEntries = (dispatch) => async (date) => {
   dispatch({ type: FETCH_ENTRIES_START });
-
   try {
-    const response = await nutritionAPI.get("/journal/2020-01-02");
+    const { data } = await nutritionAPI.get(
+      `/journal/${dayjs(date).tz(deviceTimeZone).format()}`
+    );
+
     dispatch({
       type: FETCH_ENTRIES_SUCCESS,
-      budgets: response.data.budgets,
-      consumed: {
-        fat_g: 18,
-        carbs_g: 25,
-        protein_g: 38,
-        calories_kcal: 500,
-      },
+      budgets: data.budgets,
+      consumed: data.consumed,
+      entries: data.entries,
     });
+
     //
   } catch (error) {
-    dispatch({ type: FETCH_ENTRIES_FAIL });
+    dispatch({ type: FETCH_ENTRIES_ERROR });
+  }
+};
+
+const createJournalEntry = (dispatch) => async (
+  entry,
+  nutrition,
+  navCallBack
+) => {
+  dispatch({ type: CREATE_ENTRY_START });
+
+  try {
+    await nutritionAPI.post("/journal", {
+      nutrition: {
+        fat_g: +nutrition.fat_g.amount * +entry.quantity,
+        carbs_g: +nutrition.carbs_g.amount * +entry.quantity,
+        protein_g: +nutrition.protein_g.amount * +entry.quantity,
+        calories_kcal: +nutrition.calories_kcal.amount * +entry.quantity,
+      },
+      journal_entry: {
+        food_id: entry.foodId,
+        food_name: entry.label,
+        brand_name: entry.brand,
+        quantity: entry.quantity,
+        meal_type: entry.mealType.value,
+        measure_name: entry.measure.label,
+        entry_date: dayjs(entry.date).tz(deviceTimeZone).format(),
+        measure_uri: entry.measure.measureURI,
+        time_zone_name: deviceTimeZone,
+        time_zone_abbr: "EST",
+      },
+    });
+
+    dispatch({ type: CREATE_ENTRY_SUCCESS });
+
+    navCallBack();
+  } catch ({ response }) {
+    dispatch({ type: CREATE_ENTRY_ERROR });
   }
 };
 
 export const { Provider, Context } = createContext(
   journalReducer,
-  { fetchJournalEntries },
+  { fetchJournalEntries, createJournalEntry },
   initialState
 );
