@@ -1,22 +1,29 @@
 import { Card, DateTimeInput } from "_components/common";
 import { IconButton } from "_components/common";
 import { Colors } from "_global_styles";
+import dayjs, { deviceTimeZone } from "_utils/dayjs";
+import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { Platform, StyleSheet } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
-const DatePaginator = ({
-  currentDate,
-  updateCurrentDate,
-  decrementDate,
-  incrementDate,
-}) => {
+const DatePaginator = ({ currentDate, onDateChange }) => {
   const [showPicker, setShowPicker] = useState(false);
 
-  const onDateChange = (_, selectedDate) => {
-    const currentDate = selectedDate || currentDate;
+  const handleDateChange = (_, selectedDate) => {
     setShowPicker(Platform.OS === "ios");
-    updateCurrentDate(currentDate);
+    onDateChange(selectedDate || currentDate);
+  };
+
+  const paginatePrev = () => {
+    // eslint-disable-next-line prettier/prettier
+    const newDate = dayjs(currentDate).tz(deviceTimeZone).subtract(1, "d").toDate();
+    onDateChange(newDate);
+  };
+
+  const paginateNext = () => {
+    const newDate = dayjs(currentDate).tz(deviceTimeZone).add(1, "d").toDate();
+    onDateChange(newDate);
   };
 
   return (
@@ -24,7 +31,7 @@ const DatePaginator = ({
       <IconButton
         raised={false}
         reverse={false}
-        onPress={decrementDate}
+        onPress={paginatePrev}
         icon={{
           name: "chevron-left",
           type: "feather",
@@ -41,7 +48,7 @@ const DatePaginator = ({
       <IconButton
         raised={false}
         reverse={false}
-        onPress={incrementDate}
+        onPress={paginateNext}
         icon={{
           name: "chevron-right",
           type: "feather",
@@ -53,11 +60,16 @@ const DatePaginator = ({
         <DateTimePicker
           mode="date"
           value={currentDate}
-          onChange={onDateChange}
+          onChange={handleDateChange}
         />
       )}
     </Card>
   );
+};
+
+DatePaginator.propTypes = {
+  currentDate: PropTypes.instanceOf(Date).isRequired,
+  onDateChange: PropTypes.func.isRequired,
 };
 
 const s = StyleSheet.create({

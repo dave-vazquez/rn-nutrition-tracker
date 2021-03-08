@@ -47,6 +47,7 @@ const journalReducer = (state, action) => {
         fetchStatus: "success",
         budgets: action.budgets,
         consumed: action.consumed,
+        currentDate: action.currentDate,
       };
     case CREATE_ENTRY_START:
       return {
@@ -73,20 +74,23 @@ const journalReducer = (state, action) => {
   }
 };
 
-const fetchJournalEntries = (dispatch) => async (date) => {
+const fetchJournal = (dispatch) => async (entryDate, navCallBack) => {
   dispatch({ type: FETCH_ENTRIES_START });
+
   try {
     const { data } = await nutritionAPI.get(
-      `/journal/${dayjs(date).tz(deviceTimeZone).format()}`
+      `/journal/${dayjs(entryDate).tz(deviceTimeZone).format()}`
     );
 
     dispatch({
       type: FETCH_ENTRIES_SUCCESS,
+      currentDate: entryDate,
       budgets: data.budgets,
       consumed: data.consumed,
       entries: data.entries,
     });
 
+    if (navCallBack) navCallBack();
     //
   } catch (error) {
     dispatch({ type: FETCH_ENTRIES_ERROR });
@@ -130,41 +134,17 @@ const createJournalEntry = (dispatch) => async (
   }
 };
 
-const updateCurrentDate = (dispatch) => (newDate) => {
-  dispatch({
-    type: UPDATE_CURRENT_DATE,
-    currentDate: dayjs(newDate).tz(deviceTimeZone).toDate(),
-  });
-};
-
-const decrementDate = (dispatch, state) => () => {
-  dispatch({
-    type: UPDATE_CURRENT_DATE,
-    currentDate: dayjs(state.currentDate)
-      .tz(deviceTimeZone)
-      .subtract(1, "d")
-      .toDate(),
-  });
-};
-
-const incrementDate = (dispatch, state) => () => {
-  dispatch({
-    type: UPDATE_CURRENT_DATE,
-    currentDate: dayjs(state.currentDate)
-      .tz(deviceTimeZone)
-      .add(1, "d")
-      .toDate(),
-  });
+const updateCurrentDate = (dispatch) => (newDate, navCallback) => {
+  dispatch({ type: UPDATE_CURRENT_DATE, currentDate: newDate });
+  navCallback();
 };
 
 export const { Provider, Context } = createContext(
   journalReducer,
   {
-    fetchJournalEntries,
+    fetchJournal,
     createJournalEntry,
     updateCurrentDate,
-    decrementDate,
-    incrementDate,
   },
   initialState
 );

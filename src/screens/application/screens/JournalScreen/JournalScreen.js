@@ -3,7 +3,7 @@ import { IconButton } from "_components/common";
 import { Context as JournalContext } from "_contexts/JournalContext";
 import { Colors, Layout } from "_global_styles";
 import { DailyBudgetsCard, HeaderBottom } from "_screens/application/common";
-import { getRelativeDate } from "_utils/dayjs";
+import dayjs, { deviceTimeZone, getRelativeDate } from "_utils/dayjs";
 import React, { useContext, useEffect } from "react";
 import { SafeAreaView, ScrollView, StatusBar, Text, View } from "react-native";
 import { NavigationEvents, withNavigationFocus } from "react-navigation";
@@ -12,16 +12,19 @@ import { DatePaginator, HeaderRight } from "./components";
 const JournalScreen = ({ navigation: { navigate, isFocused, setParams } }) => {
   const {
     state: { fetchStatus, currentDate },
-    fetchJournalEntries,
-    updateCurrentDate,
-    decrementDate,
-    incrementDate,
+    fetchJournal,
   } = useContext(JournalContext);
 
   useEffect(() => {
-    fetchJournalEntries(currentDate);
+    fetchJournal(currentDate);
     setParams({ displayDate: getRelativeDate(currentDate) });
-  }, [currentDate]);
+  }, []);
+
+  const onDateChange = (newDate) => {
+    fetchJournal(newDate, () => {
+      setParams({ displayDate: getRelativeDate(newDate) });
+    });
+  };
 
   if (fetchStatus === "error") {
     return (
@@ -36,16 +39,11 @@ const JournalScreen = ({ navigation: { navigate, isFocused, setParams } }) => {
       {isFocused() && (
         <StatusBar backgroundColor={Colors.blue.s2} barStyle="light-content" />
       )}
-      <NavigationEvents onWillFocus={() => fetchJournalEntries(currentDate)} />
+      <NavigationEvents onWillFocus={() => fetchJournal(currentDate)} />
       <HeaderBottom color={Colors.blue.s2} />
       <ScrollView style={{ flexGrow: 1 }}>
         <DailyBudgetsCard />
-        <DatePaginator
-          currentDate={currentDate}
-          updateCurrentDate={updateCurrentDate}
-          decrementDate={decrementDate}
-          incrementDate={incrementDate}
-        />
+        <DatePaginator currentDate={currentDate} onDateChange={onDateChange} />
       </ScrollView>
       <View style={Layout.centered}>
         <IconButton
