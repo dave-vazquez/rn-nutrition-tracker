@@ -1,13 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { IconButton } from "_components/common";
+import { DatePaginator, IconButton } from "_components/common";
 import { Context as JournalContext } from "_contexts/JournalContext";
 import { Colors, Layout } from "_global_styles";
 import { DailyBudgetsCard, HeaderBottom } from "_screens/application/common";
-import dayjs, { deviceTimeZone, getRelativeDate } from "_utils/dayjs";
+import { getRelativeDate } from "_utils/dayjs";
 import React, { useContext, useEffect } from "react";
 import { SafeAreaView, ScrollView, StatusBar, Text, View } from "react-native";
 import { NavigationEvents, withNavigationFocus } from "react-navigation";
-import { DatePaginator, HeaderRight } from "./components";
+import { HeaderRight } from "./components";
 
 const JournalScreen = ({ navigation: { navigate, isFocused, setParams } }) => {
   const {

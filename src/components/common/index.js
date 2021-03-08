@@ -11,3 +11,5 @@ export { default as TextInput } from "./inputs/TextInput";
 export { default as DateTimeInput } from "./inputs/DateTimeInput";
 export { default as SelectionInput } from "./inputs/SelectionInput";
 export { default as NumberInput } from "./inputs/NumberInput";
+// PAGINATION
+export { default as DatePaginator } from "./pagination/DatePaginator";
