@@ -32,7 +32,7 @@ const FoodDetailsScreen = ({
   );
 
   const handleSubmitForm = () => {
-    createJournalEntry({ ...foodData, ...form }, () => {
+    createJournalEntry({ ...foodData, ...form }, macros, () => {
       Toast.show("Journal Updated!");
       setTimeout(() => navigate("FoodSearch"), 500);
     });

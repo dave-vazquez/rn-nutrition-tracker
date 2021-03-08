@@ -17,27 +17,27 @@ const DailyBudgetsCard = ({ added, quantity }) => {
     <Card bgColor={Colors.green.light.s3}>
       <CalorieBar
         added={calcNetTotal(added?.calories_kcal?.amount, quantity)}
-        budget={budgets.calories_kcal}
-        consumed={consumed.calories_kcal}
+        budget={+budgets.calories_kcal}
+        consumed={+consumed.calories_kcal}
       />
       <View style={s.macros}>
         <MacroWheel
           title="Fats"
           added={calcNetTotal(added?.fat_g?.amount, quantity)}
-          budget={budgets.fat_g}
-          consumed={consumed.fat_g}
+          budget={+budgets.fat_g}
+          consumed={+consumed.fat_g}
         />
         <MacroWheel
           title="Carbs"
           added={calcNetTotal(added?.carbs_g?.amount, quantity)}
-          budget={budgets.carbs_g}
-          consumed={consumed.carbs_g}
+          budget={+budgets.carbs_g}
+          consumed={+consumed.carbs_g}
         />
         <MacroWheel
           title="Protein"
           added={calcNetTotal(added?.protein_g?.amount, quantity)}
-          budget={budgets.protein_g}
-          consumed={consumed.protein_g}
+          budget={+budgets.protein_g}
+          consumed={+consumed.protein_g}
         />
       </View>
     </Card>

@@ -1,5 +1,5 @@
 import nutritionAPI from "_api/nutritionAPI";
-import * as Localization from "expo-localization";
+import dayjs, { deviceTimeZone } from "_utils/dayjs";
 import createContext from "./helper/createContext";
 
 const FETCH_ENTRIES_START = "FETCH_ENTRIES_START";
@@ -10,7 +10,7 @@ const CREATE_ENTRY_ERROR = "CREATE_ENTRY_ERROR";
 const CREATE_ENTRY_SUCCESS = "CREATE_ENTRY_SUCCESS";
 
 const initialState = {
-  date: new Date(),
+  currentDate: new Date(),
   fetchStatus: "started",
   createStatus: "idle",
   budgets: {
@@ -61,57 +61,62 @@ const journalReducer = (state, action) => {
       return {
         ...state,
         createStatus: "success",
-        entries: action.entries,
       };
     default:
       return state;
   }
 };
 
-const fetchJournalEntries = (dispatch) => async () => {
+const fetchJournalEntries = (dispatch) => async (date) => {
   dispatch({ type: FETCH_ENTRIES_START });
-
   try {
-    const response = await nutritionAPI.get("/journal/2020-01-02");
+    const { data } = await nutritionAPI.get(
+      `/journal/${dayjs(date).tz(deviceTimeZone).format()}`
+    );
+
     dispatch({
       type: FETCH_ENTRIES_SUCCESS,
-      budgets: response.data.budgets,
-      consumed: {
-        fat_g: 18,
-        carbs_g: 25,
-        protein_g: 38,
-        calories_kcal: 423,
-      },
+      budgets: data.budgets,
+      consumed: data.consumed,
+      entries: data.entries,
     });
+
     //
   } catch (error) {
     dispatch({ type: FETCH_ENTRIES_ERROR });
   }
 };
 
-const createJournalEntry = (dispatch, state) => async (entry, navCallBack) => {
+const createJournalEntry = (dispatch) => async (
+  entry,
+  nutrition,
+  navCallBack
+) => {
   dispatch({ type: CREATE_ENTRY_START });
 
   try {
-    const response = await nutritionAPI.post(
-      `/journal/${state.date.toISOString()}`,
-      {
+    await nutritionAPI.post("/journal", {
+      nutrition: {
+        fat_g: +nutrition.fat_g.amount * +entry.quantity,
+        carbs_g: +nutrition.carbs_g.amount * +entry.quantity,
+        protein_g: +nutrition.protein_g.amount * +entry.quantity,
+        calories_kcal: +nutrition.calories_kcal.amount * +entry.quantity,
+      },
+      journal_entry: {
         food_id: entry.foodId,
         food_name: entry.label,
         brand_name: entry.brand,
         quantity: entry.quantity,
         meal_type: entry.mealType.value,
         measure_name: entry.measure.label,
-        entry_date: entry.date.toISOString(),
+        entry_date: dayjs(entry.date).tz(deviceTimeZone).format(),
         measure_uri: entry.measure.measureURI,
-        time_zone_name: Localization.timezone,
-      }
-    );
-
-    dispatch({
-      type: CREATE_ENTRY_SUCCESS,
-      entries: response.data.entries ? response.data.entries : state.entries,
+        time_zone_name: deviceTimeZone,
+        time_zone_abbr: "EST",
+      },
     });
+
+    dispatch({ type: CREATE_ENTRY_SUCCESS });
 
     navCallBack();
   } catch ({ response }) {
