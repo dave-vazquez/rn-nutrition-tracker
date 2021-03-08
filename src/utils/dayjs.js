@@ -29,6 +29,10 @@ export const getRelativeDate = (date) => {
   });
 };
 
+export const getMDYDate = (date) => {
+  return dayjs(date).tz(deviceTimeZone).format("MM/DD/YYYY");
+};
+
 export const getFormattedTime = (time) => {
   return dayjs(time).format("h:mm A");
 };
@@ -38,7 +42,8 @@ export const formatDate = (date) => {
 };
 
 export const getFormattedDateTime = (value, type) => {
-  if (type === "date") return getRelativeDate(value);
+  if (type === "relative-date") return getRelativeDate(value);
+  if (type === "mdy") return getMDYDate(value);
   if (type === "time") return getFormattedTime(value);
   return formatDate(value);
 };

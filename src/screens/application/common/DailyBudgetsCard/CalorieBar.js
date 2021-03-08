@@ -14,12 +14,10 @@ const CalorieBar = ({ consumed, added, budget }) => {
       <View style={s.container}>
         <ValueOverlay budget={budget} consumed={consumed + added} />
         <StackedBarChart
-          animate
           horizontal
           data={data}
           colors={colors}
           style={s.chart}
-          animationDuration={500}
           keys={keys}
         />
       </View>

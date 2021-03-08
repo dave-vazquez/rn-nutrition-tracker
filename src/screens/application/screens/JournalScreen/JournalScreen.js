@@ -7,12 +7,15 @@ import { getRelativeDate } from "_utils/dayjs";
 import React, { useContext, useEffect } from "react";
 import { SafeAreaView, ScrollView, StatusBar, Text, View } from "react-native";
 import { NavigationEvents, withNavigationFocus } from "react-navigation";
-import { HeaderRight } from "./components";
+import { DatePaginator, HeaderRight } from "./components";
 
 const JournalScreen = ({ navigation: { navigate, isFocused, setParams } }) => {
   const {
     state: { fetchStatus, currentDate },
     fetchJournalEntries,
+    updateCurrentDate,
+    decrementDate,
+    incrementDate,
   } = useContext(JournalContext);
 
   useEffect(() => {
@@ -20,12 +23,13 @@ const JournalScreen = ({ navigation: { navigate, isFocused, setParams } }) => {
     setParams({ displayDate: getRelativeDate(currentDate) });
   }, [currentDate]);
 
-  if (fetchStatus === "error")
+  if (fetchStatus === "error") {
     return (
       <View>
         <Text>Ooops! Something went wrong :/</Text>
       </View>
     );
+  }
 
   return (
     <SafeAreaView style={Layout.container.application}>
@@ -36,6 +40,12 @@ const JournalScreen = ({ navigation: { navigate, isFocused, setParams } }) => {
       <HeaderBottom color={Colors.blue.s2} />
       <ScrollView style={{ flexGrow: 1 }}>
         <DailyBudgetsCard />
+        <DatePaginator
+          currentDate={currentDate}
+          updateCurrentDate={updateCurrentDate}
+          decrementDate={decrementDate}
+          incrementDate={incrementDate}
+        />
       </ScrollView>
       <View style={Layout.centered}>
         <IconButton

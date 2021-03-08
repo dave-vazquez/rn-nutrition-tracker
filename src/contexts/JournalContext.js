@@ -8,6 +8,7 @@ const FETCH_ENTRIES_SUCCESS = "FETCH_ENTRIES_SUCCESS";
 const CREATE_ENTRY_START = "CREATE_ENTRY_START";
 const CREATE_ENTRY_ERROR = "CREATE_ENTRY_ERROR";
 const CREATE_ENTRY_SUCCESS = "CREATE_ENTRY_SUCCESS";
+const UPDATE_CURRENT_DATE = "UPDATE_CURRENT_DATE";
 
 const initialState = {
   currentDate: new Date(),
@@ -61,6 +62,11 @@ const journalReducer = (state, action) => {
       return {
         ...state,
         createStatus: "success",
+      };
+    case UPDATE_CURRENT_DATE:
+      return {
+        ...state,
+        currentDate: action.currentDate,
       };
     default:
       return state;
@@ -124,8 +130,41 @@ const createJournalEntry = (dispatch) => async (
   }
 };
 
+const updateCurrentDate = (dispatch) => (newDate) => {
+  dispatch({
+    type: UPDATE_CURRENT_DATE,
+    currentDate: dayjs(newDate).tz(deviceTimeZone).toDate(),
+  });
+};
+
+const decrementDate = (dispatch, state) => () => {
+  dispatch({
+    type: UPDATE_CURRENT_DATE,
+    currentDate: dayjs(state.currentDate)
+      .tz(deviceTimeZone)
+      .subtract(1, "d")
+      .toDate(),
+  });
+};
+
+const incrementDate = (dispatch, state) => () => {
+  dispatch({
+    type: UPDATE_CURRENT_DATE,
+    currentDate: dayjs(state.currentDate)
+      .tz(deviceTimeZone)
+      .add(1, "d")
+      .toDate(),
+  });
+};
+
 export const { Provider, Context } = createContext(
   journalReducer,
-  { fetchJournalEntries, createJournalEntry },
+  {
+    fetchJournalEntries,
+    createJournalEntry,
+    updateCurrentDate,
+    decrementDate,
+    incrementDate,
+  },
   initialState
 );
