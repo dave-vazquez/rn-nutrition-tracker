@@ -8,8 +8,6 @@
     <img src="./readme/food-detail-preview.png" height="500px" width="auto" />
   </p>
   <p align="center">
-    <a href="https://expo.io/@dave_vazquez/projects/rn-nutrition">View Demo</a>
-    <span>&nbsp;|&nbsp;</span>
     <a href="https://github.com/dave-vazquez/rn-nutrition-tracker/issues">Report Bug</a>
     <span>&nbsp;|&nbsp;</span>
     <a href="https://github.com/dave-vazquez/rn-nutrition-tracker/issues">Request Feature</a>
