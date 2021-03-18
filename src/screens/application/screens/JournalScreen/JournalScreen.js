@@ -7,11 +7,11 @@ import { getRelativeDate } from "_utils/dayjs";
 import React, { useContext, useEffect } from "react";
 import { SafeAreaView, ScrollView, StatusBar, Text, View } from "react-native";
 import { NavigationEvents, withNavigationFocus } from "react-navigation";
-import { HeaderRight } from "./components";
+import { HeaderRight, MealCard } from "./components";
 
 const JournalScreen = ({ navigation: { navigate, isFocused, setParams } }) => {
   const {
-    state: { fetchStatus, currentDate },
+    state: { fetchStatus, currentDate, entries },
     fetchJournal,
   } = useContext(JournalContext);
 
@@ -25,6 +25,8 @@ const JournalScreen = ({ navigation: { navigate, isFocused, setParams } }) => {
       setParams({ displayDate: getRelativeDate(newDate) });
     });
   };
+
+  console.log("entries", entries);
 
   if (fetchStatus === "error") {
     return (
@@ -44,17 +46,18 @@ const JournalScreen = ({ navigation: { navigate, isFocused, setParams } }) => {
       <ScrollView style={{ flexGrow: 1 }}>
         <DailyBudgetsCard />
         <DatePaginator currentDate={currentDate} onDateChange={onDateChange} />
+        <MealCard entries={entries} />
+        <View style={Layout.centered}>
+          <IconButton
+            onPress={() => navigate("FoodSearch")}
+            icon={{
+              name: "add",
+              type: "material-icons",
+              color: Colors.green.light.s4,
+            }}
+          />
+        </View>
       </ScrollView>
-      <View style={Layout.centered}>
-        <IconButton
-          onPress={() => navigate("FoodSearch")}
-          icon={{
-            name: "add",
-            type: "material-icons",
-            color: Colors.green.light.s4,
-          }}
-        />
-      </View>
     </SafeAreaView>
   );
 };

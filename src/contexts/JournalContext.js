@@ -1,5 +1,6 @@
 import nutritionAPI from "_api/nutritionAPI";
 import dayjs, { deviceTimeZone } from "_utils/dayjs";
+import groupBy from "lodash.groupby";
 import createContext from "./helper/createContext";
 
 const FETCH_ENTRIES_START = "FETCH_ENTRIES_START";
@@ -26,7 +27,7 @@ const initialState = {
     protein_g: 0,
     calories_kcal: 0,
   },
-  entries: [],
+  entries: {},
 };
 
 const journalReducer = (state, action) => {
@@ -47,6 +48,7 @@ const journalReducer = (state, action) => {
         fetchStatus: "success",
         budgets: action.budgets,
         consumed: action.consumed,
+        entries: action.entries,
         currentDate: action.currentDate,
       };
     case CREATE_ENTRY_START:
@@ -82,12 +84,15 @@ const fetchJournal = (dispatch) => async (entryDate, navCallBack) => {
       `/journal/${dayjs(entryDate).tz(deviceTimeZone).format()}`
     );
 
+    console.log("data.entries", data.entries);
+    console.log("grouped     ", groupBy(data.entries, "meal_type"));
+
     dispatch({
       type: FETCH_ENTRIES_SUCCESS,
       currentDate: entryDate,
       budgets: data.budgets,
       consumed: data.consumed,
-      entries: data.entries,
+      entries: groupBy(data.entries, "meal_type"),
     });
 
     if (navCallBack) navCallBack();
