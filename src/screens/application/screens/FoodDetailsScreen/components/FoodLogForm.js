@@ -66,7 +66,7 @@ const JournalEntryForm = ({
         <DateTimeInput
           hideIcon
           label="Date"
-          formatType="date"
+          formatType="relative-date"
           value={form.date}
           onTouch={() => showDatePickerWithMode("date")}
         />

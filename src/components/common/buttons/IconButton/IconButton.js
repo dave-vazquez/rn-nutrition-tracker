@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import React from "react";
 import {
   Platform,
-  StyleSheet,
   TouchableNativeFeedback,
   TouchableOpacity,
   View,
@@ -20,7 +19,7 @@ const background =
     ? TouchableNativeFeedback.Ripple(Colors.white, true)
     : undefined;
 
-const IconButton = ({ onPress, icon }) => {
+const IconButton = ({ onPress, icon, raised, reverse, containerStyle }) => {
   return (
     <TouchableComponent
       onPress={onPress}
@@ -28,27 +27,31 @@ const IconButton = ({ onPress, icon }) => {
       activeOpacity={0.3}
       background={background}
     >
-      <Icon
-        raised
-        reverse
-        name={icon.name}
-        type={icon.type}
-        color={icon.color}
-      />
+      <View style={containerStyle}>
+        <Icon
+          raised={raised}
+          reverse={reverse}
+          name={icon.name}
+          type={icon.type}
+          color={icon.color}
+          size={icon.size || 25}
+        />
+      </View>
     </TouchableComponent>
   );
 };
 
-IconButton.proptypes = {
-  onPress: PropTypes.func,
-  icon: PropTypes.object,
+IconButton.defaultProps = {
+  raised: true,
+  reverse: true,
 };
 
-// const s = StyleSheet.create({
-//   container: {
-//     alignItems: "center",
-//     width: "100%",
-//   },
-// });
+IconButton.proptypes = {
+  raised: PropTypes.bool,
+  reverse: PropTypes.bool,
+  containerStyle: PropTypes.object,
+  onPress: PropTypes.func,
+  icon: PropTypes.object.isRequired,
+};
 
 export default IconButton;

@@ -8,6 +8,7 @@ const FETCH_ENTRIES_SUCCESS = "FETCH_ENTRIES_SUCCESS";
 const CREATE_ENTRY_START = "CREATE_ENTRY_START";
 const CREATE_ENTRY_ERROR = "CREATE_ENTRY_ERROR";
 const CREATE_ENTRY_SUCCESS = "CREATE_ENTRY_SUCCESS";
+const UPDATE_CURRENT_DATE = "UPDATE_CURRENT_DATE";
 
 const initialState = {
   currentDate: new Date(),
@@ -46,6 +47,7 @@ const journalReducer = (state, action) => {
         fetchStatus: "success",
         budgets: action.budgets,
         consumed: action.consumed,
+        currentDate: action.currentDate,
       };
     case CREATE_ENTRY_START:
       return {
@@ -62,25 +64,33 @@ const journalReducer = (state, action) => {
         ...state,
         createStatus: "success",
       };
+    case UPDATE_CURRENT_DATE:
+      return {
+        ...state,
+        currentDate: action.currentDate,
+      };
     default:
       return state;
   }
 };
 
-const fetchJournalEntries = (dispatch) => async (date) => {
+const fetchJournal = (dispatch) => async (entryDate, navCallBack) => {
   dispatch({ type: FETCH_ENTRIES_START });
+
   try {
     const { data } = await nutritionAPI.get(
-      `/journal/${dayjs(date).tz(deviceTimeZone).format()}`
+      `/journal/${dayjs(entryDate).tz(deviceTimeZone).format()}`
     );
 
     dispatch({
       type: FETCH_ENTRIES_SUCCESS,
+      currentDate: entryDate,
       budgets: data.budgets,
       consumed: data.consumed,
       entries: data.entries,
     });
 
+    if (navCallBack) navCallBack();
     //
   } catch (error) {
     dispatch({ type: FETCH_ENTRIES_ERROR });
@@ -124,8 +134,17 @@ const createJournalEntry = (dispatch) => async (
   }
 };
 
+const updateCurrentDate = (dispatch) => (newDate, navCallback) => {
+  dispatch({ type: UPDATE_CURRENT_DATE, currentDate: newDate });
+  navCallback();
+};
+
 export const { Provider, Context } = createContext(
   journalReducer,
-  { fetchJournalEntries, createJournalEntry },
+  {
+    fetchJournal,
+    createJournalEntry,
+    updateCurrentDate,
+  },
   initialState
 );

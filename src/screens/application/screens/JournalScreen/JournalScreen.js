@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { IconButton } from "_components/common";
+import { DatePaginator, IconButton } from "_components/common";
 import { Context as JournalContext } from "_contexts/JournalContext";
 import { Colors, Layout } from "_global_styles";
 import { DailyBudgetsCard, HeaderBottom } from "_screens/application/common";
@@ -12,30 +12,38 @@ import { HeaderRight } from "./components";
 const JournalScreen = ({ navigation: { navigate, isFocused, setParams } }) => {
   const {
     state: { fetchStatus, currentDate },
-    fetchJournalEntries,
+    fetchJournal,
   } = useContext(JournalContext);
 
   useEffect(() => {
-    fetchJournalEntries(currentDate);
+    fetchJournal(currentDate);
     setParams({ displayDate: getRelativeDate(currentDate) });
-  }, [currentDate]);
+  }, []);
 
-  if (fetchStatus === "error")
+  const onDateChange = (newDate) => {
+    fetchJournal(newDate, () => {
+      setParams({ displayDate: getRelativeDate(newDate) });
+    });
+  };
+
+  if (fetchStatus === "error") {
     return (
       <View>
         <Text>Ooops! Something went wrong :/</Text>
       </View>
     );
+  }
 
   return (
     <SafeAreaView style={Layout.container.application}>
       {isFocused() && (
         <StatusBar backgroundColor={Colors.blue.s2} barStyle="light-content" />
       )}
-      <NavigationEvents onWillFocus={() => fetchJournalEntries(currentDate)} />
+      <NavigationEvents onWillFocus={() => fetchJournal(currentDate)} />
       <HeaderBottom color={Colors.blue.s2} />
       <ScrollView style={{ flexGrow: 1 }}>
         <DailyBudgetsCard />
+        <DatePaginator currentDate={currentDate} onDateChange={onDateChange} />
       </ScrollView>
       <View style={Layout.centered}>
         <IconButton
